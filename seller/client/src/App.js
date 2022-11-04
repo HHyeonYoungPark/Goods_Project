@@ -17,7 +17,7 @@ import AddItem from "./components/pages/AddItem";
 import Order from "./components/pages/Order";
 import Review from "./components/pages/Review";
 import Help from "./components/pages/Help";
-import NotFound from "./component/pages/NotFound";
+import NotFound from "./components/pages/NotFound";
 
 function App() {
   return (
