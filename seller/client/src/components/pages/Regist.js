@@ -84,6 +84,7 @@ function Regist() {
             </tr>
           </table>
           <div className="submit-btn">
+            <input type="button" value="돌아가기" />
             <input type="submit" value="판매자 신청" />
           </div>
         </form>
