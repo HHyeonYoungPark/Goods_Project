@@ -3,6 +3,9 @@
 }
 
 .regist-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 table {
