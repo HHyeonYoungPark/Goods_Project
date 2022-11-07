@@ -73,6 +73,21 @@ function Regist() {
     }
   }
 
+  // 아이디 중복확인
+  const sameIdCheck = (e) => {
+    e.preventDefault();
+
+    axios.post("/sameIdCheck", id).then((response) => {
+      if (response.canUseId) {
+        alert("사용 가능한 아이디입니다.");
+        setIsSameId(true);
+      } else {
+        alert("이미 존재하는 아이디가 있습니다.");
+        setIsSameId(false);
+      }
+    });
+  };
+
   // 비밀번호
   function onChangePw(e) {
     const pwCurrent = e.target.value;
@@ -102,21 +117,6 @@ function Regist() {
     }
   }
 
-  // 아이디 중복확인
-  const sameIdCheck = (e) => {
-    e.preventDefault();
-
-    axios.post("/sameIdCheck", id).then((response) => {
-      if (response.canUseId) {
-        alert("사용 가능한 아이디입니다.");
-        setIsSameId(true);
-      } else {
-        alert("이미 존재하는 아이디가 있습니다.");
-        setIsSameId(false);
-      }
-    });
-  };
-
   // 이메일 정규식
   function onChangeEmail(e) {
     const emailRegex = /^[a-z A-Z 0-9 +-\_.]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/;
@@ -133,6 +133,17 @@ function Regist() {
       setIsEmailType(true);
     }
   }
+
+  // // 체크를 안하면 alert창이 뜸
+  // function checkboxValidate() {
+  //   let chk = document.querySelector("input[name='agree']:checked");
+  //   if (!chk) {
+  //     alert("약관을 확인 후 체크해주세요");
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // }
 
   return (
     <div className="container">
@@ -285,20 +296,20 @@ function Regist() {
           </div>
           <div className="agree-check">
             <div className="checkbox">
-              <input type="checkbox" />
+              <input type="checkbox" name="agree" />
               <span>
                 <strong>(필수)</strong> 만 14세 이상입니다.
               </span>
             </div>
             <div className="checkbox">
-              <input type="checkbox" />
+              <input type="checkbox" name="agree" />
               <span>
                 <strong>(필수)</strong> 개인정보의 수집 및 이용에 관하여
                 동의합니다.
               </span>
             </div>
             <div className="checkbox">
-              <input type="checkbox" />
+              <input type="checkbox" name="agree" />
               <span>
                 <strong>(필수)</strong> 이용약관에 동의합니다.
               </span>
