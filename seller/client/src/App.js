@@ -16,7 +16,7 @@ import MakeItem from "./components/pages/MakeItem";
 import AddItem from "./components/pages/AddItem";
 import Order from "./components/pages/Order";
 import Review from "./components/pages/Review";
-import Help from "./components/pages/Help";
+import Help from "./components/pages/HelpToAdmin";
 import NotFound from "./components/pages/NotFound";
 
 function App() {

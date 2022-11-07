@@ -57,7 +57,7 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
   const { sellertype } = req.body;
   const { channelname } = req.body;
   const { url } = req.body;
-  const { filename } = req.file;
+  const { profileimage } = req.file;
   const { intro } = req.body;
 
   let sql = "INSERT INTO seller VALUES(NULL,?,?,?,?,?,?,?,?,?,now());";
@@ -72,7 +72,7 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
       sellertype,
       channelname,
       url,
-      filename,
+      profileimage,
       intro,
     ],
     (err) => {
