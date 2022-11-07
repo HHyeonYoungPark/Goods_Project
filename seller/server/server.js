@@ -47,6 +47,8 @@ app.use(cors());
 app.use(express.static("uploads"));
 
 // url
+
+// 회원가입
 app.post("/regist", upload.single("profileimage"), (req, res) => {
   const { id } = req.body;
   const { pw } = req.body;
@@ -81,6 +83,23 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
       res.send({ status: 201, message: "판매자 신청이 완료되었습니다." });
     }
   );
+});
+
+// 아이디 중복확인
+app.post("/sameIdCheck", (req, res) => {
+  User.findOne({ id: req.body.id }, (err, user) => {
+    if (err) {
+      throw err;
+    } else if (!user) {
+      return res.json({
+        canUseEmail: true,
+      });
+    } else {
+      return res.json({
+        canUseEmail: false,
+      });
+    }
+  });
 });
 
 // port

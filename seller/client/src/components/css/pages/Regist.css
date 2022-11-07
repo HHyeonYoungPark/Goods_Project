@@ -1,22 +1,130 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .container {
   display: flex;
   justify-content: center;
 }
 
 .regist-wrap {
+  padding: 20px 100px;
+  background-color: #fff;
+  width: 1280px;
+  margin-bottom: 50px;
+}
+
+.regist-title {
+  margin: 50px;
+  text-align: center;
+}
+
+.regist-title h1,
+h4 {
+  margin: 10px 0;
+}
+
+.regist-info input,
+.channel-info input {
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+  padding: 15px;
+  width: 40%;
+}
+
+.regist-info span,
+.channel-info span {
+  color: tomato;
+  font-size: 14px;
+}
+
+.regist-info {
+  padding: 15px 0;
+}
+
+.regist-info h3 {
+  margin: 10px 0;
+}
+
+.sellertype input {
+  width: 30px;
+}
+
+.channel-info {
+  padding: 15px 0;
+}
+
+.channel-info h3 {
+  margin: 10px 0;
+}
+
+.channel-info .profileimage {
+  border: 0;
+  outline: 0;
+  background-color: transparent;
 }
 
 table {
   border-collapse: collapse;
+  width: 100%;
 }
 
-tr,
-td {
+th {
+  text-align: left;
+  padding-left: 20px;
+  width: 20%;
+  background-color: steelblue;
+}
+
+tr {
   border: 1px solid #eee;
+  height: 80px;
+}
+
+.agree-check {
+  margin: 15px 0;
+  padding: 20px 30px;
+  background-color: #eee;
+  width: 1080px;
+  border-radius: 5px;
+}
+
+.agree-check .checkbox {
+  margin: 7px 0;
+}
+
+.checkbox span {
+  margin-left: 10px;
+}
+
+.submit-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.submit-btn button,
+.submit-btn input {
+  border: none;
+  padding: 18px 30px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 7px;
+}
+
+.submit-btn input {
+  background: steelblue;
+  color: #fff;
+}
+
+.submit-btn button {
+  background-color: rgba(66, 66, 66, 0.527);
+  color: #95afb7;
+  padding: 18px 40px;
+}
+
+.submit-btn button a {
+  color: #fff;
 }
