@@ -14,16 +14,32 @@ CREATE TABLE customer (
     regdate DATETIME NOT NULL
 );
 
-CREATE TABLE order(
-idx INT AUTO_INCREMENT PRIMARY KEY,
-id VARCHAR(50) UNIQUE,
-pw VARCHAR(255),
-sellername VARCHAR(10),
-email varchar(255),
-sellertype VARCHAR(10),
-channelname VARCHAR(100),
-url VARCHAR(255),
-sellerimage VARCHAR(255),
-intro VARCHAR(100),
-regdate DATE 
+CREATE TABLE order (
+  idx INT AUTO_INCREMENT PRIMARY KEY,
+  FOREIGN KEY customer_idx references customer(idx),
+  FOREIGN KEY item_idx references item(idx),
+  amount INT,
+  price INT,
+  sent tinyint(1),
+  tracking_number int,
+  confirm_received tinyint(1)
+);
+
+CREATE TABLE cart (
+  idx INT AUTO_INCREMENT PRIMARY KEY,
+  FOREIGN KEY customer_idx references customer(idx),
+  FOREIGN KEY item_idx references item(idx),
+  amount INT
+  totalPrice INT
+);
+
+CREATE TABLE review (
+  idx INT AUTO_INCREMENT PRIMARY KEY,
+  FOREIGN KEY customer_idx references customer(idx),
+  FOREIGN KEY item_idx references item(idx),
+  title VARCHAR(50),
+  content TEXT,
+  star tinyint(1),
+  attach VARCHAR(100),
+  regdate DATETIME
 );
