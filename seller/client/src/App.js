@@ -28,7 +28,7 @@ function App() {
 
         <main>
           <Routes>
-            <Route path="main" element={<Main />} />
+            <Route path="/" element={<Main />} />
             <Route path="login" element={<Login />} />
             <Route path="regist" element={<Regist />} />
             <Route path="makeItem" element={<MakeItem />} />

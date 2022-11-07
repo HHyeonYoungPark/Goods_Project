@@ -1,11 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .container {
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
 
 .regist-wrap {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 table {
