@@ -10,7 +10,7 @@ CREATE TABLE customer (
     email VARCHAR(255) UNIQUE NOT NULL,
     adress1 VARCHAR(100) NOT NULL,
     adress2 VARCHAR(100),
-    zipcod VARCHAR(10),
+    zipcode VARCHAR(10),
     regdate DATETIME NOT NULL
 );
 
