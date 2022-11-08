@@ -28,7 +28,7 @@ function Header() {
                 profile
               </Link>
             </li>
-            <div className="loginDropDown">
+            <li className="loginDropDown">
               <Link to="/toggle" className="toggle">
                 toggle
               </Link>
@@ -40,7 +40,7 @@ function Header() {
                   로그인
                 </Link>
               </div>
-            </div>
+            </li>
           </ul>
         </div>
       </div>
