@@ -11,7 +11,6 @@ function Regist() {
   const [pwConfirm, setPwConfirm] = useState();
   const [sellername, setSellername] = useState("");
   const [email, setEmail] = useState("");
-  const [sellertype, setSellertype] = useState("");
   const [channelname, setChannelname] = useState("");
   const [url, setUrl] = useState("");
   const [profileimage, setProfileimage] = useState("");
@@ -21,40 +20,61 @@ function Regist() {
   const [idMessage, setIdMessage] = useState("");
   const [pwMessage, setPwMessage] = useState("");
   const [pwConfirmMessage, setPwConfirmMessage] = useState("");
+  const [sellernameMessage, setSellernameMessage] = useState("");
   const [emailMessage, setEmailMessage] = useState("");
 
   // 유효성 검사
   const [isId, setIsId] = useState(false); // 아이디를 8자 이상 입력했는지
-  const [isSameId, setIsSameId] = useState(false); // 아이디 중복 확인을 했는지
+  // const [isSameId, setIsSameId] = useState(false); // 아이디 중복 확인을 했는지
   const [isPw, setIsPw] = useState(false); // 8자 이상 비밀번호를 입력했는지
   const [isPwConfirm, setIsPwConfirm] = useState(false); // 동일한 비밀번호 입력했는지
+  const [isSellername, setIsSellername] = useState(false); // 이름을 입력했는지
   const [isEmail, setIsEmail] = useState(false); // 이메일을 입력했는지
   const [isEmailType, setIsEmailType] = useState(false); // 이메일 형식을 만족했는지
+  const [isChannelName, setIsChannelName] = useState(false); // 채널이름을 입력했는지
+  const [isUrl, setIsUrl] = useState(false); // url을 입력했는지
+  const [isProfileimage, setIsProfileimage] = useState(false); // 프로필이미지를 선택했는지
+  const [isIntro, setIsIntro] = useState(false); // 한줄소개를 작성했는지
 
   const navigate = useNavigate();
 
   function frmHandler(e) {
     e.preventDefault();
-    let formData = new FormData();
-    formData.append("id", id);
-    formData.append("pw", pw);
-    formData.append("sellername", sellername);
-    formData.append("email", email);
-    formData.append("sellertype", sellertype);
-    formData.append("channelname", channelname);
-    formData.append("url", url);
-    formData.append("profileimage", profileimage);
-    formData.append("intro", intro);
 
-    axios.post("http://localhost:4001/regist", formData).then((response) => {
-      if (response.data.status === 201) {
-        window.alert(response.data.message);
-        navigate("/login");
-      } else {
-        window.alert("에러발생 : 관리자에게 문의하세요");
-        navigate("/");
-      }
-    });
+    if (
+      isId &&
+      isPw &&
+      isPwConfirm &&
+      isSellername &&
+      isEmail &&
+      isEmailType &&
+      isChannelName &&
+      isUrl &&
+      isProfileimage &&
+      isIntro === true
+    ) {
+      let formData = new FormData();
+      formData.append("id", id);
+      formData.append("pw", pw);
+      formData.append("sellername", sellername);
+      formData.append("email", email);
+      formData.append("channelname", channelname);
+      formData.append("url", url);
+      formData.append("profileimage", profileimage);
+      formData.append("intro", intro);
+
+      axios.post("http://localhost:4001/regist", formData).then((response) => {
+        if (response.data.status === 201) {
+          window.alert(response.data.message);
+          navigate("/login");
+        } else {
+          window.alert("에러발생 : 관리자에게 문의하세요");
+          navigate("/");
+        }
+      });
+    } else {
+      alert("입력하신 정보를 다시 확인해주세요.");
+    }
   }
 
   // 유효성 검사
@@ -68,25 +88,10 @@ function Regist() {
       setIdMessage("아이디를 8자이상 입력해주세요");
       setIsId(false);
     } else {
-      setIdMessage("사용 가능한 아이디입니다.");
+      setIdMessage("사용가능한 아이디 입니다.");
       setIsId(true);
     }
   }
-
-  // 아이디 중복확인
-  const sameIdCheck = (e) => {
-    e.preventDefault();
-
-    axios.post("/sameIdCheck", id).then((response) => {
-      if (response.canUseId) {
-        alert("사용 가능한 아이디입니다.");
-        setIsSameId(true);
-      } else {
-        alert("이미 존재하는 아이디가 있습니다.");
-        setIsSameId(false);
-      }
-    });
-  };
 
   // 비밀번호
   function onChangePw(e) {
@@ -117,6 +122,20 @@ function Regist() {
     }
   }
 
+  // 이름
+  function onChangeSellername(e) {
+    const sellernameCurrent = e.target.value;
+    setSellername(sellernameCurrent);
+
+    if (sellernameCurrent.length == null || sellernameCurrent.length == "") {
+      setSellernameMessage("이름을 입력해주세요");
+      setIsSellername(false);
+    } else {
+      setSellernameMessage("");
+      setIsSellername(true);
+    }
+  }
+
   // 이메일 정규식
   function onChangeEmail(e) {
     const emailRegex = /^[a-z A-Z 0-9 +-\_.]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/;
@@ -134,8 +153,61 @@ function Regist() {
     }
   }
 
-  // // 체크를 안하면 alert창이 뜸
-  // function checkboxValidate() {
+  // 채널명
+  function onChangeChannelname(e) {
+    const channelnameCurrent = e.target.value;
+    setChannelname(channelnameCurrent);
+
+    if (channelnameCurrent.length == null || channelnameCurrent.length == "") {
+      setIsChannelName(false);
+    } else {
+      setIsChannelName(true);
+    }
+  }
+
+  // 채널 주소(url)
+  function onChangeUrl(e) {
+    const urlCurrent = e.target.value;
+    setUrl(urlCurrent);
+
+    if (urlCurrent.length == null || urlCurrent.length == "") {
+      setIsUrl(false);
+    } else {
+      setIsUrl(true);
+    }
+  }
+
+  // 프로필 이미지
+  function onChangeProfileImage(e) {
+    const profileImageCurrent = e.target.files[0];
+    setProfileimage(profileImageCurrent);
+
+    if (
+      profileImageCurrent.length == null ||
+      profileImageCurrent.length == ""
+    ) {
+      setIsProfileimage(false);
+    } else {
+      setIsProfileimage(true);
+    }
+  }
+
+  // 한줄소개
+  function onChangeIntro(e) {
+    const introCurrent = e.target.value;
+    setIntro(introCurrent);
+
+    if (introCurrent.length == null || introCurrent.length == "") {
+      setIsIntro(false);
+    } else {
+      setIsIntro(true);
+    }
+  }
+
+  // // 입력 또는 체크를 안했으면 alert
+  // function onClick() {
+
+  //   // 약관체크
   //   let chk = document.querySelector("input[name='agree']:checked");
   //   if (!chk) {
   //     alert("약관을 확인 후 체크해주세요");
@@ -167,9 +239,6 @@ function Regist() {
                 <td>
                   <input type="text" name="id" onChange={onChangeId} />
                   {idMessage && <span>{idMessage}</span>}
-                  <button onClick={sameIdCheck} disabled={!isSameId}>
-                    중복 확인
-                  </button>
                 </td>
               </tr>
               <tr>
@@ -196,10 +265,9 @@ function Regist() {
                   <input
                     type="text"
                     name="sellername"
-                    onChange={(e) => {
-                      setSellername(e.target.value);
-                    }}
+                    onChange={onChangeSellername}
                   />
+                  {sellername && <span>{sellernameMessage}</span>}
                 </td>
               </tr>
               <tr>
@@ -207,35 +275,6 @@ function Regist() {
                 <td>
                   <input type="text" name="email" onChange={onChangeEmail} />
                   {email && <span>{emailMessage}</span>}
-                </td>
-              </tr>
-              <tr>
-                <th>유형</th>
-                <td>
-                  <div class="sellertype">
-                    <label>
-                      <input
-                        type="radio"
-                        name="sellertype"
-                        value="개인사업자"
-                        onChange={(e) => {
-                          setSellertype(e.target.value);
-                        }}
-                      />
-                      개인사업자
-                    </label>
-                    <label>
-                      <input
-                        type="radio"
-                        name="sellertype"
-                        value="법인사업자"
-                        onChange={(e) => {
-                          setSellertype(e.target.value);
-                        }}
-                      />
-                      법인사업자
-                    </label>
-                  </div>
                 </td>
               </tr>
             </table>
@@ -249,22 +288,14 @@ function Regist() {
                   <input
                     type="text"
                     name="channelname"
-                    onChange={(e) => {
-                      setChannelname(e.target.value);
-                    }}
+                    onChange={onChangeChannelname}
                   />
                 </td>
               </tr>
               <tr>
                 <th>채널주소(url)</th>
                 <td>
-                  <input
-                    type="text"
-                    name="url"
-                    onChange={(e) => {
-                      setUrl(e.target.value);
-                    }}
-                  />
+                  <input type="text" name="url" onChange={onChangeUrl} />
                 </td>
               </tr>
               <tr>
@@ -274,22 +305,14 @@ function Regist() {
                     className="profileimage"
                     type="file"
                     name="profileimage"
-                    onChange={(e) => {
-                      setProfileimage(e.target.files[0]);
-                    }}
+                    onChange={onChangeProfileImage}
                   />
                 </td>
               </tr>
               <tr>
                 <th>한줄소개</th>
                 <td>
-                  <input
-                    type="text"
-                    name="intro"
-                    onChange={(e) => {
-                      setIntro(e.target.value);
-                    }}
-                  />
+                  <input type="text" name="intro" onChange={onChangeIntro} />
                 </td>
               </tr>
             </table>

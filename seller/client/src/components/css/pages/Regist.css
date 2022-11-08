@@ -74,11 +74,16 @@ th {
   padding-left: 20px;
   width: 20%;
   background-color: steelblue;
+  color: #fff;
 }
 
 tr {
   border: 1px solid #eee;
   height: 80px;
+}
+
+td span {
+  margin-left: 10px;
 }
 
 .agree-check {
@@ -119,7 +124,7 @@ tr {
   color: #fff;
 }
 
-.submit-btn button {
+.submit-btn .list-btn {
   background-color: rgba(66, 66, 66, 0.527);
   color: #95afb7;
   padding: 18px 40px;

@@ -54,27 +54,15 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
   const { pw } = req.body;
   const { sellername } = req.body;
   const { email } = req.body;
-  const { sellertype } = req.body;
   const { channelname } = req.body;
   const { url } = req.body;
-  const { profileimage } = req.file;
+  const { filename } = req.file;
   const { intro } = req.body;
 
-  let sql = "INSERT INTO seller VALUES(NULL,?,?,?,?,?,?,?,?,?,now());";
+  let sql = "INSERT INTO seller VALUES(NULL,?,?,?,?,?,?,?,?,now());";
   db.query(
     sql,
-    [
-      id,
-      pw,
-      sellername,
-      email,
-      sellername,
-      sellertype,
-      channelname,
-      url,
-      profileimage,
-      intro,
-    ],
+    [id, pw, sellername, email, channelname, url, filename, intro],
     (err) => {
       if (err) {
         throw err;
@@ -83,23 +71,6 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
       res.send({ status: 201, message: "판매자 신청이 완료되었습니다." });
     }
   );
-});
-
-// 아이디 중복확인
-app.post("/sameIdCheck", (req, res) => {
-  User.findOne({ id: req.body.id }, (err, user) => {
-    if (err) {
-      throw err;
-    } else if (!user) {
-      return res.json({
-        canUseEmail: true,
-      });
-    } else {
-      return res.json({
-        canUseEmail: false,
-      });
-    }
-  });
 });
 
 // port
