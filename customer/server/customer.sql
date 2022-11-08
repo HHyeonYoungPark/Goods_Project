@@ -3,7 +3,7 @@ USE goods;
 CREATE TABLE customer(
   idx INT AUTO_INCREMENT PRIMARY KEY,
   id VARCHAR(50) UNIQUE,
-  pw VARCHAR(50),
+  pw VARCHAR(255),
   NAME VARCHAR(50),
   moblie VARCHAR(20),
   email VARCHAR(255) UNIQUE,
@@ -18,16 +18,17 @@ CREATE TABLE seller(
   id VARCHAR(50) UNIQUE,
   pw VARCHAR(255),
   sellername VARCHAR(10),
-  email varchar(255),
-  sellertype VARCHAR(10),
+  email VARCHAR(255),
+  platform VARCHAR(10),
+  genre VARCHAR(10),
   channelname VARCHAR(100),
   url VARCHAR(255),
   sellerimage VARCHAR(255),
   intro VARCHAR(100),
-  regdate DATE 
+  regdate DATE
 );
 
-CREATE TABLE category (
+CREATE TABLE category_goods (
   idx INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(50)
 );
@@ -35,8 +36,7 @@ CREATE TABLE category (
 CREATE TABLE item(
   idx INT AUTO_INCREMENT PRIMARY KEY,
   seller_idx INT,
-  category_idx INT,
-  category VARCHAR(50),
+  category_goods_idx INT,
   image VARCHAR(255),
   itemname VARCHAR(100),
   price VARCHAR(50),
@@ -44,7 +44,7 @@ CREATE TABLE item(
   contents TEXT,
   regdate DATE,
   FOREIGN KEY (seller_idx) references seller(idx),
-  FOREIGN KEY (category_idx) references category(idx)
+  FOREIGN KEY (category_goods_idx) references category_goods(idx)
 );
 
 CREATE TABLE orders(
@@ -82,3 +82,4 @@ CREATE TABLE review (
   FOREIGN KEY (customer_idx) references customer(idx),
   FOREIGN KEY (item_idx) references item(idx)
 );
+

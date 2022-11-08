@@ -54,13 +54,13 @@ app.use(
 app.use(express.static("reviews"));
 
 // url
-//customer home//z
+//customer home//
 app.get("/", (req, res) => {
     res.send("");
 });
 
 //customer regist//
-app.post("/regist", (req, res) => {
+app.post("/customer/regist", (req, res) => {
     const { id } = req.body;
     const { pw } = req.body;
     const { name } = req.body;
@@ -71,14 +71,16 @@ app.post("/regist", (req, res) => {
     const { zipcod } = req.body;
 
     let sql = "INSERT INTO customer VALUES(NULL,?,?,?,?,?,?,?,?,now());";
-    db.query(sql, [id, pw, name, mobile, email, address1, address2, zipcod], (err) => {
-        if (err) throw err;
-        res.send({ status: 201, message: "회원 가입이 완료되었습니다." });
+    bcrypt.hash(pw, saltRounds, (err, hash_pw) => {
+        db.query(sql, [id, hash_pw, name, mobile, email, address1, address2, zipcod], (err) => {
+            if (err) throw err;
+            res.send({ status: 201, message: "회원 가입이 완료되었습니다."});
+        });
     });
 });
 
 //customer login//
-app.post("/login", (req, res) => {
+app.post("/customer/login", (req, res) => {
     sql = "SELECT * FROM customer WHERE id = ?;";
     db.query(sql, [req.body.id], (err, customer) => {
         if (customer[0] === undefined) {
@@ -90,6 +92,7 @@ app.post("/login", (req, res) => {
                         status: 201,
                         message: "로그인 되었습니다",
                         token_id: user[0].id,
+                        token_pw: user[0].pw
                     });
                 } else {
                     res.send({
@@ -103,49 +106,120 @@ app.post("/login", (req, res) => {
 });
 
 //category select
-app.get("/category", (req, res) => {});
+app.get("/customer/influencer", (req, res) => {
+    
+});
+app.get("/customer/goods", (req, res) => {
+
+});
 
 //search form
-app.get("/search", (req, res) => {
-    const page = Number.parseInt(req.query.page);
-    const offset = Number.parseInt(req.query.offset);
-    const startNum = page * offset;
+app.get("/customer/search", (req, res) => {
+    const start = Number.parseInt(req.query.start) || 0;
+    const offset = Number.parseInt(req.query.offset) || 30;
+    
     const search = req.query.searchQuery || "";
 
     const sellerSearch = "%" + search + "%";
     const itemSearch = "%" + search + "%";
 
-    let sql = "SELECT COUNT(id) AS cnt FROM item WHERE seller_name LIKE ? OR item_name LIKE ?;";
-    db.query(sql, [sellerSearch, itemSearch], (err, result) => {
+    let sql = "SELECT * FROM item WHERE seller_name LIKE ? OR item_name LIKE ? ORDER BY id DESC LIMIT ?, ?;";
+    db.query(sql, [sellerSearch, itemSearch, start, offset], (err, search) => {
         if (err) {
             throw err;
         } else {
-            let dataSQL =
-                "SELECT * FROM item WHERE seller_name LIKE ? OR item_name LIKE ? ORDER BY id DESC LIMIT ?, ?;";
-            db.query(dataSQL, [sellerSearch, itemSearch], (err, search) => {
-                if (err) {
-                    throw err;
-                } else {
-                    res.json({
-                        search,
-                        page, // 현재 페이지
-                        totalRows: result[0].cnt, // 전체 상품 수
-                        totalPageNumber: Math.ceil(result[0].cnt / offset), // 전체 페이지 수
-                    });
-                }
+            res.send({
+                search,
+                start : search.length ? start + offset : 0,
+                offset : offset,
+                moreData : search.length >= offset ? true : false
             });
         }
     });
 });
 
-//item detail
+//goods list
+app.get("/customer/goodslist", (req, res) => {
+    const start = Number.parseInt(req.query.start) || 0;
+    const offset = Number.parseInt(req.query.offset) || 30;
+    
+    let sql = "SELECT * FROM item WHERE category_goods_idx = ? ORDER BY seller_idx DESC LIMIT ?, ?;";
+    db.query(sql, [req.params.category_goods_idx, start, offset], (err, result) => {
+        if (err) {
+            throw err;
+        } else {
+            res.send({
+                result,
+                start : result.length ? start + offset : 0,
+                offset : offset,
+                moreData : result.length >= offset ? true : false
+            });
+        }
+    });
+});
 
-//mypage
+//goods detail
+app.get("/customer/detail", (req, res) => {
+    let sql = "";
+    db.query(sql, [], (err, result) => {
+        if(err){
+            throw err;
+        }else{
+            res.send(result);
+        }
+    })
+})
+
+//profile
+app.get("/customer/profile", (req, res) => {
+    if(!token_id){
+        res.send({ status: 404, message: "로그인 후 이용해 주세요" });
+        res.redirect("/customer/login");
+    }else{
+        let sql = "select * from customer where id = ?;";
+        db.query(sql, [token_id], (err, result) => {
+            if(err){
+                throw err;
+            }else{
+                res.send(result);
+            }
+        })
+    }
+})
 
 //cart
+app.get("/customer/cart", (req, res) => {
+    if(!token_id){
+        res.send({ status: 404, message: "로그인 후 이용해 주세요" });
+        res.redirect("/customer/login");
+    }else{
+        let sql = "select * from cart where id = ?;";
+        db.query(sql, [token_id], (err, result) => {
+            if(err){
+                throw err;
+            }else{
+                res.send(result);
+            }
+        })
+    }
+})
 
 //add cart
-app.post("/addCart", (req, res) => {});
+app.post("/customer/addCart", (req, res) => {
+    if(!token_id){
+        res.send({ status: 404, message: "로그인 후 이용해 주세요" });
+        res.redirect("/customer/login");
+    }else{
+        let sql = "select * from cart where id = ?;";
+        db.query(sql, [token_id], (err, result) => {
+            if(err){
+                throw err;
+            }else{
+                res.send(result);
+            }
+        })
+    }
+});
 
 //write review
 app.post("", (req, res) => {

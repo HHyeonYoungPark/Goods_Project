@@ -4,33 +4,23 @@
   box-sizing: border-box;
 }
 
-.NavbarContainer {
+.HeaderContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
-  background-color: aliceblue;
-  padding: 10px;
   align-items: center;
+  width: 100%;
+  background-color: #fff;
+  padding: 10px;
 }
 
-.NavMenuMid ul {
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
-}
-.NavMenuMid ul li {
-  display: inline;
-  padding-left: 20px;
-}
-
-.NavMenuRight ul {
+.HeaderMenuRight ul {
   list-style-type: none;
   display: flex;
   flex-direction: row;
 }
 
-.NavMenuRight ul li {
+.HeaderMenuRight ul li {
   display: inline;
   padding-left: 20px;
 }
