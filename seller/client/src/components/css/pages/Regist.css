@@ -113,6 +113,14 @@ td select {
   margin-left: 10px;
 }
 
+.checkbox a {
+  margin-left: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: underline;
+  color: steelblue;
+}
+
 .submit-btn {
   display: flex;
   justify-content: center;

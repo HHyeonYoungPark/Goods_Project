@@ -418,12 +418,18 @@ function Regist() {
                 <strong>(필수)</strong> 개인정보의 수집 및 이용에 관하여
                 동의합니다.
               </span>
+              <Link to="#" target="_blank">
+                전체보기
+              </Link>
             </div>
             <div className="checkbox">
               <input type="checkbox" name="agree" onChange={onChangeAgree3} />
               <span>
                 <strong>(필수)</strong> 이용약관에 동의합니다.
               </span>
+              <Link to="#" target="_blank">
+                전체보기
+              </Link>
             </div>
           </div>
           <div className="submit-btn">
