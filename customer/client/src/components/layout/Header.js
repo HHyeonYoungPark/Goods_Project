@@ -28,11 +28,19 @@ function Header() {
                 profile
               </Link>
             </li>
-            <li>
+            <div className="loginDropDown">
               <Link to="/toggle" className="toggle">
                 toggle
               </Link>
-            </li>
+              <div className="loginDropDownMenu">
+                <Link to="/registCustomer" className="registCustomer">
+                  회원가입
+                </Link>
+                <Link to="/loginCustomer" className="loginCustomer">
+                  로그인
+                </Link>
+              </div>
+            </div>
           </ul>
         </div>
       </div>
