@@ -104,15 +104,39 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
   });
 });
 
-/*
 // 로그인
 app.post("/login", (req, res) => {
   const { id } = req.body;
   const { pw } = req.body;
 
-  let sql = "";
+  let sql = "SELECT * FROM seller WHERE id=?;";
+  db.query(sql, [req.body.id], (err, user) => {
+    if (user[0] === undefined) {
+      res.send({
+        status: 404,
+        message: "존재하지 않는 아이디입니다.",
+      });
+    } else {
+      bcrypt.compare(req.body.pw, user[0].pw, (err, result) => {
+        if (result) {
+          console.log("로그인 성공");
+          res.send({
+            status: 201,
+            message: "로그인 성공. 환영합니다!",
+            token: user[0].pw,
+            id: user[0].id,
+          });
+        } else {
+          console.log("비밀번호 틀림");
+          res.send({
+            status: 400,
+            message: "비밀번호를 다시 확인해주세요.",
+          });
+        }
+      });
+    }
+  });
 });
-*/
 
 // port
 app.listen(process.env.PORT, () => {
