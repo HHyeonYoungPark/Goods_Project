@@ -74,11 +74,27 @@ th {
   padding-left: 20px;
   width: 20%;
   background-color: steelblue;
+  color: #fff;
 }
 
 tr {
   border: 1px solid #eee;
   height: 80px;
+}
+
+td span {
+  margin-left: 10px;
+}
+
+td select {
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+  padding: 15px;
+  width: 40%;
 }
 
 .agree-check {
@@ -95,6 +111,14 @@ tr {
 
 .checkbox span {
   margin-left: 10px;
+}
+
+.checkbox a {
+  margin-left: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: underline;
+  color: steelblue;
 }
 
 .submit-btn {
@@ -119,7 +143,7 @@ tr {
   color: #fff;
 }
 
-.submit-btn button {
+.submit-btn .list-btn {
   background-color: rgba(66, 66, 66, 0.527);
   color: #95afb7;
   padding: 18px 40px;
