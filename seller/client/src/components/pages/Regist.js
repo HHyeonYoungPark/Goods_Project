@@ -12,6 +12,8 @@ function Regist() {
   const [sellername, setSellername] = useState("");
   const [email, setEmail] = useState("");
   const [channelname, setChannelname] = useState("");
+  const [channelPlatform, setChannelPlatform] = useState("");
+  const [channelGenre, setChannelGenre] = useState("");
   const [url, setUrl] = useState("");
   const [profileimage, setProfileimage] = useState("");
   const [intro, setIntro] = useState("");
@@ -32,9 +34,14 @@ function Regist() {
   const [isEmail, setIsEmail] = useState(false); // 이메일을 입력했는지
   const [isEmailType, setIsEmailType] = useState(false); // 이메일 형식을 만족했는지
   const [isChannelName, setIsChannelName] = useState(false); // 채널이름을 입력했는지
+  const [isChannelPlatform, setIsChannelPlatform] = useState(false); // 활동 플랫폼 선택했는지
+  const [isChannelGenre, setIsChannelGenre] = useState(false); // 채널 장르 선택했는지
   const [isUrl, setIsUrl] = useState(false); // url을 입력했는지
   const [isProfileimage, setIsProfileimage] = useState(false); // 프로필이미지를 선택했는지
   const [isIntro, setIsIntro] = useState(false); // 한줄소개를 작성했는지
+  const [isAgree1, setIsAgree1] = useState(false); // 14세 이상 체크했는지
+  const [isAgree2, setIsAgree2] = useState(false); // 개인정보 약관 동의 체크했는지
+  const [isAgree3, setIsAgree3] = useState(false); // 이용 약관 동의 체크했는지
 
   const navigate = useNavigate();
 
@@ -49,9 +56,14 @@ function Regist() {
       isEmail &&
       isEmailType &&
       isChannelName &&
+      isChannelPlatform &&
+      isChannelGenre &&
       isUrl &&
       isProfileimage &&
-      isIntro === true
+      isIntro &&
+      isAgree1 &&
+      isAgree2 &&
+      isAgree3 === true
     ) {
       let formData = new FormData();
       formData.append("id", id);
@@ -59,6 +71,8 @@ function Regist() {
       formData.append("sellername", sellername);
       formData.append("email", email);
       formData.append("channelname", channelname);
+      formData.append("channelplatform", channelPlatform);
+      formData.append("channelgenre", channelGenre);
       formData.append("url", url);
       formData.append("profileimage", profileimage);
       formData.append("intro", intro);
@@ -73,7 +87,7 @@ function Regist() {
         }
       });
     } else {
-      alert("입력하신 정보를 다시 확인해주세요.");
+      alert("입력하신 정보 또는 약관 동의를 다시 확인해주세요.");
     }
   }
 
@@ -165,6 +179,28 @@ function Regist() {
     }
   }
 
+  // 활동 플랫폼
+  function onChangeChannelPlatform(e) {
+    const channelPlatformCurrent = e.target.value;
+    setChannelPlatform(channelPlatformCurrent);
+
+    if (channelPlatformCurrent == null) {
+      setIsChannelPlatform(false);
+    } else {
+      setIsChannelPlatform(true);
+    }
+  }
+  // 채널 장르
+  function onChangeChannelGenre(e) {
+    const channelGenreCurrent = e.target.value;
+    setChannelGenre(channelGenreCurrent);
+
+    if (channelGenreCurrent == null) {
+      setIsChannelGenre(false);
+    } else {
+      setIsChannelGenre(true);
+    }
+  }
   // 채널 주소(url)
   function onChangeUrl(e) {
     const urlCurrent = e.target.value;
@@ -182,10 +218,7 @@ function Regist() {
     const profileImageCurrent = e.target.files[0];
     setProfileimage(profileImageCurrent);
 
-    if (
-      profileImageCurrent.length == null ||
-      profileImageCurrent.length == ""
-    ) {
+    if (profileImageCurrent == null || profileImageCurrent == "") {
       setIsProfileimage(false);
     } else {
       setIsProfileimage(true);
@@ -201,6 +234,36 @@ function Regist() {
       setIsIntro(false);
     } else {
       setIsIntro(true);
+    }
+  }
+  // 14세 이상
+  function onChangeAgree1(e) {
+    const agreeCurrent = e.target.value;
+
+    if (agreeCurrent == 0) {
+      setIsAgree1(false);
+    } else {
+      setIsAgree1(true);
+    }
+  }
+  // 개인정보 약관 동의
+  function onChangeAgree2(e) {
+    const agreeCurrent = e.target.value;
+
+    if (agreeCurrent == 0) {
+      setIsAgree2(false);
+    } else {
+      setIsAgree2(true);
+    }
+  }
+  // 이용약관 동의
+  function onChangeAgree3(e) {
+    const agreeCurrent = e.target.value;
+
+    if (agreeCurrent == 0) {
+      setIsAgree3(false);
+    } else {
+      setIsAgree3(true);
     }
   }
 
@@ -293,7 +356,32 @@ function Regist() {
                 </td>
               </tr>
               <tr>
-                <th>채널주소(url)</th>
+                <th>활동 플랫폼</th>
+                <td>
+                  <select
+                    name="channelPlatform"
+                    onChange={onChangeChannelPlatform}
+                  >
+                    <option value="">선택하세요</option>
+                    <option value="1">유튜브</option>
+                    <option value="2">틱톡</option>
+                    <option value="3">트위치</option>
+                    <option value="4">아프리카tv</option>
+                    <option value="5">기타</option>
+                  </select>
+                  <select name="channelGenre" onChange={onChangeChannelGenre}>
+                    <option value="">선택하세요</option>
+                    <option value="1">게임</option>
+                    <option value="2">스포츠</option>
+                    <option value="3">음악</option>
+                    <option value="4">여행</option>
+                    <option value="5">음식</option>
+                    <option value="6">기타</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>채널 주소(url)</th>
                 <td>
                   <input type="text" name="url" onChange={onChangeUrl} />
                 </td>
@@ -310,7 +398,7 @@ function Regist() {
                 </td>
               </tr>
               <tr>
-                <th>한줄소개</th>
+                <th>한줄 소개</th>
                 <td>
                   <input type="text" name="intro" onChange={onChangeIntro} />
                 </td>
@@ -319,20 +407,20 @@ function Regist() {
           </div>
           <div className="agree-check">
             <div className="checkbox">
-              <input type="checkbox" name="agree" />
+              <input type="checkbox" name="agree" onChange={onChangeAgree1} />
               <span>
                 <strong>(필수)</strong> 만 14세 이상입니다.
               </span>
             </div>
             <div className="checkbox">
-              <input type="checkbox" name="agree" />
+              <input type="checkbox" name="agree" onChange={onChangeAgree2} />
               <span>
                 <strong>(필수)</strong> 개인정보의 수집 및 이용에 관하여
                 동의합니다.
               </span>
             </div>
             <div className="checkbox">
-              <input type="checkbox" name="agree" />
+              <input type="checkbox" name="agree" onChange={onChangeAgree3} />
               <span>
                 <strong>(필수)</strong> 이용약관에 동의합니다.
               </span>

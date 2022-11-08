@@ -55,14 +55,27 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
   const { sellername } = req.body;
   const { email } = req.body;
   const { channelname } = req.body;
+  const { channelplatform } = req.body;
+  const { channelgenre } = req.body;
   const { url } = req.body;
   const { filename } = req.file;
   const { intro } = req.body;
 
-  let sql = "INSERT INTO seller VALUES(NULL,?,?,?,?,?,?,?,?,now());";
+  let sql = "INSERT INTO seller VALUES(NULL,?,?,?,?,?,?,?,?,?,?,now());";
   db.query(
     sql,
-    [id, pw, sellername, email, channelname, url, filename, intro],
+    [
+      id,
+      pw,
+      sellername,
+      email,
+      channelname,
+      channelplatform,
+      channelgenre,
+      url,
+      filename,
+      intro,
+    ],
     (err) => {
       if (err) {
         throw err;
