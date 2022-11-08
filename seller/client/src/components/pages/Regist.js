@@ -45,7 +45,7 @@ function Regist() {
 
   const navigate = useNavigate();
 
-  function frmHandler(e) {
+  async function frmHandler(e) {
     e.preventDefault();
 
     if (
@@ -77,15 +77,29 @@ function Regist() {
       formData.append("profileimage", profileimage);
       formData.append("intro", intro);
 
-      axios.post("http://localhost:4001/regist", formData).then((response) => {
-        if (response.data.status === 201) {
-          window.alert(response.data.message);
-          navigate("/login");
-        } else {
-          window.alert("에러발생 : 관리자에게 문의하세요");
-          navigate("/");
-        }
-      });
+      await axios
+        .post("http://localhost:4001/regist", formData)
+        .then((response) => {
+          if (response.data.status === 201) {
+            window.alert(response.data.message);
+            localStorage.setItem("id", response.data.id);
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("sellername", response.data.sellername);
+            localStorage.setItem("channelname", response.data.channelname);
+            localStorage.setItem(
+              "channelplatform",
+              response.data.channelplatform
+            );
+            localStorage.setItem("channelgenre", response.data.channelgenre);
+            localStorage.setItem("url", response.data.url);
+            localStorage.setItem("profileimage", response.data.profileimage);
+            localStorage.setItem("intro", response.data.intro);
+            navigate("/login");
+          } else {
+            window.alert("에러발생 : 관리자에게 문의하세요");
+            navigate("/");
+          }
+        });
     } else {
       alert("입력하신 정보 또는 약관 동의를 다시 확인해주세요.");
     }
@@ -141,7 +155,7 @@ function Regist() {
     const sellernameCurrent = e.target.value;
     setSellername(sellernameCurrent);
 
-    if (sellernameCurrent.length == null || sellernameCurrent.length == "") {
+    if (sellernameCurrent.length === null || sellernameCurrent.length === "") {
       setSellernameMessage("이름을 입력해주세요");
       setIsSellername(false);
     } else {
@@ -152,6 +166,7 @@ function Regist() {
 
   // 이메일 정규식
   function onChangeEmail(e) {
+    //eslint-disable-next-line
     const emailRegex = /^[a-z A-Z 0-9 +-\_.]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/;
     const emailCurrent = e.target.value;
     setEmail(emailCurrent);
@@ -172,7 +187,10 @@ function Regist() {
     const channelnameCurrent = e.target.value;
     setChannelname(channelnameCurrent);
 
-    if (channelnameCurrent.length == null || channelnameCurrent.length == "") {
+    if (
+      channelnameCurrent.length === null ||
+      channelnameCurrent.length === ""
+    ) {
       setIsChannelName(false);
     } else {
       setIsChannelName(true);
@@ -206,7 +224,7 @@ function Regist() {
     const urlCurrent = e.target.value;
     setUrl(urlCurrent);
 
-    if (urlCurrent.length == null || urlCurrent.length == "") {
+    if (urlCurrent.length === null || urlCurrent.length === "") {
       setIsUrl(false);
     } else {
       setIsUrl(true);
@@ -218,7 +236,7 @@ function Regist() {
     const profileImageCurrent = e.target.files[0];
     setProfileimage(profileImageCurrent);
 
-    if (profileImageCurrent == null || profileImageCurrent == "") {
+    if (profileImageCurrent === null || profileImageCurrent === "") {
       setIsProfileimage(false);
     } else {
       setIsProfileimage(true);
@@ -230,7 +248,7 @@ function Regist() {
     const introCurrent = e.target.value;
     setIntro(introCurrent);
 
-    if (introCurrent.length == null || introCurrent.length == "") {
+    if (introCurrent.length === null || introCurrent.length === "") {
       setIsIntro(false);
     } else {
       setIsIntro(true);
@@ -240,7 +258,7 @@ function Regist() {
   function onChangeAgree1(e) {
     const agreeCurrent = e.target.value;
 
-    if (agreeCurrent == 0) {
+    if (agreeCurrent === 0) {
       setIsAgree1(false);
     } else {
       setIsAgree1(true);
@@ -250,7 +268,7 @@ function Regist() {
   function onChangeAgree2(e) {
     const agreeCurrent = e.target.value;
 
-    if (agreeCurrent == 0) {
+    if (agreeCurrent === 0) {
       setIsAgree2(false);
     } else {
       setIsAgree2(true);
@@ -260,7 +278,7 @@ function Regist() {
   function onChangeAgree3(e) {
     const agreeCurrent = e.target.value;
 
-    if (agreeCurrent == 0) {
+    if (agreeCurrent === 0) {
       setIsAgree3(false);
     } else {
       setIsAgree3(true);
