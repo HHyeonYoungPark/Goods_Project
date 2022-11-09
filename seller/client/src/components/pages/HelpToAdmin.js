@@ -14,7 +14,7 @@ const Help = (props) => {
 
   return (
     <div id='app'>
-      <div className='container'>
+      <div className='Help-container'>
       <div className='semi-con'>
       <div className='FAQ-wrap'>
           <h2>고객센터</h2>

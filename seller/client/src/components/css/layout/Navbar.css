@@ -1,7 +1,24 @@
 .nav-wrap {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #273270;
+  width: 100vw;
+  padding: 17px 15px;
+  margin: 10px 0 50px 0;
 }
 .Lnav-wrap {
+  display: flex;
+  flex-direction: row;
+}
+.Lnav-wrap div {
+  margin-left: 50px;
 }
 .Rnav-wrap {
+  margin-right: 40px;
+}
+.nav-wrap button{
+  color: white;
+  font-weight: bold;
+  font-size: 17px;
 }
