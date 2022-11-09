@@ -1,6 +1,4 @@
 import "./App.css";
-import axios from "axios";
-import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // layout
@@ -16,7 +14,7 @@ import MakeItem from "./components/pages/MakeItem";
 import AddItem from "./components/pages/AddItem";
 import Order from "./components/pages/Order";
 import Review from "./components/pages/Review";
-import Help from "./components/pages/Help";
+import Help from "./components/pages/HelpToAdmin";
 import NotFound from "./components/pages/NotFound";
 
 function App() {
@@ -28,7 +26,7 @@ function App() {
 
         <main>
           <Routes>
-            <Route path="main" element={<Main />} />
+            <Route path="/" element={<Main />} />
             <Route path="login" element={<Login />} />
             <Route path="regist" element={<Regist />} />
             <Route path="makeItem" element={<MakeItem />} />

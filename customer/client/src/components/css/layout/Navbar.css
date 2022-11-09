@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.NavbarContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  background-color: aliceblue;
+  padding: 10px;
+  align-items: center;
+}
+
+.NavMenuMid ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+}
+.NavMenuMid ul li {
+  display: inline;
+  padding-left: 20px;
+}
+
+.influencerDropDown {
+  list-style-type: none;
+  background-color: aliceblue;
+  position: relative;
+  display: inline-block;
+}
+
+.influencerDropDownMenu {
+  display: none;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.influencerDropDown:hover .influencerDropDownMenu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 120px;
+  padding: 5px 0;
+}
+
+.goodsDropDown {
+  list-style-type: none;
+  background-color: aliceblue;
+  position: relative;
+  display: inline-block;
+}
+
+.goodsDropDownMenu {
+  display: none;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.goodsDropDown:hover .goodsDropDownMenu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 120px;
+  padding: 5px 0;
+}
+
+.NavMenuRight ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.NavMenuRight ul li {
+  display: inline;
+  padding-left: 20px;
+}

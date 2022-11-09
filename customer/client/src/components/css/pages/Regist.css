@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.regist-wrap {
+}
+
+table {
+  border-collapse: collapse;
+}
+
+tr,
+td {
+  border: 1px solid #eee;
+}
