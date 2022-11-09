@@ -20,11 +20,7 @@ function Navbar() {
             <Link to="/notice">공지사항</Link>
           </div>
           <div>
-<<<<<<< HEAD
-          <Link to ='/'>둘러보기</Link> 
-=======
             <Link to="/">둘러보기</Link>
->>>>>>> 581fd9a7c5a9027d239f8c15c10edffa3f8b447d
           </div>
         </div>
         <div className="Rnav-wrap">

@@ -1,13 +1,13 @@
 // import
-require('dotenv').config();
-const express = require('express');
+require("dotenv").config();
+const express = require("express");
 const app = express();
 
-const mysql = require('mysql');
-const cors = require('cors');
-const fs = require('fs');
-const multer = require('multer');
-const bcrypt = require('bcrypt');
+const mysql = require("mysql");
+const cors = require("cors");
+const fs = require("fs");
+const multer = require("multer");
+const bcrypt = require("bcrypt");
 
 const saltRounds = 10;
 
@@ -23,7 +23,7 @@ const db = mysql.createConnection({
 // db.connect
 db.connect((err) => {
   if (!err) {
-    console.log('Mysql DB Success');
+    console.log("Mysql DB Success");
   } else {
     console.log(err);
   }
@@ -32,10 +32,10 @@ db.connect((err) => {
 // multer
 const storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, './uploads');
+    callback(null, "./uploads");
   },
   filename: function (req, file, callback) {
-    callback(null, Date.now() + '_' + file.originalname);
+    callback(null, Date.now() + "_" + file.originalname);
   },
 });
 
@@ -47,12 +47,12 @@ const upload = multer({
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
-app.use(express.static('uploads'));
+app.use(express.static("uploads"));
 
 // url
 
 // 회원가입
-app.post('/regist', upload.single('profileimage'), (req, res) => {
+app.post("/regist", upload.single("profileimage"), (req, res) => {
   const id = req.body.id;
   const pw = req.body.pw;
   const sellername = req.body.sellername;
@@ -64,7 +64,7 @@ app.post('/regist', upload.single('profileimage'), (req, res) => {
   const filename = req.file.filename;
   const intro = req.body.intro;
 
-  let sql = 'INSERT INTO seller VALUES(NULL,?,?,?,?,?,?,?,?,?,?,now());';
+  let sql = "INSERT INTO seller VALUES(NULL,?,?,?,?,?,?,?,?,?,?,now());";
   bcrypt.hash(req.body.pw, saltRounds, (err, hash_pw) => {
     db.query(
       sql,
@@ -97,7 +97,7 @@ app.post('/regist', upload.single('profileimage'), (req, res) => {
           filename: filename,
           intro: intro,
           status: 201,
-          message: '판매자 신청이 완료되었습니다.',
+          message: "판매자 신청이 완료되었습니다.",
         });
       }
     );
@@ -105,40 +105,33 @@ app.post('/regist', upload.single('profileimage'), (req, res) => {
 });
 
 // 로그인
-app.post('/login', (req, res) => {
+app.post("/login", (req, res) => {
   const { id } = req.body;
   const { pw } = req.body;
 
-  let sql = 'SELECT * FROM seller WHERE id=?;';
+  let sql = "SELECT * FROM seller WHERE id=?;";
   db.query(sql, [req.body.id], (err, user) => {
     if (user[0] === undefined) {
       res.send({
         status: 404,
-<<<<<<< HEAD
-        message: '존재하지 않는 아이디입니다.',
-=======
         message: "아이디를 확인해주세요.",
->>>>>>> 581fd9a7c5a9027d239f8c15c10edffa3f8b447d
       });
     } else {
       bcrypt.compare(req.body.pw, user[0].pw, (err, result) => {
         if (result) {
-          console.log('로그인 성공');
+          console.log("로그인 성공");
           res.send({
             status: 201,
-<<<<<<< HEAD
-            message: '로그인 성공. 환영합니다!',
-=======
+            message: "로그인 성공. 환영합니다!",
             message: user[0].id + "님 환영합니다",
->>>>>>> 581fd9a7c5a9027d239f8c15c10edffa3f8b447d
             token: user[0].pw,
             id: user[0].id,
           });
         } else {
-          console.log('비밀번호 틀림');
+          console.log("비밀번호 틀림");
           res.send({
             status: 400,
-            message: '비밀번호를 다시 확인해주세요.',
+            message: "비밀번호를 다시 확인해주세요.",
           });
         }
       });
@@ -146,14 +139,14 @@ app.post('/login', (req, res) => {
   });
 });
 //문의하기
-app.post('/ask', upload.single('askImage'), (req, res) => {
+app.post("/ask", upload.single("askImage"), (req, res) => {
   const askCategory = req.body.askCategory;
   const askTitle = req.body.askTitle;
   const askWriter = req.body.askWriter;
   const filename = req.file.filename;
   const askContents = req.body.askContents;
 
-  let sql = 'INSERT INTO AskToAdmin VALUES(NULL,NULL,?,?,?,?,?,now());';
+  let sql = "INSERT INTO AskToAdmin VALUES(NULL,NULL,?,?,?,?,?,now());";
   bcrypt.hash(req.body.pw, saltRounds, (err) => {
     db.query(
       sql,
@@ -178,7 +171,7 @@ app.post('/ask', upload.single('askImage'), (req, res) => {
 
 // port
 app.listen(process.env.PORT, () => {
-  const dir = 'uploads';
+  const dir = "uploads";
   if (!fs.existsSync(dir)) {
     fs.mkdir(dir, (err) => {
       if (err) {
@@ -186,5 +179,5 @@ app.listen(process.env.PORT, () => {
       }
     });
   }
-  console.log('Server Running Port : ' + process.env.PORT);
+  console.log("Server Running Port : " + process.env.PORT);
 });
