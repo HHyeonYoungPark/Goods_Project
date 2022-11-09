@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate,Link } from 'react-router-dom';
 import '../css/layout/Navbar.css';
 
 function Navbar() {
@@ -7,17 +8,17 @@ function Navbar() {
       <div className='nav-wrap'>
         <div className='Lnav-wrap'>
           <div>
-            <button> 상품제작</button>
+          <Link to ='/'>상품제작</Link> 
           </div>
           <div>
-            <button> 상품등록</button>
+          <Link to ='/'>상품등록</Link> 
           </div>
           <div>
-            <button> 판매현황</button>
+          <Link to ='/'>주문현황</Link> 
           </div>
         </div>
         <div className='Rnav-wrap'>
-          <button>문의하기</button>
+          <Link to ='/help'>문의하기</Link> 
         </div>
       </div>
     </div>
