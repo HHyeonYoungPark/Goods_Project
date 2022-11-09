@@ -31,7 +31,7 @@ function Login() {
   }
 
   return (
-    <div className="container">
+    <div className="login-container">
       <div className="login-wrap">
         <div className="login-title">
           <h1>셀러 로그인</h1>
