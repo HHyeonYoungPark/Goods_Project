@@ -299,7 +299,7 @@ function Regist() {
   // }
 
   return (
-    <div className="container">
+    <div className="regist-container">
       <div className="regist-wrap">
         <div className="regist-title">
           <h1>판매자 신청</h1>

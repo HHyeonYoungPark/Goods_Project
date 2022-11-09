@@ -114,7 +114,11 @@ app.post('/login', (req, res) => {
     if (user[0] === undefined) {
       res.send({
         status: 404,
+<<<<<<< HEAD
         message: '존재하지 않는 아이디입니다.',
+=======
+        message: "아이디를 확인해주세요.",
+>>>>>>> 581fd9a7c5a9027d239f8c15c10edffa3f8b447d
       });
     } else {
       bcrypt.compare(req.body.pw, user[0].pw, (err, result) => {
@@ -122,7 +126,11 @@ app.post('/login', (req, res) => {
           console.log('로그인 성공');
           res.send({
             status: 201,
+<<<<<<< HEAD
             message: '로그인 성공. 환영합니다!',
+=======
+            message: user[0].id + "님 환영합니다",
+>>>>>>> 581fd9a7c5a9027d239f8c15c10edffa3f8b447d
             token: user[0].pw,
             id: user[0].id,
           });
