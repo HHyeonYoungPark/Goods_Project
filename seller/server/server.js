@@ -138,6 +138,7 @@ app.post("/login", (req, res) => {
     }
   });
 });
+
 //문의하기
 app.post("/ask", upload.single("askImage"), (req, res) => {
   const askCategory = req.body.askCategory;
@@ -162,7 +163,8 @@ app.post("/ask", upload.single("askImage"), (req, res) => {
           askWriter: askWriter,
           filename: filename,
           askContents: askContents,
-          // message: '판매자 신청이 완료되었습니다.',
+          status: 201,
+          message: "문의하기가 완료되었습니다.",
         });
       }
     );

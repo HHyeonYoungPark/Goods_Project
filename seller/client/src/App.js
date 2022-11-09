@@ -17,11 +17,9 @@ import AddItem from "./components/pages/AddItem";
 import Order from "./components/pages/Order";
 import Notice from "./components/pages/Notice";
 import Help from "./components/pages/HelpToAdmin";
-<<<<<<< HEAD
+
 import Ask from "./components/pages/AskToAdmin";
-=======
 import PrivateRoute from "./components/pages/PrivateRoute";
->>>>>>> 581fd9a7c5a9027d239f8c15c10edffa3f8b447d
 import NotFound from "./components/pages/NotFound";
 
 function App() {

@@ -36,4 +36,4 @@ askWriter VARCHAR(100),
 askImage VARCHAR(255),
 askContents TEXT,
 regdate DATETIME
-)
+);
