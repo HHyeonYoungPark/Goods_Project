@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "../css/layout/Navbar.css";
-import React from "react";
-import "../css/layout/Navbar.css";
+
 
 function Navbar() {
   return (
@@ -31,6 +30,6 @@ function Navbar() {
       </div>
     </div>
   );
-  }
+}
 
 export default Navbar;
