@@ -147,7 +147,7 @@ app.post("/ask", upload.single("askImage"), (req, res) => {
   const filename = req.file.filename;
   const askContents = req.body.askContents;
 
-  let sql = "INSERT INTO AskToAdmin VALUES(NULL,NULL,?,?,?,?,?,now());";
+  let sql = "INSERT INTO AskToAdmin VALUES(NULL,'미답변',?,?,?,?,?,now());";
   bcrypt.hash(req.body.pw, saltRounds, (err) => {
     db.query(
       sql,
