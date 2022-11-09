@@ -25,7 +25,7 @@ function Header({ user, userId }) {
         )}
         {user && (
           <>
-            <Link to="#">{userId}님</Link>
+            <Link to="/mypage">{userId}님</Link>
             <Link to="/logout">로그아웃</Link>
           </>
         )}
