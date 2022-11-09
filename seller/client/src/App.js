@@ -12,6 +12,7 @@ import Main from "./components/pages/Main";
 import Login from "./components/pages/Login";
 import Logout from "./components/pages/Logout";
 import Regist from "./components/pages/Regist";
+import MyPage from "./components/pages/MyPage";
 import MakeItem from "./components/pages/MakeItem";
 import AddItem from "./components/pages/AddItem";
 import Order from "./components/pages/Order";
@@ -37,6 +38,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="logout" element={<Logout />} />
             <Route path="regist" element={<Regist />} />
+            <Route path="mypage" element={<MyPage />} />
 
             <Route element={<PrivateRoute user={user} />}>
               <Route path="makeItem" element={<MakeItem />} />

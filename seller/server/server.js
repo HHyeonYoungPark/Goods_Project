@@ -119,16 +119,13 @@ app.post("/login", (req, res) => {
     } else {
       bcrypt.compare(req.body.pw, user[0].pw, (err, result) => {
         if (result) {
-          console.log("로그인 성공");
           res.send({
             status: 201,
-            message: "로그인 성공. 환영합니다!",
             message: user[0].id + "님 환영합니다",
             token: user[0].pw,
             id: user[0].id,
           });
         } else {
-          console.log("비밀번호 틀림");
           res.send({
             status: 400,
             message: "비밀번호를 다시 확인해주세요.",
@@ -138,6 +135,9 @@ app.post("/login", (req, res) => {
     }
   });
 });
+
+// 마이페이지
+app.get("/mypage", (req, res) => {});
 
 //문의하기
 app.post("/ask", upload.single("askImage"), (req, res) => {
