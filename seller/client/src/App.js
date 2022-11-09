@@ -24,10 +24,11 @@ import NotFound from "./components/pages/NotFound";
 
 function App() {
   const [user, setUser] = useState(localStorage.getItem("token"));
+  const [userId, setUserId] = useState(localStorage.getItem("id"));
   return (
     <div>
       <Router>
-        <Header user={user} />
+        <Header user={user} userId={userId} />
         <Navbar />
 
         <main>
