@@ -25,7 +25,6 @@ function App() {
       <Router>
         <Header />
         <Navbar />
-
         <main>
           <Routes>
             <Route path="/" element={<Main />} />

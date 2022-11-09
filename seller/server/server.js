@@ -7,6 +7,9 @@ const mysql = require("mysql");
 const cors = require("cors");
 const fs = require("fs");
 const multer = require("multer");
+const bcrypt = require("bcrypt");
+
+const saltRounds = 10;
 
 // db
 const db = mysql.createConnection({
@@ -50,40 +53,89 @@ app.use(express.static("uploads"));
 
 // 회원가입
 app.post("/regist", upload.single("profileimage"), (req, res) => {
-  const { id } = req.body;
-  const { pw } = req.body;
-  const { sellername } = req.body;
-  const { email } = req.body;
-  const { channelname } = req.body;
-  const { channelplatform } = req.body;
-  const { channelgenre } = req.body;
-  const { url } = req.body;
-  const { filename } = req.file;
-  const { intro } = req.body;
+  const id = req.body.id;
+  const pw = req.body.pw;
+  const sellername = req.body.sellername;
+  const email = req.body.email;
+  const channelname = req.body.channelname;
+  const channelplatform = req.body.channelplatform;
+  const channelgenre = req.body.channelgenre;
+  const url = req.body.url;
+  const filename = req.file.filename;
+  const intro = req.body.intro;
 
   let sql = "INSERT INTO seller VALUES(NULL,?,?,?,?,?,?,?,?,?,?,now());";
-  db.query(
-    sql,
-    [
-      id,
-      pw,
-      sellername,
-      email,
-      channelname,
-      channelplatform,
-      channelgenre,
-      url,
-      filename,
-      intro,
-    ],
-    (err) => {
-      if (err) {
-        throw err;
-      }
+  bcrypt.hash(req.body.pw, saltRounds, (err, hash_pw) => {
+    db.query(
+      sql,
+      [
+        id,
+        hash_pw,
+        sellername,
+        email,
+        channelname,
+        channelplatform,
+        channelgenre,
+        url,
+        filename,
+        intro,
+      ],
+      (err) => {
+        if (err) {
+          throw err;
+        }
 
-      res.send({ status: 201, message: "판매자 신청이 완료되었습니다." });
+        res.send({
+          id: id,
+          pw: hash_pw,
+          sellername: sellername,
+          email: email,
+          channelname: channelname,
+          channelplatform: channelplatform,
+          channelgenre: channelgenre,
+          url: url,
+          filename: filename,
+          intro: intro,
+          status: 201,
+          message: "판매자 신청이 완료되었습니다.",
+        });
+      }
+    );
+  });
+});
+
+// 로그인
+app.post("/login", (req, res) => {
+  const { id } = req.body;
+  const { pw } = req.body;
+
+  let sql = "SELECT * FROM seller WHERE id=?;";
+  db.query(sql, [req.body.id], (err, user) => {
+    if (user[0] === undefined) {
+      res.send({
+        status: 404,
+        message: "존재하지 않는 아이디입니다.",
+      });
+    } else {
+      bcrypt.compare(req.body.pw, user[0].pw, (err, result) => {
+        if (result) {
+          console.log("로그인 성공");
+          res.send({
+            status: 201,
+            message: "로그인 성공. 환영합니다!",
+            token: user[0].pw,
+            id: user[0].id,
+          });
+        } else {
+          console.log("비밀번호 틀림");
+          res.send({
+            status: 400,
+            message: "비밀번호를 다시 확인해주세요.",
+          });
+        }
+      });
     }
-  );
+  });
 });
 
 // port

@@ -19,15 +19,46 @@ function Navbar() {
         </div>
         <div className="NavMenuMid">
           <ul>
-            <li>
+            <li className="influencerDropDown">
               <Link to="/influencer" className="influencer">
-                influencer
+                INFLUENCERS
               </Link>
+              <div className="influencerDropDownMenu">
+                <Link to="/influencerYoutube" className="influencerYoutube">
+                  YOUTUBE
+                </Link>
+                <Link to="/influencerTwitch" className="influencerTwitch">
+                  TWITCH
+                </Link>
+                <Link to="/influencerAfreeca" className="influencerAfreeca">
+                  AFREECA
+                </Link>
+                <Link to="/influencerTiktok" className="influencerTiktok">
+                  TIKTOK
+                </Link>
+                <Link to="/influencerInstagram" className="influencerInstagram">
+                  INSTAGRAM
+                </Link>
+              </div>
             </li>
-            <li>
+            <li className="goodsDropDown">
               <Link to="/goodsList" className="goods">
-                goods
+                GOODS
               </Link>
+              <div className="goodsDropDownMenu">
+                <Link to="/goodsFashion" className="registCustomer">
+                  FASHION
+                </Link>
+                <Link to="/goodsElectronics" className="goodsElectronics">
+                  ELECTRONICS
+                </Link>
+                <Link to="/goodsLiving" className="goodsLiving">
+                  LIVING
+                </Link>
+                <Link to="/goodsEtc." className="goodsEtc.">
+                  ETC.
+                </Link>
+              </div>
             </li>
           </ul>
         </div>

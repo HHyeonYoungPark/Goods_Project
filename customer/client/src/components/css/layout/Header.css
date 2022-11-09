@@ -11,7 +11,8 @@
   align-items: center;
   width: 100%;
   background-color: #fff;
-  padding: 10px;
+  padding: 20px 40px;
+  font-size: 24px;
 }
 
 .HeaderMenuRight ul {
@@ -23,4 +24,25 @@
 .HeaderMenuRight ul li {
   display: inline;
   padding-left: 20px;
+}
+
+.loginDropDown {
+  list-style-type: none;
+  background-color: aliceblue;
+  position: relative;
+  display: inline-block;
+}
+
+.loginDropDownMenu {
+  display: none;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.loginDropDown:hover .loginDropDownMenu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 120px;
+  padding: 5px 0;
 }
