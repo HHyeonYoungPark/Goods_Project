@@ -26,3 +26,14 @@ sellerimage VARCHAR(255),
 intro VARCHAR(100),
 regdate DATE 
 );
+
+CREATE TABLE AskToAdmin(
+idx INT AUTO_INCREMENT PRIMARY KEY,
+askAnswer VARCHAR(20),
+askCategory VARCHAR(100),
+askTitle VARCHAR(100),
+askWriter VARCHAR(100),
+askImage VARCHAR(255),
+askContents TEXT,
+regdate DATETIME
+);

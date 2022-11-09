@@ -44,20 +44,22 @@
   list-style: none;
 }
 
-.container {
+.Help-container {
   width: 820px;
   margin: 0 auto;
   /* background-color: aliceblue; */
 }
-h2 {
+.helph2 {
   margin-bottom: 30px;
 }
-h4 {
+.helph4 {
   margin-top: 50px;
+  margin-bottom: 20px;
 }
 li {
   list-style: none;
   margin: 10px 0;
+  padding: 12px 0;
 }
 hr {
   border: 0;
@@ -65,19 +67,24 @@ hr {
   background-color: #f1f1f1;
 }
 li button {
-  margin-left: 490px;
+  margin-left: 500px;
 }
-.ask-wrap{
-  margin-top: 100px;
-}
+ .ask-wrap h3{
+  margin-top: 60px;
+} 
 .ask-hr{
-  background-color: greenyellow;
+  background-color: #f1f1f1;
+  margin-top: 15px;
 }
-.ask-wrap button{
+.toAsk {
   margin-top: 30px;
-  background-color: yellowgreen;
-  padding: 10px 5px;
+  background-color: #273270;
+  width: 133px;
+  padding: 10px 15px;
   border-radius: 5px;
   color: white;
+  cursor: pointer;
+  margin-left: 350px;
+  margin-bottom: 50px;
 
 }

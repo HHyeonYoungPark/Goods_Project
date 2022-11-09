@@ -114,7 +114,7 @@ app.post("/login", (req, res) => {
     if (user[0] === undefined) {
       res.send({
         status: 404,
-        message: "존재하지 않는 아이디입니다.",
+        message: "아이디를 확인해주세요.",
       });
     } else {
       bcrypt.compare(req.body.pw, user[0].pw, (err, result) => {
@@ -123,6 +123,7 @@ app.post("/login", (req, res) => {
           res.send({
             status: 201,
             message: "로그인 성공. 환영합니다!",
+            message: user[0].id + "님 환영합니다",
             token: user[0].pw,
             id: user[0].id,
           });
@@ -135,6 +136,38 @@ app.post("/login", (req, res) => {
         }
       });
     }
+  });
+});
+
+//문의하기
+app.post("/ask", upload.single("askImage"), (req, res) => {
+  const askCategory = req.body.askCategory;
+  const askTitle = req.body.askTitle;
+  const askWriter = req.body.askWriter;
+  const filename = req.file.filename;
+  const askContents = req.body.askContents;
+
+  let sql = "INSERT INTO AskToAdmin VALUES(NULL,'미답변',?,?,?,?,?,now());";
+  bcrypt.hash(req.body.pw, saltRounds, (err) => {
+    db.query(
+      sql,
+      [askCategory, askTitle, askWriter, filename, askContents],
+      (err) => {
+        if (err) {
+          throw err;
+        }
+
+        res.send({
+          askCategory: askCategory,
+          askTitle: askTitle,
+          askWriter: askWriter,
+          filename: filename,
+          askContents: askContents,
+          status: 201,
+          message: "문의하기가 완료되었습니다.",
+        });
+      }
+    );
   });
 });
 

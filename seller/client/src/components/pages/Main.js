@@ -1,13 +1,9 @@
-import React from 'react';
+import React from "react";
 
 function main() {
   return (
     <div>
-      <div>로고</div>
-      <div>
-        <div>로그아웃</div>
-        <div>고객센터</div>
-      </div>
+      <h1>메인페이지입니다</h1>
     </div>
   );
 }

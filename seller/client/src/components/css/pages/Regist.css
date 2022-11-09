@@ -1,4 +1,4 @@
-.container {
+.regist-container {
   display: flex;
   justify-content: center;
 }
@@ -11,13 +11,7 @@
 }
 
 .regist-title {
-  margin: 50px;
   text-align: center;
-}
-
-.regist-title h1,
-h4 {
-  margin: 10px 0;
 }
 
 .regist-info input,
@@ -73,7 +67,7 @@ th {
   text-align: left;
   padding-left: 20px;
   width: 20%;
-  background-color: steelblue;
+  background-color: #273270;
   color: #fff;
 }
 
@@ -139,7 +133,7 @@ td select {
 }
 
 .submit-btn input {
-  background: steelblue;
+  background: #273270;
   color: #fff;
 }
 

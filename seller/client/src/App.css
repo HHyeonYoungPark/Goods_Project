@@ -15,3 +15,27 @@ select {
   outline: 0;
   background-color: transparent;
 }
+
+/*여기서부터 NotFound*******************************************************/
+.notfount {
+  height: 400px;
+  width: 1280px;
+  text-align: center;
+}
+
+.notfount h1 {
+  margin: 30px 0;
+}
+
+.notfount img {
+  width: 100px;
+  margin-bottom: 50px;
+}
+
+.tomain {
+  border: 1px solid #c1c1c1;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 7px 20px;
+}
