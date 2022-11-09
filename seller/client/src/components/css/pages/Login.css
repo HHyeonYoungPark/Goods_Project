@@ -2,3 +2,49 @@
   display: flex;
   justify-content: center;
 }
+
+.login-wrap {
+  margin: 100px 0;
+  width: 350px;
+  padding-bottom: 100px;
+}
+
+.login-title {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #273270;
+  padding: 10px;
+}
+
+.login-box {
+  margin: 5px 0;
+}
+
+.login-box input {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 15px;
+  width: 100%;
+}
+
+.login-btn input {
+  background: #273270;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+}
+
+.login-btn input:hover {
+  background: #354392;
+  transition: 0.2s;
+}
+
+.link-wrap {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-size: 14px;
+}

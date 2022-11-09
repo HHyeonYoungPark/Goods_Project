@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "../css/pages/Login.css";
 
 function Login() {
@@ -36,7 +37,7 @@ function Login() {
         <div className="login-title">
           <h1>셀러 로그인</h1>
         </div>
-        <div className="login">
+        <div className="login-box">
           <form method="post" onSubmit={frmHandler}>
             <div className="login">
               <input
@@ -46,7 +47,7 @@ function Login() {
                 onChange={(e) => setId(e.target.value)}
               />
             </div>
-            <div className="login">
+            <div className="login-box">
               <input
                 type="password"
                 name="pw"
@@ -54,12 +55,17 @@ function Login() {
                 onChange={(e) => setPw(e.target.value)}
               />
             </div>
-            <div className="login">
-              <input type="checkbox" name="idSave" />
-              <span>아이디 저장</span>
-            </div>
+
             <div className="login-btn">
               <input type="submit" value="로그인" />
+            </div>
+            <div className="link-wrap">
+              <div className="regist-link">
+                <Link to="/regist">회원가입</Link>
+              </div>
+              <div className="find-id">
+                <Link to="/find">아이디,비밀번호 찾기</Link>
+              </div>
             </div>
           </form>
         </div>

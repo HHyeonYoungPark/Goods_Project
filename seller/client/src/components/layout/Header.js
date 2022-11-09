@@ -6,7 +6,9 @@ function Header({ user }) {
   return (
     <div className="header-con">
       <div className="image">
-        <img src={logo} alt="logo" />
+        <Link to="/">
+          <img src={logo} alt="logo" />
+        </Link>
       </div>
       <div className="R-head">
         {!user && (
