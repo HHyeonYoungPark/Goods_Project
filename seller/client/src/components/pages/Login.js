@@ -14,7 +14,6 @@ function Login() {
       .post("http://localhost:4001/login", { id, pw })
       .then((response) => {
         if (response.data.status === 201) {
-          window.alert(response.data.message);
           localStorage.setItem("id", response.data.id);
           localStorage.setItem("token", response.data.token);
           window.location = "/";
