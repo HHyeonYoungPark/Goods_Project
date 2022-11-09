@@ -7,7 +7,6 @@
   justify-content: space-between;
 }
 
-
 .R-head {
   display: flex;
   flex-direction: row;
@@ -17,6 +16,11 @@
   margin-right: 40px;
   font-weight: bold;
 }
+
+.R-head a:hover {
+  text-decoration: underline;
+}
+
 .image {
   margin-left: 390px;
 }
@@ -41,11 +45,9 @@
   overflow: auto;
   z-index: -1;
   font-size: 15px;
-  
 }
 
 .search-bar__input:focus {
-  
   width: 300px;
   text-align: left;
 }
