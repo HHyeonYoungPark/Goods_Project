@@ -2,14 +2,17 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #273270;
+  
   width: 100vw;
   padding: 17px 15px;
   margin: 10px 0 50px 0;
+  border-bottom: 1px solid #f1f1f1;
+  border-top: 2px solid #f1f1f1;
 }
 .Lnav-wrap {
   display: flex;
   flex-direction: row;
+  margin-left: 600px;
 }
 .Lnav-wrap div {
   margin-left: 50px;
@@ -18,7 +21,9 @@
   margin-right: 40px;
 }
 .nav-wrap a{
-  color: white;
+  
   font-weight: bold;
   font-size: 17px;
+  
 }
+

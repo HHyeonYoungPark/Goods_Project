@@ -7,7 +7,7 @@ function Navbar() {
     <div className='Nav-container'>
       <div className='nav-wrap'>
         <div className='Lnav-wrap'>
-          <div>
+          <div className='make'>
           <Link to ='/'>상품제작</Link> 
           </div>
           <div>
@@ -15,6 +15,12 @@ function Navbar() {
           </div>
           <div>
           <Link to ='/'>주문현황</Link> 
+          </div>
+          <div>
+          <Link to ='/'>공지사항</Link> 
+          </div>
+          <div>
+          <Link to ='/'>상점둘러보기</Link> 
           </div>
         </div>
         <div className='Rnav-wrap'>

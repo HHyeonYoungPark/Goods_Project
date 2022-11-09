@@ -26,3 +26,14 @@ sellerimage VARCHAR(255),
 intro VARCHAR(100),
 regdate DATE 
 );
+
+CREATE TABLE AskToAdmin(
+qnaidx INT AUTO_INCREMENT PRIMARY KEY,
+qnaanswer VARCHAR(20),
+qnacategory VARCHAR(100),
+qnatitle VARCHAR(100),
+qnawriter VARCHAR(100),
+qnaimage VARCHAR(255),
+qnacontents TEXT,
+regdate DATETIME
+)
