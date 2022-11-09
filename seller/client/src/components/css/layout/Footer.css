@@ -1,0 +1,36 @@
+.footer-wrap {
+  background-color: #273270;
+  height: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 200px;
+}
+
+.footer-left .logo {
+  font-size: 40px;
+  color: #eee;
+}
+
+.coryright-info {
+  padding-bottom: 20px;
+}
+
+.coryright-info a {
+  color: #e1e1e1;
+  font-size: 15px;
+  margin-right: 50px;
+}
+
+.coryright-info a:hover {
+  color: steelblue;
+}
+
+.coryright-addr p {
+  color: #e1e1e1;
+  font-size: 14px;
+}
+
+.footer-right {
+  padding: 0 28px;
+}
