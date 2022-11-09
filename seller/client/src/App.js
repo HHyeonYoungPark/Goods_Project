@@ -15,6 +15,7 @@ import AddItem from "./components/pages/AddItem";
 import Order from "./components/pages/Order";
 import Review from "./components/pages/Review";
 import Help from "./components/pages/HelpToAdmin";
+import Ask from "./components/pages/AskToAdmin";
 import NotFound from "./components/pages/NotFound";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
             <Route path="order" element={<Order />} />
             <Route path="review" element={<Review />} />
             <Route path="help" element={<Help />} />
+            <Route path="ask" element={<Ask />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

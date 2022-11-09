@@ -20,7 +20,7 @@ function Navbar() {
           <Link to ='/'>공지사항</Link> 
           </div>
           <div>
-          <Link to ='/'>상점둘러보기</Link> 
+          <Link to ='/'>둘러보기</Link> 
           </div>
         </div>
         <div className='Rnav-wrap'>

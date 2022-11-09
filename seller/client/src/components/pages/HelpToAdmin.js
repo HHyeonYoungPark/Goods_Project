@@ -17,13 +17,13 @@ const Help = (props) => {
       <div className='Help-container'>
       <div className='semi-con'>
       <div className='FAQ-wrap'>
-          <h2>고객센터</h2>
+          <h2 className='helph2'>고객센터</h2>
           <h3>문의 전 FAQ를 확인해주세요!</h3>
           <small>
             아래 도움말을 검색해 보세요. 쉽고 빠르게 원하는 내용을 찾아보고
             문의를 해결할 수 있습니다.
           </small>
-          <h4>자주 찾는 도움말</h4>
+          <h4 className='helph4'>자주 찾는 도움말</h4>
           <hr />
           <ul>
             <li>

@@ -49,10 +49,10 @@
   margin: 0 auto;
   /* background-color: aliceblue; */
 }
-h2 {
+.helph2 {
   margin-bottom: 30px;
 }
-h4 {
+.helph4 {
   margin-top: 50px;
 }
 li {

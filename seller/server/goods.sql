@@ -28,12 +28,12 @@ regdate DATE
 );
 
 CREATE TABLE AskToAdmin(
-qnaidx INT AUTO_INCREMENT PRIMARY KEY,
-qnaanswer VARCHAR(20),
-qnacategory VARCHAR(100),
-qnatitle VARCHAR(100),
-qnawriter VARCHAR(100),
-qnaimage VARCHAR(255),
-qnacontents TEXT,
+idx INT AUTO_INCREMENT PRIMARY KEY,
+askAnswer VARCHAR(20),
+askCategory VARCHAR(100),
+askTitle VARCHAR(100),
+askWriter VARCHAR(100),
+askImage VARCHAR(255),
+askContents TEXT,
 regdate DATETIME
 )
