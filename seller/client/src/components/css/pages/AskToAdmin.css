@@ -1,5 +1,36 @@
-.ask-con{
+.ask-con {
   width: 820px;
   margin: 0 auto;
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
+}
+.ask-con p {
+  font-size: 14px;
+  margin: 15px 0;
+}
+.ask-con select {
+  border: 1px solid gray;
+  border-radius: 7px;
+  width: 800px;
+  font-size: 14px;
+  height: 40px;
+}
+.ask-con input {
+  border: 1px solid gray;
+  border-radius: 7px;
+  font-size: 14px;
+  width: 800px;
+  height: 40px;
+  padding-left: 8px;
+}
+
+.ask-btn {
+  margin-top: 30px;
+  background-color: #273270;
+  width: 133px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  margin-left: 350px;
+  margin-bottom: 50px;
 }

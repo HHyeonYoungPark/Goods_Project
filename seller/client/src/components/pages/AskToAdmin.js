@@ -105,9 +105,14 @@ function Ask() {
   }
   return (
     <div className='ask-con'>
+      <h2>판매자 고객센터</h2>
+      <small>
+        정훈희님 지식공유 플랫폼 OKKY에서 최고의 개발자들과 함께 궁금증을
+        해결하세요.
+      </small>
       <form method='post' encType='multipart/form-data' onSubmit={frmHandler}>
         <div className='ask-wrap'>
-          <div>카테고리</div>
+          <p> 카테고리</p>
           <select name='askCategory' id='ask-opt' onChange={onChangeAskCg}>
             <option value=''>어떤 문의인가요?</option>
             <option value='1'>주문관련문의</option>
@@ -116,27 +121,41 @@ function Ask() {
             <option value='4'>환불관련문의</option>
             <option value='5'>계정관련문의</option>
           </select>
-          <div>제목 </div>
-          <input type='text' name='askTitle' onChange={onChangeAskTitle} />
-          <div>작성자</div>
-          <input type='text' name='askWriter' onChange={onChangeAskWriter} />
-          <div>이미지 첨부</div>
+          <p>제목 </p>
           <input
-            className='askimage'
-            type='file'
-            name='askImage'
-            onChange={onChangeAskImage}
+            type='text'
+            name='askTitle'
+            placeholder='제목을 입력해주세요.'
+            onChange={onChangeAskTitle}
           />
-          <div>본문</div>
+          <p>작성자</p>
+          <input
+            type='text'
+            name='askWriter'
+            placeholder='작성자명을 입력해주세요.'
+            onChange={onChangeAskWriter}
+          />
+          <p>이미지 첨부</p>
+          <div>
+            <input
+              className='askimage'
+              type='file'
+              name='askImage'
+              onChange={onChangeAskImage}
+            />
+          </div>
+          <p>본문</p>
           <textarea
             name='askContents'
             id=''
-            cols='100'
-            rows='25'
+            cols='111'
+            rows='15'
             onChange={onChangeAskContents}
           ></textarea>
           <div>
-            <button type='submit'>작성완료</button>
+            <button type='submit' className='ask-btn'>
+              작성완료
+            </button>
           </div>
         </div>
       </form>
