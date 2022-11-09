@@ -2,6 +2,8 @@ import React from "react";
 import logo from "../images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, Link } from "react-router-dom";
 import "../css/layout/Header.css";
 function Header({ user, userId }) {
@@ -19,8 +21,14 @@ function Header({ user, userId }) {
       <div className="R-head">
         {!user && (
           <>
-            <Link to="/login">로그인</Link>
-            <Link to="/regist">회원가입</Link>
+            <Link to="/login">
+              <span>로그인</span>
+              <FontAwesomeIcon icon={faArrowRightToBracket} />
+            </Link>
+            <Link to="/regist">
+              <span>회원가입</span>
+              <FontAwesomeIcon icon={faUserPlus} />
+            </Link>
           </>
         )}
         {user && (

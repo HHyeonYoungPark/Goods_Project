@@ -173,7 +173,7 @@ const Help = (props) => {
               <hr />
               <Dropdown visibility={dropdownVisibility6}>
                 <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                   Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                   Doloremque culpa ullam maxime quos laudantium, fugiat nesciunt
                   obcaecati error reiciendis, porro voluptas illum quisquam,
                   voluptates praesentium fugit recusandae delectus amet?

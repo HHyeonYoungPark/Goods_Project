@@ -56,15 +56,15 @@
   margin-top: 50px;
   margin-bottom: 20px;
 }
-li {
+.Help-container li {
   list-style: none;
   margin: 10px 0;
   padding: 12px 0;
 }
-hr {
+.Help-container hr {
   border: 0;
   height: 3px;
-  background-color: #f1f1f1;
+  background-color: gray;
 }
 li button {
   margin-left: 500px;
