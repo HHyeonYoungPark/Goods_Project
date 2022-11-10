@@ -8,8 +8,8 @@
   border-bottom: 1px solid #f1f1f1;
   border-top: 2px solid #f1f1f1;
 }
-.nav-wrap span{
- margin-right: 5px;
+.nav-wrap span {
+  margin-right: 5px;
 }
 .Lnav-wrap {
   display: flex;
@@ -22,11 +22,8 @@
 .Rnav-wrap {
   margin-right: 400px;
 }
-.nav-wrap a{
-  
+.nav-wrap a {
   font-weight: bold;
   font-size: 17px;
   text-decoration: none;
-  
 }
-

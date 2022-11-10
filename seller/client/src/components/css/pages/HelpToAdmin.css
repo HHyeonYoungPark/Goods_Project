@@ -69,10 +69,10 @@
 li button {
   margin-left: 500px;
 }
- .ask-wrap h3{
+.ask-wrap h3 {
   margin-top: 60px;
-} 
-.ask-hr{
+}
+.ask-hr {
   background-color: #f1f1f1;
   margin-top: 15px;
 }
@@ -86,5 +86,4 @@ li button {
   cursor: pointer;
   margin-left: 350px;
   margin-bottom: 50px;
-
 }

@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-between;
 }
-.header-con span{
+.header-con span {
   margin-right: 3px;
 }
 .R-head {
@@ -37,7 +37,7 @@
   align-items: center;
   z-index: 1;
   opacity: 1;
-  padding:15px 0;
+  padding: 15px 0;
 }
 .search-bar__input {
   width: 300px;
