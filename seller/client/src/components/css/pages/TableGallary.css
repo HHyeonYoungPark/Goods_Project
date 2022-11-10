@@ -1,0 +1,45 @@
+.TableGallary-container {
+  width: 1280px;
+  display: grid;
+  grid-template-columns: repeat(4, 23%);
+  column-gap: 2%;
+  row-gap: 50px;
+  margin: 50px auto;
+}
+
+.TableGallary {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  box-shadow: 0 0 4px rgb(202, 202, 202);
+  text-align: center;
+}
+
+.content img {
+  height: 250px;
+  width: 100%;
+}
+
+.content h4 {
+  margin: 10px;
+}
+
+.content h4 a:hover {
+  color: steelblue;
+}
+
+.view-btn {
+  border: 1px solid #c1c1c1;
+  background-color: #fff;
+  cursor: pointer;
+  padding: 7px 20px;
+  margin-top: 10px;
+}
+
+.view-btn a {
+  font-size: 14px;
+}
+
+.view-btn a:hover {
+  color: rgba(0, 0, 0, 0.6);
+}

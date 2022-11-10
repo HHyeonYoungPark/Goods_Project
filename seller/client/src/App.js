@@ -21,7 +21,7 @@ import AddItem from "./components/pages/AddItem";
 import Order from "./components/pages/Order";
 import Notice from "./components/pages/Notice";
 import Help from "./components/pages/HelpToAdmin";
-
+import TableGallary from "./components/pages/TableGallary";
 import Ask from "./components/pages/AskToAdmin";
 import PrivateRoute from "./components/pages/PrivateRoute";
 import NotFound from "./components/pages/NotFound";
@@ -53,7 +53,9 @@ function App() {
             </Route>
 
             <Route element={<PrivateRoute token={token} />}>
-              <Route path="makeItem" element={<MakeItem />} />
+              <Route path="makeItem" element={<MakeItem />}>
+                <Route path="tableGallary" element={<TableGallary />} />
+              </Route>
               <Route path="addItem" element={<AddItem />} />
               <Route path="order" element={<Order />} />
             </Route>
