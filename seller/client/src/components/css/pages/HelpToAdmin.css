@@ -1,3 +1,4 @@
+/* dropdown css */
 @keyframes slide-fade-in-dropdown-animation {
   0% {
     transform: translateY(-100%);
@@ -43,6 +44,7 @@
   padding-left: 0;
   list-style: none;
 }
+/* html css */
 
 .Help-container {
   width: 820px;
