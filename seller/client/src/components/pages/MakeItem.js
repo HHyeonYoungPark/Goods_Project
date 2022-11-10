@@ -47,16 +47,17 @@ function MakeItem() {
       </div>
       <div className="make-main-con">
         <div className="left-nav-con">
-          <Link to="tableGallary">임시</Link>
-          <h3>카테고리</h3>
+          <h2>카테고리</h2>
+          <hr />
+          <Link to="tableGallary">전체</Link>
           <hr />
           <ul>
             <li>
-              <span>키링</span>
+              <span>패션</span>
               <button
-                onClick={(e) => setDropdownVisibility7(!dropdownVisibility7)}
+                onClick={(e) => setDropdownVisibility1(!dropdownVisibility1)}
               >
-                {dropdownVisibility7 ? (
+                {dropdownVisibility1 ? (
                   <FontAwesomeIcon icon={faChevronUp} />
                 ) : (
                   <FontAwesomeIcon icon={faChevronDown} />
@@ -64,13 +65,108 @@ function MakeItem() {
               </button>
             </li>
             <hr />
-            <Dropdown visibility={dropdownVisibility7}>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Doloremque culpa ullam maxime quos laudantium, fugiat nesciunt
-                obcaecati error reiciendis, porro voluptas illum quisquam,
-                voluptates praesentium fugit recusandae delectus amet? Delectus!
-              </p>
+            <Dropdown visibility={dropdownVisibility1}>
+              <ul>
+                <li>
+                  <Link to="">후드티</Link>
+                </li>
+                <li>
+                  <Link to="">스웨트니트</Link>
+                </li>
+                <li>
+                  <Link to="">티셔츠</Link>
+                </li>
+                <li>
+                  <Link to="">니트</Link>
+                </li>
+              </ul>
+            </Dropdown>
+            <li>
+              <span>전자기기</span>
+              <button
+                onClick={(e) => setDropdownVisibility2(!dropdownVisibility2)}
+              >
+                {dropdownVisibility2 ? (
+                  <FontAwesomeIcon icon={faChevronUp} />
+                ) : (
+                  <FontAwesomeIcon icon={faChevronDown} />
+                )}
+              </button>
+            </li>
+            <hr />
+            <Dropdown visibility={dropdownVisibility2}>
+              <ul>
+                <li>
+                  <Link to="">후드티</Link>
+                </li>
+                <li>
+                  <Link to="">스웨트니트</Link>
+                </li>
+                <li>
+                  <Link to="">티셔츠</Link>
+                </li>
+                <li>
+                  <Link to="">니트</Link>
+                </li>
+              </ul>
+            </Dropdown>
+            <li>
+              <span>생활</span>
+              <button
+                onClick={(e) => setDropdownVisibility3(!dropdownVisibility3)}
+              >
+                {dropdownVisibility3 ? (
+                  <FontAwesomeIcon icon={faChevronUp} />
+                ) : (
+                  <FontAwesomeIcon icon={faChevronDown} />
+                )}
+              </button>
+            </li>
+            <hr />
+            <Dropdown visibility={dropdownVisibility3}>
+              <ul>
+                <li>
+                  <Link to="">후드티</Link>
+                </li>
+                <li>
+                  <Link to="">스웨트니트</Link>
+                </li>
+                <li>
+                  <Link to="">티셔츠</Link>
+                </li>
+                <li>
+                  <Link to="">니트</Link>
+                </li>
+              </ul>
+            </Dropdown>
+            <li>
+              <span>기타</span>
+              <button
+                onClick={(e) => setDropdownVisibility4(!dropdownVisibility4)}
+              >
+                {dropdownVisibility4 ? (
+                  <FontAwesomeIcon icon={faChevronUp} />
+                ) : (
+                  <FontAwesomeIcon icon={faChevronDown} />
+                )}
+              </button>
+            </li>
+            <hr />
+            <Dropdown visibility={dropdownVisibility4}>
+              <ul>
+                <li>
+                  <Link to="">후드티</Link>
+                </li>
+                <li>
+                  <Link to="">스웨트니트</Link>
+                </li>
+                <li>
+                  <Link to="">티셔츠</Link>
+                </li>
+                <li>
+                  <Link to="">니트</Link>
+                </li>
+              </ul>
             </Dropdown>
           </ul>
         </div>

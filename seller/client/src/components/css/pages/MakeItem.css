@@ -19,7 +19,7 @@
 .carousel-inner::after {
   display: block;
   clear: both;
-  content: '';
+  content: "";
 }
 .carousel-item {
   position: relative;
@@ -326,7 +326,7 @@ carousel-fade .active.carousel-item-end,
   overflow: hidden;
 }
 
-.slide-fade-in-dropdown > p {
+.slide-fade-in-dropdown > ul {
   animation: slide-fade-in-dropdown-animation 0.4s ease;
 }
 
@@ -344,19 +344,53 @@ carousel-fade .active.carousel-item-end,
   overflow: hidden;
 }
 
-.slide-fade-out-dropdown > p {
+.slide-fade-out-dropdown > ul {
   animation: slide-fade-out-dropdown-animation 0.4s ease;
   animation-fill-mode: forwards;
 }
 
-.components-dropdown > p {
+.components-dropdown > ul {
   position: relative;
   top: 5px;
-  margin-top: 0;
-  margin-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 20px;
   padding-left: 0;
   list-style: none;
 }
-.left-nav-con{
-  width: 300px;
+
+.make-main-con {
+  margin: 60px auto;
+  display: flex;
+  justify-content: space-between;
+  width: 1280px;
+}
+
+.left-nav-con {
+  width: 260px;
+  position: sticky;
+  top: 100px;
+  padding: 20px;
+}
+
+.left-nav-con h2 {
+  margin-bottom: 30px;
+}
+
+.left-nav-con a,
+.left-nav-con span {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 15px;
+  padding-left: 5px;
+}
+
+.left-nav-con a:hover {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.left-nav-con hr {
+  margin: 15px 0;
+}
+
+.goods-table {
+  width: 1000px;
 }
