@@ -362,14 +362,15 @@ carousel-fade .active.carousel-item-end,
   margin: 60px auto;
   display: flex;
   justify-content: space-between;
-  width: 1280px;
+  width: 1400px;
 }
 
 .left-nav-con {
   width: 260px;
-  position: sticky;
-  top: 100px;
   padding: 20px;
+  position: sticky;
+  top: 30px;
+  height: 600px;
 }
 
 .left-nav-con h2 {
@@ -392,5 +393,5 @@ carousel-fade .active.carousel-item-end,
 }
 
 .goods-table {
-  width: 1000px;
+  width: 1120px;
 }

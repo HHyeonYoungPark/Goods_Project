@@ -68,16 +68,16 @@ function MakeItem() {
             <Dropdown visibility={dropdownVisibility1}>
               <ul>
                 <li>
-                  <Link to="">후드티</Link>
+                  <Link to="tableGallary">후드티</Link>
                 </li>
                 <li>
-                  <Link to="">스웨트니트</Link>
+                  <Link to="tableGallary">스웨트니트</Link>
                 </li>
                 <li>
-                  <Link to="">티셔츠</Link>
+                  <Link to="tableGallary">티셔츠</Link>
                 </li>
                 <li>
-                  <Link to="">니트</Link>
+                  <Link to="tableGallary">니트</Link>
                 </li>
               </ul>
             </Dropdown>
@@ -97,16 +97,16 @@ function MakeItem() {
             <Dropdown visibility={dropdownVisibility2}>
               <ul>
                 <li>
-                  <Link to="">후드티</Link>
+                  <Link to="tableGallary">후드티</Link>
                 </li>
                 <li>
-                  <Link to="">스웨트니트</Link>
+                  <Link to="tableGallary">스웨트니트</Link>
                 </li>
                 <li>
-                  <Link to="">티셔츠</Link>
+                  <Link to="tableGallary">티셔츠</Link>
                 </li>
                 <li>
-                  <Link to="">니트</Link>
+                  <Link to="tableGallary">니트</Link>
                 </li>
               </ul>
             </Dropdown>
@@ -126,16 +126,16 @@ function MakeItem() {
             <Dropdown visibility={dropdownVisibility3}>
               <ul>
                 <li>
-                  <Link to="">후드티</Link>
+                  <Link to="tableGallary">후드티</Link>
                 </li>
                 <li>
-                  <Link to="">스웨트니트</Link>
+                  <Link to="tableGallary">스웨트니트</Link>
                 </li>
                 <li>
-                  <Link to="">티셔츠</Link>
+                  <Link to="tableGallary">티셔츠</Link>
                 </li>
                 <li>
-                  <Link to="">니트</Link>
+                  <Link to="tableGallary">니트</Link>
                 </li>
               </ul>
             </Dropdown>
@@ -155,16 +155,16 @@ function MakeItem() {
             <Dropdown visibility={dropdownVisibility4}>
               <ul>
                 <li>
-                  <Link to="">후드티</Link>
+                  <Link to="tableGallary">후드티</Link>
                 </li>
                 <li>
-                  <Link to="">스웨트니트</Link>
+                  <Link to="tableGallary">스웨트니트</Link>
                 </li>
                 <li>
-                  <Link to="">티셔츠</Link>
+                  <Link to="tableGallary">티셔츠</Link>
                 </li>
                 <li>
-                  <Link to="">니트</Link>
+                  <Link to="tableGallary">니트</Link>
                 </li>
               </ul>
             </Dropdown>

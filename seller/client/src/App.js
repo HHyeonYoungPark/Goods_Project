@@ -22,6 +22,7 @@ import Order from "./components/pages/Order";
 import Notice from "./components/pages/Notice";
 import Help from "./components/pages/HelpToAdmin";
 import TableGallary from "./components/pages/TableGallary";
+import ViewOthers from "./components/pages/ViewOthers";
 import Ask from "./components/pages/AskToAdmin";
 import PrivateRoute from "./components/pages/PrivateRoute";
 import NotFound from "./components/pages/NotFound";
@@ -47,6 +48,7 @@ function App() {
               path="mypage"
               element={<MyPage token={token} userId={userId} />}
             >
+              <Route index="userInfo" element={<UserInfo />} />
               <Route path="sellHistory" element={<SellHistory />} />
               <Route path="myAsk" element={<MyAsk />} />
               <Route path="userInfo" element={<UserInfo />} />
@@ -54,6 +56,7 @@ function App() {
 
             <Route element={<PrivateRoute token={token} />}>
               <Route path="makeItem" element={<MakeItem />}>
+                <Route index="tableGallary" element={<TableGallary />} />
                 <Route path="tableGallary" element={<TableGallary />} />
               </Route>
               <Route path="addItem" element={<AddItem />} />
@@ -61,6 +64,7 @@ function App() {
             </Route>
 
             <Route path="notice" element={<Notice />} />
+            <Route path="viewOthers" element={<ViewOthers />} />
             <Route path="help" element={<Help />} />
             <Route path="ask" element={<Ask />} />
             <Route path="*" element={<NotFound />} />

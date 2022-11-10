@@ -285,19 +285,6 @@ function Regist() {
     }
   }
 
-  // // 입력 또는 체크를 안했으면 alert
-  // function onClick() {
-
-  //   // 약관체크
-  //   let chk = document.querySelector("input[name='agree']:checked");
-  //   if (!chk) {
-  //     alert("약관을 확인 후 체크해주세요");
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-  // }
-
   return (
     <div className="regist-container">
       <div className="regist-wrap">

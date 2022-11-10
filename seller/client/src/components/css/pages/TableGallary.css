@@ -1,7 +1,7 @@
 .TableGallary-container {
-  width: 1000px;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 22%);
+  grid-template-columns: repeat(4, 23.2%);
   column-gap: 3%;
   row-gap: 50px;
   margin: 30px auto;
@@ -10,36 +10,27 @@
 .TableGallary {
   width: 100%;
   height: auto;
-  padding: 10px;
-  box-shadow: 0 0 4px rgb(202, 202, 202);
-  text-align: center;
 }
 
-.content img {
-  height: 250px;
+.TableGallary img {
+  height: 240px;
   width: 100%;
 }
 
-.content h4 {
-  margin: 10px;
+.TableGallary h4 {
+  margin: 10px 0 3px 2px;
+  font-size: 17px;
 }
 
-.content h4 a:hover {
+.TableGallary h4 a:hover {
   color: steelblue;
 }
 
-.view-btn {
-  border: 1px solid #c1c1c1;
-  background-color: #fff;
-  cursor: pointer;
-  padding: 7px 20px;
-  margin-top: 10px;
+.price {
+  margin-left: 2px;
 }
 
-.view-btn a {
-  font-size: 14px;
-}
-
-.view-btn a:hover {
+.price a {
   color: rgba(0, 0, 0, 0.6);
+  font-size: 15px;
 }

@@ -39,7 +39,7 @@ function Navbar() {
             </Link>
           </div>
           <div>
-            <Link to="/">
+            <Link to="/viewOthers">
               <span>둘러보기</span> <FontAwesomeIcon icon={faEye} />
             </Link>
           </div>
