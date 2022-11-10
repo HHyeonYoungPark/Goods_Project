@@ -1,5 +1,5 @@
 import Carousel from "react-bootstrap/Carousel";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../css/pages/Main.css";
 import slide1 from "../images/wetiny_banner4.png";
 import slide2 from "../images/wetiny_banner5.png";
 import slide3 from "../images/wetiny_banner46.png";
