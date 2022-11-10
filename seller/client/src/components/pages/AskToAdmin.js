@@ -3,6 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
 
 function Ask() {
   //입력받은 값
@@ -137,12 +138,15 @@ function Ask() {
           />
           <p>이미지 첨부</p>
           <div>
-            <input
-              className='askimage'
-              type='file'
-              name='askImage'
-              onChange={onChangeAskImage}
-            />
+            <Form.Group controlId='formFileMultiple' className='mb-3'>
+              <Form.Control
+                type='file'
+                name='askImage'
+                onChange={onChangeAskImage}
+                multiple
+                size='lg'
+              />
+            </Form.Group>
           </div>
           <p>본문</p>
           <textarea
