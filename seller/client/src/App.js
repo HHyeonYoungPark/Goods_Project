@@ -13,6 +13,9 @@ import Login from "./components/pages/Login";
 import Logout from "./components/pages/Logout";
 import Regist from "./components/pages/Regist";
 import MyPage from "./components/pages/MyPage";
+import SellHistory from "./components/pages/SellHistory";
+import MyAsk from "./components/pages/MyAsk";
+import UserInfo from "./components/pages/UserInfo";
 import MakeItem from "./components/pages/MakeItem";
 import AddItem from "./components/pages/AddItem";
 import Order from "./components/pages/Order";
@@ -24,23 +27,32 @@ import PrivateRoute from "./components/pages/PrivateRoute";
 import NotFound from "./components/pages/NotFound";
 
 function App() {
-  const [user, setUser] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [userId, setUserId] = useState(localStorage.getItem("id"));
+
   return (
     <div>
       <Router>
-        <Header user={user} userId={userId} />
+        <Header token={token} userId={userId} />
         <Navbar />
 
         <main>
-          <Routes user={user}>
+          <Routes token={token} userId={userId}>
             <Route path="/" element={<Main />} />
             <Route path="login" element={<Login />} />
             <Route path="logout" element={<Logout />} />
             <Route path="regist" element={<Regist />} />
-            <Route path="mypage" element={<MyPage />} />
 
-            <Route element={<PrivateRoute user={user} />}>
+            <Route
+              path="mypage"
+              element={<MyPage token={token} userId={userId} />}
+            >
+              <Route path="sellHistory" element={<SellHistory />} />
+              <Route path="myAsk" element={<MyAsk />} />
+              <Route path="userInfo" element={<UserInfo />} />
+            </Route>
+
+            <Route element={<PrivateRoute token={token} />}>
               <Route path="makeItem" element={<MakeItem />} />
               <Route path="addItem" element={<AddItem />} />
               <Route path="order" element={<Order />} />

@@ -1,0 +1,48 @@
+.mypage-container {
+  margin-bottom: 50px;
+}
+
+.mypage-wrap {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  width: 1280px;
+}
+
+.mypage-sideNav {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  width: 180px;
+}
+
+.sideNav-profile {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.sideNav-profile img {
+  width: 100px;
+  margin: 15px 0;
+}
+
+.sideNav {
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  font-size: 14px;
+}
+
+.sideNav h4 {
+  margin-bottom: 7px;
+}
+
+.sideNav ul {
+  padding-left: 3px;
+}
+
+.sideNav li {
+  margin: 1px 0;
+}
+
+.mypage-content {
+  background-color: #bbb;
+  width: 1080px;
+}

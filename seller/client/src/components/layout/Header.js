@@ -6,7 +6,7 @@ import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, Link } from "react-router-dom";
 import "../css/layout/Header.css";
-function Header({ user, userId }) {
+function Header({ token, userId }) {
   return (
     <div className="header-con">
       <div className="image">
@@ -19,7 +19,7 @@ function Header({ user, userId }) {
         <FontAwesomeIcon icon={faMagnifyingGlass} />
       </div>
       <div className="R-head">
-        {!user && (
+        {!token && (
           <>
             <Link to="/login">
               <span>로그인</span>
@@ -31,7 +31,7 @@ function Header({ user, userId }) {
             </Link>
           </>
         )}
-        {user && (
+        {token && (
           <>
             <Link to="/mypage">{userId}님</Link>
             <Link to="/logout">로그아웃</Link>

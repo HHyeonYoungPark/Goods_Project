@@ -137,7 +137,16 @@ app.post("/login", (req, res) => {
 });
 
 // 마이페이지
-app.get("/mypage", (req, res) => {});
+app.get("/mypage", (req, res) => {
+  let sql = "SELECT * FROM seller WHERE id=?";
+  db.query(sql, [userId], (err, response) => {
+    if (err) {
+      throw err;
+    } else {
+      res.send(response);
+    }
+  });
+});
 
 //문의하기
 app.post("/ask", upload.single("askImage"), (req, res) => {

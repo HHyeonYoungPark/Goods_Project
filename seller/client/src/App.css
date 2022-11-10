@@ -8,6 +8,10 @@ a {
   text-decoration: none;
 }
 
+ul li {
+  list-style: none;
+}
+
 input,
 button,
 select {
@@ -17,8 +21,14 @@ select {
 }
 
 /*여기서부터 NotFound*******************************************************/
-.notfount {
-  height: 400px;
+.notFound-container {
+  display: flex;
+  justify-content: center;
+  height: 556px;
+  align-items: center;
+}
+
+.notFound {
   width: 1280px;
   text-align: center;
 }
@@ -27,9 +37,9 @@ select {
   margin: 30px 0;
 }
 
-.notfount img {
+.notFound-img {
   width: 100px;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 }
 
 .tomain {
