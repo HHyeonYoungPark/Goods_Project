@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import wetinyWordLogo from "../images/wetiny_wordlogo.png";
+import wetinyLogo from "../images/WETINY_LOGO.jpg";
+
 import "../css/layout/Navbar.css";
 
 function Navbar() {
@@ -14,51 +15,69 @@ function Navbar() {
       <div className="NavbarContainer">
         <div className="NavMenuLeft">
           <Link to="/" className="tomain">
-            <img src={wetinyWordLogo} alt={wetinyWordLogo} />
+            <img style={{ width: "250px" }} src={wetinyLogo} alt={wetinyLogo} />
           </Link>
         </div>
         <div className="NavMenuMid">
           <ul>
             <li className="influencerDropDown">
-              <Link to="/influencer" className="influencer">
+              <Link to="/influencerMain" className="influencerMain">
                 INFLUENCERS
               </Link>
               <div className="influencerDropDownMenu">
-                <Link to="/influencerYoutube" className="influencerYoutube">
+                <Link to="/influencer/youtube" className="influencerYoutube">
                   YOUTUBE
                 </Link>
-                <Link to="/influencerTwitch" className="influencerTwitch">
+                <Link to="/influencer/twitch" className="influencerTwitch">
                   TWITCH
                 </Link>
-                <Link to="/influencerAfreeca" className="influencerAfreeca">
+                <Link to="/influencer/afreeca" className="influencerAfreeca">
                   AFREECA
                 </Link>
-                <Link to="/influencerTiktok" className="influencerTiktok">
+                <Link to="/influencer/tiktok" className="influencerTiktok">
                   TIKTOK
                 </Link>
-                <Link to="/influencerInstagram" className="influencerInstagram">
+                <Link
+                  to="/influencer/instagram"
+                  className="influencerInstagram"
+                >
                   INSTAGRAM
                 </Link>
               </div>
             </li>
             <li className="goodsDropDown">
-              <Link to="/goodsList" className="goods">
+              <Link to="/goodsMain" className="goods">
                 GOODS
               </Link>
               <div className="goodsDropDownMenu">
-                <Link to="/goodsFashion" className="registCustomer">
+                <Link to="/goods/fashion" className="goodsFashion">
                   FASHION
                 </Link>
-                <Link to="/goodsElectronics" className="goodsElectronics">
+                <Link to="/goods/electronics" className="goodsElectronics">
                   ELECTRONICS
                 </Link>
-                <Link to="/goodsLiving" className="goodsLiving">
+                <Link to="/goods/living" className="goodsLiving">
                   LIVING
                 </Link>
-                <Link to="/goodsEtc." className="goodsEtc.">
+                <Link to="/goods/etc." className="goodsEtc.">
                   ETC.
                 </Link>
               </div>
+            </li>
+            <li>
+              <Link to="/newnhot" className="newnhot">
+                NEW & HOT
+              </Link>
+            </li>
+            <li>
+              <Link to="/limitednspecial" className="limitednspecial">
+                LIMITED & SPECIAL
+              </Link>
+            </li>
+            <li>
+              <Link to="/clearance" className="clearance">
+                CLEARANCE
+              </Link>
             </li>
           </ul>
         </div>

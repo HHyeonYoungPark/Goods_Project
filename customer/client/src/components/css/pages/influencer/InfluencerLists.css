@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.ifrncListHeader ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.ifrncListHeader ul li {
+  padding: 10px 20px;
+}

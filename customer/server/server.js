@@ -242,13 +242,5 @@ app.post("", (req, res) => {
 
 // port
 app.listen(process.env.PORT, () => {
-  const dir = "reviews";
-  if (!fs.existsSync(dir)) {
-    fs.mkdir(dir, (err) => {
-      if (err) {
-        throw err;
-      }
-    });
-  }
   console.log("Server Running Port : " + process.env.PORT);
 });

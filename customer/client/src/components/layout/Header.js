@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/layout/Header.css";
+import wetinyBizLogo from "../images/WETINYBIZ_LOGO.jpg";
 
 function Header() {
   const [search, setSearch] = useState("");
@@ -13,7 +14,11 @@ function Header() {
       <div className="HeaderContainer">
         <div className="NavMenuLeft">
           <Link to="/seller" className="toSellerMain">
-            WE'TINY Business
+            <img
+              style={{ width: "180px" }}
+              src={wetinyBizLogo}
+              alt={wetinyBizLogo}
+            />
           </Link>
         </div>
         <div className="HeaderMenuRight">
