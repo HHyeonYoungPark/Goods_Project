@@ -12,10 +12,10 @@ function MyPage({ userId }) {
             <h2>마이페이지</h2>
             <img src={myImg} alt={myImg} />
             <div>
-              <Link to="/mypage">
+              <Link to="/myPage">
                 <b>{userId}</b>
               </Link>
-              셀러 님
+              님
             </div>
           </div>
           <div className="sideNav">

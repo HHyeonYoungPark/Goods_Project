@@ -59,10 +59,7 @@ function UserInfo() {
       isChannelGenre &&
       isUrl &&
       isProfileimage &&
-      isIntro &&
-      isAgree1 &&
-      isAgree2 &&
-      isAgree3 === true
+      isIntro === true
     ) {
       let formData = new FormData();
       formData.append("id", id);

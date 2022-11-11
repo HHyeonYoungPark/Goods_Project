@@ -64,7 +64,7 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
   const filename = req.file.filename;
   const intro = req.body.intro;
 
-  let sql = "INSERT INTO seller VALUES(NULL,?,?,?,?,?,?,?,?,?,?,now());";
+  let sql = "INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,?,?,?,'판매자',now());";
   bcrypt.hash(req.body.pw, saltRounds, (err, hash_pw) => {
     db.query(
       sql,
@@ -109,7 +109,7 @@ app.post("/login", (req, res) => {
   const { id } = req.body;
   const { pw } = req.body;
 
-  let sql = "SELECT * FROM seller WHERE id=?;";
+  let sql = "SELECT * FROM user WHERE id=?;";
   db.query(sql, [req.body.id], (err, user) => {
     if (user[0] === undefined) {
       res.send({
@@ -138,7 +138,7 @@ app.post("/login", (req, res) => {
 
 // 마이페이지
 app.get("/mypage", (req, res) => {
-  let sql = "SELECT * FROM seller WHERE id=?";
+  let sql = "SELECT * FROM user WHERE id=?";
   db.query(sql, [userId], (err, response) => {
     if (err) {
       throw err;

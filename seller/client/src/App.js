@@ -12,6 +12,8 @@ import Main from "./components/pages/Main";
 import Login from "./components/pages/Login";
 import Logout from "./components/pages/Logout";
 import Regist from "./components/pages/Regist";
+import AdminPage from "./components/pages/AdminPage";
+import PrivateMyPage from "./components/pages/PrivateMyPage";
 import MyPage from "./components/pages/MyPage";
 import SellHistory from "./components/pages/SellHistory";
 import MyAsk from "./components/pages/MyAsk";
@@ -44,15 +46,22 @@ function App() {
             <Route path="logout" element={<Logout />} />
             <Route path="regist" element={<Regist />} />
 
-            <Route
-              path="mypage"
-              element={<MyPage token={token} userId={userId} />}
-            >
-              <Route index="userInfo" element={<UserInfo />} />
-              <Route path="sellHistory" element={<SellHistory />} />
-              <Route path="myAsk" element={<MyAsk />} />
-              <Route path="userInfo" element={<UserInfo />} />
+            <Route element={<PrivateMyPage token={token} userId={userId} />}>
+              <Route
+                path="myPage"
+                element={<MyPage token={token} userId={userId} />}
+              >
+                <Route index="userInfo" element={<UserInfo />} />
+                <Route path="sellHistory" element={<SellHistory />} />
+                <Route path="myAsk" element={<MyAsk />} />
+                <Route path="userInfo" element={<UserInfo />} />
+              </Route>
             </Route>
+
+            <Route
+              path="adminPage"
+              element={<AdminPage token={token} userId={userId} />}
+            ></Route>
 
             <Route element={<PrivateRoute token={token} />}>
               <Route path="makeItem" element={<MakeItem />}>

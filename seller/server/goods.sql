@@ -12,7 +12,7 @@ contents TEXT,
 regdate DATE
 );
 
-CREATE TABLE seller(
+CREATE TABLE user(
 idx INT AUTO_INCREMENT PRIMARY KEY,
 id VARCHAR(50) UNIQUE,
 pw VARCHAR(255),
@@ -24,6 +24,7 @@ channelGenre VARCHAR(50),
 url VARCHAR(255),
 sellerimage VARCHAR(255),
 intro VARCHAR(100),
+grade VARCHAR(10),
 regdate DATE 
 );
 
