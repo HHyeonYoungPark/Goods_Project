@@ -34,7 +34,7 @@ function Login() {
     <div className="login-container">
       <div className="login-wrap">
         <div className="login-title">
-          <h1>셀러 로그인</h1>
+          <h1>로그인</h1>
         </div>
         <div className="login-box">
           <form method="post" onSubmit={frmHandler}>

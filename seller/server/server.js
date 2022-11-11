@@ -64,7 +64,8 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
   const filename = req.file.filename;
   const intro = req.body.intro;
 
-  let sql = "INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,?,?,?,'판매자',now());";
+  let sql =
+    "INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,?,?,?,'일반 판매자',now());";
   bcrypt.hash(req.body.pw, saltRounds, (err, hash_pw) => {
     db.query(
       sql,

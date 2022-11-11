@@ -29,6 +29,14 @@ import Ask from "./components/pages/AskToAdmin";
 import PrivateRoute from "./components/pages/PrivateRoute";
 import NotFound from "./components/pages/NotFound";
 
+import AllManager from "./components/pages/AllManager";
+import GoodsManager from "./components/pages/GoodsManager";
+import NoticeManager from "./components/pages/NoticeManager";
+import AskManager from "./components/pages/AskManager";
+import UserManager from "./components/pages/UserManager";
+import CostumerManager from "./components/pages/CostumerManager";
+import SellerManager from "./components/pages/SellerManager";
+
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [userId, setUserId] = useState(localStorage.getItem("id"));
@@ -61,7 +69,17 @@ function App() {
             <Route
               path="adminPage"
               element={<AdminPage token={token} userId={userId} />}
-            ></Route>
+            >
+              <Route index="allManager" element={<AllManager />} />
+              <Route path="goodsManager" element={<GoodsManager />} />
+              <Route path="userManager" element={<UserManager />}>
+                <Route index="sellerManager" element={<SellerManager />} />
+                <Route path="sellerManager" element={<SellerManager />} />
+                <Route path="costumerManager" element={<CostumerManager />} />
+              </Route>
+              <Route path="noticeManager" element={<NoticeManager />} />
+              <Route path="askManager" element={<AskManager />} />
+            </Route>
 
             <Route element={<PrivateRoute token={token} />}>
               <Route path="makeItem" element={<MakeItem />}>
