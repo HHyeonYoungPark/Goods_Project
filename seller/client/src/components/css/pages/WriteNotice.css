@@ -1,0 +1,88 @@
+.WriteNotice-container {
+  display: flex;
+  justify-content: center;
+}
+
+.addPost-wrap {
+  width: 1000px;
+  margin-bottom: 50px;
+}
+
+.header h1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.addPost {
+  border: 1px solid #d1d1d1;
+  padding: 40px 0;
+}
+.addPost input {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 7px;
+  width: 830px;
+}
+.title,
+.writer,
+.files {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 34px;
+  margin-bottom: 10px;
+}
+
+.files input {
+  border: 0;
+}
+
+label {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.ta {
+  display: flex;
+  justify-content: center;
+  margin: 40px 20px 20px 20px;
+}
+.ta textarea {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  resize: none;
+}
+
+.ta textarea:focus {
+  outline: none;
+}
+.btn-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 34px;
+}
+
+/* .notice-btn button {
+  background-color: #273270;
+  color: #fff;
+  border-radius: 3px;
+  padding: 7px 12px;
+  cursor: pointer;
+} */
+.notice-btn {
+  background-color: #273270;
+  color: #fff;
+  border-radius: 3px;
+  padding: 10px 30px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.notice-btn a {
+  color: #fff;
+}
+
+.notice-btn:hover {
+  background-color: #354392;
+  transition: 0.2s;
+}

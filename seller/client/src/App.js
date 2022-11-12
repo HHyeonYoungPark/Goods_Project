@@ -36,6 +36,7 @@ import AskManager from "./components/pages/AskManager";
 import UserManager from "./components/pages/UserManager";
 import CostumerManager from "./components/pages/CostumerManager";
 import SellerManager from "./components/pages/SellerManager";
+import WriteNotice from "./components/pages/WriteNotice";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -91,6 +92,10 @@ function App() {
             </Route>
 
             <Route path="notice" element={<Notice />} />
+            <Route
+              path="writeNotice"
+              element={<WriteNotice userId={userId} />}
+            />
             <Route path="viewOthers" element={<ViewOthers />} />
             <Route path="help" element={<Help />} />
             <Route path="ask" element={<Ask />} />

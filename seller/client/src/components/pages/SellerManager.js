@@ -5,19 +5,19 @@ import "../css/pages/UserManager.css";
 function SellerManager() {
   return (
     <div className="userManager-container">
-      <div class="table-List">
+      <div className="table-List">
         <h1>판매자 회원 관리</h1>
-        <div class="table-List-top">
-          <div class="top-left">
+        <div className="table-List-top">
+          <div className="top-left">
             <Link to="costumerManager">고객 회원관리</Link>
           </div>
-          <div class="top-right">
-            <div class="search-wrap">
+          <div className="top-right">
+            <div className="search-wrap">
               <form method="get" action="/member/userSearch" id="frm">
                 <div class="search">
                   <select
                     id="selSearch"
-                    class="sel"
+                    className="sel"
                     name="selSearch"
                     onchange="selSearch()"
                   >
@@ -30,7 +30,7 @@ function SellerManager() {
                     type="text"
                     name="search"
                     id="search"
-                    class="search"
+                    className="search"
                     autofocus
                     required
                   />
@@ -40,7 +40,7 @@ function SellerManager() {
             </div>
           </div>
         </div>
-        <div class="tbl-wrap">
+        <div className="tbl-wrap">
           <table>
             <tr>
               <td>번호</td>
@@ -60,7 +60,7 @@ function SellerManager() {
               <td></td>
               <td>
                 <select
-                  class="gradeSel"
+                  className="gradeSel"
                   onchange=" grade(this.value, '<%= result[i].idx %>');"
                 >
                   <option value="최고관리자">최고관리자</option>
@@ -71,7 +71,7 @@ function SellerManager() {
               <td></td>
               <td>
                 <a href="">
-                  <button type="submit" class="upDelBtn">
+                  <button type="submit" className="upDelBtn">
                     <i class="fa-solid fa-pen-to-square"></i>수정
                   </button>
                 </a>
@@ -79,7 +79,7 @@ function SellerManager() {
                   href=""
                   onclick="return confirm('회원을 삭제하시겠습니까?');"
                 >
-                  <button type="submit" class="upDelBtn">
+                  <button type="submit" className="upDelBtn">
                     <i class="fa-solid fa-trash-can"></i>삭제
                   </button>
                 </a>

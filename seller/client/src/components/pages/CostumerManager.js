@@ -10,19 +10,19 @@ function CostumerManager() {
 
   return (
     <div className="userManager-container">
-      <div class="table-List">
+      <div className="table-List">
         <h1>고객 회원관리</h1>
-        <div class="table-List-top">
-          <div class="top-left">
+        <div className="table-List-top">
+          <div className="top-left">
             <Link onClick={onClick}>판매자 회원관리</Link>
           </div>
-          <div class="top-right">
-            <div class="search-wrap">
+          <div className="top-right">
+            <div className="search-wrap">
               <form method="get" action="/member/userSearch" id="frm">
                 <div class="search">
                   <select
                     id="selSearch"
-                    class="sel"
+                    className="sel"
                     name="selSearch"
                     onchange="selSearch()"
                   >
@@ -35,17 +35,17 @@ function CostumerManager() {
                     type="text"
                     name="search"
                     id="search"
-                    class="search"
+                    className="search"
                     autofocus
                     required
                   />
-                  <input type="submit" value="검색" class="searchBtn" />
+                  <input type="submit" value="검색" className="searchBtn" />
                 </div>
               </form>
             </div>
           </div>
         </div>
-        <div class="tbl-wrap">
+        <div className="tbl-wrap">
           <table>
             <tr>
               <td>번호</td>
@@ -67,7 +67,7 @@ function CostumerManager() {
               <td></td>
               <td>
                 <select
-                  class="gradeSel"
+                  className="gradeSel"
                   onchange=" grade(this.value, '<%= result[i].idx %>');"
                 >
                   <option value="최고관리자">최고관리자</option>
@@ -78,7 +78,7 @@ function CostumerManager() {
               <td></td>
               <td>
                 <a href="/member/upUser/<%= result[i].idx %>">
-                  <button type="submit" class="upDelBtn">
+                  <button type="submit" className="upDelBtn">
                     <i class="fa-solid fa-pen-to-square"></i>수정
                   </button>
                 </a>
@@ -86,7 +86,7 @@ function CostumerManager() {
                   href="/member/delUser/<%= result[i].idx %>"
                   onclick="return confirm('회원을 삭제하시겠습니까?');"
                 >
-                  <button type="submit" class="upDelBtn">
+                  <button type="submit" className="upDelBtn">
                     <i class="fa-solid fa-trash-can"></i>삭제
                   </button>
                 </a>
