@@ -22,7 +22,7 @@ function MyPage({ userId }) {
             <h4>나의 판매 내역</h4>
             <ul>
               <li>
-                <Link to="/sellHistory">판매상품 관리</Link>
+                <Link to="sellHistory">판매상품 관리</Link>
               </li>
               <li>
                 <Link to="">판매/배송조회</Link>
@@ -39,7 +39,7 @@ function MyPage({ userId }) {
             <h4>나의 쇼핑 지식</h4>
             <ul>
               <li>
-                <Link to="/myAsk">문의 내역</Link>
+                <Link to="myAsk">문의 내역</Link>
               </li>
               <li>
                 <Link to="">상품리뷰 관리</Link>
@@ -56,7 +56,7 @@ function MyPage({ userId }) {
             <h4>나의 회원정보</h4>
             <ul>
               <li>
-                <Link to="/userInfo">회원정보 변경/탈퇴</Link>
+                <Link to="userInfo">회원정보 변경/탈퇴</Link>
               </li>
               <li>
                 <Link to="">회원 전환</Link>
@@ -70,7 +70,7 @@ function MyPage({ userId }) {
             </ul>
           </div>
         </div>
-        <div className="/mypage-content">
+        <div className="mypage-content">
           <Outlet />
         </div>
       </div>

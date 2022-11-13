@@ -17,7 +17,7 @@
 .R-head a {
   margin-right: 40px;
   font-weight: bold;
-  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .R-head a:hover {

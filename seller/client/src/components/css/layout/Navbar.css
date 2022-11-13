@@ -26,4 +26,10 @@
   font-weight: bold;
   font-size: 17px;
   text-decoration: none;
+  color: #273270;
+}
+
+.nav-wrap a:hover {
+  color: #5568d7;
+  transition: 0.2s;
 }

@@ -1,26 +1,27 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../css/pages/Notice.css";
 
 function NoticeManager() {
   return (
-    <div class="noticeManager-container">
-      <div class="table-List">
+    <div className="noticeManager-container">
+      <div className="table-List">
         <h1>공지사항 관리</h1>
-        <div class="table-List-top">
-          <div class="top-left">
-            <a href="/board/addPost">
+        <div className="table-List-top">
+          <div className="top-left">
+            <Link to="/writeNotice">
               <button type="submit" class="addBtn">
                 <i class="fa-solid fa-pen-to-square"></i>글쓰기
               </button>
-            </a>
+            </Link>
           </div>
-          <div class="top-right">
-            <div class="search-wrap">
+          <div className="top-right">
+            <div className="search-wrap">
               <form action="/board/postSearch" method="get" id="frm">
-                <div class="search">
+                <div className="search">
                   <select
                     id="sel"
-                    class="sel"
+                    className="sel"
                     name="selSearch2"
                     onchange="selSearch2()"
                   >
@@ -33,18 +34,18 @@ function NoticeManager() {
                   <input
                     type="text"
                     id="search"
-                    class="search"
+                    className="search"
                     name="search"
                     autofocus
                     required
                   />
-                  <input type="submit" value="검색" class="searchBtn" />
+                  <input type="submit" value="검색" className="searchBtn" />
                 </div>
               </form>
             </div>
           </div>
         </div>
-        <div class="tbl-wrap">
+        <div className="tbl-wrap">
           <table>
             <tr>
               <td>번호</td>
@@ -56,7 +57,7 @@ function NoticeManager() {
 
             <tr>
               <td></td>
-              <td class="title">
+              <td className="title">
                 <a href=""></a>
               </td>
               <td></td>

@@ -52,3 +52,12 @@ askImage VARCHAR(255),
 askContents TEXT,
 regdate DATETIME
 );
+
+CREATE TABLE notice(
+idx INT AUTO_INCREMENT PRIMARY KEY,
+noticeTitle VARCHAR(100),
+noticeWriter VARCHAR(50),
+noticeContent TEXT,
+noticeView int,
+regdate DATE
+);
