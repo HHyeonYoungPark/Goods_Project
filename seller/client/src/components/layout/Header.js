@@ -33,7 +33,7 @@ function Header({ token, userId }) {
         )}
         {token && (
           <>
-            <Link to="/mypage">{userId}님</Link>
+            <Link to="/myPage">{userId}님</Link>
             <Link to="/logout">로그아웃</Link>
           </>
         )}

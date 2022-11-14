@@ -1,0 +1,94 @@
+.notice-container {
+  display: flex;
+  justify-content: center;
+}
+
+.table-wrap {
+  width: 1280px;
+}
+
+.table-List {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.table-List h1 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.addBtn {
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 7px;
+}
+
+.addBtn:hover {
+  background-color: #f9f9f9;
+}
+
+.search select,
+.search input,
+.gradeSel {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 7px;
+}
+
+.searchBtn {
+  background-color: #273270;
+  color: #fff;
+  border-radius: 3px;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.table-List-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.tbl-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.tbl-wrap tr {
+  height: 50px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  background-color: #fff;
+  color: #000;
+}
+
+.tbl-wrap tr:hover {
+  background-color: #f9f9f9;
+}
+
+.tbl-wrap tr:nth-child(1) {
+  background-color: #273270;
+  color: #f1f1f1;
+}
+
+.tbl-wrap td.title {
+  display: flex;
+  text-align: left;
+  padding-top: 15px;
+}
+
+.upDelBtn {
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  background-color: #f1f1f1;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.upDelBtn:hover {
+  background-color: #f9f9f9;
+}

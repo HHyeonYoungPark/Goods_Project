@@ -12,6 +12,8 @@ import Main from "./components/pages/Main";
 import Login from "./components/pages/Login";
 import Logout from "./components/pages/Logout";
 import Regist from "./components/pages/Regist";
+import AdminPage from "./components/pages/AdminPage";
+import PrivateMyPage from "./components/pages/PrivateMyPage";
 import MyPage from "./components/pages/MyPage";
 import SellHistory from "./components/pages/SellHistory";
 import MyAsk from "./components/pages/MyAsk";
@@ -26,6 +28,15 @@ import ViewOthers from "./components/pages/ViewOthers";
 import Ask from "./components/pages/AskToAdmin";
 import PrivateRoute from "./components/pages/PrivateRoute";
 import NotFound from "./components/pages/NotFound";
+
+import AllManager from "./components/pages/AllManager";
+import GoodsManager from "./components/pages/GoodsManager";
+import NoticeManager from "./components/pages/NoticeManager";
+import AskManager from "./components/pages/AskManager";
+import UserManager from "./components/pages/UserManager";
+import CostumerManager from "./components/pages/CostumerManager";
+import SellerManager from "./components/pages/SellerManager";
+import WriteNotice from "./components/pages/WriteNotice";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -44,14 +55,31 @@ function App() {
             <Route path="logout" element={<Logout />} />
             <Route path="regist" element={<Regist />} />
 
+            <Route element={<PrivateMyPage token={token} userId={userId} />}>
+              <Route
+                path="myPage"
+                element={<MyPage token={token} userId={userId} />}
+              >
+                <Route index="userInfo" element={<UserInfo />} />
+                <Route path="sellHistory" element={<SellHistory />} />
+                <Route path="myAsk" element={<MyAsk />} />
+                <Route path="userInfo" element={<UserInfo />} />
+              </Route>
+            </Route>
+
             <Route
-              path="mypage"
-              element={<MyPage token={token} userId={userId} />}
+              path="adminPage"
+              element={<AdminPage token={token} userId={userId} />}
             >
-              <Route index="userInfo" element={<UserInfo />} />
-              <Route path="sellHistory" element={<SellHistory />} />
-              <Route path="myAsk" element={<MyAsk />} />
-              <Route path="userInfo" element={<UserInfo />} />
+              <Route index="allManager" element={<AllManager />} />
+              <Route path="goodsManager" element={<GoodsManager />} />
+              <Route path="userManager" element={<UserManager />}>
+                <Route index="sellerManager" element={<SellerManager />} />
+                <Route path="sellerManager" element={<SellerManager />} />
+                <Route path="costumerManager" element={<CostumerManager />} />
+              </Route>
+              <Route path="noticeManager" element={<NoticeManager />} />
+              <Route path="askManager" element={<AskManager />} />
             </Route>
 
             <Route element={<PrivateRoute token={token} />}>
@@ -64,6 +92,10 @@ function App() {
             </Route>
 
             <Route path="notice" element={<Notice />} />
+            <Route
+              path="writeNotice"
+              element={<WriteNotice userId={userId} />}
+            />
             <Route path="viewOthers" element={<ViewOthers />} />
             <Route path="help" element={<Help />} />
             <Route path="ask" element={<Ask />} />

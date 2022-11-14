@@ -38,9 +38,6 @@ function UserInfo() {
   const [isUrl, setIsUrl] = useState(false); // url을 입력했는지
   const [isProfileimage, setIsProfileimage] = useState(false); // 프로필이미지를 선택했는지
   const [isIntro, setIsIntro] = useState(false); // 한줄소개를 작성했는지
-  const [isAgree1, setIsAgree1] = useState(false); // 14세 이상 체크했는지
-  const [isAgree2, setIsAgree2] = useState(false); // 개인정보 약관 동의 체크했는지
-  const [isAgree3, setIsAgree3] = useState(false); // 이용 약관 동의 체크했는지
 
   const navigate = useNavigate();
 
@@ -59,10 +56,7 @@ function UserInfo() {
       isChannelGenre &&
       isUrl &&
       isProfileimage &&
-      isIntro &&
-      isAgree1 &&
-      isAgree2 &&
-      isAgree3 === true
+      isIntro === true
     ) {
       let formData = new FormData();
       formData.append("id", id);
@@ -251,36 +245,6 @@ function UserInfo() {
       setIsIntro(false);
     } else {
       setIsIntro(true);
-    }
-  }
-  // 14세 이상
-  function onChangeAgree1(e) {
-    const agreeCurrent = e.target.value;
-
-    if (agreeCurrent === 0) {
-      setIsAgree1(false);
-    } else {
-      setIsAgree1(true);
-    }
-  }
-  // 개인정보 약관 동의
-  function onChangeAgree2(e) {
-    const agreeCurrent = e.target.value;
-
-    if (agreeCurrent === 0) {
-      setIsAgree2(false);
-    } else {
-      setIsAgree2(true);
-    }
-  }
-  // 이용약관 동의
-  function onChangeAgree3(e) {
-    const agreeCurrent = e.target.value;
-
-    if (agreeCurrent === 0) {
-      setIsAgree3(false);
-    } else {
-      setIsAgree3(true);
     }
   }
 
