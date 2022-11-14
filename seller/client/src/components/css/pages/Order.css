@@ -1,0 +1,71 @@
+.order-con {
+  width: 80%;
+  margin: 0 auto;
+}
+.order-con h3 {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.order-con hr {
+  margin-top: 20px;
+}
+.order-con [type="radio"] {
+  margin-right: 2px;
+}
+.order-con [type="text"] {
+  margin-left: 20px;
+}
+.order-con #first1,
+.order-con #first2 {
+  margin-left: 35px;
+}
+.order-con .O-today,
+.order-con .O-week,
+.order-con .O-month,
+.order-con .O-3month {
+  background-color: aliceblue;
+  border: 1px solid #f1f1f1;
+  margin-right: 15px;
+  margin-top: 15px;
+  width: 70px;
+  height: 50px;
+  font-size: 14px;
+}
+.order-con button:hover {
+  background-color: skyblue;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.order-con span {
+  margin: 0;
+  margin-right: 20px;
+}
+.order-con td:first-child {
+  border-right: 1px solid #f1f1f1;
+  width: 5%;
+  text-align: center;
+}
+
+.order-con .O-search,
+.order-con .O-reset {
+  background-color: aliceblue;
+  border: 1px solid #f1f1f1;
+  width: 70px;
+  height: 50px;
+  font-size: 14px;
+  margin-right: 40px;
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+.order-con .O-search {
+  margin-left: 700px;
+}
+
+.order-con tr:nth-child(3) td:nth-child(2) {
+  display: flex;
+  align-items: center;
+}
+.order-con tr:nth-child(3) select{
+    margin-top: 15px;
+}
+

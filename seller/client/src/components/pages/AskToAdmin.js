@@ -127,7 +127,7 @@ function Ask() {
             type='text'
             name='askTitle'
             placeholder='제목을 입력해주세요.'
-            onChange={onChangeAskTitle}
+            onChange={onChangeAskTitle} 
           />
           <p>작성자</p>
           <input
