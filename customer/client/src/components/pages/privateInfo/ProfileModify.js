@@ -2,10 +2,9 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../../css/pages/privateInfo/Regist.css";
+import "../../css/pages/privateInfo/Profile.css";
 
-function Regist() {
-  const [customerId, setCustomerId] = useState("");
+function ProfileModify() {
   const [customerPw, setCustomerPw] = useState("");
   const [customerPwConfirm, setCustomerPwConfirm] = useState("");
   const [customerName, setCustomerName] = useState("");
@@ -15,7 +14,6 @@ function Regist() {
   const [customerAddress2, setCustomerAddress2] = useState("");
   const [customerZipcod, setCustomerZipcod] = useState("");
   
-  const [isCustomerId, setIsCustomerId] = useState(false);
   const [isCustomerPw, setIsCustomerPw] = useState(false);
   const [isCustomerPwConfirm, setIsCustomerPwConfirm] = useState(false);
   const [isCustomerName, setIsCustomerName] = useState(false);
@@ -25,7 +23,6 @@ function Regist() {
   const [isCustomerAddress1, setIsCustomerAddress1] = useState(false);
   const [isCustomerZipcod, setIsCustomerZipcod] = useState(false);
 
-  const [customerIdMessage, setCustomerIdMessage] = useState("");
   const [customerPwMessage, setCustomerPwMessage] = useState("");
   const [customerPwConfirmMessage, setCustomerPwConfirmMessage] = useState("");
   const [customerNameMessage, setCustomerNameMessage] = useState("");
@@ -34,20 +31,28 @@ function Regist() {
   const [customerAddressMessage, setCustomerAddressMessage] = useState("");
   const [customerZipcodMessage, setCustomerZipcodMessage] = useState("");
 
+  const [profile, setProfile] = useState([]);
+
   const navigate = useNavigate();
 
-  function onChangeCustomerId(e) {
-    const customerIdCheck = e.target.value;
-    setCustomerId(customerIdCheck);
-
-    if (customerIdCheck.length < 8) {
-      setCustomerIdMessage("아이디를 8자이상 입력해주세요");
-      setIsCustomerId(false);
-    } else {
-      setCustomerIdMessage("사용가능한 아이디 입니다.");
-      setIsCustomerId(true);
-    }
-  }
+  const getCustomerData = async () => {
+    await axios.get("http://localhost:4001/customer/profile")
+        .then((response) => {
+        if (response.data.status === 404) {
+          window.alert(response.data.message);
+          navigate("/login");
+        } else if(response.data.status === 201){
+          setProfile(response.data);
+        } else {
+          window.alert("에러발생 : 관리자에게 문의하세요");
+          navigate("/");
+        }
+      });
+    } 
+  
+  useEffect(() => {
+    getCustomerData();
+  }, []);
 
   function onChangeCustomerPw(e) {
     const customerPwCheck = e.target.value;
@@ -151,7 +156,6 @@ function Regist() {
   async function frmHandler(e) {
     e.preventDefault();
     if(
-      isCustomerId &&
       isCustomerPw &&
       isCustomerPwConfirm &&
       isCustomerName &&
@@ -162,7 +166,6 @@ function Regist() {
       isCustomerZipcod
     ) {
       let formDataCustomer = new FormData();
-      formDataCustomer.append("customerId", customerId);
       formDataCustomer.append("customerPw", customerPw);
       formDataCustomer.append("customerName", customerName);
       formDataCustomer.append("customerMobile", customerMobile);
@@ -171,7 +174,7 @@ function Regist() {
       formDataCustomer.append("customerAddress2", customerAddress2);
       formDataCustomer.append("customerZipcod", customerZipcod);
       
-      await axios.post("http://localhost:4001/customer/regist", formDataCustomer)
+      await axios.post("http://localhost:4001/customer/profileModify", formDataCustomer)
         .then((response) => {
         if (response.data.status === 201) {
           window.alert(response.data.message);
@@ -185,12 +188,12 @@ function Regist() {
   }
   
   return (
-    <div className="regist-container">
-      <div className="regist-wrap">
-        <div className="regist-title">
-          <h1>회원 가입</h1>
+    <div className="modify-container">
+      <div className="modify-wrap">
+        <div className="modify-title">
+          <h1>회원 정보 수정</h1>
         </div>
-        <div className="regist-info">
+        <div className="modify-info">
           <form
             method="post"
             onSubmit={frmHandler}
@@ -204,9 +207,9 @@ function Regist() {
                   <input
                     type="text"
                     name="customerId"
-                    onChange={onChangeCustomerId}
+                    value={profile.id}
+                    readOnly
                   />
-                  {customerId && <span>{customerIdMessage}</span>}
                 </td>
               </tr>
               <tr>
@@ -215,6 +218,7 @@ function Regist() {
                   <input
                     type="password"
                     name="customerPw"
+                    value={profile.pw}
                     onChange={onChangeCustomerPw}
                   />
                   {customerPw && <span>{customerPwMessage}</span>}
@@ -233,6 +237,7 @@ function Regist() {
                   <input
                     type="text"
                     name="customerName"
+                    value={profile.name}
                     onChange={onChangeCustomerName}
                   />
                   {customerNameMessage && <span>{customerNameMessage}</span>}
@@ -244,6 +249,7 @@ function Regist() {
                   <input
                     type="text"
                     name="customerMobile"
+                    value={profile.mobile}
                     onChange={onChangeCustomerMobile}
                   />
                   {customerMobileMessage && <span>{customerMobileMessage}</span>}
@@ -255,6 +261,7 @@ function Regist() {
                   <input
                     type="text"
                     name="customerEmail"
+                    value={profile.email}
                     onChange={onChangeCustomerEmail}
                   />
                   {customerEmailMessage && <span>{customerEmailMessage}</span>}
@@ -266,6 +273,7 @@ function Regist() {
                   <input
                     type="text"
                     name="customerAddress1"
+                    value={profile.address1}
                     onChange={onChangeCustomerAddress1}
                   />
                   {customerAddressMessage && <span>{customerAddressMessage}</span>}
@@ -277,6 +285,7 @@ function Regist() {
                   <input
                     type="text"
                     name="customerAddress2"
+                    value={profile.address2}
                     onChange={onChangeCustomerAddress2}
                   />
                 </td>
@@ -287,6 +296,7 @@ function Regist() {
                   <input
                     type="text"
                     name="customerZipcod"
+                    value={profile.zipcod}
                     onChange={onChangeCustomerZipcod}
                   />
                   {customerZipcodMessage && <span>{customerZipcodMessage}</span>}
@@ -294,7 +304,7 @@ function Regist() {
               </tr>
             </table>
             <div className="submit-btn">
-              <input type="submit" value="회원가입" />
+              <input type="submit" value="수정하기" />
             </div>
           </form>
         </div>
@@ -303,4 +313,4 @@ function Regist() {
   );
 }
 
-export default Regist;
+export default ProfileModify;

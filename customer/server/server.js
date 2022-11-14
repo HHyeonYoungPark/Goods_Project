@@ -44,13 +44,7 @@ const upload = multer({
 // middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(
-  cors({
-    origin: ["http://localhost:3000"],
-    methods: ["GET", "POST"],
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(express.static("reviews"));
 
 // url
@@ -61,15 +55,8 @@ app.get("/", (req, res) => {
 
 //customer regist//
 app.post("/customer/regist", (req, res) => {
-  const { id } = req.body;
-  const { pw } = req.body;
-  const { name } = req.body;
-  const { mobile } = req.body;
-  const { email } = req.body;
-  const { address1 } = req.body;
-  const { address2 } = req.body;
-  const { zipcod } = req.body;
-
+  const { id, pw, name, mobile, email, address1, address2, zipcod } = req.body;
+  
   let sql = "INSERT INTO customer VALUES(NULL,?,?,?,?,?,?,?,?,now());";
   bcrypt.hash(pw, saltRounds, (err, hash_pw) => {
     db.query(
@@ -100,7 +87,7 @@ app.post("/customer/login", (req, res) => {
           });
         } else {
           res.send({
-            status: 404,
+            status: 400,
             message: "비밀번호가 틀렸습니다",
           });
         }
@@ -181,16 +168,33 @@ app.get("/customer/profile", (req, res) => {
   if (!token_id) {
     res.send({ status: 404, message: "로그인 후 이용해 주세요" });
     res.redirect("/customer/login");
-  } else {
+  } else if (token_id) {
     let sql = "select * from customer where id = ?;";
     db.query(sql, [token_id], (err, result) => {
       if (err) {
         throw err;
       } else {
-        res.send(result);
+        res.send({status: 201, result});
       }
     });
   }
+});
+
+//profile modify//
+app.post("/customer/profileModify", (req, res) => {
+  const { id, pw, name, mobile, email, address1, address2, zipcod } = req.body;
+  
+  let sql = "UPDATE customer SET pw=?, name=?, mobile=?, email=?, address1=?, address2=?, zipcod=? WEHRE id = ?);";
+  bcrypt.hash(pw, saltRounds, (err, hash_pw) => {
+    db.query(
+      sql,
+      [hash_pw, name, mobile, email, address1, address2, zipcod, id],
+      (err) => {
+        if (err) throw err;
+        res.send({ status: 201, message: "회원 정보 수정이 완료되었습니다." });
+      }
+    );
+  });
 });
 
 //cart

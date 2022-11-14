@@ -38,10 +38,10 @@ function Header() {
                 toggle
               </Link>
               <div className="loginDropDownMenu">
-                <Link to="/registCustomer" className="registCustomer">
+                <Link to="/regist" className="registCustomer">
                   회원가입
                 </Link>
-                <Link to="/loginCustomer" className="loginCustomer">
+                <Link to="/login" className="loginCustomer">
                   로그인
                 </Link>
               </div>
