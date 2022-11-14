@@ -203,7 +203,7 @@ app.get("/customer/cart", (req, res) => {
     res.send({ status: 404, message: "로그인 후 이용해 주세요" });
     res.redirect("/customer/login");
   } else {
-    let sql = "select * from cart where id = ?;";
+    let sql = "select * from cart left join customer as c on (cart.customer_idx = c.idx) where c.id = ?;";
     db.query(sql, [token_id], (err, result) => {
       if (err) {
         throw err;
@@ -220,7 +220,7 @@ app.post("/customer/addCart", (req, res) => {
     res.send({ status: 404, message: "로그인 후 이용해 주세요" });
     res.redirect("/customer/login");
   } else {
-    let sql = "select * from cart where id = ?;";
+    let sql = "INSERT INTO cart VALUES();";
     db.query(sql, [token_id], (err, result) => {
       if (err) {
         throw err;
@@ -232,7 +232,10 @@ app.post("/customer/addCart", (req, res) => {
 });
 
 //write review
-app.post("", (req, res) => {
+app.post("/customer/writeReview", upload.array("attach"), (req, res) => {
+  const {customer_idx, item_idx, title, content, star} = req.body;
+  const {attach} = req.file;
+
   const sql = "INSERT INTO review VALUES (NULL, ?, ?, ?, ?, ?, ?, now());";
   db.query(
     sql,

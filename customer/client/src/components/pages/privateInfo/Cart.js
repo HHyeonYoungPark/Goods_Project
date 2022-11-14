@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import '../../css/pages/privateInfo/Cart.css';
 
 function Cart() {
   const [cart, setCart] = useState([]);
@@ -11,7 +12,7 @@ function Cart() {
           window.alert(response.data.message);
           navigate("/login");
         } else if(response.data.status === 201){
-          setProfile(response.data);
+          setCart(response.data);
         } else {
           window.alert("에러발생 : 관리자에게 문의하세요");
           navigate("/");
