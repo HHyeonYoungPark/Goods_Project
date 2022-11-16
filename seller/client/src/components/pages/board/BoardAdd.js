@@ -33,19 +33,59 @@ const BoardAdd = () => {
   return (
     <div>
       <form method="post" className="frm" onSubmit={frmHandler}>
-        boardName<input type="text" className="boardName" onChange={(e) => setBoardName(e.target.value)}/><br/>
-        boardType<input type="text" className="boardType" onChange={(e) => setBoardType(e.target.value)}/><br/>
-        boardUrl<input type="text" className="boardUrl" onChange={(e) => setBoardUrl(e.target.value)}/><br/>
-        secret<input type="text" className="secret" onChange={(e) => setSecret(e.target.value)}/><br/>
-        readAllow<input type="text" className="readAllow" onChange={(e) => setReadAllow(e.target.value)}/><br/>
-        writeAllow<input type="text" className="writeAllow" onChange={(e) => setWriteAllow(e.target.value)}/><br/>
-        replyAllow<input type="text" className="replyAllow" onChange={(e) => setReplyAllow(e.target.value)}/><br/>
-        modifyAllow<input type="text" className="modifyAllow" onChange={(e) => setModifyAllow(e.target.value)}/><br/>
-        deleteAllow<input type="text" className="deleteAllow" onChange={(e) => setDeleteAllow(e.target.value)}/><br/>
-        upload<input type="text" className="upload" onChange={(e) => setUpload(e.target.value)}/><br/>
-        download<input type="text" className="download" onChange={(e) => setDownload(e.target.value)}/><br/>
-        boardDesc<input type="text" className="boardDesc" onChange={(e) => setBoardDesc(e.target.value)}/><br/>
-        <input type="submit" value="Create" />
+        <table>
+          <tr>
+            <th>boardName</th>
+            <td><input type="text" className="boardName" onChange={(e) => setBoardName(e.target.value)}/></td>
+          </tr>
+          <tr>
+            <th>boardType</th>
+            <td><input type="text" className="boardType" onChange={(e) => setBoardType(e.target.value)}/></td>  
+          </tr>
+          <tr>
+            <th>boardUrl</th>
+            <td><input type="text" className="boardUrl" onChange={(e) => setBoardUrl(e.target.value)}/></td>  
+          </tr>
+          <tr>
+            <th>secret</th>
+            <td><input type="text" className="secret" onChange={(e) => setSecret(e.target.value)}/></td>  
+          </tr>
+          <tr>
+            <th>readAllow</th>
+            <td><input type="text" className="readAllow" onChange={(e) => setReadAllow(e.target.value)}/></td>  
+          </tr>
+          <tr>
+            <th>writeAllow</th>
+            <td><input type="text" className="writeAllow" onChange={(e) => setWriteAllow(e.target.value)}/></td>  
+          </tr>
+          <tr>
+            <th>replyAllow</th>
+            <td><input type="text" className="replyAllow" onChange={(e) => setReplyAllow(e.target.value)}/></td>  
+          </tr>
+          <tr>
+            <th>modifyAllow</th>  
+            <td><input type="text" className="modifyAllow" onChange={(e) => setModifyAllow(e.target.value)}/></td>
+          </tr> 
+          <tr>
+            <th>deleteAllow</th>  
+            <td><input type="text" className="deleteAllow" onChange={(e) => setDeleteAllow(e.target.value)}/></td>
+          </tr> 
+          <tr>
+            <th>upload</th>  
+            <td><input type="text" className="upload" onChange={(e) => setUpload(e.target.value)}/></td>
+          </tr> 
+          <tr>
+            <th>download</th>  
+            <td><input type="text" className="download" onChange={(e) => setDownload(e.target.value)}/></td>
+          </tr> 
+          <tr>
+            <th>boardDesc</th>  
+            <td><input type="text" className="boardDesc" onChange={(e) => setBoardDesc(e.target.value)}/></td>
+          </tr>  
+          <tr>
+            <td colSpan="2"><input type="submit" value="Create" /></td>
+          </tr>
+        </table>
       </form>
     </div>
   )
