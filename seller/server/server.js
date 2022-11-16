@@ -181,6 +181,81 @@ app.post("/ask", upload.single("askImage"), (req, res) => {
   });
 });
 
+// 다중 게시판
+app.get("/boardlist", (req, res) => {
+  const sql = "select * from boardManager order by boardIdx desc;";
+  db.query(sql, (err, result) => {
+    if(err) throw err;
+    res.send(result);
+  })
+})
+
+app.post("/boardAdd", (req, res) => {
+  const {boardName ,boardType, boardUrl, secret, readAllow, writeAllow, replyAllow, modifyAllow, deleteAllow, upload, download, boardDesc} = req.body;
+  let sql = "INSERT INTO boardManager VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,now());";
+  db.query(sql, [boardName ,boardType, boardUrl, secret, readAllow, writeAllow, replyAllow, modifyAllow, deleteAllow, upload, download, boardDesc], (err) => {
+    if(err){
+      throw err;
+    }else{
+      res.send({status:201, message:"게시판 생성 완료"});
+      let createSQL = "CREATE TABLE board"+boardName+"(";
+          createSQL += "idx int auto_increment primary key,";
+          createSQL += "title varchar(100),";
+          createSQL += "writer varchar(50),";
+          createSQL += "passwd varchar(255),";
+          createSQL += "contents text,";
+          createSQL += "image varchar(255),";
+          createSQL += "view int default 0,";
+          createSQL += "regdate date";
+          createSQL += ");";
+      db.query(createSQL, (err) => {
+        if(err){
+          throw err;
+        }else{
+          console.log("board"+boardName+" Create Completed.");
+        }
+      })
+    }
+  })
+})
+
+app.get("/board", (req, res) => {
+  // console.log(req.query);
+  let sql = "select * from board"+req.query.boardName+" order by idx desc;";
+  db.query(sql, (err, result) => {
+    if(err){
+      throw err;
+    }else{
+      res.send(result);
+    }
+  })
+})
+
+app.post("/write", (req, res) => {
+  const { boardName, title, writer, passwd, contents, image } = req.body;
+  let sql = "insert into board"+boardName+" values(null, ?, ?, ?, ?, ?, 0, now());";
+  db.query(sql, [title, writer, passwd, contents, image], (err) => {
+    if(err){
+      throw err;
+    }else{
+      console.log("write complete");
+      res.send({ status: 201, message: "게시글 등록 완료"});
+    }
+  })
+})
+
+app.get("/view", (req, res) => {
+  let sql = "select * from board"+req.query.boardName+" where idx = ?";
+  db.query(sql, [req.query.idx], (err, result) => {
+    if(err) {
+      throw err;
+    } else {
+      res.send(result);
+    }
+  })
+})
+// 다중게시판
+
 // port
 app.listen(process.env.PORT, () => {
   const dir = "uploads";
