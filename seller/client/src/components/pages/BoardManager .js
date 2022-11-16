@@ -64,7 +64,10 @@ function BoardManager() {
                 <td>번호</td>
                 <td>이름</td>
                 <td>타입</td>
-                <td>주소</td>
+                <td>쓰기</td>
+                <td>읽기</td>
+                <td>수정</td>
+                <td>삭제</td>
                 <td>생성일</td>
                 <td>비고</td>
               </tr>
@@ -78,7 +81,10 @@ function BoardManager() {
                         <td>{b.boardIdx}</td>
                         <td><Link to={"/board/"+b.boardName}>{b.boardName}</Link></td>
                         <td>{b.boardType}</td>
-                        <td>{b.boardUrl}</td>
+                        <td>{b.writeAllow}</td>
+                        <td>{b.readAllow}</td>
+                        <td>{b.modifyAllow}</td>
+                        <td>{b.deleteAllow}</td>
                         <td>{b.createDate}</td>
                         <td>수정/삭제</td>
                       </tr>

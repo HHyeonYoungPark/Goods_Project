@@ -25,7 +25,7 @@ const BoardAdd = () => {
       .then((response) => {
         if(response.data.status === 201){
           window.alert(response.data.message);
-          navigate("/");
+          navigate("/boardManager");
         }
       })
   }

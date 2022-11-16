@@ -2,33 +2,32 @@ import React, { useState } from 'react';
 import axios from "axios";
 
 const View = () => {
-  const [lists, setLists] = useState([]);
+  const [view, setView] = useState([]);
 
   const { boardName } = useParams();
   const { idx } = useParams();
   console.log(boardName);
-  const getLists = async () => {
-    await axios.get("http://localhost:4001/board/"+boardName+"/"+idx)
+  const getView = async () => {
+    await axios.get("http://localhost:4001/view?boardName="+boardName+"&idx="+idx)
       .then((res) =>{
-        setLists(res.data);
+        setView(res.data);
       });
   }
 
   useEffect(() => {
-    getLists();
+    getView();
   }, []);
 
   return (
     <div>
-      <form method="post" className="frm" onSubmit={frmHandler}>
+      
         <input type="hidden" />
         title<input type="text" className="title" /><br/>
         writer<input type="text" className="writer" /><br/>
         passwd<input type="text" className="passwd" /><br/>
         content<input type="text" className="content" /><br/>
         img<input type="text" className="img" /><br/>
-        <input type="submit" value="Write" />
-      </form>
+      
     </div>
   )
 }

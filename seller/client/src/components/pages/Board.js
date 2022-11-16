@@ -6,7 +6,7 @@ const Board = () => {
   const [lists, setLists] = useState([]);
 
   const { boardName } = useParams();
-  console.log(boardName);
+  // console.log(boardName);
   const getLists = async () => {
     await axios.get("http://localhost:4001/board?boardName="+boardName)
       .then((res) =>{

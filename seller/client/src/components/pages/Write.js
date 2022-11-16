@@ -10,13 +10,13 @@ const Write = () => {
   const [img, setImg] = useState("");
 
   const { boardName } = useParams();
-
+  
   const navigate = useNavigate();
 
   async function frmHandler(e) {
     e.preventDefault();
     const data = {boardName, title, writer, passwd, content, img}
-    await axios.post("http://localhost:4001/write", data)
+    await axios.post("http://localhost:4001/write?boardName="+boardName, data)
       .then((response) => {
         if(response.data.status === 201){
           window.alert(response.data.message);
