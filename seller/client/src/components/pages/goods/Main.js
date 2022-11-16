@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "../../function/Dropdown";
-function MakeItem() {
+function Main() {
   const [dropdownVisibility1, setDropdownVisibility1] = React.useState(false);
   const [dropdownVisibility2, setDropdownVisibility2] = React.useState(false);
   const [dropdownVisibility3, setDropdownVisibility3] = React.useState(false);
@@ -178,4 +178,4 @@ function MakeItem() {
   );
 }
 
-export default MakeItem;
+export default Main;

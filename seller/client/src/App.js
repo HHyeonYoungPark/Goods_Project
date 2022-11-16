@@ -55,7 +55,10 @@ function App() {
 
         <main>
           <Routes token={token} userId={userId}>
-            <Route path="/" element={<Main />} />
+          <Route path="/" element={<Main />}>
+                <Route index="tableGallary" element={<TableGallary />} />
+                <Route path="tableGallary" element={<TableGallary />} />
+              </Route>
             <Route path="login" element={<Login />} />
             <Route path="logout" element={<Logout />} />
             <Route path="regist" element={<Regist />} />
@@ -90,14 +93,11 @@ function App() {
               <Route path="askManager" element={<AskManager />} />
             </Route>
 
-            <Route element={<PrivateRoute token={token} />}>
-              <Route path="makeItem" element={<MakeItem />}>
-                <Route index="tableGallary" element={<TableGallary />} />
-                <Route path="tableGallary" element={<TableGallary />} />
-              </Route>
+            {/* <Route element={<PrivateRoute token={token} />}> */}
+             
               <Route path="addItem" element={<AddItem />} />
               <Route path="order" element={<Order />} />
-            </Route>
+            {/* </Route> */}
 
             <Route path="boardAdd" element={<BoardAdd />} />
             <Route path="board/:boardName" element={<Board />} />
