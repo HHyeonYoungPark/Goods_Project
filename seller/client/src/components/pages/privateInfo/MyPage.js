@@ -1,7 +1,7 @@
 import React from "react";
-import "../css/pages/MyPage.css";
+import "../../css/pages/MyPage.css";
 import { Link, Outlet } from "react-router-dom";
-import myImg from "../images/notFound.png";
+import myImg from "../../images/notFound.png";
 
 function MyPage({ userId }) {
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "../css/pages/Order.css";
+import "../../css/pages/Order.css";
 import { ko } from "date-fns/esm/locale";
 import Form from "react-bootstrap/Form";
 
@@ -71,7 +71,6 @@ function Order() {
               endDate={endDate}
               locale={ko}
               placeholderText="검색할 기간을 선택하세요"
-              
               customInput={
                 <Form.Control as="textarea" rows={1} style={dateStyle} />
               }

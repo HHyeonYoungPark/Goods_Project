@@ -149,7 +149,23 @@ app.get("/mypage", (req, res) => {
   });
 });
 
-//문의하기
+// 공지사항 작성
+app.post("/writeNotice", (req, res) => {
+  const noticeTitle = req.body.noticeTitle;
+  const noticeWriter = req.body.noticeWriter;
+  const noticeContent = req.body.noticeContent;
+
+  let sql = "INSERT INTO notice VALUES(NULL,?,?,?,'1',now());";
+  db.query(sql, [noticeTitle, noticeWriter, noticeContent], (err) => {
+    if (err) {
+      throw err;
+    } else {
+      res.send();
+    }
+  });
+});
+
+// 문의하기
 app.post("/ask", upload.single("askImage"), (req, res) => {
   const askCategory = req.body.askCategory;
   const askTitle = req.body.askTitle;

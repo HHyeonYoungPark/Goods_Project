@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import "../css/pages/Regist.css";
+import "../../css/pages/Regist.css";
 
 function Regist() {
   // 입력받은 개인정보

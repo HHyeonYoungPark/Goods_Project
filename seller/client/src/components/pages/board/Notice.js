@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../css/pages/Notice.css";
+import "../../css/pages/Notice.css";
 
 function Notice() {
   return (
@@ -59,60 +59,6 @@ function Notice() {
                 <td>7</td>
                 <td className="title">
                   <a href="">지금 이게 뭐하는거임...? </a>
-                </td>
-                <td>박현영</td>
-                <td>1</td>
-                <td>2022-11-12</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td className="title">
-                  <a href="">아 배고프다</a>
-                </td>
-                <td>박현영</td>
-                <td>1</td>
-                <td>2022-11-12</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td className="title">
-                  <a href="">점심메뉴5: 맥날-내가가서 사옴. 서브웨이도</a>
-                </td>
-                <td>박현영</td>
-                <td>1</td>
-                <td>2022-11-12</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td className="title">
-                  <a href="">점심메뉴4: 유뷰초밥</a>
-                </td>
-                <td>박현영</td>
-                <td>1</td>
-                <td>2022-11-12</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td className="title">
-                  <a href="">점심메뉴3: [배떡천년다방 할머니떡볶이 잘가고]</a>
-                </td>
-                <td>박현영</td>
-                <td>1</td>
-                <td>2022-11-12</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td className="title">
-                  <a href="">점심메뉴2: [한솥]</a>
-                </td>
-                <td>박현영</td>
-                <td>1</td>
-                <td>2022-11-12</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td className="title">
-                  <a href="">점심메뉴1 : [비룡]중국요리- 짜장짬뽕탕수육</a>
                 </td>
                 <td>박현영</td>
                 <td>1</td>

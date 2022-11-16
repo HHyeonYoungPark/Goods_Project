@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "../css/pages/Login.css";
+import "../../css/pages/Login.css";
 
 function Login() {
   const [id, setId] = useState("");
