@@ -56,6 +56,9 @@ function AdminPage({ userId }) {
             <h4>게시판 관리</h4>
             <ul>
               <li>
+                <Link to="BoardManager">게시판 관리</Link>
+              </li>
+              <li>
                 <Link to="noticeManager">공지사항 관리</Link>
               </li>
               <li>
@@ -63,9 +66,6 @@ function AdminPage({ userId }) {
               </li>
               <li>
                 <Link to="">인기검색어 관리</Link>
-              </li>
-              <li>
-                <Link to="">내용 관리</Link>
               </li>
             </ul>
           </div>
