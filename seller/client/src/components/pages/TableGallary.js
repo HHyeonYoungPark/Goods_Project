@@ -19,7 +19,7 @@ function TableGallary() {
           <Link to="#">10,000원</Link>
         </p>
       </div>
-      <div className="TableGallary">
+      {/* <div className="TableGallary">
         <Link to="#">
           <img style={{ width: "100%" }} src={dummyImg02} alt={dummyImg02} />
         </Link>
@@ -227,7 +227,7 @@ function TableGallary() {
         <p className="price">
           <Link to="#">56,000원</Link>
         </p>
-      </div>
+      </div> */}
     </div>
   );
 }
