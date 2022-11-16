@@ -1,38 +1,181 @@
 import React from "react";
+import banner1 from "../../images/make_banner1.png";
+import banner2 from "../../images/make_banner2.png";
 import Carousel from "react-bootstrap/Carousel";
-import "../../css/pages/Main.css";
-import slide1 from "../../images/wetiny_banner4.png";
-import slide2 from "../../images/wetiny_banner5.png";
-import slide3 from "../../images/wetiny_banner46.png";
-
-function main() {
+import "../../css/pages/MakeItem.css";
+import { useNavigate, Link, Outlet } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import Dropdown from "../../function/Dropdown";
+function MakeItem() {
+  const [dropdownVisibility1, setDropdownVisibility1] = React.useState(false);
+  const [dropdownVisibility2, setDropdownVisibility2] = React.useState(false);
+  const [dropdownVisibility3, setDropdownVisibility3] = React.useState(false);
+  const [dropdownVisibility4, setDropdownVisibility4] = React.useState(false);
+  const [dropdownVisibility5, setDropdownVisibility5] = React.useState(false);
+  const [dropdownVisibility6, setDropdownVisibility6] = React.useState(false);
+  const [dropdownVisibility7, setDropdownVisibility7] = React.useState(false);
   return (
-    <>
-      <style type="text/css">
-        {`
-.banner-con{
-  width: 100%;
-  margin: 0 auto;
-  margin-bottom: 90px;
-  
-}
-`}
-      </style>
+    <div>
       <div className="banner-con">
         <Carousel fade>
           <Carousel.Item>
-            <img className="d-block w-100" src={slide1} alt="First slide" />
+            <img className="d-block w-100" src={banner1} alt="First slide" />
+            <Carousel.Caption>
+              <h3></h3>
+              <p></p>
+            </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <img className="d-block w-100" src={slide2} alt="Second slide" />
+            <img className="d-block w-100" src={banner2} alt="Second slide" />
+
+            <Carousel.Caption>
+              <h3></h3>
+              <p></p>
+            </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <img className="d-block w-100" src={slide3} alt="Third slide" />
+            <img className="d-block w-100" src={banner1} alt="Third slide" />
+
+            <Carousel.Caption>
+              <h3></h3>
+              <p></p>
+            </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
       </div>
-    </>
+      <div className="make-main-con">
+        <div className="left-nav-con">
+          <h2>카테고리</h2>
+          <hr />
+          <Link to="tableGallary">전체</Link>
+          <hr />
+          <ul>
+            <li>
+              <span>패션</span>
+              <button
+                onClick={(e) => setDropdownVisibility1(!dropdownVisibility1)}
+              >
+                {dropdownVisibility1 ? (
+                  <FontAwesomeIcon icon={faChevronUp} />
+                ) : (
+                  <FontAwesomeIcon icon={faChevronDown} />
+                )}
+              </button>
+            </li>
+            <hr />
+            <Dropdown visibility={dropdownVisibility1}>
+              <ul>
+                <li>
+                  <Link to="tableGallary">후드티</Link>
+                </li>
+                <li>
+                  <Link to="tableGallary">스웨트니트</Link>
+                </li>
+                <li>
+                  <Link to="tableGallary">티셔츠</Link>
+                </li>
+                <li>
+                  <Link to="tableGallary">니트</Link>
+                </li>
+              </ul>
+            </Dropdown>
+            <li>
+              <span>전자기기</span>
+              <button
+                onClick={(e) => setDropdownVisibility2(!dropdownVisibility2)}
+              >
+                {dropdownVisibility2 ? (
+                  <FontAwesomeIcon icon={faChevronUp} />
+                ) : (
+                  <FontAwesomeIcon icon={faChevronDown} />
+                )}
+              </button>
+            </li>
+            <hr />
+            <Dropdown visibility={dropdownVisibility2}>
+              <ul>
+                <li>
+                  <Link to="tableGallary">후드티</Link>
+                </li>
+                <li>
+                  <Link to="tableGallary">스웨트니트</Link>
+                </li>
+                <li>
+                  <Link to="tableGallary">티셔츠</Link>
+                </li>
+                <li>
+                  <Link to="tableGallary">니트</Link>
+                </li>
+              </ul>
+            </Dropdown>
+            <li>
+              <span>생활</span>
+              <button
+                onClick={(e) => setDropdownVisibility3(!dropdownVisibility3)}
+              >
+                {dropdownVisibility3 ? (
+                  <FontAwesomeIcon icon={faChevronUp} />
+                ) : (
+                  <FontAwesomeIcon icon={faChevronDown} />
+                )}
+              </button>
+            </li>
+            <hr />
+            <Dropdown visibility={dropdownVisibility3}>
+              <ul>
+                <li>
+                  <Link to="tableGallary">후드티</Link>
+                </li>
+                <li>
+                  <Link to="tableGallary">스웨트니트</Link>
+                </li>
+                <li>
+                  <Link to="tableGallary">티셔츠</Link>
+                </li>
+                <li>
+                  <Link to="tableGallary">니트</Link>
+                </li>
+              </ul>
+            </Dropdown>
+            <li>
+              <span>기타</span>
+              <button
+                onClick={(e) => setDropdownVisibility4(!dropdownVisibility4)}
+              >
+                {dropdownVisibility4 ? (
+                  <FontAwesomeIcon icon={faChevronUp} />
+                ) : (
+                  <FontAwesomeIcon icon={faChevronDown} />
+                )}
+              </button>
+            </li>
+            <hr />
+            <Dropdown visibility={dropdownVisibility4}>
+              <ul>
+                <li>
+                  <Link to="tableGallary">후드티</Link>
+                </li>
+                <li>
+                  <Link to="tableGallary">스웨트니트</Link>
+                </li>
+                <li>
+                  <Link to="tableGallary">티셔츠</Link>
+                </li>
+                <li>
+                  <Link to="tableGallary">니트</Link>
+                </li>
+              </ul>
+            </Dropdown>
+          </ul>
+        </div>
+        <div className="goods-table">
+          <Outlet />
+        </div>
+      </div>
+    </div>
   );
 }
 
-export default main;
+export default MakeItem;

@@ -1,7 +1,9 @@
 import React from "react";
 
 function AddItem() {
-  return <div>AddItem</div>;
+  return <div>
+    
+  </div>;
 }
 
 export default AddItem;
