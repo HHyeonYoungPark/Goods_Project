@@ -37,6 +37,11 @@ import UserManager from "./components/pages/UserManager";
 import CostumerManager from "./components/pages/CostumerManager";
 import SellerManager from "./components/pages/SellerManager";
 import WriteNotice from "./components/pages/WriteNotice";
+import Board from "./components/pages/Board";
+import BoardAdd from "./components/pages/BoardAdd";
+import BoardManager from "./components/pages/BoardManager ";
+import Write from "./components/pages/Write";
+import View from "./components/pages/View";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -78,6 +83,13 @@ function App() {
                 <Route path="sellerManager" element={<SellerManager />} />
                 <Route path="costumerManager" element={<CostumerManager />} />
               </Route>
+              
+              <Route path="boardManager" element={<BoardManager/>} />
+              <Route path="boardAdd" element={<BoardAdd/>} />
+              <Route path="board/:boardName" element={<Board />} />
+              <Route path="board/:boardName/write" element={<Write />} />
+              <Route path="board/:boardName/:idx" element={<View />} />
+
               <Route path="noticeManager" element={<NoticeManager />} />
               <Route path="askManager" element={<AskManager />} />
             </Route>
