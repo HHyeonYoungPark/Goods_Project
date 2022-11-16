@@ -20,7 +20,7 @@ const Board = () => {
 
   return (
     <div>
-      <Link to={"/write"}>게시글 작성</Link>
+      <Link to={"/board/"+boardName+"/write"}>게시글 작성</Link>
       <table>
         <thead>
           <tr>
@@ -38,7 +38,7 @@ const Board = () => {
               return(
                 <tr key={key}>
                   <td>{list.idx}</td>
-                  <td><Link to={"/board?boardName="+boardName+"&list?idx="+list.idx}>{list.title}</Link></td>
+                  <td><Link to={"/board/"+boardName+"/"+list.idx}>{list.title}</Link></td>
                   <td>{list.writer}</td>
                   <td>{list.count}</td>
                   <td>{list.regdate}</td>

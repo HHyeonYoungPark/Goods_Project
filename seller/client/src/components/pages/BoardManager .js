@@ -41,6 +41,7 @@ function BoardManager() {
                   >
                     <option value="">선택하세요</option>
                     <option value="title">제목</option>
+                    <option value="type">타입</option>
                   </select>
                   <input
                     type="text"
@@ -61,9 +62,10 @@ function BoardManager() {
             <thead>
               <tr>
                 <td>번호</td>
-                <td>제목</td>
-                <td>작성자</td>
-                <td>등록일</td>
+                <td>이름</td>
+                <td>타입</td>
+                <td>주소</td>
+                <td>생성일</td>
                 <td>비고</td>
               </tr>
             </thead>
@@ -73,11 +75,12 @@ function BoardManager() {
                   boardlist.map((b, key) => {
                     return(
                       <tr key={key}>
-                        <td>{b.board_idx}</td>
-                        <td><Link to={"/board/"+b.board_name}>{b.board_name}</Link></td>
-                        <td>{b.board_type}</td>
-                        <td>{b.board_url}</td>
-                        <td>{b.create_date}</td>
+                        <td>{b.boardIdx}</td>
+                        <td><Link to={"/board/"+b.boardName}>{b.boardName}</Link></td>
+                        <td>{b.boardType}</td>
+                        <td>{b.boardUrl}</td>
+                        <td>{b.createDate}</td>
+                        <td>수정/삭제</td>
                       </tr>
                     )
                   })
