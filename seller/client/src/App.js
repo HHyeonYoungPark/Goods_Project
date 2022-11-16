@@ -18,13 +18,13 @@ import MyPage from "./components/pages/privateInfo/MyPage";
 import SellHistory from "./components/pages/privateInfo/SellHistory";
 import MyAsk from "./components/pages/privateInfo/MyAsk";
 import UserInfo from "./components/pages/privateInfo/UserInfo";
-import MakeItem from "./components/pages/goods/MakeItem";
 import AddItem from "./components/pages/goods/AddItem";
+import NewItem from "./components/pages/goods/NewItem";
 import Order from "./components/pages/board/Order";
+import Cart from "./components/pages/privateInfo/Cart";
 import Notice from "./components/pages/board/Notice";
 import Help from "./components/pages/board/HelpToAdmin";
 import TableGallary from "./components/pages/goods/TableGallary";
-import ViewOthers from "./components/pages/goods/ViewOthers";
 import Ask from "./components/pages/board/AskToAdmin";
 import PrivateRoute from "./components/pages/PrivateRoute";
 import NotFound from "./components/pages/NotFound";
@@ -55,10 +55,10 @@ function App() {
 
         <main>
           <Routes token={token} userId={userId}>
-          <Route path="/" element={<Main />}>
-                <Route index="tableGallary" element={<TableGallary />} />
-                <Route path="tableGallary" element={<TableGallary />} />
-              </Route>
+            <Route path="/" element={<Main />}>
+              <Route index="tableGallary" element={<TableGallary />} />
+              <Route path="tableGallary" element={<TableGallary />} />
+            </Route>
             <Route path="login" element={<Login />} />
             <Route path="logout" element={<Logout />} />
             <Route path="regist" element={<Regist />} />
@@ -81,9 +81,9 @@ function App() {
             >
               <Route index="allManager" element={<AllManager />} />
               <Route path="goodsManager" element={<GoodsManager />} />
+              <Route path="order" element={<Order />} />
               <Route path="userManager" element={<UserManager />}>
-                <Route index="sellerManager" element={<SellerManager />} />
-                <Route path="sellerManager" element={<SellerManager />} />
+                <Route index="costumerManager" element={<CostumerManager />} />
                 <Route path="costumerManager" element={<CostumerManager />} />
               </Route>
 
@@ -94,22 +94,21 @@ function App() {
             </Route>
 
             {/* <Route element={<PrivateRoute token={token} />}> */}
-             
-              <Route path="addItem" element={<AddItem />} />
-              <Route path="order" element={<Order />} />
             {/* </Route> */}
+            <Route path="addItem" element={<AddItem />} />
+            <Route path="newItem" element={<NewItem />} />
 
             <Route path="boardAdd" element={<BoardAdd />} />
             <Route path="board/:boardName" element={<Board />} />
             <Route path="board/:boardName/write" element={<Write />} />
             <Route path="board/:boardName/:idx" element={<View />} />
 
+            <Route path="cart" element={<Cart />} />
             <Route path="notice" element={<Notice />} />
             <Route
               path="writeNotice"
               element={<WriteNotice userId={userId} />}
             />
-            <Route path="viewOthers" element={<ViewOthers />} />
             <Route path="help" element={<Help />} />
             <Route path="ask" element={<Ask />} />
             <Route path="*" element={<NotFound />} />

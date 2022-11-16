@@ -2,7 +2,7 @@ import React from "react";
 import banner1 from "../../images/make_banner1.png";
 import banner2 from "../../images/make_banner2.png";
 import Carousel from "react-bootstrap/Carousel";
-import "../../css/pages/MakeItem.css";
+import "../../css/pages/Main.css";
 import { useNavigate, Link, Outlet } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";

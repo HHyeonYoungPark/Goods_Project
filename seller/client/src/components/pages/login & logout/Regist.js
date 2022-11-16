@@ -289,8 +289,8 @@ function Regist() {
     <div className="regist-container">
       <div className="regist-wrap">
         <div className="regist-title">
-          <h1>판매자 신청</h1>
-          <h4>필수 정보 입력 후 신청 시 담당자 검토 후 가입이 승인됩니다.</h4>
+          <h1>회원가입</h1>
+          <h4>회원가입하고 다양한 혜택을 받아보세요!</h4>
         </div>
         <form
           method="post"
@@ -441,7 +441,7 @@ function Regist() {
             <button className="list-btn">
               <Link to="/">돌아가기</Link>
             </button>
-            <input type="submit" value="판매자 신청" />
+            <input type="submit" value="회원가입" />
           </div>
         </form>
       </div>
