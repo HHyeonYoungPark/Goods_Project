@@ -18,8 +18,14 @@ function Ask() {
   const [isWriter, setIsAskWriter] = useState(false);
   const [isAskImage, setIsAskImage] = useState(false);
   const [isContent, setIsAskContents] = useState(false);
-
+   
   const navigate = useNavigate();
+
+const fileStyle = {
+  padding: "9px",
+  height: "9px",
+  border: "2px solid gray"
+}
 
   async function frmHandler(e) {
     e.preventDefault();
@@ -137,7 +143,6 @@ function Ask() {
             onChange={onChangeAskWriter}
           />
           <p>이미지 첨부</p>
-          <div>
             <Form.Group controlId='formFileMultiple' className='mb-3'>
               <Form.Control
                 type='file'
@@ -145,15 +150,16 @@ function Ask() {
                 onChange={onChangeAskImage}
                 multiple
                 size='lg'
+                style={fileStyle}
               />
             </Form.Group>
-          </div>
           <p>본문</p>
           <textarea
             name='askContents'
             id=''
             cols='111'
             rows='15'
+            style={{resize:"none"}}
             onChange={onChangeAskContents}
           ></textarea>
           <div>

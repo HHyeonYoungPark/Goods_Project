@@ -8,14 +8,14 @@
   margin: 15px 0;
 }
 .ask-con select {
-  border: 1px solid gray;
+  border: 1.5px solid gray;
   border-radius: 7px;
   width: 800px;
   font-size: 14px;
   height: 40px;
 }
 .ask-con input {
-  border: 1px solid gray;
+  border: 1.5px solid gray;
   border-radius: 7px;
   font-size: 14px;
   width: 800px;
