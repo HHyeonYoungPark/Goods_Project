@@ -39,7 +39,7 @@ import SellerManager from "./components/pages/privateInfo/SellerManager";
 import WriteNotice from "./components/pages/board/WriteNotice";
 import Board from "./components/pages/board/Board";
 import BoardAdd from "./components/pages/board/BoardAdd";
-import BoardManager from "./components/pages/privateInfo/BoardManager ";
+import BoardManager from "./components/pages/board/BoardManager ";
 import Write from "./components/pages/board/Write";
 import View from "./components/pages/board/View";
 
