@@ -61,3 +61,20 @@ noticeContent TEXT,
 noticeView int,
 regdate DATE
 );
+
+create table boardManager (
+  boardIdx int auto_increment primary key,
+  boardName varchar(50),
+  boardType varchar(50),
+  boardUrl varchar(255),
+  secret char(1) default 'F',
+  readAllow varchar(10),
+  writeAllow varchar(10),
+  replyAllow varchar(10),
+  modifyAllow varchar(10),
+  deleteAllow varchar(10),
+  upload varchar(10),
+  download varchar(10),
+  boardDesc varchar(255),
+  createDate date
+);
