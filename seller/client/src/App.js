@@ -85,10 +85,6 @@ function App() {
               </Route>
 
               <Route path="boardManager" element={<BoardManager />} />
-              <Route path="boardAdd" element={<BoardAdd />} />
-              <Route path="board/:boardName" element={<Board />} />
-              <Route path="board/:boardName/write" element={<Write />} />
-              <Route path="board/:boardName/:idx" element={<View />} />
 
               <Route path="noticeManager" element={<NoticeManager />} />
               <Route path="askManager" element={<AskManager />} />
@@ -102,6 +98,11 @@ function App() {
               <Route path="addItem" element={<AddItem />} />
               <Route path="order" element={<Order />} />
             </Route>
+
+            <Route path="boardAdd" element={<BoardAdd />} />
+            <Route path="board/:boardName" element={<Board />} />
+            <Route path="board/:boardName/write" element={<Write />} />
+            <Route path="board/:boardName/:idx" element={<View />} />
 
             <Route path="notice" element={<Notice />} />
             <Route

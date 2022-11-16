@@ -20,12 +20,12 @@ const BoardAdd = () => {
 
   async function frmHandler(e) {
     e.preventDefault();
-    const data = {}
+    const data = {boardName, boardType, boardUrl, secret, readAllow, writeAllow, replyAllow, modifyAllow, deleteAllow, download, upload, boardDesc}
     await axios.post("http://localhost:4001/boardAdd", data)
       .then((response) => {
         if(response.data.status === 201){
           window.alert(response.data.message);
-          navigate("/boardManager");
+          navigate("/AdminPage/boardManager");
         }
       })
   }

@@ -59,7 +59,6 @@ function BoardManager() {
         </div>
         <div className="tbl-wrap">
           <table>
-            <thead>
               <tr>
                 <td>번호</td>
                 <td>이름</td>
@@ -71,9 +70,8 @@ function BoardManager() {
                 <td>생성일</td>
                 <td>비고</td>
               </tr>
-            </thead>
-            <tbody>
-              <tr>
+            
+              
                 {
                   boardlist.map((b, key) => {
                     return(
@@ -91,8 +89,8 @@ function BoardManager() {
                     )
                   })
                 }
-              </tr>
-            </tbody>
+              
+            
           </table>
         </div>
       </div>
