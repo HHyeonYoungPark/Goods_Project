@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../css/pages/UserManager.css";
+import "../../css/pages/UserManager.css";
 
 function CostumerManager() {
   const navigate = useNavigate();

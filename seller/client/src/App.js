@@ -8,40 +8,40 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 
 // pages
-import Main from "./components/pages/Main";
-import Login from "./components/pages/Login";
-import Logout from "./components/pages/Logout";
-import Regist from "./components/pages/Regist";
-import AdminPage from "./components/pages/AdminPage";
+import Main from "./components/pages/goods/Main";
+import Login from "./components/pages/login & logout/Login";
+import Logout from "./components/pages/login & logout/Logout";
+import Regist from "./components/pages/login & logout/Regist";
+import AdminPage from "./components/pages/privateInfo/AdminPage";
 import PrivateMyPage from "./components/pages/PrivateMyPage";
-import MyPage from "./components/pages/MyPage";
-import SellHistory from "./components/pages/SellHistory";
-import MyAsk from "./components/pages/MyAsk";
-import UserInfo from "./components/pages/UserInfo";
-import MakeItem from "./components/pages/MakeItem";
-import AddItem from "./components/pages/AddItem";
-import Order from "./components/pages/Order";
-import Notice from "./components/pages/Notice";
-import Help from "./components/pages/HelpToAdmin";
-import TableGallary from "./components/pages/TableGallary";
-import ViewOthers from "./components/pages/ViewOthers";
-import Ask from "./components/pages/AskToAdmin";
+import MyPage from "./components/pages/privateInfo/MyPage";
+import SellHistory from "./components/pages/privateInfo/SellHistory";
+import MyAsk from "./components/pages/privateInfo/MyAsk";
+import UserInfo from "./components/pages/privateInfo/UserInfo";
+import MakeItem from "./components/pages/goods/MakeItem";
+import AddItem from "./components/pages/goods/AddItem";
+import Order from "./components/pages/board/Order";
+import Notice from "./components/pages/board/Notice";
+import Help from "./components/pages/board/HelpToAdmin";
+import TableGallary from "./components/pages/goods/TableGallary";
+import ViewOthers from "./components/pages/goods/ViewOthers";
+import Ask from "./components/pages/board/AskToAdmin";
 import PrivateRoute from "./components/pages/PrivateRoute";
 import NotFound from "./components/pages/NotFound";
 
-import AllManager from "./components/pages/AllManager";
-import GoodsManager from "./components/pages/GoodsManager";
-import NoticeManager from "./components/pages/NoticeManager";
-import AskManager from "./components/pages/AskManager";
-import UserManager from "./components/pages/UserManager";
-import CostumerManager from "./components/pages/CostumerManager";
-import SellerManager from "./components/pages/SellerManager";
-import WriteNotice from "./components/pages/WriteNotice";
-import Board from "./components/pages/Board";
-import BoardAdd from "./components/pages/BoardAdd";
-import BoardManager from "./components/pages/BoardManager ";
-import Write from "./components/pages/Write";
-import View from "./components/pages/View";
+import AllManager from "./components/pages/privateInfo/AllManager";
+import GoodsManager from "./components/pages/privateInfo/GoodsManager";
+import NoticeManager from "./components/pages/privateInfo/NoticeManager";
+import AskManager from "./components/pages/privateInfo/AskManager";
+import UserManager from "./components/pages/privateInfo/UserManager";
+import CostumerManager from "./components/pages/privateInfo/CostumerManager";
+import SellerManager from "./components/pages/privateInfo/SellerManager";
+import WriteNotice from "./components/pages/board/WriteNotice";
+import Board from "./components/pages/board/Board";
+import BoardAdd from "./components/pages/board/BoardAdd";
+import BoardManager from "./components/pages/privateInfo/BoardManager ";
+import Write from "./components/pages/board/Write";
+import View from "./components/pages/board/View";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -83,9 +83,9 @@ function App() {
                 <Route path="sellerManager" element={<SellerManager />} />
                 <Route path="costumerManager" element={<CostumerManager />} />
               </Route>
-              
-              <Route path="boardManager" element={<BoardManager/>} />
-              <Route path="boardAdd" element={<BoardAdd/>} />
+
+              <Route path="boardManager" element={<BoardManager />} />
+              <Route path="boardAdd" element={<BoardAdd />} />
               <Route path="board/:boardName" element={<Board />} />
               <Route path="board/:boardName/write" element={<Write />} />
               <Route path="board/:boardName/:idx" element={<View />} />

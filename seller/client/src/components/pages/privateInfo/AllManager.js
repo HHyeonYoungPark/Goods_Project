@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/pages/AllManager.css";
+import "../../css/pages/AllManager.css";
 
 function AllManager() {
   return (

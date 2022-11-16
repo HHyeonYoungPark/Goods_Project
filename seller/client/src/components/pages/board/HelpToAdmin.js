@@ -1,10 +1,10 @@
-import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import Dropdown from '../function/Dropdown';
-import '../css/pages/HelpToAdmin.css';
+import React from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import Dropdown from "../../function/Dropdown";
+import "../../css/pages/HelpToAdmin.css";
 
 const Help = (props) => {
   const [dropdownVisibility1, setDropdownVisibility1] = React.useState(false);
@@ -16,17 +16,17 @@ const Help = (props) => {
   const [dropdownVisibility7, setDropdownVisibility7] = React.useState(false);
 
   return (
-    <div id='app'>
-      <div className='Help-container'>
-        <div className='semi-con'>
-          <div className='FAQ-wrap'>
-            <h2 className='helph2'>고객센터</h2>
+    <div id="app">
+      <div className="Help-container">
+        <div className="semi-con">
+          <div className="FAQ-wrap">
+            <h2 className="helph2">고객센터</h2>
             <h3>문의 전 FAQ를 확인해주세요!</h3>
             <small>
               아래 도움말을 검색해 보세요. 쉽고 빠르게 원하는 내용을 찾아보고
               문의를 해결할 수 있습니다.
             </small>
-            <h4 className='helph4'>자주 찾는 도움말</h4>
+            <h4 className="helph4">자주 찾는 도움말</h4>
             <hr />
             <ul>
               <li>
@@ -34,7 +34,7 @@ const Help = (props) => {
                 <button
                   onClick={(e) => setDropdownVisibility1(!dropdownVisibility1)}
                 >
-                 {dropdownVisibility1 ? (
+                  {dropdownVisibility1 ? (
                     <FontAwesomeIcon icon={faChevronUp} />
                   ) : (
                     <FontAwesomeIcon icon={faChevronDown} />
@@ -119,7 +119,7 @@ const Help = (props) => {
                 <button
                   onClick={(e) => setDropdownVisibility4(!dropdownVisibility4)}
                 >
-                 {dropdownVisibility4 ? (
+                  {dropdownVisibility4 ? (
                     <FontAwesomeIcon icon={faChevronUp} />
                   ) : (
                     <FontAwesomeIcon icon={faChevronDown} />
@@ -141,7 +141,7 @@ const Help = (props) => {
                 <button
                   onClick={(e) => setDropdownVisibility5(!dropdownVisibility5)}
                 >
-                 {dropdownVisibility5 ? (
+                  {dropdownVisibility5 ? (
                     <FontAwesomeIcon icon={faChevronUp} />
                   ) : (
                     <FontAwesomeIcon icon={faChevronDown} />
@@ -163,7 +163,7 @@ const Help = (props) => {
                 <button
                   onClick={(e) => setDropdownVisibility6(!dropdownVisibility6)}
                 >
-                 {dropdownVisibility6 ? (
+                  {dropdownVisibility6 ? (
                     <FontAwesomeIcon icon={faChevronUp} />
                   ) : (
                     <FontAwesomeIcon icon={faChevronDown} />
@@ -173,7 +173,7 @@ const Help = (props) => {
               <hr />
               <Dropdown visibility={dropdownVisibility6}>
                 <p>
-                   Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                   Doloremque culpa ullam maxime quos laudantium, fugiat nesciunt
                   obcaecati error reiciendis, porro voluptas illum quisquam,
                   voluptates praesentium fugit recusandae delectus amet?
@@ -185,7 +185,7 @@ const Help = (props) => {
                 <button
                   onClick={(e) => setDropdownVisibility7(!dropdownVisibility7)}
                 >
-                 {dropdownVisibility7 ? (
+                  {dropdownVisibility7 ? (
                     <FontAwesomeIcon icon={faChevronUp} />
                   ) : (
                     <FontAwesomeIcon icon={faChevronDown} />
@@ -204,11 +204,11 @@ const Help = (props) => {
               </Dropdown>
             </ul>
           </div>
-          <div className='ask-wrap'>
+          <div className="ask-wrap">
             <h3>문제가 해결되지 않으셨나요?</h3>
-            <hr className='ask-hr' />
-            <Link to='/ask'>
-              <div className='toAsk'>
+            <hr className="ask-hr" />
+            <Link to="/ask">
+              <div className="toAsk">
                 <strong>직접 문의하기</strong>
               </div>
             </Link>

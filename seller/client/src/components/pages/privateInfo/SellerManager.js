@@ -1,45 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../css/pages/Notice.css";
+import "../../css/pages/UserManager.css";
 
-function NoticeManager() {
+function SellerManager() {
   return (
-    <div className="noticeManager-container">
+    <div className="userManager-container">
       <div className="table-List">
-        <h1>공지사항 관리</h1>
+        <h1>판매자 회원 관리</h1>
         <div className="table-List-top">
           <div className="top-left">
-            <Link to="/writeNotice">
-              <button type="submit" class="addBtn">
-                <i class="fa-solid fa-pen-to-square"></i>글쓰기
-              </button>
-            </Link>
+            <Link to="costumerManager">고객 회원관리</Link>
           </div>
           <div className="top-right">
             <div className="search-wrap">
-              <form action="/board/postSearch" method="get" id="frm">
-                <div className="search">
+              <form method="get" action="/member/userSearch" id="frm">
+                <div class="search">
                   <select
-                    id="sel"
+                    id="selSearch"
                     className="sel"
-                    name="selSearch2"
-                    onchange="selSearch2()"
+                    name="selSearch"
+                    onchange="selSearch()"
                   >
                     <option value="">선택하세요</option>
-                    <option value="title">제목</option>
-                    <option value="username">작성자</option>
-                    <option value="content">내용</option>
-                    <option value="regdate">등록일</option>
+                    <option value="username">이름</option>
+                    <option value="email">이메일</option>
+                    <option value="regdate">가입일</option>
                   </select>
                   <input
                     type="text"
+                    name="search"
                     id="search"
                     className="search"
-                    name="search"
                     autofocus
                     required
                   />
-                  <input type="submit" value="검색" className="searchBtn" />
+                  <input type="submit" value="검색" class="searchBtn" />
                 </div>
               </form>
             </div>
@@ -49,18 +44,30 @@ function NoticeManager() {
           <table>
             <tr>
               <td>번호</td>
-              <td>제목</td>
-              <td>작성자</td>
-              <td>등록일</td>
+              <td>아이디</td>
+              <td>이름</td>
+              <td>채널명</td>
+              <td>플랫폼</td>
+              <td>등급</td>
+              <td>가입일</td>
               <td>비고</td>
             </tr>
-
             <tr>
               <td></td>
-              <td className="title">
-                <a href=""></a>
-              </td>
               <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <select
+                  className="gradeSel"
+                  onchange=" grade(this.value, '<%= result[i].idx %>');"
+                >
+                  <option value="최고관리자">최고관리자</option>
+                  <option value="매니저">매니저</option>
+                  <option value="일반">일반</option>
+                </select>
+              </td>
               <td></td>
               <td>
                 <a href="">
@@ -70,7 +77,7 @@ function NoticeManager() {
                 </a>
                 <a
                   href=""
-                  onclick="return confirm('게시글을 삭제하시겠습니까?');"
+                  onclick="return confirm('회원을 삭제하시겠습니까?');"
                 >
                   <button type="submit" className="upDelBtn">
                     <i class="fa-solid fa-trash-can"></i>삭제
@@ -85,4 +92,4 @@ function NoticeManager() {
   );
 }
 
-export default NoticeManager;
+export default SellerManager;
