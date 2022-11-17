@@ -7,7 +7,7 @@ itemname VARCHAR(100),
 category VARCHAR(50),
 price VARCHAR(50),
 stock INT,
-itemImage VARCHAR(1000),
+attach VARCHAR(255),
 contents TEXT,
 madein VARCHAR(50),
 regdate DATE
@@ -73,7 +73,7 @@ create table boardManager (
   boardReadAllow char(1),
   boardWriteAllow char(1),
   boardCommentAllow char(1),
-  boardModifyAllow char(1)
+  boardModifyAllow char(1),
   createDate date,
   modifyDate date
 );

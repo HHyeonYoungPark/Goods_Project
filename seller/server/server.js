@@ -163,6 +163,8 @@ app.get("/mypage", (req, res) => {
 
 // 상품등록
 app.post("/addItem", upload.single("attach"), (req, res) => {
+  console.log(req.file);
+
   const { itemname } = req.body;
   const { category } = req.body;
   const { price } = req.body;
@@ -187,11 +189,11 @@ app.post("/addItem", upload.single("attach"), (req, res) => {
 // 관리자페이지에서 상품목록보이기
 app.get("/goodsManager", (req, res) => {
   let sql = "SELECT * FROM item ORDER BY idx DESC LIMIT 0,10;";
-  db.query(sql, (err, response) => {
+  db.query(sql, (err, items) => {
     if (err) {
       throw err;
     }
-    res.send(response);
+    res.send(items);
   });
 });
 
@@ -261,7 +263,7 @@ app.post("/boardAdd", (req, res) => {
     boardReadAllow,
     boardWriteAllow,
     boardCommentAllow,
-    boardModifyAllow
+    boardModifyAllow,
   } = req.body;
   let sql =
     "INSERT INTO boardManager VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, now(), now());";
@@ -275,7 +277,7 @@ app.post("/boardAdd", (req, res) => {
       boardReadAllow,
       boardWriteAllow,
       boardCommentAllow,
-      boardModifyAllow
+      boardModifyAllow,
     ],
     (err) => {
       if (err) {
