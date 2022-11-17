@@ -1,10 +1,6 @@
-.notice-container {
+.goodsManager-container {
   display: flex;
   justify-content: center;
-}
-
-.table-wrap {
-  width: 1280px;
 }
 
 .table-List {

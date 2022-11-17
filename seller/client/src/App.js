@@ -25,6 +25,7 @@ import Cart from "./components/pages/privateInfo/Cart";
 import Notice from "./components/pages/board/Notice";
 import Help from "./components/pages/board/HelpToAdmin";
 import TableGallary from "./components/pages/goods/TableGallary";
+import Detail from "./components/pages/goods/Detail";
 import Ask from "./components/pages/board/AskToAdmin";
 import PrivateRoute from "./components/pages/PrivateRoute";
 import NotFound from "./components/pages/NotFound";
@@ -59,6 +60,7 @@ function App() {
               <Route index="tableGallary" element={<TableGallary />} />
               <Route path="tableGallary" element={<TableGallary />} />
             </Route>
+            <Route path="detail" element={<Detail />} />
             <Route path="login" element={<Login />} />
             <Route path="logout" element={<Logout />} />
             <Route path="regist" element={<Regist />} />
@@ -87,7 +89,12 @@ function App() {
                 <Route path="costumerManager" element={<CostumerManager />} />
               </Route>
 
-              <Route path="boardManager" element={<BoardManager />} />
+              <Route path="boardManager" element={<BoardManager />}>
+                <Route path="boardAdd" element={<BoardAdd />} />
+                <Route path="board/:boardName" element={<Board />} />
+                <Route path="board/:boardName/write" element={<Write />} />
+                <Route path="board/:boardName/:idx" element={<View />} />
+              </Route>
 
               <Route path="noticeManager" element={<NoticeManager />} />
               <Route path="askManager" element={<AskManager />} />
@@ -97,11 +104,6 @@ function App() {
             {/* </Route> */}
             <Route path="addItem" element={<AddItem />} />
             <Route path="newItem" element={<NewItem />} />
-
-            <Route path="boardAdd" element={<BoardAdd />} />
-            <Route path="board/:boardName" element={<Board />} />
-            <Route path="board/:boardName/write" element={<Write />} />
-            <Route path="board/:boardName/:idx" element={<View />} />
 
             <Route path="cart" element={<Cart />} />
             <Route path="notice" element={<Notice />} />
