@@ -9,7 +9,7 @@ function AddItem() {
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
-  const [image, setItemImage] = useState("");
+  const [itemImage, setItemImage] = useState("");
   const [contents, setContents] = useState("");
   const [madein, setMadein] = useState("");
 
@@ -23,19 +23,21 @@ function AddItem() {
     formData.append("category", category);
     formData.append("price", price);
     formData.append("stock", stock);
-    formData.append("image", image);
+    formData.append("itemImage", itemImage);
     formData.append("contents", contents);
     formData.append("madein", madein);
 
-    await axios.post("/AdminPage/addItem", formData).then((response) => {
-      if (response.data.status === 201) {
-        window.alert(response.data.message);
-        navigate("/");
-      } else {
-        window.alert("상품등록 실패!");
-        navigate("/");
-      }
-    });
+    await axios
+      .post("http://localhost:4001/addItem", formData)
+      .then((response) => {
+        if (response.data.status === 201) {
+          window.alert(response.data.message);
+          navigate("/AdminPage/goodsManager");
+        } else {
+          window.alert("상품등록 실패!");
+          navigate("/AdminPage/goodsManager");
+        }
+      });
   }
 
   return (

@@ -55,7 +55,7 @@
   border-collapse: collapse;
 }
 .tbl-wrap tr {
-  height: 50px;
+  height: 80px;
   border-bottom: 1px solid #ccc;
   text-align: center;
   background-color: #fff;
@@ -69,6 +69,11 @@
 .tbl-wrap tr:nth-child(1) {
   background-color: #273270;
   color: #f1f1f1;
+}
+
+.itemImage {
+  width: 50px;
+  height: 50px;
 }
 
 .upDelBtn {
