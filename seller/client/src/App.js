@@ -76,7 +76,6 @@ function App() {
                 <Route path="userInfo" element={<UserInfo />} />
               </Route>
             </Route>
-            <Route path="addItem" element={<AddItem />} />
 
             <Route
               path="adminPage"

@@ -27,7 +27,7 @@ function AddItem() {
     formData.append("contents", contents);
     formData.append("madein", madein);
 
-    await axios.post("addItem", formData).then((response) => {
+    await axios.post("/AdminPage/addItem", formData).then((response) => {
       if (response.data.status === 201) {
         window.alert(response.data.message);
         navigate("/");
@@ -36,8 +36,6 @@ function AddItem() {
         navigate("/");
       }
     });
-
-    // axios.post(주소, 값).then((response) => {주소를 처리후에 작업할 내용})
   }
 
   return (
@@ -113,6 +111,7 @@ function AddItem() {
                     className="itemImage"
                     type="file"
                     name="itemImage"
+                    multiple
                     onChange={(e) => {
                       setItemImage(e.target.files[0]);
                     }}

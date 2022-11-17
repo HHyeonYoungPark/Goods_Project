@@ -150,7 +150,7 @@ app.get("/mypage", (req, res) => {
 });
 
 // 상품등록
-app.post("addItem", upload.single("itemImage"), (req, res) => {
+app.post("/AdminPage/addItem", upload.array("itemImage"), (req, res) => {
   const { itemname } = req.body.itemname;
   const { category } = req.body.category;
   const { price } = req.body.price;
