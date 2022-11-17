@@ -1,20 +1,95 @@
 .detail-con {
-  width: 70%;
+  width: 65%;
   margin: 0 auto;
   height: 3000px;
+  
+}
+.detail-con::after{
+  clear: both;
 }
 .detail-top-con {
   display: flex;
+  
+}
+.top-nav-con {
+  display: flex;
+  height: 60px;
+  border: 1.5px solid #27336f;
+  margin-bottom: 50px;
+  align-items: center;
+  border-radius: 10px;
+}
+.top-nav-con div {
+  margin-left: 15px;
 }
 .detailimg-con {
-  width: 40%;
+  margin-top: 20px;
+  width: 55%;
+  height: 900px;
+  border: 3px solid #f1f1f1;
+  margin-bottom: 40px;
 }
 .detail-title-con {
-  width: 35%;
+  width: 47%;
   margin: 0 30px;
+  margin-top: 20px;
 }
-.similar-item {
-  height: 200px;
+.detail1 {
+  color: gray;
+  margin: 20px 0;
+}
+.detail2 {
+  margin: 30px 0;
+}
+.detail4 {
+  margin-bottom: 20px;
+}
+.detail5 {
+  font-size: 15px;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+.detail-hr {
+  background-color: #f1f1f1;
+  border: none;
+  height: 3px;
+  margin-top: 20px;
+}
+.detail6 {
+  margin-top: 18px;
+  margin-bottom: 15px;
+}
+.detail7,
+.detail8,
+.detail9,
+.detail11,
+.detail12,
+.detail13,
+.detail14 {
+  margin-left: 30px;
+  margin-top: 10px;
+  font-weight: 400;
+}
+.detail10 {
+  margin-top: 18px;
+  margin-bottom: 15px;
+}
+.detail15 {
+  margin-top: 35px;
+}
+.new-review {
+  height: 150px;
+  border: 1px solid black;
+}
+.more-review {
+  margin-top: 20px;
+  border: 3px solid#E7E7E7;
+  padding: 6px 8px;
+  float: right;
+  border-radius: 30px;
+}
+
+.right-pay-sticky ul {
   margin-bottom: 20px;
 }
 .cartorpay div {
@@ -23,24 +98,46 @@
 .howmayprice {
   display: flex;
 }
-.right-pay-sticky{
-  position: -webkit-sticky;
+.right-pay-sticky {
   position: sticky;
   top: 0;
-  float: right;
-  width: 20%;
+   float: right; 
+  width: 23%;
+  border: 1px solid black;
 }
-.detail-bottom-wrap{
+.right-pay-sticky ul {
+  margin-left: 40px;
+}
+.right-pay-sticky h3 {
+  padding-top: 100px;
+  margin-left: 40px;
+}
+.detail-bottom-wrap {
   width: 75%;
-  background-color: aliceblue;
 }
-.detail-nav-wrap{
+.detail-nav-wrap {
   display: flex;
   width: 100%;
   background-color: aliceblue;
 }
-.detail-nav-wrap div{
+.detail-nav-wrap div {
   border: 1px solid aliceblue;
   padding: 10px 95px;
   font-size: 18px;
+}
+.detail-cart,
+.detail-pay {
+  border: 1px solid gray;
+  padding: 10px 20px;
+  margin-right: 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.detail-cart {
+  background-color: #27336f;
+  color: white;
+}
+.detail-pay {
+  color: #27336f;
 }

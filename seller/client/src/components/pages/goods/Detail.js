@@ -2,40 +2,57 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/pages/Detail.css';
 import image from '../../images/phone.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faTruck } from '@fortawesome/free-solid-svg-icons';
+import { faTags } from '@fortawesome/free-solid-svg-icons';
 
+const topnavstyle = {
+  margin: '0 0 0 15px',
+  color: '#27336F',
+};
+const truck = {
+  margin: '0 10px 0 0',
+  color: 'yellowgreen',
+};
+const tags = {
+  margin: '0 10px 0 0',
+  color: 'red',
+};
 function Detail() {
   return (
     <div className='detail-con'>
+      <div className='top-nav-con'>
+        <div>악세사리</div>
+        <FontAwesomeIcon icon={faChevronRight} style={topnavstyle} />
+        <div>휴대폰케이스</div>
+        <FontAwesomeIcon icon={faChevronRight} style={topnavstyle} />
+        <div>달고나폰</div>
+      </div>
       <div className='right-pay-sticky'>
         <h3>비슷한 상품</h3>
-        <div className='similar-item'>
-          <ul>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-            <li>투명젤리 케이스</li>
-          </ul>
-        </div>
+
+        <ul>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+          <li>투명젤리 케이스</li>
+        </ul>
+
         <div className='cartorpay'>
           <div className='howmayprice'>
             <p> 총 0개 </p>
@@ -48,8 +65,8 @@ function Detail() {
             <p>무료배송</p>
           </div>
           <div>
-            <button>장바구니</button>
-            <button>구매하기</button>
+            <button className='detail-cart'>장바구니</button>
+            <button className='detail-pay'>구매하기</button>
           </div>
         </div>
       </div>
@@ -61,29 +78,45 @@ function Detail() {
           <div>
             리뷰 별 나오는 부분<button>리뷰보기</button>
           </div>
-          <h4>무료 당일 배송 3+1 구성</h4>
-          <h2>
+          <h4 className='detail1'>무료 당일 배송 3+1 구성</h4>
+          <h2 className='detail2'>
             달고나폰 1+3 투명 젤리 케이스 아이폰14 갤럭시 S22 z플립4 폴드4
             애플워치 갤럭시워치 호환 스트랩
           </h2>
-          <h1>
-            3890원~{' '}
+          <h1 className='detail4'>
+            3,890원~
             <span>
-              <small>3900원</small>
+              <small className='detail5'>3,900원</small>
             </span>
           </h1>
-
-          <h4>무료배송</h4>
-          <p>15까지 주문 시 오늘발송</p>
-          <p>
+          <hr className='detail-hr' />
+          <h4 className='detail6'>
+            <FontAwesomeIcon icon={faTruck} style={truck} />
+            무료배송
+          </h4>
+          <p className='detail7'>15까지 주문 시 오늘발송</p>
+          <p className='detail8'>
             내일 11/18일 도착예정<span>?</span>
           </p>
-          <p>CJ 대한통운</p>
-          <h4>혜택</h4>
-          <p>SK pay point 최대 194P 적립 ( 쇼킹 194P )</p>
-          <p>2개 이상 구매시 개당 500원 할인</p>
-          <p>11번가 신한카드 첫 결제할인 + 최대 2% 적립</p>
-          <p>[광고] 무료포인트적립쿠폰 : 1장 [쿠폰받기]</p>
+          <p className='detail9'>CJ 대한통운</p>
+          <hr className='detail-hr' />
+          <h4 className='detail10'>
+            <FontAwesomeIcon icon={faTags} style={tags} />
+            혜택
+          </h4>
+          <p className='detail11'>SK pay point 최대 194P 적립 ( 쇼킹 194P )</p>
+          <p className='detail12'>2개 이상 구매시 개당 500원 할인</p>
+          <p className='detail13'>11번가 신한카드 첫 결제할인 + 최대 2% 적립</p>
+          <p className='detail14'>[광고] 무료포인트적립쿠폰 : 1장 [쿠폰받기]</p>
+          <hr className='detail-hr' />
+          <div>
+            <h4 className='detail15'>최신리뷰보기</h4>
+            <div className='new-review'>최신리뷰가 나오는곳</div>
+            <button className='more-review'>
+              리뷰 더보기
+              <FontAwesomeIcon icon={faChevronRight} />
+            </button>
+          </div>
         </div>
       </div>
       <div className='detail-bottom-wrap'>
