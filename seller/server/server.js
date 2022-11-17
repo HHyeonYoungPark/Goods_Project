@@ -150,6 +150,17 @@ app.get("/mypage", (req, res) => {
   });
 });
 
+// // 메인페이지
+// app.get("/main", (req, res) => {
+//   let sql = "SELECT * FROM item ORDER BY idx DESC;";
+//   db.query(sql, (err, response) => {
+//     if (err) {
+//       throw err;
+//     }
+//     res.send(response);
+//   });
+// });
+
 // 상품등록
 app.post("/addItem", upload.single("attach"), (req, res) => {
   const { itemname } = req.body;

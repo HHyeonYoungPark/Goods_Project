@@ -6,6 +6,18 @@ import dummyImg02 from "../../images/dummyImg02.png";
 import dummyImg03 from "../../images/dummyImg03.png";
 
 function TableGallary() {
+  // const [items, setItems] = useState([]);
+
+  // async function getAllItem() {
+  //   await axios.get("http://localhost:4001/goodsManager").then((response) => {
+  //     setItems(response.data);
+  //   });
+  // }
+
+  // useEffect(() => {
+  //   getAllItem();
+  // }, []);
+
   return (
     <div className="TableGallary-container">
       <div className="TableGallary">
