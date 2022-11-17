@@ -254,36 +254,28 @@ app.get("/boardlist", (req, res) => {
 
 app.post("/boardAdd", (req, res) => {
   const {
+    boardCode,
+    boardCategory,
     boardName,
-    boardType,
-    boardUrl,
-    secret,
-    readAllow,
-    writeAllow,
-    replyAllow,
-    modifyAllow,
-    deleteAllow,
-    upload,
-    download,
-    boardDesc,
+    boardBuilder,
+    boardReadAllow,
+    boardWriteAllow,
+    boardCommentAllow,
+    boardModifyAllow
   } = req.body;
   let sql =
-    "INSERT INTO boardManager VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,now());";
+    "INSERT INTO boardManager VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, now(), now());";
   db.query(
     sql,
     [
+      boardCode,
+      boardCategory,
       boardName,
-      boardType,
-      boardUrl,
-      secret,
-      readAllow,
-      writeAllow,
-      replyAllow,
-      modifyAllow,
-      deleteAllow,
-      upload,
-      download,
-      boardDesc,
+      boardBuilder,
+      boardReadAllow,
+      boardWriteAllow,
+      boardCommentAllow,
+      boardModifyAllow
     ],
     (err) => {
       if (err) {
