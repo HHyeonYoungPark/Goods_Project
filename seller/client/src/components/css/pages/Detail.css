@@ -1,0 +1,46 @@
+.detail-con {
+  width: 70%;
+  margin: 0 auto;
+  height: 3000px;
+}
+.detail-top-con {
+  display: flex;
+}
+.detailimg-con {
+  width: 40%;
+}
+.detail-title-con {
+  width: 35%;
+  margin: 0 30px;
+}
+.similar-item {
+  height: 200px;
+  margin-bottom: 20px;
+}
+.cartorpay div {
+  margin-bottom: 10px;
+}
+.howmayprice {
+  display: flex;
+}
+.right-pay-sticky{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  float: right;
+  width: 20%;
+}
+.detail-bottom-wrap{
+  width: 75%;
+  background-color: aliceblue;
+}
+.detail-nav-wrap{
+  display: flex;
+  width: 100%;
+  background-color: aliceblue;
+}
+.detail-nav-wrap div{
+  border: 1px solid aliceblue;
+  padding: 10px 95px;
+  font-size: 18px;
+}
