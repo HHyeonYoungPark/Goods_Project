@@ -63,19 +63,19 @@ function NoticeManager() {
               <td></td>
               <td></td>
               <td>
-                <a href="">
+                <Link to="">
                   <button type="submit" className="upDelBtn">
                     <i class="fa-solid fa-pen-to-square"></i>수정
                   </button>
-                </a>
-                <a
-                  href=""
+                </Link>
+                <Link
+                  to=""
                   onclick="return confirm('게시글을 삭제하시겠습니까?');"
                 >
                   <button type="submit" className="upDelBtn">
                     <i class="fa-solid fa-trash-can"></i>삭제
                   </button>
-                </a>
+                </Link>
               </td>
             </tr>
           </table>

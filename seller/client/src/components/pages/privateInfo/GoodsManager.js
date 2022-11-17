@@ -10,7 +10,7 @@ function GoodsManager() {
           <div className="top-left">
             <Link to="/writeNotice">
               <button type="submit" class="addBtn">
-                <i class="fa-solid fa-pen-to-square"></i>글쓰기
+                상품 등록
               </button>
             </Link>
           </div>
@@ -47,34 +47,33 @@ function GoodsManager() {
         <div className="tbl-wrap">
           <table>
             <tr>
-              <td>번호</td>
-              <td>제목</td>
-              <td>작성자</td>
+              <td>상품번호</td>
+              <td>이미지</td>
+              <td>상품명</td>
+              <td>가격</td>
               <td>등록일</td>
               <td>비고</td>
             </tr>
-
             <tr>
               <td></td>
-              <td className="title">
-                <a href=""></a>
-              </td>
+              <td></td>
+              <td></td>
               <td></td>
               <td></td>
               <td>
-                <a href="">
+                <Link to="">
                   <button type="submit" className="upDelBtn">
                     <i class="fa-solid fa-pen-to-square"></i>수정
                   </button>
-                </a>
-                <a
-                  href=""
-                  onclick="return confirm('게시글을 삭제하시겠습니까?');"
+                </Link>
+                <Link
+                  to=""
+                  onclick="return confirm('상품을을 삭제하시겠습니까?');"
                 >
                   <button type="submit" className="upDelBtn">
                     <i class="fa-solid fa-trash-can"></i>삭제
                   </button>
-                </a>
+                </Link>
               </td>
             </tr>
           </table>
