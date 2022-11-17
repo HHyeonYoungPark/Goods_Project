@@ -89,6 +89,7 @@ function BoardManager() {
             })}
           </table>
         </div>
+        <button>수정</button>
       </div>
     </div>
   );

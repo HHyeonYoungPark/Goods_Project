@@ -1,11 +1,43 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Modal from "react-modal";
 
-import "../../css/board.css";
+import BoardModify from "./BoardModify";
+
+import modalStyle from "../../css/board.css";
+
+// 모달 스타일
+const styleModal = {
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    zIndex: 10,
+  },
+  content: {
+    display: "flex",
+    justifyContent: "center",
+    background: "#ffffe7",
+    overflow: "auto",
+    top: "30vh",
+    left: "25vw",
+    right: "25vw",
+    bottom: "30vh",
+    WebkitOverflowScrolling: "touch",
+    borderRadius: "14px",
+    outline: "none",
+    zIndex: 10,
+  },
+};
 
 function BoardMain() {
   const [boardlist, setBoardlist] = useState([]);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const getBoardlist = async () => {
     await axios.get("http://localhost:4001/boardlist").then((res) => {
@@ -152,40 +184,59 @@ function BoardMain() {
         <input type="submit" value="검색" className="searchBtn" />
       </div>
       <table>
-        <tr>
-          <td>코드</td>
-          <td>카테고리</td>
-          <td>이름</td>
-          <td>읽기 권한</td>
-          <td>쓰기 권한</td>
-          <td>댓글 권한</td>
-          <td>수정 권한</td>
-          <td>생성자</td>
-          <td>생성일</td>
-          <td>수정일</td>
-          <td>비고</td>
-        </tr>
+        <thead>
+          <tr>
+            <td>코드</td>
+            <td>카테고리</td>
+            <td>이름</td>
+            <td>읽기 권한</td>
+            <td>쓰기 권한</td>
+            <td>댓글 권한</td>
+            <td>수정 권한</td>
+            <td>생성자</td>
+            <td>생성일</td>
+            <td>수정일</td>
+            <td>비고</td>
+          </tr>
+        </thead>
 
         {boardlist.map((b, key) => {
           return (
-            <tr key={key}>
-              <td>{b.boardCode}</td>
-              <td>{b.boardCategory}</td>
-              <td>
-                <Link to={"/board/" + b.boardName}>{b.boardName}</Link>
-              </td>
-              <td>{b.readAllow}</td>
-              <td>{b.writeAllow}</td>
-              <td>{b.commentAllow}</td>
-              <td>{b.modifyAllow}</td>
-              <td>{b.boardBuilder}</td>
-              <td>{b.createDate}</td>
-              <td>{b.modifyDate}</td>
-              <td>수정/삭제</td>
-            </tr>
+            <tbody>
+              <tr key={key}>
+                <td>{b.boardCode}</td>
+                <td>{b.boardCategory}</td>
+                <td>
+                  <Link to={"/board/" + b.boardName}>{b.boardName}</Link>
+                </td>
+                <td>{b.readAllow}</td>
+                <td>{b.writeAllow}</td>
+                <td>{b.commentAllow}</td>
+                <td>{b.modifyAllow}</td>
+                <td>{b.boardBuilder}</td>
+                <td>{b.createDate}</td>
+                <td>{b.modifyDate}</td>
+                <td>수정/삭제</td>
+              </tr>
+            </tbody>
           );
         })}
       </table>
+      {/* 수정 / 삭제 구현했다 치고 */}
+      <button onClick={() => setModalIsOpen(true)}>수정</button>
+      <Modal
+        isOpen={modalIsOpen}
+        style={styleModal}
+        onRequestClose={() => setModalIsOpen(false)}
+      >
+        <div className="modalModify">
+          <h2>게시판 수정</h2>
+          <BoardModify className="tableModify" />
+          <button className="modifyDone" onClick={() => setModalIsOpen(false)}>
+            수정 완료
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 }
