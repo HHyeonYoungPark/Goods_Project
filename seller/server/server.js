@@ -150,14 +150,16 @@ app.get("/mypage", (req, res) => {
 });
 
 // 상품등록
-app.post("/AdminPage/addItem", upload.array("itemImage"), (req, res) => {
-  const { itemname } = req.body.itemname;
-  const { category } = req.body.category;
-  const { price } = req.body.price;
-  const { stock } = req.body.stock;
-  const { filename } = req.files.filename;
-  const { contents } = req.body.contents;
-  const { madein } = req.body.madein;
+app.post("/addItem", upload.single("itemImage"), (req, res) => {
+  console.log("ㅆㅂ");
+  console.log(req.file);
+  const { itemname } = req.body;
+  const { category } = req.body;
+  const { price } = req.body;
+  const { stock } = req.body;
+  const { filename } = req.file;
+  const { contents } = req.body;
+  const { madein } = req.body;
 
   let sql = "INSERT INTO item VALUES(NULL,?,?,?,?,?,?,?,now());";
   db.query(
@@ -172,6 +174,17 @@ app.post("/AdminPage/addItem", upload.array("itemImage"), (req, res) => {
   );
 });
 
+// 관리자페이지에서 상품목록보이기
+app.get("/goodsManager", (req, res) => {
+  let sql = "SELECT * FROM item ORDER BY idx DESC LIMIT 0,10;";
+  db.query(sql, (err, response) => {
+    if (err) {
+      throw err;
+    }
+    res.send(response);
+  });
+});
+
 // 공지사항 작성
 app.post("/writeNotice", (req, res) => {
   const noticeTitle = req.body.noticeTitle;
@@ -183,7 +196,7 @@ app.post("/writeNotice", (req, res) => {
     if (err) {
       throw err;
     } else {
-      res.send();
+      res.send({ status: 201, message: "공지사항이 등록되었습니다!" });
     }
   });
 });

@@ -7,7 +7,7 @@ itemname VARCHAR(100),
 category VARCHAR(50),
 price VARCHAR(50),
 stock INT,
-image VARCHAR(255),
+itemImage VARCHAR(1000),
 contents TEXT,
 madein VARCHAR(50),
 regdate DATE

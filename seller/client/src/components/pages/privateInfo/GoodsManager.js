@@ -1,8 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import "../../css/pages/GoodsManager.css";
 
 function GoodsManager() {
+  const [items, setItems] = useState([]);
+
+  async function goodsManager() {
+    await axios.get("http://localhost:4001/goodsManager").then((response) => {
+      setItems(response.data);
+    });
+  }
+
+  useEffect(() => {
+    goodsManager();
+  }, []);
+
   return (
     <div className="goodsManager-container">
       <div className="table-List">
@@ -55,28 +69,38 @@ function GoodsManager() {
               <td>등록일</td>
               <td>비고</td>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>상품사진</td>
-              <td>상품이름!!!!!!!</td>
-              <td>19900원</td>
-              <td>2022/11/17</td>
-              <td>
-                <Link to="">
-                  <button type="submit" className="upDelBtn">
-                    <i class="fa-solid fa-pen-to-square"></i>수정
-                  </button>
-                </Link>
-                <Link
-                  to=""
-                  onclick="return confirm('상품을을 삭제하시겠습니까?');"
-                >
-                  <button type="submit" className="upDelBtn">
-                    <i class="fa-solid fa-trash-can"></i>삭제
-                  </button>
-                </Link>
-              </td>
-            </tr>
+            {items.map((item, key) => {
+              return (
+                <tr key={key} className="itemList">
+                  <td>{item.idx}</td>
+                  <td>
+                    <img
+                      src={item.itemImage}
+                      alt={item.itemImage}
+                      className="itemImage"
+                    />
+                  </td>
+                  <td>{item.itemname}</td>
+                  <td>{item.price}</td>
+                  <td>{item.regdate}</td>
+                  <td>
+                    <Link to="">
+                      <button type="submit" className="upDelBtn">
+                        수정
+                      </button>
+                    </Link>
+                    <Link
+                      to=""
+                      onclick="return confirm('상품을 삭제하시겠습니까?');"
+                    >
+                      <button type="submit" className="upDelBtn">
+                        삭제
+                      </button>
+                    </Link>
+                  </td>
+                </tr>
+              );
+            })}
           </table>
         </div>
       </div>
