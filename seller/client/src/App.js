@@ -89,12 +89,11 @@ function App() {
                 <Route path="costumerManager" element={<CostumerManager />} />
               </Route>
 
-              <Route path="boardManager" element={<BoardManager />}>
-                <Route path="boardAdd" element={<BoardAdd />} />
-                <Route path="board/:boardName" element={<Board />} />
-                <Route path="board/:boardName/write" element={<Write />} />
-                <Route path="board/:boardName/:idx" element={<View />} />
-              </Route>
+              <Route path="boardManager" element={<BoardManager />} />
+              <Route path="boardAdd" element={<BoardAdd />} />
+              <Route path="board/:boardName" element={<Board />} />
+              <Route path="board/:boardName/write" element={<Write />} />
+              <Route path="board/:boardName/:idx" element={<View />} />
 
               <Route path="noticeManager" element={<NoticeManager />} />
               <Route path="askManager" element={<AskManager />} />

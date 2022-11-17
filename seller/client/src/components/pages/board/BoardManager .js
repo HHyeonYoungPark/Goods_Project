@@ -21,7 +21,7 @@ function BoardManager() {
         <h1>게시판 관리</h1>
         <div className="table-List-top">
           <div className="top-left">
-            <Link to="boardAdd">
+            <Link to="/AdminPage/boardAdd">
               <button type="submit" class="addBtn">
                 <i class="fa-solid fa-pen-to-square"></i>게시판 추가
               </button>
@@ -82,7 +82,21 @@ function BoardManager() {
                   <td>{b.modifyAllow}</td>
                   <td>{b.deleteAllow}</td>
                   <td>{b.createDate}</td>
-                  <td>수정/삭제</td>
+                  <td>
+                    <Link to="/AdminPage">
+                      <button type="submit" className="upDelBtn">
+                        수정
+                      </button>
+                    </Link>
+                    <Link
+                      to="/AdminPage"
+                      onclick="return confirm('게시판을 삭제하시겠습니까?');"
+                    >
+                      <button type="submit" className="upDelBtn">
+                        삭제
+                      </button>
+                    </Link>
+                  </td>
                 </tr>
               );
             })}
