@@ -76,6 +76,7 @@ function App() {
                 <Route path="userInfo" element={<UserInfo />} />
               </Route>
             </Route>
+            <Route path="addItem" element={<AddItem />} />
 
             <Route
               path="adminPage"
@@ -83,6 +84,7 @@ function App() {
             >
               <Route index="allManager" element={<AllManager />} />
               <Route path="goodsManager" element={<GoodsManager />} />
+              <Route path="addItem" element={<AddItem />} />
               <Route path="order" element={<Order />} />
               <Route path="userManager" element={<UserManager />}>
                 <Route index="costumerManager" element={<CostumerManager />} />
@@ -101,7 +103,7 @@ function App() {
 
             {/* <Route element={<PrivateRoute token={token} />}> */}
             {/* </Route> */}
-            <Route path="addItem" element={<AddItem />} />
+
             <Route path="newItem" element={<NewItem />} />
 
             <Route path="cart" element={<Cart />} />

@@ -71,12 +71,6 @@
   color: #f1f1f1;
 }
 
-.tbl-wrap td.title {
-  display: flex;
-  text-align: left;
-  padding-top: 15px;
-}
-
 .upDelBtn {
   border: 1px solid #d1d1d1;
   border-radius: 3px;

@@ -3,12 +3,13 @@ use goods;
 
 CREATE TABLE item(
 idx INT AUTO_INCREMENT PRIMARY KEY,
-category VARCHAR(50),
-image VARCHAR(255),
 itemname VARCHAR(100),
+category VARCHAR(50),
 price VARCHAR(50),
 stock INT,
+image VARCHAR(255),
 contents TEXT,
+madein VARCHAR(50),
 regdate DATE
 );
 

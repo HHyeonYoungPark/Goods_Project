@@ -98,7 +98,7 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
           filename: filename,
           intro: intro,
           status: 201,
-          message: "판매자 신청이 완료되었습니다.",
+          message: "회원가입 완료!",
         });
       }
     );
@@ -147,6 +147,29 @@ app.get("/mypage", (req, res) => {
       res.send(response);
     }
   });
+});
+
+// 상품등록
+app.post("addItem", upload.single("itemImage"), (req, res) => {
+  const { itemname } = req.body.itemname;
+  const { category } = req.body.category;
+  const { price } = req.body.price;
+  const { stock } = req.body.stock;
+  const { filename } = req.files.filename;
+  const { contents } = req.body.contents;
+  const { madein } = req.body.madein;
+
+  let sql = "INSERT INTO item VALUES(NULL,?,?,?,?,?,?,?,now());";
+  db.query(
+    sql,
+    [itemname, category, price, stock, filename, contents, madein],
+    (err) => {
+      if (err) {
+        throw err;
+      }
+      res.send({ status: 201, message: "상품등록이 완료되었습니다!" });
+    }
+  );
 });
 
 // 공지사항 작성
@@ -201,75 +224,107 @@ app.post("/ask", upload.single("askImage"), (req, res) => {
 app.get("/boardlist", (req, res) => {
   const sql = "select * from boardManager order by boardIdx desc;";
   db.query(sql, (err, result) => {
-    if(err) throw err;
+    if (err) throw err;
     res.send(result);
-  })
-})
+  });
+});
 
 app.post("/boardAdd", (req, res) => {
-  const {boardName ,boardType, boardUrl, secret, readAllow, writeAllow, replyAllow, modifyAllow, deleteAllow, upload, download, boardDesc} = req.body;
-  let sql = "INSERT INTO boardManager VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,now());";
-  db.query(sql, [boardName ,boardType, boardUrl, secret, readAllow, writeAllow, replyAllow, modifyAllow, deleteAllow, upload, download, boardDesc], (err) => {
-    if(err){
-      throw err;
-    }else{
-      res.send({status:201, message:"게시판 생성 완료"});
-      let createSQL = "CREATE TABLE board"+boardName+"(";
-          createSQL += "idx int auto_increment primary key,";
-          createSQL += "title varchar(100),";
-          createSQL += "writer varchar(50),";
-          createSQL += "passwd varchar(255),";
-          createSQL += "contents text,";
-          createSQL += "image varchar(255),";
-          createSQL += "view int default 0,";
-          createSQL += "regdate date";
-          createSQL += ");";
-      db.query(createSQL, (err) => {
-        if(err){
-          throw err;
-        }else{
-          console.log("board"+boardName+" Create Completed.");
-        }
-      })
+  const {
+    boardName,
+    boardType,
+    boardUrl,
+    secret,
+    readAllow,
+    writeAllow,
+    replyAllow,
+    modifyAllow,
+    deleteAllow,
+    upload,
+    download,
+    boardDesc,
+  } = req.body;
+  let sql =
+    "INSERT INTO boardManager VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,now());";
+  db.query(
+    sql,
+    [
+      boardName,
+      boardType,
+      boardUrl,
+      secret,
+      readAllow,
+      writeAllow,
+      replyAllow,
+      modifyAllow,
+      deleteAllow,
+      upload,
+      download,
+      boardDesc,
+    ],
+    (err) => {
+      if (err) {
+        throw err;
+      } else {
+        res.send({ status: 201, message: "게시판 생성 완료" });
+        let createSQL = "CREATE TABLE board" + boardName + "(";
+        createSQL += "idx int auto_increment primary key,";
+        createSQL += "title varchar(100),";
+        createSQL += "writer varchar(50),";
+        createSQL += "passwd varchar(255),";
+        createSQL += "contents text,";
+        createSQL += "image varchar(255),";
+        createSQL += "view int default 0,";
+        createSQL += "regdate date";
+        createSQL += ");";
+        db.query(createSQL, (err) => {
+          if (err) {
+            throw err;
+          } else {
+            console.log("board" + boardName + " Create Completed.");
+          }
+        });
+      }
     }
-  })
-})
+  );
+});
 
 app.get("/board", (req, res) => {
   // console.log(req.query);
-  let sql = "select * from board"+req.query.boardName+" order by idx desc;";
+  let sql = "select * from board" + req.query.boardName + " order by idx desc;";
   db.query(sql, (err, result) => {
-    if(err){
-      throw err;
-    }else{
-      res.send(result);
-    }
-  })
-})
-
-app.post("/write", (req, res) => {
-  const { boardName, title, writer, passwd, contents, image } = req.body;
-  let sql = "insert into board"+boardName+" values(null, ?, ?, ?, ?, ?, 0, now());";
-  db.query(sql, [title, writer, passwd, contents, image], (err) => {
-    if(err){
-      throw err;
-    }else{
-      console.log("write complete");
-      res.send({ status: 201, message: "게시글 등록 완료"});
-    }
-  })
-})
-
-app.get("/view", (req, res) => {
-  let sql = "select * from board"+req.query.boardName+" where idx = ?";
-  db.query(sql, [req.query.idx], (err, result) => {
-    if(err) {
+    if (err) {
       throw err;
     } else {
       res.send(result);
     }
-  })
-})
+  });
+});
+
+app.post("/write", (req, res) => {
+  const { boardName, title, writer, passwd, contents, image } = req.body;
+  let sql =
+    "insert into board" + boardName + " values(null, ?, ?, ?, ?, ?, 0, now());";
+  db.query(sql, [title, writer, passwd, contents, image], (err) => {
+    if (err) {
+      throw err;
+    } else {
+      console.log("write complete");
+      res.send({ status: 201, message: "게시글 등록 완료" });
+    }
+  });
+});
+
+app.get("/view", (req, res) => {
+  let sql = "select * from board" + req.query.boardName + " where idx = ?";
+  db.query(sql, [req.query.idx], (err, result) => {
+    if (err) {
+      throw err;
+    } else {
+      res.send(result);
+    }
+  });
+});
 // 다중게시판
 
 // port

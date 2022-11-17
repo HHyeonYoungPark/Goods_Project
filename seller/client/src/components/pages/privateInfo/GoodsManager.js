@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../../css/pages/GoodsManager.css";
 
 function GoodsManager() {
   return (
@@ -8,7 +9,7 @@ function GoodsManager() {
         <h1>상품 관리</h1>
         <div className="table-List-top">
           <div className="top-left">
-            <Link to="/writeNotice">
+            <Link to="/AdminPage/addItem">
               <button type="submit" class="addBtn">
                 상품 등록
               </button>
@@ -47,7 +48,7 @@ function GoodsManager() {
         <div className="tbl-wrap">
           <table>
             <tr>
-              <td>상품번호</td>
+              <td>번호</td>
               <td>이미지</td>
               <td>상품명</td>
               <td>가격</td>
@@ -55,11 +56,11 @@ function GoodsManager() {
               <td>비고</td>
             </tr>
             <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>1</td>
+              <td>상품사진</td>
+              <td>상품이름!!!!!!!</td>
+              <td>19900원</td>
+              <td>2022/11/17</td>
               <td>
                 <Link to="">
                   <button type="submit" className="upDelBtn">

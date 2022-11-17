@@ -1,0 +1,118 @@
+.addItem-comtainer {
+  display: flex;
+  justify-content: center;
+}
+
+.addItem-wrap {
+  background-color: #fff;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.addItem-title {
+  text-align: center;
+}
+
+.addItem input {
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+  padding: 15px;
+  width: 40%;
+}
+
+.addItem {
+  padding: 15px 0;
+}
+
+.addItem h3 {
+  margin: 10px 0;
+}
+
+.addItem .itemImage {
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  padding-left: 20px;
+  width: 20%;
+  background-color: #273270;
+  color: #fff;
+}
+
+tr {
+  border: 1px solid #eee;
+  height: 80px;
+}
+
+td span {
+  margin-left: 10px;
+}
+
+td select {
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  margin-left: 30px;
+  padding: 15px;
+  width: 40%;
+}
+
+.addItem textarea {
+  resize: none;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 30px;
+  padding: 15px;
+  width: 90%;
+  height: 110px;
+  outline: none;
+}
+
+.submit-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.submit-btn button,
+.submit-btn input {
+  border: none;
+  padding: 18px 30px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 7px;
+}
+
+.submit-btn input {
+  background: #273270;
+  color: #fff;
+}
+
+.submit-btn .list-btn {
+  background-color: rgba(66, 66, 66, 0.527);
+  color: #95afb7;
+  padding: 18px 30px;
+}
+
+.submit-btn button a {
+  color: #fff;
+}
