@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { faTruck } from '@fortawesome/free-solid-svg-icons';
 import { faTags } from '@fortawesome/free-solid-svg-icons';
-
+import { faSquarePlus } from '@fortawesome/free-regular-svg-icons';
+import { faSquareMinus } from '@fortawesome/free-regular-svg-icons';
 const topnavstyle = {
   margin: '0 0 0 15px',
   color: '#27336F',
@@ -19,6 +20,9 @@ const tags = {
   margin: '0 10px 0 0',
   color: 'red',
 };
+// const plusminus = {
+//   font-size: ''
+// };
 function Detail() {
   return (
     <div className='detail-con'>
@@ -31,38 +35,42 @@ function Detail() {
       </div>
       <div className='right-pay-sticky'>
         <h3>비슷한 상품</h3>
-
-        <ul>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-          <li>투명젤리 케이스</li>
-        </ul>
-
+        <div className='similar-item'>
+          <ul>
+            <li>투명젤리 케이스</li>
+            <li>투명젤리 케이스</li>
+            <li>투명젤리 케이스</li>
+            <li>투명젤리 케이스</li>
+            <li>투명젤리 케이스</li>
+          </ul>
+        </div>
         <div className='cartorpay'>
           <div className='howmayprice'>
-            <p> 총 0개 </p>
-            <h2>0원</h2>
+            <div className='detail-howmany'>
+              <button>
+                <FontAwesomeIcon
+                  icon={faSquareMinus}
+                  style={{ fontSize: '30px' }}
+                />
+              </button>
+              <span className='spanmany'>1</span>
+              <button>
+                <FontAwesomeIcon
+                  icon={faSquarePlus}
+                  style={{ fontSize: '30px' }}
+                />
+              </button>
+            </div>
+            <div></div>
+            <h2 className='detail-price'>3980원</h2>
           </div>
-          <div>
-            <p>적용가능한 쿠폰 없음</p> <button>쿠폰 변경</button>
+          <div className='coupon-wrap'>
+            <p className='detail-coupon'>적용가능한 쿠폰 없음</p>
+            <button className='coupon-btn'>쿠폰 변경</button>
           </div>
           <div>
             <p>무료배송</p>
+            <button className='freedel-btn'>?</button>
           </div>
           <div>
             <button className='detail-cart'>장바구니</button>
@@ -126,7 +134,7 @@ function Detail() {
           <div>Q&A</div>
           <div>판매자정보</div>
         </navigator>
-        <table>
+        <table className='detail-table'>
           <tr>
             <td>상품상태</td>
             <td>새상품</td>
@@ -147,21 +155,17 @@ function Detail() {
           </tr>
           <tr>
             <td>제조일자/유효기간 </td>
-            <td>판매자에게 문의</td>
-            <td> </td>
-            <td></td>
+            <td colSpan={3}>판매자에게 문의</td>
           </tr>
           <tr>
             <td>A/S안내</td>
-            <td>
+            <td colSpan={3}>
               010-7655-5695 상담시간 : 13:00 ~ 17:00 (통화가 어려울 경우
               톡톡으로 메시지 남겨주세요.) 구매 후 7일 이내 교환 또는 반품이
               가능합니다. 제품 수령 후 포장제 및 상품의 가치가 훼손된 경우 반품
               또는 교환이 불가합니다. 주문 제작 상품의 경우 단순 변심에 의한
               반품, 교환이 불가합니다.
             </td>
-            <td></td>
-            <td></td>
           </tr>
         </table>
       </div>
