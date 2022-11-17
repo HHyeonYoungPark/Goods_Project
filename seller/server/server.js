@@ -18,6 +18,7 @@ const db = mysql.createConnection({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
+  dateStrings: "date",
 });
 
 // db.connect
@@ -150,9 +151,7 @@ app.get("/mypage", (req, res) => {
 });
 
 // 상품등록
-app.post("/addItem", upload.single("itemImage"), (req, res) => {
-  console.log("ㅆㅂ");
-  console.log(req.file);
+app.post("/addItem", upload.single("attach"), (req, res) => {
   const { itemname } = req.body;
   const { category } = req.body;
   const { price } = req.body;

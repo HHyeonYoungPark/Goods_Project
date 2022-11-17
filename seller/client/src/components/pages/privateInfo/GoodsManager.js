@@ -71,12 +71,12 @@ function GoodsManager() {
             </tr>
             {items.map((item, key) => {
               return (
-                <tr key={key} className="itemList">
+                <tr key={key}>
                   <td>{item.idx}</td>
-                  <td>
+                  <td style={{ height: "80px" }}>
                     <img
-                      src={item.itemImage}
-                      alt={item.itemImage}
+                      src={item.attach}
+                      alt={item.attach}
                       className="itemImage"
                     />
                   </td>

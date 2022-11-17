@@ -9,7 +9,7 @@ function AddItem() {
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
-  const [itemImage, setItemImage] = useState("");
+  const [attach, setAttach] = useState("");
   const [contents, setContents] = useState("");
   const [madein, setMadein] = useState("");
 
@@ -23,7 +23,7 @@ function AddItem() {
     formData.append("category", category);
     formData.append("price", price);
     formData.append("stock", stock);
-    formData.append("itemImage", itemImage);
+    formData.append("attach", attach);
     formData.append("contents", contents);
     formData.append("madein", madein);
 
@@ -112,10 +112,10 @@ function AddItem() {
                   <input
                     className="itemImage"
                     type="file"
-                    name="itemImage"
+                    name="attach"
                     multiple
                     onChange={(e) => {
-                      setItemImage(e.target.files[0]);
+                      setAttach(e.target.files[0]);
                     }}
                   />
                 </td>
