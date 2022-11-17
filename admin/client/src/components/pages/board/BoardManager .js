@@ -71,7 +71,6 @@ function BoardManager() {
                 <td>비고</td>
               </tr>
             
-              
                 {
                   boardlist.map((b, key) => {
                     return(
@@ -89,8 +88,7 @@ function BoardManager() {
                     )
                   })
                 }
-              
-            
+
           </table>
         </div>
       </div>
