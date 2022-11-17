@@ -15,32 +15,32 @@ function Navbar() {
       <div className="nav-wrap">
         <div className="Lnav-wrap">
           <div className="make">
-            <Link to="/makeItem">
-              <span>상품제작</span>
+            <Link to="/tableGallary">
+              <span>전체상품</span>
               <FontAwesomeIcon icon={faLightbulb} />
             </Link>
           </div>
           <div>
-            <Link to="/addItem">
-              <span>상품등록</span>
+            <Link to="/">
+              <span>신상품</span>
               <FontAwesomeIcon icon={faSquarePlus} />
             </Link>
           </div>
           <div>
-            <Link to="/order">
-              <span>주문현황</span>
+            <Link to="/">
+              <span>베스트</span>
               <FontAwesomeIcon icon={faCalculator} />
+            </Link>
+          </div>
+          <div>
+            <Link to="/cart">
+              <span>장바구니</span> <FontAwesomeIcon icon={faEye} />
             </Link>
           </div>
           <div>
             <Link to="/notice">
               <span>공지사항</span>
               <FontAwesomeIcon icon={faBullhorn} />
-            </Link>
-          </div>
-          <div>
-            <Link to="/viewOthers">
-              <span>둘러보기</span> <FontAwesomeIcon icon={faEye} />
             </Link>
           </div>
         </div>

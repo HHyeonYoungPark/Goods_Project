@@ -38,6 +38,7 @@
   z-index: 1;
   opacity: 1;
   padding: 15px 0;
+  overflow-y: hidden;
 }
 .search-bar__input {
   width: 300px;
@@ -56,5 +57,5 @@
 }
 
 .fa-search {
-  font-size: 15px;
+  font-size: 18px;
 }

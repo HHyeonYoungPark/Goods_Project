@@ -16,7 +16,7 @@ function Header({ token, userId }) {
       </div>
       <div className="search-bar">
         <input type="text" className="search-bar__input" />
-        <FontAwesomeIcon icon={faMagnifyingGlass} />
+        <FontAwesomeIcon icon={faMagnifyingGlass} className="fa-search" />
       </div>
       <div className="R-head">
         {!token && (

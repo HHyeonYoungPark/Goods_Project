@@ -25,7 +25,7 @@ function AdminPage({ userId }) {
                 <Link to="goodsManager">상품 관리</Link>
               </li>
               <li>
-                <Link to="">주문 관리</Link>
+                <Link to="order">주문 관리</Link>
               </li>
               <li>
                 <Link to="">이벤트 관리</Link>

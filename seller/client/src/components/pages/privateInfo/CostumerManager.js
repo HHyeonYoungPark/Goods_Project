@@ -13,9 +13,7 @@ function CostumerManager() {
       <div className="table-List">
         <h1>고객 회원관리</h1>
         <div className="table-List-top">
-          <div className="top-left">
-            <Link onClick={onClick}>판매자 회원관리</Link>
-          </div>
+          <div className="top-left"></div>
           <div className="top-right">
             <div className="search-wrap">
               <form method="get" action="/member/userSearch" id="frm">
