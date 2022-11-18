@@ -20,6 +20,11 @@ const View = () => {
       await axios.get("http://localhost:4001/view?boardName="+boardName+"&idx="+idx)
         .then((res) =>{
           setView(res.data[0]);
+          setTitle(res.data[0].title);
+          setWriter(res.data[0].writer);
+          setPasswd(res.data[0].passwd);
+          setContents(res.data[0].contents);
+          setImg(res.data[0].image);
         });
     }
     getView();
@@ -34,7 +39,7 @@ const View = () => {
     formData.append("contents", contents);
     formData.append("img", img);
 
-    await axios.put("http://localhost:4001/update?boardName="+boardName+"&?idx="+idx, formData)
+    await axios.put("http://localhost:4001/update?boardName="+boardName+"&idx="+idx, formData)
       .then((response) => {
         if(response.data.status === 201){
           window.alert(response.data.message);
@@ -50,19 +55,19 @@ const View = () => {
         <table>
           <tr>
             <th>Title</th>
-            <td><input type="text" name="title" value={view.title} onChange={(e) => setTitle(e.target.value)} /></td>
+            <td><input type="text" name="title" value={title} onChange={(e) => setTitle(e.target.value)} /></td>
           </tr>
           <tr>
             <th>Writer</th>
-            <td><input type="text" name="writer" value={view.writer} onChange={(e) => setWriter(e.target.value)} /></td>
+            <td><input type="text" name="writer" value={writer} onChange={(e) => setWriter(e.target.value)} /></td>
           </tr>
           <tr>
             <th>Password</th>
-            <td><input type="password" name="passwd" value={view.passwd} onChange={(e) => setPasswd(e.target.value)} /></td>
+            <td><input type="password" name="passwd" value={passwd} onChange={(e) => setPasswd(e.target.value)} /></td>
           </tr>
           <tr>
             <th>Content</th>
-            <td><textarea rows="20" cols="100" name="contents" value={view.contents} onChange={(e) => setContents(e.target.value)}></textarea></td>
+            <td><textarea rows="20" cols="100" name="contents" value={contents} onChange={(e) => setContents(e.target.value)}></textarea></td>
           </tr>
           <tr>
             <th>Image</th>

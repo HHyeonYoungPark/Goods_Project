@@ -395,12 +395,14 @@ app.get("/view", (req, res) => {
   });
 });
 
-app.put("/update", (req, res) => {
+app.put("/update", upload.single("img"), (req, res) => {
+  console.log(req.body);
+  console.log(req.query);
   const { title, writer, passwd, contents } = req.body;
   const { filename } = req.file;
 
   let sql = "update board" + req.query.boardName + " set title=?, writer=?, passwd=?, contents=?, image=? where idx = ?";
-  db.query(sql, [title, writer, passwd, contents, filename, req.query.idx], (err, result) => {
+  db.query(sql, [title, writer, passwd, contents, filename, req.query.idx], (err) => {
     if (err) {
       throw err;
     } else {
