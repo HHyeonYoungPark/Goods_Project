@@ -371,16 +371,25 @@ app.post("/write", (req, res) => {
   });
 });
 
-app.get("/view", (req, res) => {
-  let sql = "select * from board" + req.query.boardName + " where idx = ?";
-  db.query(sql, [req.query.idx], (err, result) => {
-    if (err) {
-      throw err;
-    } else {
-      res.send(result);
-    }
-  });
+// app.get("/view", (req, res) => {
+//   let sql = "select * from board" + req.query.boardName + " where idx = ?";
+//   db.query(sql, [req.query.idx], (err, result) => {
+//     if (err) {
+//       throw err;
+//     } else {
+//       res.send(result);
+//     }
+//   });
+// });
+
+app.delete("/board/delete/:boardIdx", (req, res) => {
+  let sql = "DELETE FROM boardManager WHERE boardIdx = ?;";
+  db.query(sql, [req.params.boardIdx], (err) => {
+    if(err) throw err;
+    res.send({status:201, message:'게시판 삭제 완료'});
+  })
 });
+
 // 다중게시판
 
 // port

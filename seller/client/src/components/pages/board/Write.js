@@ -20,7 +20,7 @@ const Write = () => {
       .then((response) => {
         if(response.data.status === 201){
           window.alert(response.data.message);
-          navigate("/board/"+boardName);
+          navigate("/adminPage/board/"+boardName);
         }
       })
   }
@@ -29,12 +29,31 @@ const Write = () => {
     <div>
       <form method="post" className="frm" onSubmit={frmHandler}>
         <input type="hidden" value={boardName}/>
-        title<input type="text" className="title" onChange={(e) => setTitle(e.target.value)}/><br/>
-        writer<input type="text" className="writer" onChange={(e) => setWriter(e.target.value)}/><br/>
-        passwd<input type="text" className="passwd" onChange={(e) => setPasswd(e.target.value)}/><br/>
-        content<input type="text" className="content" onChange={(e) => setContent(e.target.value)}/><br/>
-        img<input type="text" className="img" onChange={(e) => setImg(e.target.files[0])}/><br/>
-        <input type="submit" value="Write" />
+        <table>
+          <tr>
+            <th>Title</th>
+            <td><input type="text" className="title" onChange={(e) => setTitle(e.target.value)}/></td>
+          </tr>
+          <tr>
+            <th>Writer</th>
+            <td><input type="text" className="writer" onChange={(e) => setWriter(e.target.value)}/></td>
+          </tr>
+          <tr>
+            <th>Password</th>
+            <td><input type="password" className="passwd" onChange={(e) => setPasswd(e.target.value)}/></td>
+          </tr>
+          <tr>
+            <th>Content</th>
+            <td><textarea rows="20" cols="100" className="content" onChange={(e) => setContent(e.target.value)}></textarea></td>
+          </tr>
+          <tr>
+            <th>Image</th>
+            <td><input type="file" className="img" onChange={(e) => setImg(e.target.files[0])}/></td>
+          </tr>
+          <tr>
+            <td colSpan="2"><input type="submit" value="Write" /></td>
+          </tr>
+        </table>
       </form>
     </div>
   )

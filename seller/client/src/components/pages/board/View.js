@@ -23,15 +23,30 @@ const View = () => {
 
   return (
     <div>
-      
-        <input type="hidden" />
-        title<input type="text" className="title" value={view.title} /><br/>
-        writer<input type="text" className="writer" value={view.writer} /><br/>
-        passwd<input type="text" className="passwd" value={view.passwd} /><br/>
-        content<input type="text" className="content" value={view.content} /><br/>
-        img<input type="text" className="img" /><br/>
-      
-    </div>
+      <input type="hidden" value={view.idx}/>
+      <table>
+        <tr>
+          <th>Title</th>
+          <td><input type="text" className="title" value={view.title} /></td>
+        </tr>
+        <tr>
+          <th>Writer</th>
+          <td><input type="text" className="writer" value={view.writer} /></td>
+        </tr>
+        <tr>
+          <th>Password</th>
+          <td><input type="password" className="passwd" value={view.passwd} /></td>
+        </tr>
+        <tr>
+          <th>Content</th>
+          <td><textarea rows="20" cols="100" className="content">{view.content}</textarea></td>
+        </tr>
+        <tr>
+          <th>Image</th>
+          <td><input type="file" className="img" /></td>
+        </tr>
+      </table>
+   </div>
   )
 }
 
