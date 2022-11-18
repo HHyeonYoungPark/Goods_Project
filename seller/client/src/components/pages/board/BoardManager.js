@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Modal from "react-modal"
+import Modal from "react-modal";
 
-import BoardModify from "./BoardModify"
+import BoardModify from "./BoardModify";
 import Paging from "../../function/Paging";
 
 function BoardManager() {
@@ -54,10 +54,23 @@ function BoardManager() {
       zIndex: 10,
     },
   };
+  
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const navigate = useNavigate();
   
+  useEffect(() => {
+    const getBoardlist = async () => {
+      await axios.get("http://localhost:4001/boardlist?page="+page+"&offset="+offset+"&select="+select+"&searchQuery="+keyword).then((res) => {
+        setBoardlist(res.data.lists);
+        setPage(res.data.page);
+        setPages(res.data.totalPageNum);
+        setRows(res.data.totalRows);
+      });
+    };
+    getBoardlist();
+  }, [page, keyword]);
+
   async function frmHandler(e) {
     e.preventDefault();
     const data = {boardCode, boardCategory, boardName, boardBuilder, boardReadAllow, boardWriteAllow, boardCommentAllow, boardModifyAllow}
@@ -65,23 +78,17 @@ function BoardManager() {
       .then((response) => {
         if(response.data.status === 201){
           window.alert(response.data.message);
-          navigate("/AdminPage/boardManager");
+          window.location.replace("/AdminPage/boardManager");
         }
       })
   }
 
-  const getBoardlist = async () => {
-    await axios.get("http://localhost:4001/boardlist?page="+page+"&offset="+offset+"&select="+select+"&searchQuery="+keyword).then((res) => {
-      setBoardlist(res.data.lists);
-        setPage(res.data.page);
-        setPages(res.data.totalPageNum);
-        setRows(res.data.totalRows);
-    });
-  };
-
-  useEffect(() => {
-    getBoardlist();
-  }, [page, keyword]);
+  const boardSearch = (e) => {
+    e.preventDefault();
+    setKeyword(searchWords);
+    setPage(0);
+    setSearchWords("");
+  }
 
   const changePage = (page) => {
     setPage(page);
@@ -90,13 +97,6 @@ function BoardManager() {
     }else{
       setMsg("");
     }
-  }
-
-  const boardSearch = (e) => {
-    e.preventDefault();
-    setKeyword(searchWords);
-    setPage(0);
-    setSearchWords("");
   }
 
   return (
@@ -161,10 +161,10 @@ function BoardManager() {
                       name="boardReadAllow"
                       onChange={(e) => setBoardReadAllow(e.target.value)}
                     >
-                      <option value="0">All</option>
-                      <option value="1">logined</option>
-                      <option value="2">seller or admin</option>
-                      <option value="3">admin only</option>
+                      <option value="1" selected>All</option>
+                      <option value="2">logined</option>
+                      <option value="3">seller or admin</option>
+                      <option value="4">admin only</option>
                     </select>
                   </td>
                   <td>쓰기 권한</td>
@@ -175,10 +175,10 @@ function BoardManager() {
                       name="boardWriteAllow"
                       onChange={(e) => setBoardWriteAllow(e.target.value)}
                     >
-                      <option value="0">All</option>
-                      <option value="1">logined</option>
-                      <option value="2">seller or admin</option>
-                      <option value="3">admin only</option>
+                      <option value="1" selected>All</option>
+                      <option value="2">logined</option>
+                      <option value="3">seller or admin</option>
+                      <option value="4">admin only</option>
                     </select>
                   </td>
                   <td>댓글 권한</td>
@@ -189,10 +189,10 @@ function BoardManager() {
                       name="boardCommentAllow"
                       onChange={(e) => setBoardCommentAllow(e.target.value)}
                     >
-                      <option value="0">All</option>
-                      <option value="1">logined</option>
-                      <option value="2">seller or admin</option>
-                      <option value="3">admin only</option>
+                      <option value="1" selected>All</option>
+                      <option value="2">logined</option>
+                      <option value="3">seller or admin</option>
+                      <option value="4">admin only</option>
                     </select>
                   </td>
                   <td>수정 권한</td>
@@ -203,10 +203,10 @@ function BoardManager() {
                       name="boardModifyAllow"
                       onChange={(e) => setBoardModifyAllow(e.target.value)}
                     >
-                      <option value="0">All</option>
-                      <option value="1">logined</option>
-                      <option value="2">seller or admin</option>
-                      <option value="3">admin only</option>
+                      <option value="1" selected>All</option>
+                      <option value="2">logined</option>
+                      <option value="3">seller or admin</option>
+                      <option value="4">admin only</option>
                     </select>
                   </td>
                 </tr>
@@ -232,8 +232,8 @@ function BoardManager() {
                     onchange={(e) => setSelect(e.target.value)}
                   >
                     <option value="" selected disabled>선택하세요</option>
-                    <option value="title">제목</option>
-                    <option value="type">타입</option>
+                    <option value="code">코드</option>
+                    <option value="name">제목</option>
                     <option value="category">카테고리</option>
                   </select>
                   <input
@@ -253,17 +253,17 @@ function BoardManager() {
         <div className="tbl-wrap">
           <table>
             <tr>
-              <td>코드</td>
-              <td>카테고리</td>
-              <td>이름</td>
-              <td>읽기 권한</td>
-              <td>쓰기 권한</td>
-              <td>댓글 권한</td>
-              <td>수정 권한</td>
-              <td>생성자</td>
-              <td>생성일</td>
-              <td>수정일</td>
-              <td>비고</td>
+              <th>코드</th>
+              <th>카테고리</th>
+              <th>이름</th>
+              <th>읽기 권한</th>
+              <th>쓰기 권한</th>
+              <th>댓글 권한</th>
+              <th>수정 권한</th>
+              <th>생성자</th>
+              <th>생성일</th>
+              <th>수정일</th>
+              <th>비고</th>
             </tr>
 
             {boardlist.map((b, key) => {
@@ -296,14 +296,9 @@ function BoardManager() {
                         </button>
                       </div>
                     </Modal>
-                    <Link
-                      to="/AdminPage"
-                      onclick="return confirm('게시판을 삭제하시겠습니까?');"
-                    >
-                      <button type="submit" className="upDelBtn">
-                        삭제
-                      </button>
-                    </Link>
+                    <button className="upDelBtn">
+                      삭제
+                    </button>
                   </td>
                 </tr>
               );

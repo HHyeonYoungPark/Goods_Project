@@ -70,10 +70,10 @@ create table boardManager (
   boardCategory varchar(50),
   boardName varchar(50),
   boardBuilder varchar(50),
-  boardReadAllow char(1),
-  boardWriteAllow char(1),
-  boardCommentAllow char(1),
-  boardModifyAllow char(1),
+  boardReadAllow varchar(10),
+  boardWriteAllow varchar(10),
+  boardCommentAllow varchar(10),
+  boardModifyAllow varchar(10),
   createDate date,
   modifyDate date
 );
