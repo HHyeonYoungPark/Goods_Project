@@ -32,7 +32,6 @@ function UpdateItem() {
   useEffect(() => {
     getItem();
   }, []);
-  console.log(item);
 
   async function frmHandler(e) {
     e.preventDefault();
@@ -137,7 +136,7 @@ function UpdateItem() {
                     className="itemImage"
                     type="file"
                     name="attach"
-                    value={`http://localhost:4001/${item.attach}`}
+                    // value={`http://localhost:4001/${item.attach}`}
                     multiple
                     onChange={(e) => {
                       setAttach(e.target.files[0]);

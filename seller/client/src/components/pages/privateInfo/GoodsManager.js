@@ -88,13 +88,17 @@ function GoodsManager() {
                 <tr key={key}>
                   <td>{item.idx}</td>
                   <td style={{ height: "80px" }}>
-                    <img
-                      src={`http://localhost:4001/${item.attach}`}
-                      alt={item.attach}
-                      className="itemImage"
-                    />
+                    <Link to={`/detail/${item.idx}`}>
+                      <img
+                        src={`http://localhost:4001/${item.attach}`}
+                        alt={item.attach}
+                        className="itemImage"
+                      />
+                    </Link>
                   </td>
-                  <td>{item.itemname}</td>
+                  <td>
+                    <Link to={`/detail/${item.idx}`}>{item.itemname}</Link>
+                  </td>
                   <td>{item.price}</td>
                   <td>{item.regdate}</td>
                   <td>

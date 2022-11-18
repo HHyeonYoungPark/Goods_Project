@@ -208,7 +208,7 @@ app.delete("/delete/:idx", (req, res) => {
   });
 });
 
-// 상품 한개불러오기, 수정
+// 상품 한개불러오기
 app.get("/updateItem/:idx", (req, res) => {
   let sql = "SELECT * FROM item WHERE idx = ?;";
   db.query(sql, [req.params.idx], (err, response) => {
@@ -216,11 +216,11 @@ app.get("/updateItem/:idx", (req, res) => {
       throw err;
     }
     res.send(response);
-    console.log(response);
   });
 });
 
-app.put("/updateItem", (req, res) => {
+// 상품 수정
+app.put("/updateItem/:idx", (req, res) => {
   const { itemname, category, price, stock, contents, madein } = req.body;
   const { filename } = req.file;
 
