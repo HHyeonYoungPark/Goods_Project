@@ -41,6 +41,7 @@ import SellerManager from "./components/pages/privateInfo/SellerManager";
 import WriteNotice from "./components/pages/board/WriteNotice";
 import Board from "./components/pages/board/Board";
 import BoardAdd from "./components/pages/board/BoardAdd";
+import BoardUpdate from "./components/pages/board/BoardUpdate";
 import BoardManager from "./components/pages/board/BoardManager";
 import Write from "./components/pages/board/Write";
 import View from "./components/pages/board/View";
@@ -95,6 +96,7 @@ function App() {
 
               <Route path="boardManager" element={<BoardManager />} />
               <Route path="boardAdd" element={<BoardAdd />} />
+              <Route path="boardUpdate/:BoardName" element={<BoardUpdate />} />
               <Route path="board/:boardName" element={<Board />} />
               <Route path="board/:boardName/write" element={<Write />} />
               <Route path="board/:boardName/:idx" element={<View />} />

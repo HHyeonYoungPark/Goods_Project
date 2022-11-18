@@ -43,7 +43,7 @@ const View = () => {
       .then((response) => {
         if(response.data.status === 201){
           window.alert(response.data.message);
-          navigate("/adminPage/board/"+boardName+"/"+idx);
+          navigate("/adminPage/board/"+boardName);
         }
       })
   }

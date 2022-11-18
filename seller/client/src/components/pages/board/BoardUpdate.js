@@ -1,35 +1,58 @@
+import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import React, { useState } from "react";
-import "../../css/pages/Board.css";
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
-function BoardModify(b) {
-  const [board, setBoard] = useState(b);
-  console.log(board.b);
-  const [boardCode, setBoardCode] = useState(board.b.boarCode);
-  const [boardCategory, setBoardCategory] = useState(board.b.boardCategory);
-  const [boardName, setBoardName] = useState(board.b.boardName);
-  const [boardBuilder, setBoardBuilder] = useState(board.b.boardBuilder);  
-  const [boardReadAllow, setBoardReadAllow] = useState(board.b.boardReadAllow);
-  const [boardWriteAllow, setBoardWriteAllow] = useState(board.b.boardWriteAllow);
-  const [boardCommentAllow, setBoardCommentAllow] = useState(board.b.boardCommentAllow);
-  const [boardModifyAllow, setBoardModifyAllow] = useState(board.b.boardModifyAllow);
+function BoardUpdate() {
+  const {BoardName} = useParams();
+  const [boardIdx, setBoardIdx] = useState("");
+  const [boardCode, setBoardCode] = useState("");
+  const [boardCategory, setBoardCategory] = useState("");
+  const [boardName, setBoardName] = useState("");
+  const [boardBuilder, setBoardBuilder] = useState("");  
+  const [boardReadAllow, setBoardReadAllow] = useState("");
+  const [boardWriteAllow, setBoardWriteAllow] = useState("");
+  const [boardCommentAllow, setBoardCommentAllow] = useState("");
+  const [boardModifyAllow, setBoardModifyAllow] = useState("");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const getBoardView = async () => {
+      await axios.get("http://localhost:4001/boardUpdate?boardName="+BoardName)
+        .then((res) =>{
+          console.log(res.data);
+          setBoardIdx(res.data[0].boardIdx);
+          setBoardCode(res.data[0].boardCode);
+          setBoardCategory(res.data[0].boardCategory);
+          setBoardName(res.data[0].boardName);
+          setBoardBuilder(res.data[0].boardBuilder);
+          setBoardReadAllow(res.data[0].boardReadAllow);
+          setBoardWriteAllow(res.data[0].boardWriteAllow);
+          setBoardCommentAllow(res.data[0].boardCommentAllow);
+          setBoardModifyAllow(res.data[0].boardModifyAllow);
+        });
+    }
+    getBoardView();
+  }, []);
 
   async function frmHandler(e) {
     e.preventDefault();
-    const data = {boardCode, boardCategory, boardName, boardBuilder, boardReadAllow, boardWriteAllow, boardCommentAllow, boardModifyAllow}
-    await axios.post("http://localhost:4001/boardUpdate?=boardName="+board.b.boardName, data)
+    const data = {boardIdx, boardCode, boardCategory, boardName, boardBuilder, boardReadAllow, boardWriteAllow, boardCommentAllow, boardModifyAllow}
+    await axios.put("http://localhost:4001/boardUpdate?boardName="+boardName, data)
       .then((response) => {
         if(response.data.status === 201){
           window.alert(response.data.message);
+          navigate("/adminPage/boardManager");
         }
       })
   }
-
+ 
   return (
     <div>
       <form method="post" className="frm" onSubmit={frmHandler}>
         <table>
           <tbody>
+            <input type="hidden" value={boardIdx} />
             <tr>
               <td>게시판 코드</td>
               <td colSpan={3}>
@@ -38,7 +61,7 @@ function BoardModify(b) {
                   id="boardCode"
                   className="boardCode"
                   name="boardCode"
-                  value={boardName}
+                  value={boardCode}
                   onChange={(e) => setBoardCode(e.target.value)}
                 ></input>
               </td>
@@ -149,4 +172,4 @@ function BoardModify(b) {
   );
 }
 
-export default BoardModify;
+export default BoardUpdate;

@@ -294,6 +294,7 @@ function BoardManager() {
                   <td>{b.createDate}</td>
                   <td>{b.modifyDate}</td>
                   <td>
+                    <Link to={"/adminPage/boardUpdate/"+b.boardName}>수정</Link>
                     <button onClick={() => setModalIsOpen(true)}>수정</button>
                     <Modal
                       isOpen={modalIsOpen}

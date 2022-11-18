@@ -362,6 +362,55 @@ app.post("/boardAdd", (req, res) => {
   );
 });
 
+app.get("/boardUpdate", (req, res) => {
+  console.log(req.query);
+  let sql = "select * from boardManager where boardName=?;";
+  db.query(sql, [req.query.boardName], (err, result) => {
+    if(err){
+      throw err;
+    } else {
+      res.send(result);
+    }
+  })
+})
+
+app.put("/boardUpdate", (req, res) => {
+  const {
+    boardCode,
+    boardCategory,
+    boardName,
+    boardBuilder,
+    boardReadAllow,
+    boardWriteAllow,
+    boardCommentAllow,
+    boardModifyAllow,
+    boardIdx,
+  } = req.body;
+  
+  let sql = "update boardManager set boardCode=?, boardCategory=?, boardName=?, boardBuilder=?, boardReadAllow=?, boardWriteAllow=?, boardCommentAllow=?, boardModifyAllow=?, modifyDate=now() where boardIdx = ?";
+  db.query(
+    sql,
+    [
+    boardCode,
+    boardCategory,
+    boardName,
+    boardBuilder,
+    boardReadAllow,
+    boardWriteAllow,
+    boardCommentAllow,
+    boardModifyAllow,
+    boardIdx
+    ],
+    (err) => {
+    if (err) {
+      throw err;
+    } else {
+      console.log("update complete");
+      res.send({ status: 201, message: "게시판 수정 완료" });
+    }
+  });
+});
+
 app.get("/board", (req, res) => {
   // console.log(req.query);
   let sql = "select * from board" + req.query.boardName + " order by idx desc;";
@@ -404,10 +453,10 @@ app.get("/view", (req, res) => {
 });
 
 app.put("/update", upload.single("img"), (req, res) => {
-  console.log(req.body);
-  console.log(req.query);
+  // console.log(req.body);
+  // console.log(req.query);
   const { title, writer, passwd, contents } = req.body;
-  const { filename } = req.file;
+  const { filename } = req.file || "";
 
   let sql = "update board" + req.query.boardName + " set title=?, writer=?, passwd=?, contents=?, image=? where idx = ?";
   db.query(sql, [title, writer, passwd, contents, filename, req.query.idx], (err) => {
