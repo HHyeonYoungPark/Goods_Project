@@ -161,6 +161,17 @@ app.get("/mypage", (req, res) => {
 //   });
 // });
 
+// 관리자페이지에서 상품목록보이기
+app.get("/goodsManager", (req, res) => {
+  let sql = "SELECT * FROM item ORDER BY idx DESC LIMIT 0,10;";
+  db.query(sql, (err, items) => {
+    if (err) {
+      throw err;
+    }
+    res.send(items);
+  });
+});
+
 // 상품등록
 app.post("/addItem", upload.single("attach"), (req, res) => {
   console.log(req.file);
@@ -186,14 +197,14 @@ app.post("/addItem", upload.single("attach"), (req, res) => {
   );
 });
 
-// 관리자페이지에서 상품목록보이기
-app.get("/goodsManager", (req, res) => {
-  let sql = "SELECT * FROM item ORDER BY idx DESC LIMIT 0,10;";
-  db.query(sql, (err, items) => {
+// 상품삭제
+app.delete("/delete/:idx", (req, res) => {
+  let sql = "DELETE FROM item WHERE idx=?;";
+  db.query(sql, [req.params.idx], (err) => {
     if (err) {
       throw err;
     }
-    res.send(items);
+    res.send({ status: 201, message: "상품이 삭제되었습니다." });
   });
 });
 

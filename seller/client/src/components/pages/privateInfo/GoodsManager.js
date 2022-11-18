@@ -5,55 +5,6 @@ import { useEffect, useState } from "react";
 import "../../css/pages/GoodsManager.css";
 
 function GoodsManager() {
-  // const [users, setUsers] = useState([]);
-
-  // async function getAllData() {
-  //   await axios.get("http://localhost:4001/goodsManager").then((response) => {
-  //     setUsers(response.data);
-  //   });
-  // }
-
-  // useEffect(() => {
-  //   getAllData();
-  // }, []);
-
-  // async function deleteItem(id) {
-  //   await axios.delete("/delete/" + id).then((response) => {
-  //     if (response.data.status === 201) {
-  //       window.alert(response.data.message);
-  //       getAllData(); // useEffect 실행하는거랑 같음(새로고침)
-  //     } else {
-  //       window.alert("Delete err");
-  //     }
-  //   });
-  // }
-
-  // return (
-  //   <>
-  //     <h2>전체 사원수 : {users.length}명</h2>
-  //     <div className="wrapper">
-  //       {users.length > 0
-  //         ? users.map((user, key) => {
-  //             console.log(users);
-  //             return (
-  //               <div className="box" key={key}>
-  //                 <h5>{user.itemname}</h5>
-  //                 <img src={user.attach} alt={user.attach} />
-  //                 <h3>{user.contents}</h3>
-  //                 <h4>{user.idx}</h4>
-  //                 <h5>{user.regdate}</h5>
-  //                 <p>
-  //                   <button>수정</button>
-  //                   <button onClick={() => deleteItem(user.id)}>삭제</button>
-  //                 </p>
-  //               </div>
-  //             );
-  //           })
-  //         : "등록된 정보가 없습니다."}
-  //     </div>
-  //   </>
-  // );
-
   const [items, setItems] = useState([]);
 
   async function goodsManager() {
@@ -65,6 +16,19 @@ function GoodsManager() {
   useEffect(() => {
     goodsManager();
   }, []);
+
+  async function deleteItem(idx) {
+    await axios
+      .delete("http://localhost:4001/delete/" + idx)
+      .then((response) => {
+        if (response.data.status === 201) {
+          window.alert(response.data.message);
+          goodsManager();
+        } else {
+          window.alert("상품삭제 에러");
+        }
+      });
+  }
 
   return (
     <div className="goodsManager-container">
@@ -142,7 +106,10 @@ function GoodsManager() {
                       to=""
                       onclick="return confirm('상품을 삭제하시겠습니까?');"
                     >
-                      <button type="submit" className="upDelBtn">
+                      <button
+                        className="upDelBtn"
+                        onClick={() => deleteItem(item.idx)}
+                      >
                         삭제
                       </button>
                     </Link>
