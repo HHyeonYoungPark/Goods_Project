@@ -274,7 +274,7 @@ app.post("/boardAdd", (req, res) => {
     boardReadAllow,
     boardWriteAllow,
     boardCommentAllow,
-    boardModifyAllow,
+    boardModifyAllow
   } = req.body;
   let sql =
     "INSERT INTO boardManager VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, now(), now());";
@@ -288,7 +288,7 @@ app.post("/boardAdd", (req, res) => {
       boardReadAllow,
       boardWriteAllow,
       boardCommentAllow,
-      boardModifyAllow,
+      boardModifyAllow
     ],
     (err) => {
       if (err) {

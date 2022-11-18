@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Modal from "react-modal"
+
+import BoardModify from "./BoardModify"
 import Paging from "../../function/Paging";
 
 function BoardManager() {
@@ -24,6 +27,34 @@ function BoardManager() {
   const [searchWords, setSearchWords] = useState("");
   const [keyword, setKeyword] = useState("");
   const [msg, setMsg] = useState("");
+
+  // 모달 스타일
+  const styleModal = {
+    overlay: {
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: "rgba(255, 255, 255, 0.8)",
+      zIndex: 10,
+    },
+    content: {
+      display: "flex",
+      justifyContent: "center",
+      background: "#ffffe7",
+      overflow: "auto",
+      top: "30vh",
+      left: "25vw",
+      right: "25vw",
+      bottom: "30vh",
+      WebkitOverflowScrolling: "touch",
+      borderRadius: "14px",
+      outline: "none",
+      zIndex: 10,
+    },
+  };
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const navigate = useNavigate();
   
@@ -243,19 +274,28 @@ function BoardManager() {
                   <td>
                     <Link to={"/board/" + b.boardName}>{b.boardName}</Link>
                   </td>
-                  <td>{b.readAllow}</td>
-                  <td>{b.writeAllow}</td>
-                  <td>{b.commentAllow}</td>
-                  <td>{b.modifyAllow}</td>
+                  <td>{b.boardReadAllow}</td>
+                  <td>{b.boardWriteAllow}</td>
+                  <td>{b.boardCommentAllow}</td>
+                  <td>{b.boardModifyAllow}</td>
                   <td>{b.boardBuilder}</td>
                   <td>{b.createDate}</td>
                   <td>{b.modifyDate}</td>
                   <td>
-                    <Link to="/AdminPage">
-                      <button type="submit" className="upDelBtn">
-                        수정
-                      </button>
-                    </Link>
+                    <button onClick={() => setModalIsOpen(true)}>수정</button>
+                    <Modal
+                      isOpen={modalIsOpen}
+                      style={styleModal}
+                      onRequestClose={() => setModalIsOpen(false)}
+                    >
+                      <div className="modalModify">
+                        <h2>게시판 수정</h2>
+                        <BoardModify className="tableModify" />
+                        <button className="modifyDone" onClick={() => setModalIsOpen(false)}>
+                          수정 완료
+                        </button>
+                      </div>
+                    </Modal>
                     <Link
                       to="/AdminPage"
                       onclick="return confirm('게시판을 삭제하시겠습니까?');"
