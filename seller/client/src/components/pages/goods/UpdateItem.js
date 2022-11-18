@@ -1,9 +1,12 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function UpdateItem() {
+  const [item, setItem] = useState("");
+  const { idx } = useParams();
+
   const [itemname, setItemname] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
@@ -13,6 +16,23 @@ function UpdateItem() {
   const [madein, setMadein] = useState("");
 
   const navigate = useNavigate();
+
+  async function getItem() {
+    await axios.get("http://localhost:4001/updateItem/" + idx).then((res) => {
+      setItem(res.data[0]);
+      setItemname(res.data[0].itemname);
+      setCategory(res.data[0].category);
+      setPrice(res.data[0].price);
+      setStock(res.data[0].stock);
+      setAttach(res.data[0].attach);
+      setContents(res.data[0].contents);
+      setMadein(res.data[0].madein);
+    });
+  }
+  useEffect(() => {
+    getItem();
+  }, []);
+  console.log(item);
 
   async function frmHandler(e) {
     e.preventDefault();
@@ -27,13 +47,13 @@ function UpdateItem() {
     formData.append("madein", madein);
 
     await axios
-      .post("http://localhost:4001/updateItem", formData)
+      .put("http://localhost:4001/updateItem/" + idx, formData)
       .then((response) => {
         if (response.data.status === 201) {
           window.alert(response.data.message);
           navigate("/AdminPage/goodsManager");
         } else {
-          window.alert("상품수정 실패!");
+          window.alert("상품등록 실패!");
           navigate("/AdminPage/goodsManager");
         }
       });
@@ -43,11 +63,12 @@ function UpdateItem() {
     <div className="addItem-comtainer">
       <div className="addItem-wrap">
         <div className="addItem-title">
-          <h1>상품등록</h1>
+          <h1>상품 수정</h1>
         </div>
         <form method="post" encType="multipart/form-data" onSubmit={frmHandler}>
+          <input type="hidden" value={item.idx} />
           <div className="addItem">
-            <h3>상품 기본정보 입력</h3>
+            <h3>상품 기본정보 수정</h3>
             <table>
               <tr>
                 <th>상품명</th>
@@ -55,6 +76,7 @@ function UpdateItem() {
                   <input
                     type="text"
                     name="itemname"
+                    value={itemname}
                     onChange={(e) => {
                       setItemname(e.target.value);
                     }}
@@ -66,6 +88,7 @@ function UpdateItem() {
                 <td>
                   <select
                     name="category"
+                    value={category}
                     onChange={(e) => {
                       setCategory(e.target.value);
                     }}
@@ -86,6 +109,7 @@ function UpdateItem() {
                     type="text"
                     name="price"
                     placeholder="'원' 제외"
+                    value={price}
                     onChange={(e) => {
                       setPrice(e.target.value);
                     }}
@@ -99,6 +123,7 @@ function UpdateItem() {
                     type="text"
                     name="stock"
                     placeholder="'개' 제외"
+                    value={stock}
                     onChange={(e) => {
                       setStock(e.target.value);
                     }}
@@ -112,6 +137,7 @@ function UpdateItem() {
                     className="itemImage"
                     type="file"
                     name="attach"
+                    value={`http://localhost:4001/${item.attach}`}
                     multiple
                     onChange={(e) => {
                       setAttach(e.target.files[0]);
@@ -125,6 +151,7 @@ function UpdateItem() {
                   <textarea
                     name="contents"
                     className="item-contents"
+                    value={contents}
                     onChange={(e) => {
                       setContents(e.target.value);
                     }}
@@ -137,6 +164,7 @@ function UpdateItem() {
                   <input
                     type="text"
                     name="madein"
+                    value={madein}
                     onChange={(e) => {
                       setMadein(e.target.value);
                     }}
@@ -149,7 +177,7 @@ function UpdateItem() {
             <button className="list-btn">
               <Link to="/AdminPage/goodsManager">돌아가기</Link>
             </button>
-            <input type="submit" value="상품등록" />
+            <input type="submit" value="상품 수정" />
           </div>
         </form>
       </div>
