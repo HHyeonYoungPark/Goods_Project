@@ -209,13 +209,14 @@ app.delete("/delete/:idx", (req, res) => {
 });
 
 // 상품 한개불러오기, 수정
-app.get("/updateItem", (req, res) => {
+app.get("/updateItem:idx", (req, res) => {
   let sql = "SELECT * FROM item WHERE idx = ?;";
   db.query(sql, [req.params.idx], (err, response) => {
     if (err) {
       throw err;
     }
     res.send(response);
+    console.log(response);
   });
 });
 
@@ -249,9 +250,10 @@ app.put("/updateItem", (req, res) => {
     }
   );
 });
+
 //상품 상세보기
-app.get('/detail/:idx', (req, res) => {
-  let sql = 'select * from item where idx =?;';
+app.get("/detail/:idx", (req, res) => {
+  let sql = "select * from item where idx =?;";
   db.query(sql, [req.params.idx], (err, response) => {
     if (err) {
       throw err;

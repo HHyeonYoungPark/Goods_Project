@@ -1,9 +1,12 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function UpdateItem({ upItem }) {
+function UpdateItem() {
+  const [item, setItem] = useState("");
+  const { idx } = useParams();
+
   const [itemname, setItemname] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
@@ -12,13 +15,58 @@ function UpdateItem({ upItem }) {
   const [contents, setContents] = useState("");
   const [madein, setMadein] = useState("");
 
+  const navigate = useNavigate();
+
+  async function getItem() {
+    await axios.get("http://localhost:4001/updateItem/" + idx).then((res) => {
+      setItem(res.data[0]);
+      setItemname(res.data[0].itemname);
+      setCategory(res.data[0].category);
+      setPrice(res.data[0].price);
+      setStock(res.data[0].stock);
+      setAttach(res.data[0].attach);
+      setContents(res.data[0].contents);
+      setMadein(res.data[0].madein);
+    });
+  }
+  useEffect(() => {
+    getItem();
+  }, []);
+  console.log(item);
+
+  async function frmHandler(e) {
+    e.preventDefault();
+    let formData = new FormData();
+
+    formData.append("itemname", itemname);
+    formData.append("category", category);
+    formData.append("price", price);
+    formData.append("stock", stock);
+    formData.append("attach", attach);
+    formData.append("contents", contents);
+    formData.append("madein", madein);
+
+    await axios
+      .put("http://localhost:4001/updateItem/" + idx, formData)
+      .then((response) => {
+        if (response.data.status === 201) {
+          window.alert(response.data.message);
+          navigate("/AdminPage/goodsManager");
+        } else {
+          window.alert("상품등록 실패!");
+          navigate("/AdminPage/goodsManager");
+        }
+      });
+  }
+
   return (
     <div className="addItem-comtainer">
       <div className="addItem-wrap">
         <div className="addItem-title">
           <h1>상품 수정</h1>
         </div>
-        <form method="post" encType="multipart/form-data">
+        <form method="post" encType="multipart/form-data" onSubmit={frmHandler}>
+          <input type="hidden" value={item.idx} />
           <div className="addItem">
             <h3>상품 기본정보 수정</h3>
             <table>
@@ -28,7 +76,7 @@ function UpdateItem({ upItem }) {
                   <input
                     type="text"
                     name="itemname"
-                    // value={upItem.itemname}
+                    value={itemname}
                     onChange={(e) => {
                       setItemname(e.target.value);
                     }}
@@ -40,7 +88,7 @@ function UpdateItem({ upItem }) {
                 <td>
                   <select
                     name="category"
-                    // value={upItem.category}
+                    value={category}
                     onChange={(e) => {
                       setCategory(e.target.value);
                     }}
@@ -61,7 +109,7 @@ function UpdateItem({ upItem }) {
                     type="text"
                     name="price"
                     placeholder="'원' 제외"
-                    // value={upItem.price}
+                    value={price}
                     onChange={(e) => {
                       setPrice(e.target.value);
                     }}
@@ -75,7 +123,7 @@ function UpdateItem({ upItem }) {
                     type="text"
                     name="stock"
                     placeholder="'개' 제외"
-                    // value={upItem.stock}
+                    value={stock}
                     onChange={(e) => {
                       setStock(e.target.value);
                     }}
@@ -89,7 +137,7 @@ function UpdateItem({ upItem }) {
                     className="itemImage"
                     type="file"
                     name="attach"
-                    // value={upItem.attach}
+                    value={`http://localhost:4001/${item.attach}`}
                     multiple
                     onChange={(e) => {
                       setAttach(e.target.files[0]);
@@ -103,7 +151,7 @@ function UpdateItem({ upItem }) {
                   <textarea
                     name="contents"
                     className="item-contents"
-                    // value={upItem.contents}
+                    value={contents}
                     onChange={(e) => {
                       setContents(e.target.value);
                     }}
@@ -116,7 +164,7 @@ function UpdateItem({ upItem }) {
                   <input
                     type="text"
                     name="madein"
-                    // value={upItem.madein}
+                    value={madein}
                     onChange={(e) => {
                       setMadein(e.target.value);
                     }}
