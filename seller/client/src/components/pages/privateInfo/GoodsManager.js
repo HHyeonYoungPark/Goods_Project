@@ -88,7 +88,7 @@ function GoodsManager() {
                   <td>{item.idx}</td>
                   <td style={{ height: "80px" }}>
                     <img
-                      src={item.attach}
+                      src={`http://localhost:4001/${item.attach}`}
                       alt={item.attach}
                       className="itemImage"
                     />
