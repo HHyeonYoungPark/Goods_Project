@@ -84,7 +84,7 @@ function BoardManager() {
       })
   }
 
-  async function deleteList(boardIdx) {
+  async function deleteBoard(boardIdx) {
     await axios.delete("http://localhost:4001/board/delete/" + boardIdx).then((res) => {
       if(res.data.status === 201) {
         window.alert(res.data.message);
@@ -173,7 +173,7 @@ function BoardManager() {
                       name="boardReadAllow"
                       onChange={(e) => setBoardReadAllow(e.target.value)}
                     >
-                      <option value="1" selected>All</option>
+                      <option value="1" selected >All</option>
                       <option value="2">logined</option>
                       <option value="3">seller or admin</option>
                       <option value="4">admin only</option>
@@ -187,7 +187,7 @@ function BoardManager() {
                       name="boardWriteAllow"
                       onChange={(e) => setBoardWriteAllow(e.target.value)}
                     >
-                      <option value="1" selected>All</option>
+                      <option value="1" selected >All</option>
                       <option value="2">logined</option>
                       <option value="3">seller or admin</option>
                       <option value="4">admin only</option>
@@ -201,7 +201,7 @@ function BoardManager() {
                       name="boardCommentAllow"
                       onChange={(e) => setBoardCommentAllow(e.target.value)}
                     >
-                      <option value="1" selected>All</option>
+                      <option value="1" selected >All</option>
                       <option value="2">logined</option>
                       <option value="3">seller or admin</option>
                       <option value="4">admin only</option>
@@ -215,7 +215,7 @@ function BoardManager() {
                       name="boardModifyAllow"
                       onChange={(e) => setBoardModifyAllow(e.target.value)}
                     >
-                      <option value="1" selected>All</option>
+                      <option value="1" selected >All</option>
                       <option value="2">logined</option>
                       <option value="3">seller or admin</option>
                       <option value="4">admin only</option>
@@ -308,7 +308,7 @@ function BoardManager() {
                         </button>
                       </div>
                     </Modal>
-                    <button className="upDelBtn" onClick={() => deleteList(b.boardIdx)}>삭제</button>
+                    <button className="upDelBtn" onClick={() => deleteBoard(b.boardIdx)}>삭제</button>
                   </td>
                 </tr>
               );

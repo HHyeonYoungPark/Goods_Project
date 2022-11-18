@@ -209,7 +209,7 @@ app.delete("/delete/:idx", (req, res) => {
 });
 
 // 상품 수정
-app.get("/updateItem/:idx", (req, res) => {
+app.get("/updateItem", (req, res) => {
   let sql = "SELECT * FROM item WHERE idx = ?;";
   db.query(sql, [req.params.idx], (err, response) => {
     if (err) {
@@ -368,11 +368,13 @@ app.get("/board", (req, res) => {
   });
 });
 
-app.post("/write", (req, res) => {
-  const { boardName, title, writer, passwd, contents, image } = req.body;
+app.post("/write", upload.single("img"), (req, res) => {
+  const { title, writer, passwd, contents } = req.body;
+  const { filename } = req.file;
+
   let sql =
-    "insert into board" + boardName + " values(null, ?, ?, ?, ?, ?, 0, now());";
-  db.query(sql, [title, writer, passwd, contents, image], (err) => {
+    "insert into board" + req.query.boardName + " values(null, ?, ?, ?, ?, ?, 0, now());";
+  db.query(sql, [title, writer, passwd, contents, filename], (err) => {
     if (err) {
       throw err;
     } else {
@@ -382,22 +384,46 @@ app.post("/write", (req, res) => {
   });
 });
 
-// app.get("/view", (req, res) => {
-//   let sql = "select * from board" + req.query.boardName + " where idx = ?";
-//   db.query(sql, [req.query.idx], (err, result) => {
-//     if (err) {
-//       throw err;
-//     } else {
-//       res.send(result);
-//     }
-//   });
-// });
+app.get("/view", (req, res) => {
+  let sql = "select * from board" + req.query.boardName + " where idx = ?";
+  db.query(sql, [req.query.idx], (err, result) => {
+    if (err) {
+      throw err;
+    } else {
+      res.send(result);
+    }
+  });
+});
 
+app.put("/update", (req, res) => {
+  const { title, writer, passwd, contents } = req.body;
+  const { filename } = req.file;
+
+  let sql = "update board" + req.query.boardName + " set title=?, writer=?, passwd=?, contents=?, image=? where idx = ?";
+  db.query(sql, [title, writer, passwd, contents, filename, req.query.idx], (err, result) => {
+    if (err) {
+      throw err;
+    } else {
+      console.log("update complete");
+      res.send({ status: 201, message: "게시글 수정 완료" });
+    }
+  });
+});
+
+// 게시판 삭제
 app.delete("/board/delete/:boardIdx", (req, res) => {
   let sql = "DELETE FROM boardManager WHERE boardIdx = ?;";
   db.query(sql, [req.params.boardIdx], (err) => {
     if(err) throw err;
     res.send({status:201, message:'게시판 삭제 완료'});
+  })
+});
+// 게시글 삭제
+app.delete("/delete/:boardName/:idx", (req, res) => {
+  let sql = "DELETE FROM board"+req.params.boardName+" WHERE idx = ?;";
+  db.query(sql, [req.params.idx], (err) => {
+    if(err) throw err;
+    res.send({status:201, message:'게시글 삭제 완료'});
   })
 });
 

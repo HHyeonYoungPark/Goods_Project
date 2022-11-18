@@ -6,7 +6,7 @@ const Write = () => {
   const [title, setTitle] = useState("");
   const [writer, setWriter] = useState("");
   const [passwd, setPasswd] = useState("");
-  const [content, setContent] = useState("");
+  const [contents, setContents] = useState("");
   const [img, setImg] = useState("");
 
   const { boardName } = useParams();
@@ -15,8 +15,14 @@ const Write = () => {
 
   async function frmHandler(e) {
     e.preventDefault();
-    const data = {boardName, title, writer, passwd, content, img}
-    await axios.post("http://localhost:4001/write?boardName="+boardName, data)
+    let formData = new FormData();
+    formData.append("title", title);
+    formData.append("writer", writer);
+    formData.append("passwd", passwd);
+    formData.append("contents", contents);
+    formData.append("img", img);
+
+    await axios.post("http://localhost:4001/write?boardName="+boardName, formData)
       .then((response) => {
         if(response.data.status === 201){
           window.alert(response.data.message);
@@ -32,23 +38,23 @@ const Write = () => {
         <table>
           <tr>
             <th>Title</th>
-            <td><input type="text" className="title" onChange={(e) => setTitle(e.target.value)}/></td>
+            <td><input type="text" name="title" onChange={(e) => setTitle(e.target.value)}/></td>
           </tr>
           <tr>
             <th>Writer</th>
-            <td><input type="text" className="writer" onChange={(e) => setWriter(e.target.value)}/></td>
+            <td><input type="text" name="writer" onChange={(e) => setWriter(e.target.value)}/></td>
           </tr>
           <tr>
             <th>Password</th>
-            <td><input type="password" className="passwd" onChange={(e) => setPasswd(e.target.value)}/></td>
+            <td><input type="password" name="passwd" onChange={(e) => setPasswd(e.target.value)}/></td>
           </tr>
           <tr>
-            <th>Content</th>
-            <td><textarea rows="20" cols="100" className="content" onChange={(e) => setContent(e.target.value)}></textarea></td>
+            <th>Contents</th>
+            <td><textarea rows="20" cols="100" name="contents" onChange={(e) => setContents(e.target.value)}></textarea></td>
           </tr>
           <tr>
             <th>Image</th>
-            <td><input type="file" className="img" onChange={(e) => setImg(e.target.files[0])}/></td>
+            <td><input type="file" name="img" onChange={(e) => setImg(e.target.files[0])}/></td>
           </tr>
           <tr>
             <td colSpan="2"><input type="submit" value="Write" /></td>

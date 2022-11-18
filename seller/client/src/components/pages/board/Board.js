@@ -18,6 +18,17 @@ const Board = () => {
     getLists();
   }, []);
 
+  async function deleteList(idx) {
+    await axios.delete("http://localhost:4001/delete/"+ boardName +"/"+ idx).then((res) => {
+      if(res.data.status === 201) {
+        window.alert(res.data.message);
+        getLists();
+      }else{
+        window.alert("Delete Failed");
+      }
+    });
+  }
+
   return (
     <div>
       <Link to={"/adminPage/board/"+boardName+"/write"}>게시글 작성</Link>
@@ -38,17 +49,24 @@ const Board = () => {
               return(
                 <tr key={key}>
                   <td>{list.idx}</td>
-                  <td><Link to={"/board/"+boardName+"/"+list.idx}>{list.title}</Link></td>
+                  <td><Link to={"/adminPage/board/"+boardName+"/"+list.idx}>{list.title}</Link></td>
                   <td>{list.writer}</td>
                   <td>{list.count}</td>
                   <td>{list.regdate}</td>
-                  <td>수정/삭제</td>
+                  <td>
+                    <Link to={"/adminPage/board/"+boardName+"/update/"+list.idx}>수정</Link>
+                    /
+                    <button className="upDelBtn" onClick={() => deleteList(list.idx)}>삭제</button>
+                  </td>
                 </tr>
               );
             })
           }
         </tbody>
       </table>
+      <button className="list-btn">
+        <Link to="/AdminPage/boardManager">돌아가기</Link>
+      </button>
     </div>
   )
 }

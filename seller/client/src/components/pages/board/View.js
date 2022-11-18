@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const View = () => {
   const [view, setView] = useState([]);
 
   const { boardName } = useParams();
   const { idx } = useParams();
-  console.log(boardName);
-  console.log(idx);
+  // console.log(boardName);
+  // console.log(idx);
   
   const getView = async () => {
     await axios.get("http://localhost:4001/view?boardName="+boardName+"&idx="+idx)
@@ -39,13 +39,16 @@ const View = () => {
         </tr>
         <tr>
           <th>Content</th>
-          <td><textarea rows="20" cols="100" className="content">{view.content}</textarea></td>
+          <td><textarea rows="20" cols="100" className="contents" value={view.contents}></textarea></td>
         </tr>
         <tr>
           <th>Image</th>
-          <td><input type="file" className="img" /></td>
+          <td><img src={`http://localhost:4001/${view.image}`} ></img></td>
         </tr>
       </table>
+      <button className="list-btn">
+        <Link to={"/AdminPage/board/"+boardName}>돌아가기</Link>
+      </button>
    </div>
   )
 }
