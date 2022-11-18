@@ -16,11 +16,11 @@ function UpdateItem({ upItem }) {
     <div className="addItem-comtainer">
       <div className="addItem-wrap">
         <div className="addItem-title">
-          <h1>상품등록</h1>
+          <h1>상품 수정</h1>
         </div>
-        <form method="post" encType="multipart/form-data" onSubmit={frmHandler}>
+        <form method="post" encType="multipart/form-data">
           <div className="addItem">
-            <h3>상품 기본정보 입력</h3>
+            <h3>상품 기본정보 수정</h3>
             <table>
               <tr>
                 <th>상품명</th>
@@ -28,7 +28,7 @@ function UpdateItem({ upItem }) {
                   <input
                     type="text"
                     name="itemname"
-                    value={upItem.itemname}
+                    // value={upItem.itemname}
                     onChange={(e) => {
                       setItemname(e.target.value);
                     }}
@@ -40,7 +40,7 @@ function UpdateItem({ upItem }) {
                 <td>
                   <select
                     name="category"
-                    value={upItem.category}
+                    // value={upItem.category}
                     onChange={(e) => {
                       setCategory(e.target.value);
                     }}
@@ -61,7 +61,7 @@ function UpdateItem({ upItem }) {
                     type="text"
                     name="price"
                     placeholder="'원' 제외"
-                    value={upItem.price}
+                    // value={upItem.price}
                     onChange={(e) => {
                       setPrice(e.target.value);
                     }}
@@ -75,7 +75,7 @@ function UpdateItem({ upItem }) {
                     type="text"
                     name="stock"
                     placeholder="'개' 제외"
-                    value={upItem.stock}
+                    // value={upItem.stock}
                     onChange={(e) => {
                       setStock(e.target.value);
                     }}
@@ -89,7 +89,7 @@ function UpdateItem({ upItem }) {
                     className="itemImage"
                     type="file"
                     name="attach"
-                    value={upItem.attach}
+                    // value={upItem.attach}
                     multiple
                     onChange={(e) => {
                       setAttach(e.target.files[0]);
@@ -103,7 +103,7 @@ function UpdateItem({ upItem }) {
                   <textarea
                     name="contents"
                     className="item-contents"
-                    value={upItem.contents}
+                    // value={upItem.contents}
                     onChange={(e) => {
                       setContents(e.target.value);
                     }}
@@ -116,7 +116,7 @@ function UpdateItem({ upItem }) {
                   <input
                     type="text"
                     name="madein"
-                    value={upItem.madein}
+                    // value={upItem.madein}
                     onChange={(e) => {
                       setMadein(e.target.value);
                     }}

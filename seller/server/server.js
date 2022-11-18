@@ -209,7 +209,7 @@ app.delete("/delete/:idx", (req, res) => {
 });
 
 // 상품 한개불러오기, 수정
-app.get("/update", (req, res) => {
+app.get("/updateItem", (req, res) => {
   let sql = "SELECT * FROM item WHERE idx = ?;";
   db.query(sql, [req.params.idx], (err, response) => {
     if (err) {
