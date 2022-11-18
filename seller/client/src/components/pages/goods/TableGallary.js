@@ -1,9 +1,8 @@
 import React from "react";
 import "../../css/pages/TableGallary.css";
 import { Link } from "react-router-dom";
-import dummyImg01 from "../../images/dummyImg01.png";
-import dummyImg02 from "../../images/dummyImg02.png";
-import dummyImg03 from "../../images/dummyImg03.png";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function TableGallary() {
   const [items, setItems] = useState([]);
