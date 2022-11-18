@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../css/pages/Board.css";
 
-function BoardModify() {
+function BoardModify({b}) {
+
+  const [boardCode, setBoardCode] = useState("");
+  const [boardCategory, setBoardCategory] = useState("");
+  const [boardName, setBoardName] = useState("");
+  const [boardBuilder, setBoardBuilder] = useState("");  
+  const [boardReadAllow, setBoardReadAllow] = useState("");
+  const [boardWriteAllow, setBoardWriteAllow] = useState("");
+  const [boardCommentAllow, setBoardCommentAllow] = useState("");
+  const [boardModifyAllow, setBoardModifyAllow] = useState("");
+
   return (
     <div>
       <table>
@@ -14,6 +24,8 @@ function BoardModify() {
                 id="boardCode"
                 className="boardCode"
                 name="boardCode"
+                value={b.boardCode}
+                onChange={(e) => setBoardCode(e.target.value)}
               ></input>
             </td>
 
@@ -24,6 +36,8 @@ function BoardModify() {
                 id="boardCategory"
                 className="boardCategory"
                 name="boardCategory"
+                value={b.boardCategory}
+                onChange={(e) => setBoardCategory(e.target.value)}
               ></input>
             </td>
           </tr>
@@ -35,6 +49,8 @@ function BoardModify() {
                 id="boardName"
                 className="boardName"
                 name="boardName"
+                value={b.boardName}
+                onChange={(e) => setBoardName(e.target.value)}
               ></input>
             </td>
             <td>게시판 생성자</td>
@@ -44,6 +60,8 @@ function BoardModify() {
                 id="boardBuilder"
                 className="boardBuilder"
                 name="boardBuilder"
+                value={b.boardBuilder}
+                onChange={(e) => setBoardBuilder(e.target.value)}
               ></input>
             </td>
           </tr>
@@ -54,12 +72,13 @@ function BoardModify() {
                 id="boardReadAllow"
                 className="boardReadAllow"
                 name="boardReadAllow"
-                onchange="boardReadAllow()"
+                value={b.boardReadAllow}
+                onChange={(e) => setBoardReadAllow(e.target.value)}
               >
-                <option value="0">All</option>
-                <option value="1">logined</option>
-                <option value="2">seller or admin</option>
-                <option value="3">admin only</option>
+                <option value="1">All</option>
+                <option value="2">logined</option>
+                <option value="3">seller or admin</option>
+                <option value="4">admin only</option>
               </select>
             </td>
             <td>쓰기 권한</td>
@@ -68,12 +87,13 @@ function BoardModify() {
                 id="boardWriteAllow"
                 className="boardWriteAllow"
                 name="boardWriteAllow"
-                onchange="boardWriteAllow()"
+                value={b.boardWriteAllow}
+                onChange={(e) => setBoardWriteAllow(e.target.value)}
               >
-                <option value="0">All</option>
-                <option value="1">logined</option>
-                <option value="2">seller or admin</option>
-                <option value="3">admin only</option>
+                <option value="1">All</option>
+                <option value="2">logined</option>
+                <option value="3">seller or admin</option>
+                <option value="4">admin only</option>
               </select>
             </td>
             <td>댓글 권한</td>
@@ -82,12 +102,13 @@ function BoardModify() {
                 id="boardCommentAllow"
                 className="boardCommentAllow"
                 name="boardCommentAllow"
-                onchange="boardCommentAllow()"
+                value={b.boardCommentAllow}
+                onChange={(e) => setBoardCommentAllow(e.target.value)}
               >
-                <option value="0">All</option>
-                <option value="1">logined</option>
-                <option value="2">seller or admin</option>
-                <option value="3">admin only</option>
+                <option value="1">All</option>
+                <option value="2">logined</option>
+                <option value="3">seller or admin</option>
+                <option value="4">admin only</option>
               </select>
             </td>
             <td>수정 권한</td>
@@ -96,12 +117,13 @@ function BoardModify() {
                 id="boardModifyAllow"
                 className="boardModifyAllow"
                 name="boardModifyAllow"
-                onchange="boardModifyAllow()"
+                value={b.boardModifyAllow}
+                onChange={(e) => setBoardModifyAllow(e.target.value)}
               >
-                <option value="0">All</option>
-                <option value="1">logined</option>
-                <option value="2">seller or admin</option>
-                <option value="3">admin only</option>
+                <option value="1">All</option>
+                <option value="2">logined</option>
+                <option value="3">seller or admin</option>
+                <option value="4">admin only</option>
               </select>
             </td>
           </tr>

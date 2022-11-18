@@ -290,7 +290,7 @@ function BoardManager() {
                     >
                       <div className="modalModify">
                         <h2>게시판 수정</h2>
-                        <BoardModify className="tableModify" />
+                        <BoardModify className="tableModify" b={b}/>
                         <button className="modifyDone" onClick={() => setModalIsOpen(false)}>
                           수정 완료
                         </button>
