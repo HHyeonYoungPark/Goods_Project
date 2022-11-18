@@ -8,7 +8,7 @@ function TableGallary() {
   const [items, setItems] = useState([]);
 
   async function getAllItem() {
-    await axios.get("http://localhost:4001/main").then((response) => {
+    await axios.get("http://localhost:4001/goodsManager").then((response) => {
       setItems(response.data);
     });
   }
@@ -21,11 +21,11 @@ function TableGallary() {
     <div className="TableGallary-container">
       {items.map((item, key) => {
         return (
-          <div className="TableGallary">
+          <div className="TableGallary" key={key}>
             <Link to="#">
               <img
                 style={{ width: "100%" }}
-                src={item.attach}
+                src={`http://localhost:4001/${item.attach}`}
                 alt={item.attach}
               />
             </Link>

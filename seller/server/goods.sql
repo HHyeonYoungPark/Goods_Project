@@ -13,19 +13,6 @@ madein VARCHAR(50),
 regdate DATE
 );
 
-CREATE TABLE item(
-  idx INT AUTO_INCREMENT PRIMARY KEY,
-  user_idx INT,
-  category_goods_idx INT,
-  image VARCHAR(255),
-  itemname VARCHAR(100),
-  price VARCHAR(50),
-  stock INT,
-  contents TEXT,
-  regdate DATE,
-  FOREIGN KEY (user_idx) references user(idx),
-  FOREIGN KEY (category_goods_idx) references category_goods(idx)
-);
 
 CREATE TABLE user(
 idx INT AUTO_INCREMENT PRIMARY KEY,
