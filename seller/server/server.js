@@ -209,7 +209,7 @@ app.delete("/delete/:idx", (req, res) => {
 });
 
 // 상품 한개불러오기, 수정
-app.get("/updateItem:idx", (req, res) => {
+app.get("/updateItem/:idx", (req, res) => {
   let sql = "SELECT * FROM item WHERE idx = ?;";
   db.query(sql, [req.params.idx], (err, response) => {
     if (err) {
@@ -410,13 +410,13 @@ app.get("/boardUpdate", (req, res) => {
   console.log(req.query);
   let sql = "select * from boardManager where boardName=?;";
   db.query(sql, [req.query.boardName], (err, result) => {
-    if(err){
+    if (err) {
       throw err;
     } else {
       res.send(result);
     }
-  })
-})
+  });
+});
 
 app.put("/boardUpdate", (req, res) => {
   const {
@@ -430,29 +430,31 @@ app.put("/boardUpdate", (req, res) => {
     boardModifyAllow,
     boardIdx,
   } = req.body;
-  
-  let sql = "update boardManager set boardCode=?, boardCategory=?, boardName=?, boardBuilder=?, boardReadAllow=?, boardWriteAllow=?, boardCommentAllow=?, boardModifyAllow=?, modifyDate=now() where boardIdx = ?";
+
+  let sql =
+    "update boardManager set boardCode=?, boardCategory=?, boardName=?, boardBuilder=?, boardReadAllow=?, boardWriteAllow=?, boardCommentAllow=?, boardModifyAllow=?, modifyDate=now() where boardIdx = ?";
   db.query(
     sql,
     [
-    boardCode,
-    boardCategory,
-    boardName,
-    boardBuilder,
-    boardReadAllow,
-    boardWriteAllow,
-    boardCommentAllow,
-    boardModifyAllow,
-    boardIdx
+      boardCode,
+      boardCategory,
+      boardName,
+      boardBuilder,
+      boardReadAllow,
+      boardWriteAllow,
+      boardCommentAllow,
+      boardModifyAllow,
+      boardIdx,
     ],
     (err) => {
-    if (err) {
-      throw err;
-    } else {
-      console.log("update complete");
-      res.send({ status: 201, message: "게시판 수정 완료" });
+      if (err) {
+        throw err;
+      } else {
+        console.log("update complete");
+        res.send({ status: 201, message: "게시판 수정 완료" });
+      }
     }
-  });
+  );
 });
 
 app.get("/board", (req, res) => {
