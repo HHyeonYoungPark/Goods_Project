@@ -150,16 +150,16 @@ app.get("/mypage", (req, res) => {
   });
 });
 
-// // 메인페이지
-// app.get("/main", (req, res) => {
-//   let sql = "SELECT * FROM item ORDER BY idx DESC;";
-//   db.query(sql, (err, response) => {
-//     if (err) {
-//       throw err;
-//     }
-//     res.send(response);
-//   });
-// });
+// 메인페이지
+app.get("/main", (req, res) => {
+  let sql = "SELECT * FROM item ORDER BY idx DESC;";
+  db.query(sql, (err, response) => {
+    if (err) {
+      throw err;
+    }
+    res.send(response);
+  });
+});
 
 // 관리자페이지에서 상품목록보이기
 app.get("/goodsManager", (req, res) => {
@@ -302,7 +302,7 @@ app.post("/boardAdd", (req, res) => {
     boardReadAllow,
     boardWriteAllow,
     boardCommentAllow,
-    boardModifyAllow
+    boardModifyAllow,
   } = req.body;
   let sql =
     "INSERT INTO boardManager VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, now(), now());";
@@ -316,7 +316,7 @@ app.post("/boardAdd", (req, res) => {
       boardReadAllow,
       boardWriteAllow,
       boardCommentAllow,
-      boardModifyAllow
+      boardModifyAllow,
     ],
     (err) => {
       if (err) {
