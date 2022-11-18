@@ -208,6 +208,17 @@ app.delete("/delete/:idx", (req, res) => {
   });
 });
 
+// 상품 수정
+app.get("/updateItem/:idx", (req, res) => {
+  let sql = "SELECT * FROM item WHERE idx = ?;";
+  db.query(sql, [req.params.idx], (err, response) => {
+    if (err) {
+      throw err;
+    }
+    res.send(response);
+  });
+});
+
 // 공지사항 작성
 app.post("/writeNotice", (req, res) => {
   const noticeTitle = req.body.noticeTitle;

@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../../css/pages/GoodsManager.css";
 
 function GoodsManager() {
   const [items, setItems] = useState([]);
+  const navigate = useNavigate();
 
   async function goodsManager() {
     await axios.get("http://localhost:4001/goodsManager").then((response) => {
@@ -28,6 +29,14 @@ function GoodsManager() {
           window.alert("상품삭제 에러");
         }
       });
+  }
+
+  async function updateItem(idx) {
+    await axios.get("http://localhost:4001/update/" + idx).then((response) => {
+      if (response.data.status === 201) {
+        navigate("/AdminPage/updateItem");
+      }
+    });
   }
 
   return (
@@ -98,7 +107,10 @@ function GoodsManager() {
                   <td>{item.regdate}</td>
                   <td>
                     <Link to="">
-                      <button type="submit" className="upDelBtn">
+                      <button
+                        className="upDelBtn"
+                        onClick={() => updateItem(item.idx)}
+                      >
                         수정
                       </button>
                     </Link>

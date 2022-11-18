@@ -13,9 +13,6 @@ function Main() {
   const [dropdownVisibility2, setDropdownVisibility2] = React.useState(false);
   const [dropdownVisibility3, setDropdownVisibility3] = React.useState(false);
   const [dropdownVisibility4, setDropdownVisibility4] = React.useState(false);
-  const [dropdownVisibility5, setDropdownVisibility5] = React.useState(false);
-  const [dropdownVisibility6, setDropdownVisibility6] = React.useState(false);
-  const [dropdownVisibility7, setDropdownVisibility7] = React.useState(false);
   return (
     <div>
       <div className="banner-con">

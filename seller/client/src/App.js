@@ -19,6 +19,7 @@ import SellHistory from "./components/pages/privateInfo/SellHistory";
 import MyAsk from "./components/pages/privateInfo/MyAsk";
 import UserInfo from "./components/pages/privateInfo/UserInfo";
 import AddItem from "./components/pages/goods/AddItem";
+import UpdateItem from "./components/pages/goods/UpdateItem";
 import NewItem from "./components/pages/goods/NewItem";
 import Order from "./components/pages/board/Order";
 import Cart from "./components/pages/privateInfo/Cart";
@@ -84,6 +85,7 @@ function App() {
               <Route index="allManager" element={<AllManager />} />
               <Route path="goodsManager" element={<GoodsManager />} />
               <Route path="addItem" element={<AddItem />} />
+              <Route path="updateItem" element={<UpdateItem />} />
               <Route path="order" element={<Order />} />
               <Route path="userManager" element={<UserManager />}>
                 <Route index="costumerManager" element={<CostumerManager />} />
