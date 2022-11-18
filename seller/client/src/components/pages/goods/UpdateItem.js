@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 
-function UpdateItem() {
+function UpdateItem({ upItem }) {
   const [itemname, setItemname] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
@@ -12,42 +12,15 @@ function UpdateItem() {
   const [contents, setContents] = useState("");
   const [madein, setMadein] = useState("");
 
-  const navigate = useNavigate();
-
-  async function frmHandler(e) {
-    e.preventDefault();
-    let formData = new FormData();
-
-    formData.append("itemname", itemname);
-    formData.append("category", category);
-    formData.append("price", price);
-    formData.append("stock", stock);
-    formData.append("attach", attach);
-    formData.append("contents", contents);
-    formData.append("madein", madein);
-
-    await axios
-      .post("http://localhost:4001/updateItem", formData)
-      .then((response) => {
-        if (response.data.status === 201) {
-          window.alert(response.data.message);
-          navigate("/AdminPage/goodsManager");
-        } else {
-          window.alert("상품수정 실패!");
-          navigate("/AdminPage/goodsManager");
-        }
-      });
-  }
-
   return (
     <div className="addItem-comtainer">
       <div className="addItem-wrap">
         <div className="addItem-title">
-          <h1>상품등록</h1>
+          <h1>상품 수정</h1>
         </div>
-        <form method="post" encType="multipart/form-data" onSubmit={frmHandler}>
+        <form method="post" encType="multipart/form-data">
           <div className="addItem">
-            <h3>상품 기본정보 입력</h3>
+            <h3>상품 기본정보 수정</h3>
             <table>
               <tr>
                 <th>상품명</th>
@@ -55,6 +28,7 @@ function UpdateItem() {
                   <input
                     type="text"
                     name="itemname"
+                    // value={upItem.itemname}
                     onChange={(e) => {
                       setItemname(e.target.value);
                     }}
@@ -66,6 +40,7 @@ function UpdateItem() {
                 <td>
                   <select
                     name="category"
+                    // value={upItem.category}
                     onChange={(e) => {
                       setCategory(e.target.value);
                     }}
@@ -86,6 +61,7 @@ function UpdateItem() {
                     type="text"
                     name="price"
                     placeholder="'원' 제외"
+                    // value={upItem.price}
                     onChange={(e) => {
                       setPrice(e.target.value);
                     }}
@@ -99,6 +75,7 @@ function UpdateItem() {
                     type="text"
                     name="stock"
                     placeholder="'개' 제외"
+                    // value={upItem.stock}
                     onChange={(e) => {
                       setStock(e.target.value);
                     }}
@@ -112,6 +89,7 @@ function UpdateItem() {
                     className="itemImage"
                     type="file"
                     name="attach"
+                    // value={upItem.attach}
                     multiple
                     onChange={(e) => {
                       setAttach(e.target.files[0]);
@@ -125,6 +103,7 @@ function UpdateItem() {
                   <textarea
                     name="contents"
                     className="item-contents"
+                    // value={upItem.contents}
                     onChange={(e) => {
                       setContents(e.target.value);
                     }}
@@ -137,6 +116,7 @@ function UpdateItem() {
                   <input
                     type="text"
                     name="madein"
+                    // value={upItem.madein}
                     onChange={(e) => {
                       setMadein(e.target.value);
                     }}
@@ -149,7 +129,7 @@ function UpdateItem() {
             <button className="list-btn">
               <Link to="/AdminPage/goodsManager">돌아가기</Link>
             </button>
-            <input type="submit" value="상품등록" />
+            <input type="submit" value="상품 수정" />
           </div>
         </form>
       </div>

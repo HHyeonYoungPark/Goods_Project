@@ -44,6 +44,7 @@ import BoardAdd from "./components/pages/board/BoardAdd";
 import BoardManager from "./components/pages/board/BoardManager";
 import Write from "./components/pages/board/Write";
 import View from "./components/pages/board/View";
+import ViewUpdate from "./components/pages/board/ViewUpdate";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -61,7 +62,7 @@ function App() {
               <Route index="tableGallary" element={<TableGallary />} />
               <Route path="tableGallary" element={<TableGallary />} />
             </Route>
-            <Route path="detail" element={<Detail />} />
+            <Route path="detail/:idx" element={<Detail />} />
             <Route path="login" element={<Login />} />
             <Route path="logout" element={<Logout />} />
             <Route path="regist" element={<Regist />} />
@@ -85,7 +86,7 @@ function App() {
               <Route index="allManager" element={<AllManager />} />
               <Route path="goodsManager" element={<GoodsManager />} />
               <Route path="addItem" element={<AddItem />} />
-              <Route path="updateItem" element={<UpdateItem />} />
+              <Route path="updateItem/:idx" element={<UpdateItem />} />
               <Route path="order" element={<Order />} />
               <Route path="userManager" element={<UserManager />}>
                 <Route index="costumerManager" element={<CostumerManager />} />
@@ -97,6 +98,10 @@ function App() {
               <Route path="board/:boardName" element={<Board />} />
               <Route path="board/:boardName/write" element={<Write />} />
               <Route path="board/:boardName/:idx" element={<View />} />
+              <Route
+                path="board/:boardName/update/:idx"
+                element={<ViewUpdate />}
+              />
 
               <Route path="noticeManager" element={<NoticeManager />} />
               <Route path="askManager" element={<AskManager />} />

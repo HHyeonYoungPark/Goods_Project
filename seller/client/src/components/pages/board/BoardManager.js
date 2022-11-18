@@ -59,15 +59,16 @@ function BoardManager() {
 
   const navigate = useNavigate();
   
+  const getBoardlist = async () => {
+    await axios.get("http://localhost:4001/boardlist?page="+page+"&offset="+offset+"&select="+select+"&searchQuery="+keyword).then((res) => {
+      setBoardlist(res.data.lists);
+      setPage(res.data.page);
+      setPages(res.data.totalPageNum);
+      setRows(res.data.totalRows);
+    });
+  };
+
   useEffect(() => {
-    const getBoardlist = async () => {
-      await axios.get("http://localhost:4001/boardlist?page="+page+"&offset="+offset+"&select="+select+"&searchQuery="+keyword).then((res) => {
-        setBoardlist(res.data.lists);
-        setPage(res.data.page);
-        setPages(res.data.totalPageNum);
-        setRows(res.data.totalRows);
-      });
-    };
     getBoardlist();
   }, [page, keyword]);
 
@@ -78,9 +79,20 @@ function BoardManager() {
       .then((response) => {
         if(response.data.status === 201){
           window.alert(response.data.message);
-          window.location.replace("/AdminPage/boardManager");
+          getBoardlist();
         }
       })
+  }
+
+  async function deleteBoard(boardIdx) {
+    await axios.delete("http://localhost:4001/board/delete/" + boardIdx).then((res) => {
+      if(res.data.status === 201) {
+        window.alert(res.data.message);
+        getBoardlist();
+      }else{
+        window.alert("Delete Failed");
+      }
+    });
   }
 
   const boardSearch = (e) => {
@@ -161,7 +173,7 @@ function BoardManager() {
                       name="boardReadAllow"
                       onChange={(e) => setBoardReadAllow(e.target.value)}
                     >
-                      <option value="1" selected>All</option>
+                      <option value="1" selected >All</option>
                       <option value="2">logined</option>
                       <option value="3">seller or admin</option>
                       <option value="4">admin only</option>
@@ -175,7 +187,7 @@ function BoardManager() {
                       name="boardWriteAllow"
                       onChange={(e) => setBoardWriteAllow(e.target.value)}
                     >
-                      <option value="1" selected>All</option>
+                      <option value="1" selected >All</option>
                       <option value="2">logined</option>
                       <option value="3">seller or admin</option>
                       <option value="4">admin only</option>
@@ -189,7 +201,7 @@ function BoardManager() {
                       name="boardCommentAllow"
                       onChange={(e) => setBoardCommentAllow(e.target.value)}
                     >
-                      <option value="1" selected>All</option>
+                      <option value="1" selected >All</option>
                       <option value="2">logined</option>
                       <option value="3">seller or admin</option>
                       <option value="4">admin only</option>
@@ -203,7 +215,7 @@ function BoardManager() {
                       name="boardModifyAllow"
                       onChange={(e) => setBoardModifyAllow(e.target.value)}
                     >
-                      <option value="1" selected>All</option>
+                      <option value="1" selected >All</option>
                       <option value="2">logined</option>
                       <option value="3">seller or admin</option>
                       <option value="4">admin only</option>
@@ -272,7 +284,7 @@ function BoardManager() {
                   <td>{b.boardCode}</td>
                   <td>{b.boardCategory}</td>
                   <td>
-                    <Link to={"/board/" + b.boardName}>{b.boardName}</Link>
+                    <Link to={"/adminPage/board/" + b.boardName}>{b.boardName}</Link>
                   </td>
                   <td>{b.boardReadAllow}</td>
                   <td>{b.boardWriteAllow}</td>
@@ -296,9 +308,7 @@ function BoardManager() {
                         </button>
                       </div>
                     </Modal>
-                    <button className="upDelBtn">
-                      삭제
-                    </button>
+                    <button className="upDelBtn" onClick={() => deleteBoard(b.boardIdx)}>삭제</button>
                   </td>
                 </tr>
               );

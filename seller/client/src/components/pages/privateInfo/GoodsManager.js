@@ -31,14 +31,6 @@ function GoodsManager() {
       });
   }
 
-  async function updateItem(idx) {
-    await axios.get("http://localhost:4001/update/" + idx).then((response) => {
-      if (response.data.status === 201) {
-        navigate("/AdminPage/updateItem");
-      }
-    });
-  }
-
   return (
     <div className="goodsManager-container">
       <div className="table-List">
@@ -106,25 +98,15 @@ function GoodsManager() {
                   <td>{item.price}</td>
                   <td>{item.regdate}</td>
                   <td>
-                    <Link to="">
-                      <button
-                        className="upDelBtn"
-                        onClick={() => updateItem(item.idx)}
-                      >
-                        수정
-                      </button>
-                    </Link>
-                    <Link
-                      to=""
-                      onclick="return confirm('상품을 삭제하시겠습니까?');"
+                    <button className="upDelBtn">
+                      <Link to={"/adminPage/updateItem/" + item.idx}>수정</Link>
+                    </button>
+                    <button
+                      className="upDelBtn"
+                      onClick={() => deleteItem(item.idx)}
                     >
-                      <button
-                        className="upDelBtn"
-                        onClick={() => deleteItem(item.idx)}
-                      >
-                        삭제
-                      </button>
-                    </Link>
+                      삭제
+                    </button>
                   </td>
                 </tr>
               );
