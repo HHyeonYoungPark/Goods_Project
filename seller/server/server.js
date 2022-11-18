@@ -269,11 +269,39 @@ app.post("/ask", upload.single("askImage"), (req, res) => {
 
 // 다중 게시판
 app.get("/boardlist", (req, res) => {
-  const sql = "select * from boardManager order by boardIdx desc;";
-  db.query(sql, (err, result) => {
-    if (err) throw err;
-    res.send(result);
-  });
+  const page = Number.parseInt(req.query.page);
+  const offset = Number.parseInt(req.query.offset);
+  const startNum = page * offset;
+  const select = req.query.select || "";
+  const search = req.query.searchQuery || "";
+  const codeSearch = '%'+search+'%';
+  const nameSearch = '%'+search+'%';
+  const categorySearch = '%'+search+'%';
+  
+  // db 1 : 전체 개시물 수
+  // let sql = "SELECT COUNT(boardIdx) AS cnt FROM boardManager WHERE ? LIKE ?;";
+  // db.query(sql, [select, search], (err, result) => {
+  let sql = "SELECT COUNT(boardIdx) AS cnt FROM boardManager WHERE boardCode LIKE ? OR boardName LIKE ?  OR boardCategory LIKE ?;";
+  db.query(sql, [codeSearch, nameSearch, categorySearch], (err, result) => {
+    if(err) {
+      throw err;
+    }else{
+      // db 2 : 페이징 처리를 위한 쿼리 AND 검색 쿼리
+      let listSQL = "SELECT * FROM boardManager WHERE boardCode LIKE ? OR boardName LIKE ? OR boardCategory LIKE ? ORDER BY boardIdx DESC LIMIT ?, ?;";
+      db.query(listSQL, [codeSearch, nameSearch, categorySearch, startNum, offset], (err, lists) => {
+        if(err) {
+          throw err;
+        }else{
+          res.send({
+            lists,
+            page, // 현재 페이지
+            totalRows: result[0].cnt, // 전체 사용자 수
+            totalPageNum: Math.ceil( result[0].cnt / offset ) // 전체 페이지 수
+          });
+        }
+      })
+    }
+  })
 });
 
 app.post("/boardAdd", (req, res) => {
