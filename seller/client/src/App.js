@@ -86,7 +86,7 @@ function App() {
               <Route index="allManager" element={<AllManager />} />
               <Route path="goodsManager" element={<GoodsManager />} />
               <Route path="addItem" element={<AddItem />} />
-              <Route path="updateItem" element={<UpdateItem />} />
+              <Route path="updateItem/:idx" element={<UpdateItem />} />
               <Route path="order" element={<Order />} />
               <Route path="userManager" element={<UserManager />}>
                 <Route index="costumerManager" element={<CostumerManager />} />
@@ -98,7 +98,10 @@ function App() {
               <Route path="board/:boardName" element={<Board />} />
               <Route path="board/:boardName/write" element={<Write />} />
               <Route path="board/:boardName/:idx" element={<View />} />
-              <Route path="board/:boardName/update/:idx" element={<ViewUpdate />} />
+              <Route
+                path="board/:boardName/update/:idx"
+                element={<ViewUpdate />}
+              />
 
               <Route path="noticeManager" element={<NoticeManager />} />
               <Route path="askManager" element={<AskManager />} />

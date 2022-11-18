@@ -209,7 +209,7 @@ app.delete("/delete/:idx", (req, res) => {
 });
 
 // 상품 한개불러오기, 수정
-app.get("/selectOne", (req, res) => {
+app.get("/update", (req, res) => {
   let sql = "SELECT * FROM item WHERE idx = ?;";
   db.query(sql, [req.params.idx], (err, response) => {
     if (err) {
@@ -217,6 +217,37 @@ app.get("/selectOne", (req, res) => {
     }
     res.send(response);
   });
+});
+
+app.put("/updateItem", (req, res) => {
+  const { itemname, category, price, stock, contents, madein } = req.body;
+  const { filename } = req.file;
+
+  let sql = "UPDATE item SET ";
+  sql +=
+    "itemname=?, category=?, price=?, stock=?, filename=?, content=?, madein=?, regdate=now() ";
+  sql += "WHERE idx = ?;";
+  db.query(
+    sql,
+    [
+      itemname,
+      category,
+      price,
+      stock,
+      filename,
+      contents,
+      madein,
+      req.query.idx,
+    ],
+    (err, result) => {
+      if (err) {
+        throw err;
+      } else {
+        console.log("update complete");
+        res.send({ status: 201, message: "상품 수정 완료" });
+      }
+    }
+  );
 });
 
 // 공지사항 작성
@@ -409,15 +440,22 @@ app.put("/update", upload.single("img"), (req, res) => {
   const { title, writer, passwd, contents } = req.body;
   const { filename } = req.file;
 
-  let sql = "update board" + req.query.boardName + " set title=?, writer=?, passwd=?, contents=?, image=? where idx = ?";
-  db.query(sql, [title, writer, passwd, contents, filename, req.query.idx], (err) => {
-    if (err) {
-      throw err;
-    } else {
-      console.log("update complete");
-      res.send({ status: 201, message: "게시글 수정 완료" });
+  let sql =
+    "update board" +
+    req.query.boardName +
+    " set title=?, writer=?, passwd=?, contents=?, image=? where idx = ?";
+  db.query(
+    sql,
+    [title, writer, passwd, contents, filename, req.query.idx],
+    (err) => {
+      if (err) {
+        throw err;
+      } else {
+        console.log("update complete");
+        res.send({ status: 201, message: "게시글 수정 완료" });
+      }
     }
-  });
+  );
 });
 
 // 게시판 삭제
