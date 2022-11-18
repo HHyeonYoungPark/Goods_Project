@@ -249,6 +249,17 @@ app.put("/updateItem", (req, res) => {
     }
   );
 });
+//상품 상세보기
+app.get('/detail/:idx', (req, res) => {
+  let sql = 'select * from item where idx =?;';
+  db.query(sql, [req.params.idx], (err, response) => {
+    if (err) {
+      throw err;
+    }
+    res.send(response);
+    // console.log(response);
+  });
+});
 
 // 공지사항 작성
 app.post("/writeNotice", (req, res) => {
