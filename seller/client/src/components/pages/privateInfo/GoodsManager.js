@@ -32,11 +32,13 @@ function GoodsManager() {
   }
 
   async function updateItem(idx) {
-    await axios.get("http://localhost:4001/update/" + idx).then((response) => {
-      if (response.data.status === 201) {
-        navigate("/AdminPage/updateItem");
-      }
-    });
+    await axios
+      .get("http://localhost:4001/selectOne/" + idx)
+      .then((response) => {
+        if (response.data.status === 201) {
+          navigate("/AdminPage/updateItem");
+        }
+      });
   }
 
   return (
