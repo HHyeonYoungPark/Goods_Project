@@ -161,6 +161,18 @@ app.get("/main", (req, res) => {
   });
 });
 
+// 메인페이지에서 검색
+// 상품명으로 검색
+app.get("/itemSearch", (req, res) => {
+  let sql = "SELECT * FROM item WHERE itemname LIKE ? ORDER BY idx DESC;";
+  db.query(sql, ["%" + req.query.itemSearch + "%"], (err, response) => {
+    if (err) {
+      throw err;
+    }
+    res.send(response);
+  });
+});
+
 // 관리자페이지에서 상품목록보이기
 app.get("/goodsManager", (req, res) => {
   let sql = "SELECT * FROM item ORDER BY idx DESC LIMIT 0,10;";
