@@ -220,13 +220,13 @@ app.get("/updateItem/:idx", (req, res) => {
 });
 
 // 상품 수정
-app.put("/updateItem/:idx", (req, res) => {
+app.put("/updateItem/:idx", upload.single("attach"), (req, res) => {
   const { itemname, category, price, stock, contents, madein } = req.body;
   const { filename } = req.file;
 
   let sql = "UPDATE item SET ";
   sql +=
-    "itemname=?, category=?, price=?, stock=?, filename=?, content=?, madein=?, regdate=now() ";
+    "itemname=?, category=?, price=?, stock=?, attach=?, contents=?, madein=?, regdate=now() ";
   sql += "WHERE idx = ?;";
   db.query(
     sql,
@@ -238,9 +238,9 @@ app.put("/updateItem/:idx", (req, res) => {
       filename,
       contents,
       madein,
-      req.query.idx,
+      req.params.idx,
     ],
-    (err, result) => {
+    (err) => {
       if (err) {
         throw err;
       } else {
