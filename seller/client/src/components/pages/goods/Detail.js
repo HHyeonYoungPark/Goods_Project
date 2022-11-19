@@ -112,7 +112,7 @@ function Detail({ token, userId }) {
               </button>
             </div>
             <div></div>
-            <h2 className="detail-price">{item.price}*{count}원</h2>
+            <h2 className="detail-price">{item.price*counter}원</h2>
           </div>
           <div className="coupon-wrap">
             <p className="detail-coupon">적용가능한 쿠폰 없음</p>
