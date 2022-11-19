@@ -19,13 +19,13 @@ function MyPage({ userId }) {
             </div>
           </div>
           <div className="sideNav">
-            <h4>나의 판매 내역</h4>
+            <h4>나의 쇼핑 내역</h4>
             <ul>
               <li>
-                <Link to="sellHistory">판매상품 관리</Link>
+                <Link to="">구매/배송조회</Link>
               </li>
               <li>
-                <Link to="">판매/배송조회</Link>
+                <Link to="">장바구니/찜</Link>
               </li>
               <li>
                 <Link to="">취소/반품/교환 현황</Link>
