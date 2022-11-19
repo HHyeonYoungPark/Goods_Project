@@ -117,7 +117,7 @@ function AddItem() {
                     onChange={(e) => {
                       setAttach(e.target.files[0]);
                     }}
-                  />S
+                  />
                 </td>
               </tr>
               <tr>
