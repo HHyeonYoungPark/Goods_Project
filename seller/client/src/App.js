@@ -63,7 +63,10 @@ function App() {
               <Route index="tableGallary" element={<TableGallary />} />
               <Route path="tableGallary" element={<TableGallary />} />
             </Route>
-            <Route path="detail/:idx" element={<Detail />} />
+            <Route
+              path="detail/:idx"
+              element={<Detail token={token} userId={userId} />}
+            />
             <Route path="login" element={<Login />} />
             <Route path="logout" element={<Logout />} />
             <Route path="regist" element={<Regist />} />
