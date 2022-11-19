@@ -20,6 +20,7 @@ import MyAsk from "./components/pages/privateInfo/MyAsk";
 import UserInfo from "./components/pages/privateInfo/UserInfo";
 import AddItem from "./components/pages/goods/AddItem";
 import UpdateItem from "./components/pages/goods/UpdateItem";
+import ItemSearch from "./components/pages/goods/ItemSearch";
 import NewItem from "./components/pages/goods/NewItem";
 import Order from "./components/pages/board/Order";
 import Cart from "./components/pages/privateInfo/Cart";
@@ -62,6 +63,7 @@ function App() {
             <Route path="/" element={<Main />}>
               <Route index="tableGallary" element={<TableGallary />} />
               <Route path="tableGallary" element={<TableGallary />} />
+              <Route path="itemSearch" element={<ItemSearch />} />
             </Route>
             <Route
               path="detail/:idx"
