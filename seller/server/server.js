@@ -170,7 +170,6 @@ app.get("/itemSearch", (req, res) => {
       throw err;
     }
     res.send(response);
-    console.log(response);
   });
 });
 
