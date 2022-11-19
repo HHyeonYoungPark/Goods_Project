@@ -46,6 +46,7 @@
   font-size: 15px;
   text-decoration: line-through;
   font-weight: 400;
+  margin-left: 20px;
 }
 .detail-hr {
   background-color: #f1f1f1;
@@ -110,7 +111,7 @@
   margin-left: 40px;
 }
 .right-pay-sticky h3 {
-  padding-top: 120px;
+  padding-top: 20px;
   margin-left: 40px;
 }
 .detail-bottom-wrap {
@@ -149,15 +150,20 @@
   list-style: none;
 }
 .detail-howmany{
+  display: flex;
   margin-top: 35px;
   font-size: 30px;
 }
 .spanmany{
-  margin-left: 7px;
+ margin-bottom: 4px;
+  width: 55px;
+  text-align: center;
 }
 .detail-price{
-  margin-left:160px; 
-  margin-top: 30px; 
+  width: 180px;
+  margin-left:20px; 
+  margin-top: 38px; 
+  text-align: end;
 }
 .detail-cart,
 .detail-pay {
