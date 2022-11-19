@@ -1,37 +1,45 @@
-import React from 'react';
-import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate, Link, useParams } from 'react-router-dom';
-import '../../css/pages/Detail.css';
-import image from '../../images/phone.jpg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { faTruck } from '@fortawesome/free-solid-svg-icons';
-import { faTags } from '@fortawesome/free-solid-svg-icons';
-import { faSquarePlus } from '@fortawesome/free-regular-svg-icons';
-import { faSquareMinus } from '@fortawesome/free-regular-svg-icons';
-import { useEffect } from 'react';
+import React from "react";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate, Link, useParams } from "react-router-dom";
+import "../../css/pages/Detail.css";
+import image from "../../images/phone.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faTruck } from "@fortawesome/free-solid-svg-icons";
+import { faTags } from "@fortawesome/free-solid-svg-icons";
+import { faSquarePlus } from "@fortawesome/free-regular-svg-icons";
+import { faSquareMinus } from "@fortawesome/free-regular-svg-icons";
+import { useEffect } from "react";
 const topnavstyle = {
-  margin: '0 0 0 15px',
-  color: '#27336F',
+  margin: "0 0 0 15px",
+  color: "#27336F",
 };
 const truck = {
-  margin: '0 10px 0 0',
-  color: 'yellowgreen',
+  margin: "0 10px 0 0",
+  color: "yellowgreen",
 };
 const tags = {
-  margin: '0 10px 0 0',
-  color: 'red',
+  margin: "0 10px 0 0",
+  color: "red",
+};
+const plusStyle = {
+  
+  fontSize: "30px",
+  cursor: "pointer",
+};
+const minusStyle = {
+  
+  fontSize: "30px",
+  cursor: "pointer",
 };
 // const plusminus = {
 //   font-size: ''
 // };
-function plus(e){
-  
-}
+
 
 function Detail() {
-  const [item, setItem] = useState('');
+  const [item, setItem] = useState("");
   const { idx } = useParams();
   // useEffect(function () {
   //   axios
@@ -54,18 +62,19 @@ function Detail() {
   }, []);
   console.log(item);
 
+
   return (
-    <div className='detail-con'>
-      <div className='top-nav-con'>
+    <div className="detail-con">
+      <div className="top-nav-con">
         <div>악세사리</div>
         <FontAwesomeIcon icon={faChevronRight} style={topnavstyle} />
         <div>{item.category}</div>
         <FontAwesomeIcon icon={faChevronRight} style={topnavstyle} />
         <div>{item.itemname}</div>
       </div>
-      <div className='right-pay-sticky'>
+      <div className="right-pay-sticky">
         <h3>비슷한 상품</h3>
-        <div className='similar-item'>
+        <div className="similar-item">
           <ul>
             <li>투명젤리 케이스</li>
             <li>투명젤리 케이스</li>
@@ -74,94 +83,88 @@ function Detail() {
             <li>투명젤리 케이스</li>
           </ul>
         </div>
-        <div className='cartorpay'>
-          <div className='howmayprice'>
-            <div className='detail-howmany'>
-              <button>
-                <FontAwesomeIcon
-                  icon={faSquareMinus}
-                  style={{ fontSize: '30px' }}
-                />
+        <div className="cartorpay">
+          <div className="howmayprice">
+            <div className="detail-howmany">
+              <button onClick={minus}>
+                <FontAwesomeIcon icon={faSquareMinus} style={minusStyle} />
               </button>
-              <span className='spanmany'>1</span>
+              <span className="spanmany">{counter}</span>
               <button onClick={plus}>
-                <FontAwesomeIcon
-                  icon={faSquarePlus}
-                  style={{ fontSize: '30px' }}
-                />
+                <FontAwesomeIcon icon={faSquarePlus} style={plusStyle} />
               </button>
             </div>
             <div></div>
-            <h2 className='detail-price'>{item.price}원</h2>
+            <h2 className="detail-price">{item.price*counter}원</h2>
           </div>
-          <div className='coupon-wrap'>
-            <p className='detail-coupon'>적용가능한 쿠폰 없음</p>
-            <button className='coupon-btn'>쿠폰 변경</button>
+          <div className="coupon-wrap">
+            <p className="detail-coupon">적용가능한 쿠폰 없음</p>
+            <button className="coupon-btn">쿠폰 변경</button>
           </div>
           <div>
             <p>무료배송</p>
-            <button className='freedel-btn'>?</button>
+            <button className="freedel-btn">?</button>
           </div>
           <div>
-            <button className='detail-cart'>장바구니</button>
-            <button className='detail-pay'>구매하기</button>
+            <button className="detail-cart">장바구니</button>
+            <button className="detail-pay">구매하기</button>
           </div>
         </div>
       </div>
-      <div className='detail-top-con'>
-        <div className='detailimg-con'>
-          <img src={`http://localhost:4001/${item.attach}`} alt='' />
+      <div className="detail-top-con">
+        <div className="detailimg-con">
+          <img src={`http://localhost:4001/${item.attach}`} alt="" />
         </div>
-        <div className='detail-title-con'>
+        <div className="detail-title-con">
           <div>
             리뷰 별 나오는 부분<button>리뷰보기</button>
           </div>
-          <h4 className='detail1'>무료 당일 배송 3+1 구성</h4>
-          <h2 className='detail2'>{item.itemname}</h2>
-          <h1 className='detail4'>
+          <h4 className="detail1">무료 당일 배송 3+1 구성</h4>
+          <h2 className="detail2">{item.itemname}</h2>
+          <h1 className="detail4">
             {item.price}원
             <span>
-              <small className='detail5'>3,900원</small>
+              <small className="detail5">3,900원</small>
             </span>
           </h1>
-          <hr className='detail-hr' />
-          <h4 className='detail6'>
+          <hr className="detail-hr" />
+          <h4 className="detail6">
             <FontAwesomeIcon icon={faTruck} style={truck} />
             무료배송
           </h4>
-          <p className='detail7'>15까지 주문 시 오늘발송</p>
-          <p className='detail8'>
+          <p className="detail7">15까지 주문 시 오늘발송</p>
+          <p className="detail8">
             내일 11/18일 도착예정<span>?</span>
           </p>
-          <p className='detail9'>CJ 대한통운</p>
-          <hr className='detail-hr' />
-          <h4 className='detail10'>
+          <p className="detail9">CJ 대한통운</p>
+          <hr className="detail-hr" />
+          <h4 className="detail10">
             <FontAwesomeIcon icon={faTags} style={tags} />
             혜택
           </h4>
-          <p className='detail11'>SK pay point 최대 194P 적립 ( 쇼킹 194P )</p>
-          <p className='detail12'>2개 이상 구매시 개당 500원 할인</p>
-          <p className='detail13'>11번가 신한카드 첫 결제할인 + 최대 2% 적립</p>
-          <p className='detail14'>[광고] 무료포인트적립쿠폰 : 1장 [쿠폰받기]</p>
-          <hr className='detail-hr' />
+          <p className="detail11">SK pay point 최대 194P 적립 ( 쇼킹 194P )</p>
+          <p className="detail12">2개 이상 구매시 개당 500원 할인</p>
+          <p className="detail13">11번가 신한카드 첫 결제할인 + 최대 2% 적립</p>
+          <p className="detail14">[광고] 무료포인트적립쿠폰 : 1장 [쿠폰받기]</p>
+          <hr className="detail-hr" />
           <div>
-            <h4 className='detail15'>최신리뷰보기</h4>
-            <div className='new-review'>최신리뷰가 나오는곳</div>
-            <button className='more-review'>
+            <h4 className="detail15">최신리뷰보기</h4>
+            <div className="new-review">최신리뷰가 나오는곳</div>
+            <button className="more-review">
               리뷰 더보기
               <FontAwesomeIcon icon={faChevronRight} />
             </button>
           </div>
         </div>
       </div>
-      <div className='detail-bottom-wrap'>
-        <navigator className='detail-nav-wrap'>
+      <div className="detail-bottom-wrap">
+        <navigator className="detail-nav-wrap">
           <div>상품정보</div>
           <div>리뷰</div>
           <div>Q&A</div>
           <div>판매자정보</div>
         </navigator>
-        <table className='detail-table'>
+        <table className="detail-table">
           <tr>
             <td>상품상태</td>
             <td>새상품</td>
