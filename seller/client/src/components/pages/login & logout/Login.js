@@ -16,7 +16,11 @@ function Login() {
         if (response.data.status === 201) {
           localStorage.setItem("id", response.data.id);
           localStorage.setItem("token", response.data.token);
-          window.location = "/";
+          if (id === "admin") {
+            window.location = "/AdminPage";
+          } else {
+            window.location = "/";
+          }
         } else if (response.data.status === 400) {
           window.alert(response.data.message);
           window.location = "/login";

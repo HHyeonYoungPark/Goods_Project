@@ -190,32 +190,34 @@ app.get("/goodsManager", (req, res) => {
 app.post(
   "/addItem",
   upload.single("attach"),
-  upload.single("attach2"),
-  upload.single("attach3"),
+  // upload.single("attach2"),
+  // upload.single("attach3"),
   (req, res) => {
     console.log(req.file);
 
     const { itemname } = req.body;
     const { category } = req.body;
+    const { categoryCode } = req.body;
     const { price } = req.body;
     const { stock } = req.body;
     const { filename } = req.file;
-    const { filename2 } = req.file;
-    const { filename3 } = req.file;
+    // const { filename2 } = req.file;
+    // const { filename3 } = req.file;
     const { contents } = req.body;
     const { madein } = req.body;
 
-    let sql = "INSERT INTO item VALUES(NULL,?,?,?,?,?,?,?,?,?,now());";
+    let sql = "INSERT INTO item VALUES(NULL,?,?,?,?,?,?,?,?,now());";
     db.query(
       sql,
       [
         itemname,
         category,
+        categoryCode,
         price,
         stock,
         filename,
-        filename2,
-        filename3,
+        // filename2,
+        // filename3,
         contents,
         madein,
       ],

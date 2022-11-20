@@ -7,6 +7,7 @@ import "../../css/pages/AddItem.css";
 function AddItem() {
   const [itemname, setItemname] = useState("");
   const [category, setCategory] = useState("");
+  const [categoryCode, setCategoryCode] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
   const [attach, setAttach] = useState("");
@@ -23,6 +24,7 @@ function AddItem() {
 
     formData.append("itemname", itemname);
     formData.append("category", category);
+    formData.append("categoryCode", categoryCode);
     formData.append("price", price);
     formData.append("stock", stock);
     formData.append("attach", attach);
@@ -72,17 +74,19 @@ function AddItem() {
                   <select
                     name="category"
                     onChange={(e) => {
-                      setCategory(e.target.value);
+                      setCategory(e.target[e.target.selectedIndex].text);
+                      setCategoryCode(e.target.value);
                     }}
                   >
                     <option value="">선택하세요</option>
-                    <option value="패션">패션</option>
-                    <option value="전자기기">전자기기</option>
-                    <option value="악세서리">악세서리</option>
-                    <option value="문구">문구</option>
-                    <option value="생활">생활</option>
+                    <option value="000">패션</option>
+                    <option value="111">전자기기</option>
+                    <option value="222">악세서리</option>
+                    <option value="333">문구</option>
+                    <option value="444">생활</option>
                   </select>
                 </td>
+                <input type="hidden" name="categoryCode" value={categoryCode} />
               </tr>
               <tr>
                 <th>가격</th>
@@ -123,7 +127,7 @@ function AddItem() {
                       setAttach(e.target.files[0]);
                     }}
                   />
-                  <br></br>서브이미지1:
+                  {/* <br></br>서브이미지1:
                   <input
                     className="itemImage"
                     type="file"
@@ -142,7 +146,7 @@ function AddItem() {
                     onChange={(e) => {
                       setAttach3(e.target.files[0]);
                     }}
-                  />
+                  /> */}
                 </td>
               </tr>
               <tr>
