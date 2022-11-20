@@ -124,15 +124,17 @@ function Regist() {
   // 아이디 중복체크
   async function idDuplicatonChk(e) {
     e.preventDefault();
-    await axios.post("/idDuplicatonChk", id).then((response) => {
-      if (response.data.status === 201) {
-        setIdMessage("사용가능한 아이디입니다.");
-        setIsId(true);
-      } else {
-        setIdMessage("이미 사용중인 아이디입니다.");
-        setIsId(false);
-      }
-    });
+    await axios
+      .post("http://localhost:4001/idDuplicatonChk", { id })
+      .then((response) => {
+        if (response.data.status === 201) {
+          setIdMessage("사용가능한 아이디입니다.");
+          setIsId(true);
+        } else {
+          setIdMessage("이미 사용중인 아이디입니다.");
+          setIsId(false);
+        }
+      });
   }
 
   // 비밀번호
