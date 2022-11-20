@@ -8,7 +8,7 @@ function ItemSearch() {
   const [items, setItems] = useState([]);
 
   async function getItemSearch() {
-    await axios.get("http://localhost:4001/itemsearch").then((response) => {
+    await axios.get("http://localhost:4001/itemSearch").then((response) => {
       setItems(response.data);
     });
   }

@@ -15,7 +15,9 @@ function Header({ token, userId }) {
     e.preventDefault();
     await axios
       .get("http://localhost:4001/itemSearch", itemSearch)
-      .then(navigate("/itemSearch"));
+      .then((response) => {
+        navigate("/itemSearch");
+      });
   }
 
   return (
