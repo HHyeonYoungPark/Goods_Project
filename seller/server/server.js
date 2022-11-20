@@ -187,29 +187,47 @@ app.get("/goodsManager", (req, res) => {
 });
 
 // 상품등록
-app.post("/addItem", upload.single("attach"), (req, res) => {
-  console.log(req.file);
+app.post(
+  "/addItem",
+  upload.single("attach"),
+  upload.single("attach2"),
+  upload.single("attach3"),
+  (req, res) => {
+    console.log(req.file);
 
-  const { itemname } = req.body;
-  const { category } = req.body;
-  const { price } = req.body;
-  const { stock } = req.body;
-  const { filename } = req.file;
-  const { contents } = req.body;
-  const { madein } = req.body;
+    const { itemname } = req.body;
+    const { category } = req.body;
+    const { price } = req.body;
+    const { stock } = req.body;
+    const { filename } = req.file;
+    const { filename2 } = req.file;
+    const { filename3 } = req.file;
+    const { contents } = req.body;
+    const { madein } = req.body;
 
-  let sql = "INSERT INTO item VALUES(NULL,?,?,?,?,?,?,?,now());";
-  db.query(
-    sql,
-    [itemname, category, price, stock, filename, contents, madein],
-    (err) => {
-      if (err) {
-        throw err;
+    let sql = "INSERT INTO item VALUES(NULL,?,?,?,?,?,?,?,?,?,now());";
+    db.query(
+      sql,
+      [
+        itemname,
+        category,
+        price,
+        stock,
+        filename,
+        filename2,
+        filename3,
+        contents,
+        madein,
+      ],
+      (err) => {
+        if (err) {
+          throw err;
+        }
+        res.send({ status: 201, message: "상품등록이 완료되었습니다!" });
       }
-      res.send({ status: 201, message: "상품등록이 완료되었습니다!" });
-    }
-  );
-});
+    );
+  }
+);
 
 // 상품삭제
 app.delete("/delete/:idx", (req, res) => {
@@ -553,7 +571,6 @@ app.delete("/delete/:boardName/:idx", (req, res) => {
   });
 });
 //리뷰 작성
-
 
 // 다중게시판
 

@@ -9,6 +9,7 @@ import {
   Outlet,
 } from "react-router-dom";
 import "../../css/pages/Detail.css";
+import Carousel from "react-bootstrap/Carousel";
 import image from "../../images/phone.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -140,6 +141,7 @@ function Detail({ token, userId }) {
       <div className="detail-top-con">
         <div className="detailimg-con">
           <img src={`http://localhost:4001/${item.attach}`} alt="" />
+          <div className="detailMultiImg"></div>
         </div>
         <div className="detail-title-con">
           <div>

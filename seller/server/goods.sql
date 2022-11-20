@@ -8,6 +8,8 @@ category VARCHAR(50),
 price VARCHAR(50),
 stock INT,
 attach VARCHAR(255),
+attach2 VARCHAR(255),
+attach3 VARCHAR(255),
 contents TEXT,
 madein VARCHAR(50),
 regdate DATE

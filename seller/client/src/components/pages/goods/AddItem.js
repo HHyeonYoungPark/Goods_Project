@@ -10,6 +10,8 @@ function AddItem() {
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
   const [attach, setAttach] = useState("");
+  const [attach2, setAttach2] = useState("");
+  const [attach3, setAttach3] = useState("");
   const [contents, setContents] = useState("");
   const [madein, setMadein] = useState("");
 
@@ -24,6 +26,8 @@ function AddItem() {
     formData.append("price", price);
     formData.append("stock", stock);
     formData.append("attach", attach);
+    formData.append("attach2", attach2);
+    formData.append("attach3", attach3);
     formData.append("contents", contents);
     formData.append("madein", madein);
 
@@ -109,6 +113,7 @@ function AddItem() {
               <tr>
                 <th>이미지</th>
                 <td>
+                  메인이미지:
                   <input
                     className="itemImage"
                     type="file"
@@ -116,6 +121,26 @@ function AddItem() {
                     multiple
                     onChange={(e) => {
                       setAttach(e.target.files[0]);
+                    }}
+                  />
+                  <br></br>서브이미지1:
+                  <input
+                    className="itemImage"
+                    type="file"
+                    name="attach2"
+                    multiple
+                    onChange={(e) => {
+                      setAttach2(e.target.files[0]);
+                    }}
+                  />
+                  <br></br>서브이미지2:
+                  <input
+                    className="itemImage"
+                    type="file"
+                    name="attach3"
+                    multiple
+                    onChange={(e) => {
+                      setAttach3(e.target.files[0]);
                     }}
                   />
                 </td>
