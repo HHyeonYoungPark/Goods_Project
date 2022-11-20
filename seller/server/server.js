@@ -552,6 +552,8 @@ app.delete("/delete/:boardName/:idx", (req, res) => {
     res.send({ status: 201, message: "게시글 삭제 완료" });
   });
 });
+//리뷰 작성
+
 
 // 다중게시판
 

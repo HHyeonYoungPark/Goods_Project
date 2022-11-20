@@ -28,6 +28,8 @@ import Notice from "./components/pages/board/Notice";
 import Help from "./components/pages/board/HelpToAdmin";
 import TableGallary from "./components/pages/goods/TableGallary";
 import Detail from "./components/pages/goods/Detail";
+import DetailTable from "./components/pages/goods/DetailTable";
+import DetailReview from "./components/pages/goods/DetailReview";
 import Ask from "./components/pages/board/AskToAdmin";
 import PrivateRoute from "./components/pages/PrivateRoute";
 import NotFound from "./components/pages/NotFound";
@@ -68,7 +70,11 @@ function App() {
             <Route
               path="detail/:idx"
               element={<Detail token={token} userId={userId} />}
-            />
+            >
+              <Route index="detailTable" element={<DetailTable/>}/>
+              <Route path="detailTable" element={<DetailTable/>}/>
+              <Route path="detailReview" element={<DetailReview/>}/>
+            </Route>
             <Route path="login" element={<Login />} />
             <Route path="logout" element={<Logout />} />
             <Route path="regist" element={<Regist />} />

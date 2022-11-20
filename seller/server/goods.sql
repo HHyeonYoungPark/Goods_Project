@@ -64,3 +64,11 @@ create table boardManager (
   createDate date,
   modifyDate date
 );
+
+
+create table review (
+reviewIdx int auto_increment primary key,
+reviewItem varchar(50),
+reviewContents varchar(50),
+reviewRecom varchar(50)
+);
