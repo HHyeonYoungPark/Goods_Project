@@ -66,7 +66,7 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
   const intro = req.body.intro;
 
   let sql =
-    "INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,?,?,?,'일반 판매자',now());";
+    "INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,?,?,?,'일반회원',now());";
   bcrypt.hash(req.body.pw, saltRounds, (err, hash_pw) => {
     db.query(
       sql,
@@ -103,6 +103,24 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
         });
       }
     );
+  });
+});
+
+// 아이디 중복체크
+app.get("/idDuplicatonChk", (req, res) => {
+  const id = req.body.id;
+  console.log(req.body.id);
+  let sql = "SELECT * FROM user WHERE id =?;";
+  db.query(sql, [req.body.id], (err, result) => {
+    if (err) {
+      throw err;
+    } else if (result[0] === undefined) {
+      res.send({
+        status: 201,
+      });
+    } else {
+      res.send(false);
+    }
   });
 });
 

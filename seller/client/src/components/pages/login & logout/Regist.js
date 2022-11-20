@@ -116,9 +116,23 @@ function Regist() {
       setIdMessage("아이디를 8자이상 입력해주세요");
       setIsId(false);
     } else {
-      setIdMessage("사용가능한 아이디 입니다.");
-      setIsId(true);
+      setIdMessage("아이디 중복체크를 해주세요.");
+      setIsId(false);
     }
+  }
+
+  // 아이디 중복체크
+  async function idDuplicatonChk(e) {
+    e.preventDefault();
+    await axios.post("/idDuplicatonChk", id).then((response) => {
+      if (response.data.status === 201) {
+        setIdMessage("사용가능한 아이디입니다.");
+        setIsId(true);
+      } else {
+        setIdMessage("이미 사용중인 아이디입니다.");
+        setIsId(false);
+      }
+    });
   }
 
   // 비밀번호
@@ -307,6 +321,9 @@ function Regist() {
                 <td>
                   <input type="text" name="id" onChange={onChangeId} />
                   {idMessage && <span>{idMessage}</span>}
+                  <button type="button" onClick={idDuplicatonChk}>
+                    ID중복체크
+                  </button>
                 </td>
               </tr>
               <tr>
