@@ -320,12 +320,16 @@ function Regist() {
             <table>
               <tr>
                 <th>아이디</th>
-                <td>
+                <td className="idInput">
                   <input type="text" name="id" onChange={onChangeId} />
-                  {idMessage && <span>{idMessage}</span>}
-                  <button type="button" onClick={idDuplicatonChk}>
+                  <button
+                    type="button"
+                    className="idCheckBtn"
+                    onClick={idDuplicatonChk}
+                  >
                     ID중복체크
                   </button>
+                  {idMessage && <span>{idMessage}</span>}
                 </td>
               </tr>
               <tr>
