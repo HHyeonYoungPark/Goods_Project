@@ -437,8 +437,9 @@ app.post("/boardAdd", (req, res) => {
       if (err) {
         throw err;
       } else {
-        res.send({ status: 201, message: "게시판 생성 완료" });
-        let createSQL = "CREATE TABLE board" + boardName + "(";
+        //IF NOT EXISTS 삽입하여 테이블명 중첩될 때 덮어쓰는 거로 임시방편. 추후 if문을 통해(테이블명이 같은게 있을 시 경고창) 수정,
+        // boardName 이 아닌 boardCode로 테이블 생성
+        let createSQL = "CREATE TABLE IF NOT EXISTS board" + boardCode + "(";
         createSQL += "idx int auto_increment primary key,";
         createSQL += "title varchar(100),";
         createSQL += "writer varchar(50),";
@@ -455,6 +456,7 @@ app.post("/boardAdd", (req, res) => {
             console.log("board" + boardName + " Create Completed.");
           }
         });
+        res.send({ status: 201, message: "게시판 생성 완료" });
       }
     }
   );
@@ -577,11 +579,26 @@ app.put("/update", upload.single("img"), (req, res) => {
 });
 
 // 게시판 삭제
-app.delete("/board/delete/:boardIdx", (req, res) => {
-  let sql = "DELETE FROM boardManager WHERE boardIdx = ?;";
-  db.query(sql, [req.params.boardIdx], (err) => {
-    if (err) throw err;
-    res.send({ status: 201, message: "게시판 삭제 완료" });
+//11-21-commit, 생성되었던 table DROP이 용이하도록 boardIdx가 아닌 boardCode를 param으로 가져와 deleteㅇ와 drop을 실행.
+// 이전 코드에선 게시판 목록에선 지워졌지만 데이터베이스에 생성되었던 테이블은 남아있었음.
+app.delete("/board/delete/:boardCode", (req, res) => {
+  const boardCode = req.params.boardCode;
+  let delSql = "DELETE FROM boardManager WHERE boardCode = ?;";
+  db.query(delSql, boardCode, (err) => {
+    if (err) {
+      throw err;
+    } else {
+      console.log(boardCode);
+      let dropSql = "DROP TABLE boardnotice ;";
+      db.query(dropSql, (err) => {
+        if (err) {
+          throw err;
+        } else {
+          console.log("Drop Table board" + boardCode + " Completed.");
+        }
+      });
+      res.send({ status: 201, message: "게시판 삭제 완료" });
+    }
   });
 });
 // 게시글 삭제

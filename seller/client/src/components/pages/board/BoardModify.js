@@ -8,21 +8,40 @@ function BoardModify(b) {
   const [boardCode, setBoardCode] = useState(board.b.boarCode);
   const [boardCategory, setBoardCategory] = useState(board.b.boardCategory);
   const [boardName, setBoardName] = useState(board.b.boardName);
-  const [boardBuilder, setBoardBuilder] = useState(board.b.boardBuilder);  
+  const [boardBuilder, setBoardBuilder] = useState(board.b.boardBuilder);
   const [boardReadAllow, setBoardReadAllow] = useState(board.b.boardReadAllow);
-  const [boardWriteAllow, setBoardWriteAllow] = useState(board.b.boardWriteAllow);
-  const [boardCommentAllow, setBoardCommentAllow] = useState(board.b.boardCommentAllow);
-  const [boardModifyAllow, setBoardModifyAllow] = useState(board.b.boardModifyAllow);
+  const [boardWriteAllow, setBoardWriteAllow] = useState(
+    board.b.boardWriteAllow
+  );
+  const [boardCommentAllow, setBoardCommentAllow] = useState(
+    board.b.boardCommentAllow
+  );
+  const [boardModifyAllow, setBoardModifyAllow] = useState(
+    board.b.boardModifyAllow
+  );
 
   async function frmHandler(e) {
     e.preventDefault();
-    const data = {boardCode, boardCategory, boardName, boardBuilder, boardReadAllow, boardWriteAllow, boardCommentAllow, boardModifyAllow}
-    await axios.post("http://localhost:4001/boardUpdate?=boardName="+board.b.boardName, data)
+    const data = {
+      boardCode,
+      boardCategory,
+      boardName,
+      boardBuilder,
+      boardReadAllow,
+      boardWriteAllow,
+      boardCommentAllow,
+      boardModifyAllow,
+    };
+    await axios
+      .post(
+        "http://localhost:4001/boardUpdate?=boardName=" + board.b.boardName,
+        data
+      )
       .then((response) => {
-        if(response.data.status === 201){
+        if (response.data.status === 201) {
           window.alert(response.data.message);
         }
-      })
+      });
   }
 
   return (
@@ -86,13 +105,15 @@ function BoardModify(b) {
                   id="boardReadAllow"
                   className="boardReadAllow"
                   name="boardReadAllow"
-                  value={boardReadAllow}
+                  defaultValue={boardReadAllow}
                   onChange={(e) => setBoardReadAllow(e.target.value)}
                 >
-                  <option value="1">All</option>
-                  <option value="2">logined</option>
-                  <option value="3">seller or admin</option>
-                  <option value="4">admin only</option>
+                  <option value="All" selected>
+                    All
+                  </option>
+                  <option value="logined">logined</option>
+                  <option value="seller or admin">seller or admin</option>
+                  <option value="admin only">admin only</option>
                 </select>
               </td>
               <td>쓰기 권한</td>
@@ -101,13 +122,15 @@ function BoardModify(b) {
                   id="boardWriteAllow"
                   className="boardWriteAllow"
                   name="boardWriteAllow"
-                  value={boardWriteAllow}
+                  defaultValue={boardWriteAllow}
                   onChange={(e) => setBoardWriteAllow(e.target.value)}
                 >
-                  <option value="1">All</option>
-                  <option value="2">logined</option>
-                  <option value="3">seller or admin</option>
-                  <option value="4">admin only</option>
+                  <option value="All" selected>
+                    All
+                  </option>
+                  <option value="logined">logined</option>
+                  <option value="seller or admin">seller or admin</option>
+                  <option value="admin only">admin only</option>
                 </select>
               </td>
               <td>댓글 권한</td>
@@ -116,13 +139,15 @@ function BoardModify(b) {
                   id="boardCommentAllow"
                   className="boardCommentAllow"
                   name="boardCommentAllow"
-                  value={boardCommentAllow}
+                  defaultValue={boardCommentAllow}
                   onChange={(e) => setBoardCommentAllow(e.target.value)}
                 >
-                  <option value="1">All</option>
-                  <option value="2">logined</option>
-                  <option value="3">seller or admin</option>
-                  <option value="4">admin only</option>
+                  <option value="All" selected>
+                    All
+                  </option>
+                  <option value="logined">logined</option>
+                  <option value="seller or admin">seller or admin</option>
+                  <option value="admin only">admin only</option>
                 </select>
               </td>
               <td>수정 권한</td>
@@ -131,13 +156,15 @@ function BoardModify(b) {
                   id="boardModifyAllow"
                   className="boardModifyAllow"
                   name="boardModifyAllow"
-                  value={boardModifyAllow}
+                  defaultValue={boardModifyAllow}
                   onChange={(e) => setBoardModifyAllow(e.target.value)}
                 >
-                  <option value="1">All</option>
-                  <option value="2">logined</option>
-                  <option value="3">seller or admin</option>
-                  <option value="4">admin only</option>
+                  <option value="All" selected>
+                    All
+                  </option>
+                  <option value="logined">logined</option>
+                  <option value="seller or admin">seller or admin</option>
+                  <option value="admin only">admin only</option>
                 </select>
               </td>
             </tr>

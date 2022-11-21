@@ -54,17 +54,16 @@ noticeView int,
 regdate DATE
 );
 
-
 create table boardManager (
   boardIdx int auto_increment primary key,
   boardCode varchar(50),
   boardCategory varchar(50),
   boardName varchar(50),
-  boardBuilder varchar(50),
-  boardReadAllow varchar(10),
-  boardWriteAllow varchar(10),
-  boardCommentAllow varchar(10),
-  boardModifyAllow varchar(10),
+  boardBuilder varchar(50), 
+  boardReadAllow varchar(50), 
+  boardWriteAllow varchar(50),
+  boardCommentAllow varchar(50),
+  boardModifyAllow varchar(50),
   createDate date,
   modifyDate date
 );

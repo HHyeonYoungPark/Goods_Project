@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 function BoardUpdate() {
-  const {BoardName} = useParams();
+  const { BoardName } = useParams();
   const [boardIdx, setBoardIdx] = useState("");
   const [boardCode, setBoardCode] = useState("");
   const [boardCategory, setBoardCategory] = useState("");
   const [boardName, setBoardName] = useState("");
-  const [boardBuilder, setBoardBuilder] = useState("");  
+  const [boardBuilder, setBoardBuilder] = useState("");
   const [boardReadAllow, setBoardReadAllow] = useState("");
   const [boardWriteAllow, setBoardWriteAllow] = useState("");
   const [boardCommentAllow, setBoardCommentAllow] = useState("");
@@ -18,8 +18,9 @@ function BoardUpdate() {
 
   useEffect(() => {
     const getBoardView = async () => {
-      await axios.get("http://localhost:4001/boardUpdate?boardName="+BoardName)
-        .then((res) =>{
+      await axios
+        .get("http://localhost:4001/boardUpdate?boardName=" + BoardName)
+        .then((res) => {
           console.log(res.data);
           setBoardIdx(res.data[0].boardIdx);
           setBoardCode(res.data[0].boardCode);
@@ -31,22 +32,33 @@ function BoardUpdate() {
           setBoardCommentAllow(res.data[0].boardCommentAllow);
           setBoardModifyAllow(res.data[0].boardModifyAllow);
         });
-    }
+    };
     getBoardView();
   }, []);
 
   async function frmHandler(e) {
     e.preventDefault();
-    const data = {boardIdx, boardCode, boardCategory, boardName, boardBuilder, boardReadAllow, boardWriteAllow, boardCommentAllow, boardModifyAllow}
-    await axios.put("http://localhost:4001/boardUpdate?boardName="+boardName, data)
+    const data = {
+      boardIdx,
+      boardCode,
+      boardCategory,
+      boardName,
+      boardBuilder,
+      boardReadAllow,
+      boardWriteAllow,
+      boardCommentAllow,
+      boardModifyAllow,
+    };
+    await axios
+      .put("http://localhost:4001/boardUpdate?boardName=" + boardName, data)
       .then((response) => {
-        if(response.data.status === 201){
+        if (response.data.status === 201) {
           window.alert(response.data.message);
           navigate("/adminPage/boardManager");
         }
-      })
+      });
   }
- 
+
   return (
     <div>
       <form method="post" className="frm" onSubmit={frmHandler}>
@@ -112,10 +124,12 @@ function BoardUpdate() {
                   value={boardReadAllow}
                   onChange={(e) => setBoardReadAllow(e.target.value)}
                 >
-                  <option value="1">All</option>
-                  <option value="2">logined</option>
-                  <option value="3">seller or admin</option>
-                  <option value="4">admin only</option>
+                  <option value="All" selected>
+                    All
+                  </option>
+                  <option value="logined">logined</option>
+                  <option value="seller or admin">seller or admin</option>
+                  <option value="admin only">admin only</option>
                 </select>
               </td>
               <td>쓰기 권한</td>
@@ -127,10 +141,12 @@ function BoardUpdate() {
                   value={boardWriteAllow}
                   onChange={(e) => setBoardWriteAllow(e.target.value)}
                 >
-                  <option value="1">All</option>
-                  <option value="2">logined</option>
-                  <option value="3">seller or admin</option>
-                  <option value="4">admin only</option>
+                  <option value="All" selected>
+                    All
+                  </option>
+                  <option value="logined">logined</option>
+                  <option value="seller or admin">seller or admin</option>
+                  <option value="admin only">admin only</option>
                 </select>
               </td>
               <td>댓글 권한</td>
@@ -142,10 +158,12 @@ function BoardUpdate() {
                   value={boardCommentAllow}
                   onChange={(e) => setBoardCommentAllow(e.target.value)}
                 >
-                  <option value="1">All</option>
-                  <option value="2">logined</option>
-                  <option value="3">seller or admin</option>
-                  <option value="4">admin only</option>
+                  <option value="All" selected>
+                    All
+                  </option>
+                  <option value="logined">logined</option>
+                  <option value="seller or admin">seller or admin</option>
+                  <option value="admin only">admin only</option>
                 </select>
               </td>
               <td>수정 권한</td>
@@ -157,10 +175,12 @@ function BoardUpdate() {
                   value={boardModifyAllow}
                   onChange={(e) => setBoardModifyAllow(e.target.value)}
                 >
-                  <option value="1">All</option>
-                  <option value="2">logined</option>
-                  <option value="3">seller or admin</option>
-                  <option value="4">admin only</option>
+                  <option value="All" selected>
+                    All
+                  </option>
+                  <option value="logined">logined</option>
+                  <option value="seller or admin">seller or admin</option>
+                  <option value="admin only">admin only</option>
                 </select>
               </td>
             </tr>
