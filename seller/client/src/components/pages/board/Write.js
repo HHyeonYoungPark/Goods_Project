@@ -9,7 +9,7 @@ const Write = () => {
   const [contents, setContents] = useState("");
   const [img, setImg] = useState("");
 
-  const { boardName } = useParams();
+  const { boardCode } = useParams();
   
   const navigate = useNavigate();
 
@@ -22,11 +22,11 @@ const Write = () => {
     formData.append("contents", contents);
     formData.append("img", img);
 
-    await axios.post("http://localhost:4001/write?boardName="+boardName, formData)
+    await axios.post("http://localhost:4001/write?boardCode="+boardCode, formData)
       .then((response) => {
         if(response.data.status === 201){
           window.alert(response.data.message);
-          navigate("/adminPage/board/"+boardName);
+          navigate("/adminPage/board/"+boardCode);
         }
       })
   }
@@ -34,7 +34,7 @@ const Write = () => {
   return (
     <div>
       <form method="post" className="frm" onSubmit={frmHandler}>
-        <input type="hidden" value={boardName}/>
+        <input type="hidden" value={boardCode}/>
         <table>
           <tr>
             <th>Title</th>

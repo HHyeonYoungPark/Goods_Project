@@ -34,7 +34,7 @@ function BoardModify(b) {
     };
     await axios
       .post(
-        "http://localhost:4001/boardUpdate?=boardName=" + board.b.boardName,
+        "http://localhost:4001/boardUpdate?=boardCode=" + board.b.boardCode,
         data
       )
       .then((response) => {
@@ -108,9 +108,7 @@ function BoardModify(b) {
                   defaultValue={boardReadAllow}
                   onChange={(e) => setBoardReadAllow(e.target.value)}
                 >
-                  <option value="All" selected>
-                    All
-                  </option>
+                  <option value="All">All</option>
                   <option value="logined">logined</option>
                   <option value="seller or admin">seller or admin</option>
                   <option value="admin only">admin only</option>
@@ -125,9 +123,7 @@ function BoardModify(b) {
                   defaultValue={boardWriteAllow}
                   onChange={(e) => setBoardWriteAllow(e.target.value)}
                 >
-                  <option value="All" selected>
-                    All
-                  </option>
+                  <option value="All">All</option>
                   <option value="logined">logined</option>
                   <option value="seller or admin">seller or admin</option>
                   <option value="admin only">admin only</option>
@@ -142,9 +138,7 @@ function BoardModify(b) {
                   defaultValue={boardCommentAllow}
                   onChange={(e) => setBoardCommentAllow(e.target.value)}
                 >
-                  <option value="All" selected>
-                    All
-                  </option>
+                  <option value="All">All</option>
                   <option value="logined">logined</option>
                   <option value="seller or admin">seller or admin</option>
                   <option value="admin only">admin only</option>
@@ -159,9 +153,7 @@ function BoardModify(b) {
                   defaultValue={boardModifyAllow}
                   onChange={(e) => setBoardModifyAllow(e.target.value)}
                 >
-                  <option value="All" selected>
-                    All
-                  </option>
+                  <option value="All">All</option>
                   <option value="logined">logined</option>
                   <option value="seller or admin">seller or admin</option>
                   <option value="admin only">admin only</option>

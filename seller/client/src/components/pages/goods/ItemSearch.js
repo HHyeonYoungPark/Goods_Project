@@ -1,14 +1,15 @@
 import React from "react";
 import "../../css/pages/TableGallary.css";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 function ItemSearch() {
+  const {keyword} = useParams();
   const [items, setItems] = useState([]);
 
   async function getItemSearch() {
-    await axios.get("http://localhost:4001/itemSearch").then((response) => {
+    await axios.get("http://localhost:4001/itemSearch?keyword="+keyword).then((response) => {
       setItems(response.data);
     });
   }

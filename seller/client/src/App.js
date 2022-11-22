@@ -65,7 +65,7 @@ function App() {
             <Route path="/" element={<Main />}>
               <Route index="tableGallary" element={<TableGallary />} />
               <Route path="tableGallary" element={<TableGallary />} />
-              <Route path="itemSearch" element={<ItemSearch />} />
+              <Route path="itemSearch/:keyword" element={<ItemSearch />} />
             </Route>
             <Route
               path="detail/:idx"
@@ -107,12 +107,12 @@ function App() {
 
               <Route path="boardManager" element={<BoardManager />} />
               <Route path="boardAdd" element={<BoardAdd />} />
-              <Route path="boardUpdate/:BoardName" element={<BoardUpdate />} />
-              <Route path="board/:boardName" element={<Board />} />
-              <Route path="board/:boardName/write" element={<Write />} />
-              <Route path="board/:boardName/:idx" element={<View />} />
+              <Route path="boardUpdate/:BoardCode" element={<BoardUpdate />} />
+              <Route path="board/:boardCode" element={<Board />} />
+              <Route path="board/:boardCode/write" element={<Write />} />
+              <Route path="board/:boardCode/:idx" element={<View />} />
               <Route
-                path="board/:boardName/update/:idx"
+                path="board/:boardCode/update/:idx"
                 element={<ViewUpdate />}
               />
 

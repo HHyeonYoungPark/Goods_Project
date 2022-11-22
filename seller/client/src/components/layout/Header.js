@@ -8,16 +8,11 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import "../css/layout/Header.css";
 function Header({ token, userId }) {
-  const [itemSearch, setItemSearch] = useState("");
+  const [keyword, setKeyword] = useState("");
   const navigate = useNavigate();
 
-  async function frmHandler(e) {
-    e.preventDefault();
-    await axios
-      .get("http://localhost:4001/itemSearch", itemSearch)
-      .then((response) => {
-        navigate("/itemSearch");
-      });
+  function frmHandler(e) {
+    navigate("/itemSearch/"+keyword);
   }
 
   return (
@@ -34,7 +29,7 @@ function Header({ token, userId }) {
             name="itemSearch"
             className="search-bar__input"
             onChange={(e) => {
-              setItemSearch(e.target.value);
+              setKeyword(e.target.value);
             }}
           />
           <input type="submit" value="검색" />

@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 const View = () => {
   const [view, setView] = useState([]);
 
-  const { boardName } = useParams();
+  const { boardCode } = useParams();
   const { idx } = useParams();
   
   const [title, setTitle] = useState("");
@@ -17,7 +17,7 @@ const View = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const getView = async () => {
-      await axios.get("http://localhost:4001/view?boardName="+boardName+"&idx="+idx)
+      await axios.get("http://localhost:4001/view?boardCode="+boardCode+"&idx="+idx)
         .then((res) =>{
           setView(res.data[0]);
           setTitle(res.data[0].title);
@@ -39,13 +39,17 @@ const View = () => {
     formData.append("contents", contents);
     formData.append("img", img);
 
-    await axios.put("http://localhost:4001/update?boardName="+boardName+"&idx="+idx, formData)
+    await axios.put("http://localhost:4001/update?boardCode="+boardCode+"&idx="+idx, formData)
       .then((response) => {
         if(response.data.status === 201){
           window.alert(response.data.message);
-          navigate("/adminPage/board/"+boardName);
+          navigate("/adminPage/board/"+boardCode);
         }
       })
+  }
+
+  const deleteImg = () => {
+    setImg("");
   }
   
   return (
@@ -72,8 +76,14 @@ const View = () => {
           <tr>
             <th>Image</th>
             <td>
-              <img src={`http://localhost:4001/${view.image}`}/>
+            {
+              img === null && <input type="text" name="img" value="첨부 파일 없음"/>
+            }
+            {
+              img !== null && <input type="text" name="img" value={view.image}/>
+            }
               <input type="file" name="img" onChange={(e) => setImg(e.target.files[0])}/>
+              <button onClick={deleteImg}>첨부파일 초기화</button>
             </td>
           </tr>
           <tr>
@@ -82,7 +92,7 @@ const View = () => {
         </table>
       </form>
       <button className="list-btn">
-        <Link to={"/AdminPage/board/"+boardName}>돌아가기</Link>
+        <Link to={"/AdminPage/board/"+boardCode}>돌아가기</Link>
       </button>
    </div>
   )
