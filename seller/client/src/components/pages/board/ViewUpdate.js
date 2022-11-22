@@ -29,7 +29,7 @@ const View = () => {
     }
     getView();
   }, []);
-
+  
   async function frmHandler(e) {
     e.preventDefault();
     let formData = new FormData();
@@ -47,11 +47,19 @@ const View = () => {
         }
       })
   }
-
-  const deleteImg = () => {
-    setImg("");
-  }
   
+  const delImg = async (e) => {
+    e.preventDefault();
+    window.alert("첨부파일을 삭제하시겠습니까?");
+    await axios.delete("http://localhost:4001/delImg?boardCode="+boardCode+"&idx="+idx)
+      .then((res) => {
+        if(res.data.status === 201){
+          window.alert(res.data.message);
+          window.location.reload();
+        }
+      })
+  }
+
   return (
     <div>
       <form method="post" className="frm" onSubmit={frmHandler}>
@@ -83,7 +91,7 @@ const View = () => {
               img !== null && <input type="text" name="img" value={view.image}/>
             }
               <input type="file" name="img" onChange={(e) => setImg(e.target.files[0])}/>
-              <button onClick={deleteImg}>첨부파일 초기화</button>
+              <button type="button" onClick={delImg}>첨부파일 삭제</button>
             </td>
           </tr>
           <tr>

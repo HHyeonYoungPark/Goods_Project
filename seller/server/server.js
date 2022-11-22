@@ -580,19 +580,27 @@ app.post("/write", upload.single("img"), (req, res) => {
 });
 
 app.get("/view", (req, res) => {
-  let sql = "select * from board" + req.query.boardCode + " where idx = ?";
-  db.query(sql, [req.query.idx], (err, result) => {
+  const {boardCode, idx} = req.query;
+  let viewSQL = "update board" + boardCode + " set view=view+1 where idx = ?;";
+  db.query(viewSQL, [idx], (err) => {
     if (err) {
       throw err;
     } else {
-      res.send(result);
+      let sql = "select * from board" + boardCode + " where idx = ? ;";
+      db.query(sql, [idx], (err, result) => {
+        if(err){
+          throw err;
+        }else{
+          res.send(result);
+        }
+      })
     }
   });
 });
 
 app.put("/update", upload.single("img"), (req, res) => {
   // console.log(req.body);
-  // console.log(req.query);
+  // console.log(req.file);
   const { title, writer, passwd, contents } = req.body;
   const { filename } = req.file || "";
 
@@ -614,8 +622,23 @@ app.put("/update", upload.single("img"), (req, res) => {
   );
 });
 
+app.delete("/delImg", (req, res) => {
+  const {boardCode, idx} = req.query;
+  db.query("SELECT image FROM board" + boardCode + " WHERE idx = ?;", [idx], (err, img) => {
+    if(err) {
+      throw err;
+    }else{
+      db.query("update board"+boardCode+" set image=NULL;")
+      fs.unlink("./uploads/"+img[0].image, (err) => {
+        if(err) throw err;
+        res.send({ status: 201, message: "첨부파일 삭제 완료" });
+      });
+    }
+  });
+});
+
 // 게시판 삭제
-//11-21-commit, 생성되었던 table DROP이 용이하도록 boardIdx가 아닌 boardCode를 param으로 가져와 deleteㅇ와 drop을 실행.
+//11-21-commit, 생성되었던 table DROP이 용이하도록 boardIdx가 아닌 boardCode를 param으로 가져와 delete와 drop을 실행.
 // 이전 코드에선 게시판 목록에선 지워졌지만 데이터베이스에 생성되었던 테이블은 남아있었음.
 app.delete("/board/delete/:boardCode", (req, res) => {
   const boardCode = req.params.boardCode;
@@ -637,12 +660,27 @@ app.delete("/board/delete/:boardCode", (req, res) => {
     }
   });
 });
+
 // 게시글 삭제
 app.delete("/delete/:boardCode/:idx", (req, res) => {
-  let sql = "DELETE FROM board" + req.params.boardCode + " WHERE idx = ?;";
-  db.query(sql, [req.params.idx], (err) => {
-    if (err) throw err;
-    res.send({ status: 201, message: "게시글 삭제 완료" });
+  const {boardCode, idx} = req.params;
+
+  db.query("SELECT image FROM board" + boardCode + " WHERE idx = ?;", [idx], (err, img) => {
+    if(err) {
+      throw err;
+    }else{
+      let sql = "DELETE FROM board" + boardCode + " WHERE idx = ?;";
+      db.query(sql, [idx], (err) => {
+        if (err){
+          throw err;
+        } else {
+          fs.unlink("./uploads/"+img[0].image, (err) => {
+            if(err) throw err;
+          });
+          res.send({ status: 201, message: "게시글 삭제 완료" });
+        }
+      });
+    }
   });
 });
 //리뷰 작성

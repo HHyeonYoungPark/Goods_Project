@@ -116,7 +116,7 @@ const Board = () => {
                   <td>{list.idx}</td>
                   <td><Link to={"/adminPage/board/"+boardCode+"/"+list.idx}>{list.title}</Link></td>
                   <td>{list.writer}</td>
-                  <td>{list.count}</td>
+                  <td>{list.view}</td>
                   <td>{list.regdate}</td>
                   <td>
                     <Link to={"/adminPage/board/"+boardCode+"/update/"+list.idx}>수정</Link>

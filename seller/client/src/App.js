@@ -58,8 +58,11 @@ function App() {
     <div>
       <Router>
         <Header token={token} userId={userId} />
-        <Navbar />
-
+        
+        { userId !== "admin" &&
+          <Navbar />
+        }
+        
         <main>
           <Routes token={token} userId={userId}>
             <Route path="/" element={<Main />}>
