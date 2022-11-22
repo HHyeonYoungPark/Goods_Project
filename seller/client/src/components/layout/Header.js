@@ -32,7 +32,7 @@ function Header({ token, userId }) {
               setKeyword(e.target.value);
             }}
           />
-          <input type="submit" value="검색" />
+          {/* <input type="submit" value="검색" /> */}
           <FontAwesomeIcon icon={faMagnifyingGlass} className="fa-search" />
         </form>
       </div>
