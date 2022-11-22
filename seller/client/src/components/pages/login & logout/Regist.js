@@ -112,7 +112,7 @@ function Regist() {
     const idCurrent = e.target.value;
     setId(idCurrent);
 
-    if (idCurrent.length < 5) {
+    if (idCurrent.length < 8) {
       setIdMessage("아이디를 8자이상 입력해주세요");
       setIsId(false);
     } else {

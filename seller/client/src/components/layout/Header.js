@@ -14,9 +14,11 @@ function Header({ token, userId }) {
   async function frmHandler(e) {
     e.preventDefault();
     await axios
-      .get("http://localhost:4001/itemSearch", itemSearch)
+      .get("http://localhost:4001/itemSearch", { itemSearch })
       .then((response) => {
-        navigate("/itemSearch");
+        if (response.data.status === 201) {
+          navigate("/itemSearch");
+        }
       });
   }
 
@@ -37,7 +39,7 @@ function Header({ token, userId }) {
               setItemSearch(e.target.value);
             }}
           />
-          <input type="submit" value="검색" />
+          {/* <input type="submit" value="검색" /> */}
           <FontAwesomeIcon icon={faMagnifyingGlass} className="fa-search" />
         </form>
       </div>
