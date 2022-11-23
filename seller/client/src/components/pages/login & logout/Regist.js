@@ -101,6 +101,8 @@ function Regist() {
             localStorage.setItem("profileimage", response.data.profileimage);
             localStorage.setItem("intro", response.data.intro);
             navigate("/login");
+            console.log(hiddenZip);
+            console.log(hiddenAddress);
           } else {
             window.alert("에러발생 : 관리자에게 문의하세요");
             navigate("/");
@@ -206,7 +208,11 @@ function Regist() {
 
   // 주소
   const [popup, setPopup] = useState(false);
-  const [address, setAdress] = useState({ address: "" });
+  const [address, setAdress] = useState("");
+
+  const handleComplete = (data) => {
+    setPopup(!popup);
+  };
 
   const handleInput = (e) => {
     e.preventDefault();
@@ -214,10 +220,7 @@ function Regist() {
       ...address,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const handleComplete = (data) => {
-    setPopup(!popup);
+    setPopup(false);
   };
 
   // 채널명
@@ -401,12 +404,12 @@ function Regist() {
                     name="zip"
                     onChange={handleInput}
                     readOnly
-                    value={address.zonecode}
+                    value={address.zonecode || ""}
                   />
                   <input
                     type="hidden"
                     name="hiddenZip"
-                    value={address.zonecode}
+                    value={address.zonecode || ""}
                     onChange={(e) => {
                       setHiddenZip(e.target.value);
                     }}
@@ -426,12 +429,12 @@ function Regist() {
                     name="address"
                     onChange={handleInput}
                     readOnly
-                    value={address.address}
+                    value={address.address || ""}
                   />
                   <input
                     type="hidden"
                     name="hiddenAddress"
-                    value={address.address}
+                    value={address.address || ""}
                     onChange={(e) => {
                       setHiddenAddress(e.target.value);
                     }}

@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import DaumPostcode from "react-daum-postcode";
+import DaumPostCode from "react-daum-postcode";
 import "../../css/pages/Post.css";
 
 function Post(props) {
@@ -31,7 +30,11 @@ function Post(props) {
 
   return (
     <div className="postmodal">
-      <DaumPostcode autoClose onComplete={complete} />
+      <DaumPostCode
+        errorMessage={(error) => console.log(error)}
+        autoClose
+        onComplete={complete}
+      />
     </div>
   );
 }

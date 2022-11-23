@@ -92,7 +92,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="logout" element={<Logout />} />
             <Route path="regist" element={<Regist />} />
-            <Route element={<Post />} />
+            <Route path="post" element={<Post />} />
 
             <Route element={<PrivateMyPage token={token} userId={userId} />}>
               <Route
