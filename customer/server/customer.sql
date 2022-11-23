@@ -2,11 +2,11 @@ USE goods;
 
 CREATE TABLE customer(
   idx INT AUTO_INCREMENT PRIMARY KEY,
-  id VARCHAR(50) UNIQUE,
+  id VARCHAR(50),
   pw VARCHAR(255),
   NAME VARCHAR(50),
-  moblie VARCHAR(20),
-  email VARCHAR(255) UNIQUE,
+  mobile VARCHAR(20),
+  email VARCHAR(255),
   address1 VARCHAR(100),
   address2 VARCHAR(100),
   zipcod VARCHAR(10),

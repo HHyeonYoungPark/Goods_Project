@@ -1,0 +1,36 @@
+.GoodsLists-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 30.3%);
+  column-gap: 3%;
+  row-gap: 50px;
+  margin: 30px auto;
+}
+
+.GoodsLists {
+  width: 100%;
+  height: auto;
+}
+
+.GoodsLists img {
+  height: 240px;
+  width: 100%;
+}
+
+.GoodsLists h4 {
+  margin: 10px 0 3px 2px;
+  font-size: 17px;
+}
+
+.GoodsLists h4 a:hover {
+  color: steelblue;
+}
+
+.price {
+  margin-left: 2px;
+}
+
+.price a {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 15px;
+}

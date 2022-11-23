@@ -1,21 +1,37 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import "../../css/pages/privateInfo/Profile.css";
+import { Link, useNavigate } from "react-router-dom";
+// import "../../css/pages/privateInfo/Profile.css";
 
-function Profile() {
+const useConfirm = (message = "", onConfirm, onCancel) => {
+  if (!onConfirm || typeof onConfirm !== "function") { 
+    return; // 매개변수 onConfirm가 없거나 onConfirm이 함수가 아나라면 return 실행
+  }
+  if (onCancel && typeof onCancel !== "function") { // onCancle은 필수요소는 아님
+    return;
+  }
+  const confirmAction = () => { // confirm창의 응답에 따른 이벤트 실행 함수
+    if (window.confirm(message)) { // 확인을 눌렀다면
+      onConfirm();
+    } else { // 취소를 눌렀다면
+      onCancel();
+    }
+  };
+  return confirmAction; 
+};
+
+function Profile({userId}) {
   const [profile, setProfile] = useState([]);
   const navigate = useNavigate();
 
   const getCustomerData = async () => {
-    await axios.get("http://localhost:4001/customer/profile")
+    await axios.get("http://localhost:4001/customer/profile/"+userId)
         .then((response) => {
         if (response.data.status === 404) {
           window.alert(response.data.message);
           navigate("/login");
         } else if(response.data.status === 201){
-          setProfile(response.data);
+          setProfile(response.data.result[0]);
         } else {
           window.alert("에러발생 : 관리자에게 문의하세요");
           navigate("/");
@@ -26,7 +42,19 @@ function Profile() {
   useEffect(() => {
     getCustomerData();
   }, []);
-  
+
+  const deleteConfirm = async() => {
+    await axios.delete("http://localhost:4001/customer/delete/"+profile.idx)
+      .then((res) => {
+        if(res.data.status === 201 ){
+          window.alert(res.data.message);
+          navigate("/logout");
+        }
+      });
+  }
+  const cancelConfirm = () => window.alert("취소했습니다.")
+  const withdrawal = useConfirm("회원탈퇴 하시겠습니까?", deleteConfirm, cancelConfirm);
+
   return (
     <div className="profile-container">
       <div className="profile-wrap">
@@ -34,6 +62,7 @@ function Profile() {
           <h1>회원 정보</h1>
         </div>
         <div className="profile-info">
+        <input type="hidden" name="customerIdx" value={profile.idx} />
           <table>
             <tr>
               <th>아이디</th>
@@ -61,7 +90,7 @@ function Profile() {
                 <input
                   type="text"
                   name="customerName"
-                  value={profile.name}    
+                  value={profile.NAME}    
                 />
               </td>
             </tr>
@@ -117,10 +146,12 @@ function Profile() {
             </tr>
           </table>
           <div className="submit-btn">
-            <button className="list-btn">
-              <Link to="/">탈퇴하기</Link>
+            <button className="list-btn" onClick={withdrawal}>
+              탈퇴하기
             </button>
-            <input type="submit" value="수정하기" />
+            <button type="button" onClick={(e) => window.location="/profileModify"}>
+              수정하기
+            </button>
           </div>
         </div>
       </div>
