@@ -127,7 +127,7 @@ function AddItem() {
                       setAttach(e.target.files[0]);
                     }}
                   />
-                  {/* <br></br>서브이미지1:
+                  <br></br>서브이미지1:
                   <input
                     className="itemImage"
                     type="file"
@@ -146,7 +146,7 @@ function AddItem() {
                     onChange={(e) => {
                       setAttach3(e.target.files[0]);
                     }}
-                  /> */}
+                  />
                 </td>
               </tr>
               <tr>
