@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../../css/pages/privateInfo/Profile.css";
+// import "../../css/pages/privateInfo/Profile.css";
 
-function ProfileModify() {
+function ProfileModify({userId}) {
   const [customerPw, setCustomerPw] = useState("");
   const [customerPwConfirm, setCustomerPwConfirm] = useState("");
   const [customerName, setCustomerName] = useState("");
@@ -36,13 +36,19 @@ function ProfileModify() {
   const navigate = useNavigate();
 
   const getCustomerData = async () => {
-    await axios.get("http://localhost:4001/customer/profile")
+    await axios.get("http://localhost:4001/customer/profile/"+userId)
         .then((response) => {
         if (response.data.status === 404) {
           window.alert(response.data.message);
           navigate("/login");
         } else if(response.data.status === 201){
-          setProfile(response.data);
+          setProfile(response.data.result[0]);
+          setCustomerName(response.data.result[0].NAME);
+          setCustomerMobile(response.data.result[0].mobile);
+          setCustomerEmail(response.data.result[0].email);
+          setCustomerAddress1(response.data.result[0].address2);
+          setCustomerAddress2(response.data.result[0].address2);
+          setCustomerZipcod(response.data.result[0].zipcod);
         } else {
           window.alert("에러발생 : 관리자에게 문의하세요");
           navigate("/");
@@ -165,16 +171,9 @@ function ProfileModify() {
       isCustomerAddress1 &&
       isCustomerZipcod
     ) {
-      let formDataCustomer = new FormData();
-      formDataCustomer.append("customerPw", customerPw);
-      formDataCustomer.append("customerName", customerName);
-      formDataCustomer.append("customerMobile", customerMobile);
-      formDataCustomer.append("customerEmail", customerEmail);
-      formDataCustomer.append("customerAddress1", customerAddress1);
-      formDataCustomer.append("customerAddress2", customerAddress2);
-      formDataCustomer.append("customerZipcod", customerZipcod);
+      const CustomerData = {customerPw, customerName, customerMobile, customerEmail, customerAddress1, customerAddress2, customerZipcod}
       
-      await axios.post("http://localhost:4001/customer/profileModify", formDataCustomer)
+      await axios.post("http://localhost:4001/customer/profileModify", CustomerData)
         .then((response) => {
         if (response.data.status === 201) {
           window.alert(response.data.message);
@@ -218,7 +217,6 @@ function ProfileModify() {
                   <input
                     type="password"
                     name="customerPw"
-                    value={profile.pw}
                     onChange={onChangeCustomerPw}
                   />
                   {customerPw && <span>{customerPwMessage}</span>}
@@ -237,7 +235,7 @@ function ProfileModify() {
                   <input
                     type="text"
                     name="customerName"
-                    value={profile.name}
+                    value={customerName}
                     onChange={onChangeCustomerName}
                   />
                   {customerNameMessage && <span>{customerNameMessage}</span>}
@@ -249,7 +247,7 @@ function ProfileModify() {
                   <input
                     type="text"
                     name="customerMobile"
-                    value={profile.mobile}
+                    value={customerMobile}
                     onChange={onChangeCustomerMobile}
                   />
                   {customerMobileMessage && <span>{customerMobileMessage}</span>}
@@ -261,7 +259,7 @@ function ProfileModify() {
                   <input
                     type="text"
                     name="customerEmail"
-                    value={profile.email}
+                    value={customerEmail}
                     onChange={onChangeCustomerEmail}
                   />
                   {customerEmailMessage && <span>{customerEmailMessage}</span>}
@@ -273,7 +271,7 @@ function ProfileModify() {
                   <input
                     type="text"
                     name="customerAddress1"
-                    value={profile.address1}
+                    value={customerAddress1}
                     onChange={onChangeCustomerAddress1}
                   />
                   {customerAddressMessage && <span>{customerAddressMessage}</span>}
@@ -285,7 +283,7 @@ function ProfileModify() {
                   <input
                     type="text"
                     name="customerAddress2"
-                    value={profile.address2}
+                    value={customerAddress2}
                     onChange={onChangeCustomerAddress2}
                   />
                 </td>
@@ -296,7 +294,7 @@ function ProfileModify() {
                   <input
                     type="text"
                     name="customerZipcod"
-                    value={profile.zipcod}
+                    value={customerZipcod}
                     onChange={onChangeCustomerZipcod}
                   />
                   {customerZipcodMessage && <span>{customerZipcodMessage}</span>}
@@ -305,6 +303,7 @@ function ProfileModify() {
             </table>
             <div className="submit-btn">
               <input type="submit" value="수정하기" />
+              <button type="button" onClick={(e) => navigate(-1)}>취소</button>
             </div>
           </form>
         </div>

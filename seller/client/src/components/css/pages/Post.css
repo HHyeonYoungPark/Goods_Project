@@ -1,0 +1,7 @@
+.postmodal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 600px;
+  height: 600px;
+}

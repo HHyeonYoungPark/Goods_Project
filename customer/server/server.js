@@ -45,7 +45,7 @@ const upload = multer({
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
-app.use(express.static("reviews"));
+app.use(express.static("uploads"));
 
 // url
 //customer home//
@@ -55,18 +55,33 @@ app.get("/", (req, res) => {
 
 //customer regist//
 app.post("/customer/regist", (req, res) => {
-  const { id, pw, name, mobile, email, address1, address2, zipcod } = req.body;
-  
+  const { customerId, customerPw, customerName, customerMobile, customerEmail, customerAddress1, customerAddress2, customerZipcod } = req.body;
   let sql = "INSERT INTO customer VALUES(NULL,?,?,?,?,?,?,?,?,now());";
-  bcrypt.hash(pw, saltRounds, (err, hash_pw) => {
+  bcrypt.hash(customerPw, saltRounds, (err, hash_pw) => {
     db.query(
       sql,
-      [id, hash_pw, name, mobile, email, address1, address2, zipcod],
+      [ customerId, hash_pw, customerName, customerMobile, customerEmail, customerAddress1, customerAddress2, customerZipcod ],
       (err) => {
         if (err) throw err;
         res.send({ status: 201, message: "회원 가입이 완료되었습니다." });
       }
     );
+  });
+});
+
+// id duplicaton Check
+app.post("/customer/idDuplicatonChk", (req, res) => {
+  const customerId = req.body.customerId;
+
+  let sql = "SELECT * FROM customer WHERE id = ?;";
+  db.query(sql, [customerId], (err, id) => {
+    if (err) throw err;
+
+    if (id[0] === undefined) {
+      res.send({
+        status: 201,
+      });
+    }
   });
 });
 
@@ -77,13 +92,13 @@ app.post("/customer/login", (req, res) => {
     if (customer[0] === undefined) {
       res.send({ status: 404, message: "회원 정보가 없습니다" });
     } else {
-      bcrypt.compare(req.body.pw, user[0].pw, (err, result) => {
+      bcrypt.compare(req.body.pw, customer[0].pw, (err, result) => {
         if (result) {
           res.send({
             status: 201,
             message: "로그인 되었습니다",
-            token_id: user[0].id,
-            token_pw: user[0].pw,
+            token_id: customer[0].id,
+            token_pw: customer[0].pw,
           });
         } else {
           res.send({
@@ -127,15 +142,17 @@ app.get("/customer/search", (req, res) => {
 });
 
 //goods list
-app.get("/customer/goodslist", (req, res) => {
+app.get("/customer/goodslists", (req, res) => {
   const start = Number.parseInt(req.query.start) || 0;
   const offset = Number.parseInt(req.query.offset) || 30;
 
   let sql =
-    "SELECT * FROM item WHERE category_goods_idx = ? ORDER BY seller_idx DESC LIMIT ?, ?;";
+    // "SELECT * FROM item WHERE category_goods_idx = ? ORDER BY seller_idx DESC LIMIT ?, ?;";
+    "SELECT * FROM item ORDER BY idx DESC LIMIT ?,?;";
   db.query(
     sql,
-    [req.params.category_goods_idx, start, offset],
+    // [req.params.category_goods_idx, start, offset],
+    [start, offset],
     (err, goodslists) => {
       if (err) {
         throw err;
@@ -152,9 +169,9 @@ app.get("/customer/goodslist", (req, res) => {
 });
 
 //goods detail
-app.get("/customer/detail", (req, res) => {
-  let sql = "";
-  db.query(sql, [], (err, result) => {
+app.get("/customer/detail/:idx", (req, res) => {
+  let sql = "select * from item where idx =?;";
+  db.query(sql, [req.params.idx], (err, result) => {
     if (err) {
       throw err;
     } else {
@@ -164,31 +181,34 @@ app.get("/customer/detail", (req, res) => {
 });
 
 //profile
-app.get("/customer/profile", (req, res) => {
-  if (!token_id) {
+app.get("/customer/profile/:userId", (req, res) => {
+  const { userId } = req.params;
+  if (!userId) {
     res.send({ status: 404, message: "로그인 후 이용해 주세요" });
     res.redirect("/customer/login");
-  } else if (token_id) {
+  } else if (userId) {
     let sql = "select * from customer where id = ?;";
-    db.query(sql, [token_id], (err, result) => {
+    db.query(sql, [userId], (err, result) => {
       if (err) {
         throw err;
       } else {
         res.send({status: 201, result});
+        console.log(result);
       }
     });
   }
 });
 
 //profile modify//
-app.post("/customer/profileModify", (req, res) => {
-  const { id, pw, name, mobile, email, address1, address2, zipcod } = req.body;
+app.post("/customer/profileModify/:userId", (req, res) => {
+  const { userId } = req.params;
+  const { pw, name, mobile, email, address1, address2, zipcod } = req.body;
   
   let sql = "UPDATE customer SET pw=?, name=?, mobile=?, email=?, address1=?, address2=?, zipcod=? WEHRE id = ?);";
   bcrypt.hash(pw, saltRounds, (err, hash_pw) => {
     db.query(
       sql,
-      [hash_pw, name, mobile, email, address1, address2, zipcod, id],
+      [hash_pw, name, mobile, email, address1, address2, zipcod, userId],
       (err) => {
         if (err) throw err;
         res.send({ status: 201, message: "회원 정보 수정이 완료되었습니다." });
@@ -197,14 +217,25 @@ app.post("/customer/profileModify", (req, res) => {
   });
 });
 
+//profile withdrawal
+app.delete("/customer/delete/:idx", (req, res) => {
+  const idx = req.params.idx;
+  let delSql = "DELETE FROM customer WHERE idx = ?;";
+  db.query(delSql, idx, (err) => {
+    if (err) throw err;
+  
+    res.send({ status: 201, message: "회원 탈퇴 되었습니다." });
+  });
+});
+
 //cart
 app.get("/customer/cart", (req, res) => {
-  if (!token_id) {
+  if (!userId) {
     res.send({ status: 404, message: "로그인 후 이용해 주세요" });
     res.redirect("/customer/login");
   } else {
     let sql = "select * from cart left join customer as c on (cart.customer_idx = c.idx) where c.id = ?;";
-    db.query(sql, [token_id], (err, result) => {
+    db.query(sql, [userId], (err, result) => {
       if (err) {
         throw err;
       } else {
@@ -216,12 +247,12 @@ app.get("/customer/cart", (req, res) => {
 
 //add cart
 app.post("/customer/addCart", (req, res) => {
-  if (!token_id) {
+  if (!userId) {
     res.send({ status: 404, message: "로그인 후 이용해 주세요" });
     res.redirect("/customer/login");
   } else {
     let sql = "INSERT INTO cart VALUES();";
-    db.query(sql, [token_id], (err, result) => {
+    db.query(sql, [userId], (err, result) => {
       if (err) {
         throw err;
       } else {

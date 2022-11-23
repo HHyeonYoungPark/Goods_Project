@@ -21,7 +21,7 @@ function BoardManager() {
   //게시판 목록 불러오기
   const [boardlist, setBoardlist] = useState([]);
   const [rows, setRows] = useState(0);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [pages, setPages] = useState(0);
   const [offset, setOffset] = useState(10);
   const [select, setSelect] = useState("");
@@ -101,7 +101,7 @@ function BoardManager() {
       .then((response) => {
         if (response.data.status === 201) {
           window.alert(response.data.message);
-          getBoardlist();
+          window.location.reload();
         }
       });
   }
@@ -122,13 +122,13 @@ function BoardManager() {
   const boardSearch = (e) => {
     e.preventDefault();
     setKeyword(searchWords);
-    setPage(0);
+    setPage(1);
     setSearchWords("");
   };
 
   const changePage = (page) => {
     setPage(page);
-    if (page === pages - 1) {
+    if (page === pages) {
       setMsg("No More Data");
     } else {
       setMsg("");
@@ -320,7 +320,7 @@ function BoardManager() {
                   <td>{b.boardCode}</td>
                   <td>{b.boardCategory}</td>
                   <td>
-                    <Link to={"/adminPage/board/" + b.boardName}>
+                    <Link to={"/adminPage/board/" + b.boardCode}>
                       {b.boardName}
                     </Link>
                   </td>
@@ -332,10 +332,10 @@ function BoardManager() {
                   <td>{b.createDate}</td>
                   <td>{b.modifyDate}</td>
                   <td>
-                    <Link to={"/adminPage/boardUpdate/" + b.boardName}>
+                    <Link to={"/adminPage/boardUpdate/" + b.boardCode}>
                       수정
                     </Link>
-                    <button onClick={() => setModalIsOpen(true)}>수정</button>
+                    {/* <button onClick={() => setModalIsOpen(true)}>수정</button>
                     <Modal
                       isOpen={modalIsOpen}
                       style={styleModal}
@@ -351,7 +351,7 @@ function BoardManager() {
                           수정 완료
                         </button>
                       </div>
-                    </Modal>
+                    </Modal> */}
                     <button
                       className="upDelBtn"
                       onClick={() => deleteBoard(b.boardCode)}
@@ -364,9 +364,9 @@ function BoardManager() {
             })}
           </table>
 
-          <p className="daner">{msg}</p>
+          <p className="danger">{msg}</p>
           <div className="paging">
-            <Paging page={page} offset={offset} rows={rows} setPage={setPage} />
+            <Paging page={page} offset={offset} rows={rows} setPage={changePage} />
           </div>
         </div>
       </div>

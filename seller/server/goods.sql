@@ -9,13 +9,14 @@ categoryCode VARCHAR(50),
 price VARCHAR(50),
 stock INT,
 attach VARCHAR(255),
+attach2 VARCHAR(255),
+attach3 VARCHAR(255),
 contents TEXT,
 madein VARCHAR(50),
 regdate DATE
 );
 
-attach2 VARCHAR(255),
-attach3 VARCHAR(255),
+  
 
 
 CREATE TABLE user(
@@ -24,6 +25,8 @@ id VARCHAR(50) UNIQUE,
 pw VARCHAR(255),
 sellername VARCHAR(10),
 email varchar(255),
+zip VARCHAR(50),
+address VARCHAR(255),
 channelname VARCHAR(100),
 channelPlatform VARCHAR(50),
 channelGenre VARCHAR(50),
@@ -68,10 +71,59 @@ create table boardManager (
   modifyDate date
 );
 
-
+-- 11.23 리뷰 테이블 수정
 create table review (
-reviewIdx int auto_increment primary key,
-reviewItem varchar(50),
-reviewContents varchar(50),
-reviewRecom varchar(50)
+  idx int auto_increment primary key,
+  Writer varchar(50),
+  ItemNo varchar(50),
+  ItemName varchar(100),
+  title varchar(50),
+  attach VARCHAR(255),
+  Contents varchar(255),
+  Rating varchar(50),
+  regdate DATE
 );
+
+create table category1 (
+    id int not null auto_increment primary key,
+    category1 varchar(50) not null
+);
+insert into category1 values(null, "패션");
+insert into category1 values(null, "전자기기");
+insert into category1 values(null, "문구");
+insert into category1 values(null, "악세사리");
+insert into category1 values(null, "생활");
+
+
+create table category2 (
+  id int not null auto_increment primary key,
+  category2 varchar(50),
+  category1 varchar(50)
+);
+
+insert into category2 values(null,"스웨트니트","패션");
+insert into category2 values(null,"후드티","패션");
+insert into category2 values(null,"티셔츠","패션");
+insert into category2 values(null,"니트","패션");
+
+insert into category2 values(null,"이어폰","전자기기");
+insert into category2 values(null,"키보드","전자기기");
+insert into category2 values(null,"마우스","전자기기");
+insert into category2 values(null,"스피커","전자기기");
+
+insert into category2 values(null,"머그컵","생활");
+insert into category2 values(null,"텀블러","생활");
+insert into category2 values(null,"타월","생활");
+
+insert into category2 values(null,"스티커","문구");
+insert into category2 values(null,"펜","문구");
+insert into category2 values(null,"노트","문구");
+insert into category2 values(null,"지우개","문구");
+insert into category2 values(null,"샤프","문구");
+insert into category2 values(null,"필통","문구");
+
+insert into category2 values(null,"폰케이스","악세사리");
+insert into category2 values(null,"키링","악세사리");
+insert into category2 values(null,"반지","악세사리");
+insert into category2 values(null,"목걸이","악세사리");
+

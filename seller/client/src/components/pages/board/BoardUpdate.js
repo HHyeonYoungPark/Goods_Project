@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 function BoardUpdate() {
-  const { BoardName } = useParams();
+  const { BoardCode } = useParams();
   const [boardIdx, setBoardIdx] = useState("");
   const [boardCode, setBoardCode] = useState("");
   const [boardCategory, setBoardCategory] = useState("");
@@ -19,7 +19,7 @@ function BoardUpdate() {
   useEffect(() => {
     const getBoardView = async () => {
       await axios
-        .get("http://localhost:4001/boardUpdate?boardName=" + BoardName)
+        .get("http://localhost:4001/boardUpdate?boardCode=" + BoardCode)
         .then((res) => {
           console.log(res.data);
           setBoardIdx(res.data[0].boardIdx);
@@ -50,7 +50,7 @@ function BoardUpdate() {
       boardModifyAllow,
     };
     await axios
-      .put("http://localhost:4001/boardUpdate?boardName=" + boardName, data)
+      .put("http://localhost:4001/boardUpdate?boardCode=" + BoardCode, data)
       .then((response) => {
         if (response.data.status === 201) {
           window.alert(response.data.message);
@@ -124,9 +124,7 @@ function BoardUpdate() {
                   value={boardReadAllow}
                   onChange={(e) => setBoardReadAllow(e.target.value)}
                 >
-                  <option value="All" selected>
-                    All
-                  </option>
+                  <option value="All">All</option>
                   <option value="logined">logined</option>
                   <option value="seller or admin">seller or admin</option>
                   <option value="admin only">admin only</option>
@@ -141,9 +139,7 @@ function BoardUpdate() {
                   value={boardWriteAllow}
                   onChange={(e) => setBoardWriteAllow(e.target.value)}
                 >
-                  <option value="All" selected>
-                    All
-                  </option>
+                  <option value="All">All</option>
                   <option value="logined">logined</option>
                   <option value="seller or admin">seller or admin</option>
                   <option value="admin only">admin only</option>
@@ -158,9 +154,7 @@ function BoardUpdate() {
                   value={boardCommentAllow}
                   onChange={(e) => setBoardCommentAllow(e.target.value)}
                 >
-                  <option value="All" selected>
-                    All
-                  </option>
+                  <option value="All">All</option>
                   <option value="logined">logined</option>
                   <option value="seller or admin">seller or admin</option>
                   <option value="admin only">admin only</option>
@@ -175,9 +169,7 @@ function BoardUpdate() {
                   value={boardModifyAllow}
                   onChange={(e) => setBoardModifyAllow(e.target.value)}
                 >
-                  <option value="All" selected>
-                    All
-                  </option>
+                  <option value="All">All</option>
                   <option value="logined">logined</option>
                   <option value="seller or admin">seller or admin</option>
                   <option value="admin only">admin only</option>

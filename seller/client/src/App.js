@@ -12,6 +12,7 @@ import Main from "./components/pages/goods/Main";
 import Login from "./components/pages/login & logout/Login";
 import Logout from "./components/pages/login & logout/Logout";
 import Regist from "./components/pages/login & logout/Regist";
+import Post from "./components/pages/login & logout/Post";
 import AdminPage from "./components/pages/privateInfo/AdminPage";
 import PrivateMyPage from "./components/pages/PrivateMyPage";
 import MyPage from "./components/pages/privateInfo/MyPage";
@@ -30,6 +31,7 @@ import TableGallary from "./components/pages/goods/TableGallary";
 import Detail from "./components/pages/goods/Detail";
 import DetailTable from "./components/pages/goods/DetailTable";
 import DetailReview from "./components/pages/goods/DetailReview";
+import WriteReview from "./components/pages/goods/WriteReview";
 import Ask from "./components/pages/board/AskToAdmin";
 import PrivateRoute from "./components/pages/PrivateRoute";
 import NotFound from "./components/pages/NotFound";
@@ -57,27 +59,40 @@ function App() {
   return (
     <div>
       <Router>
-        <Header token={token} userId={userId} />
-        <Navbar />
+        {userId !== "admin" && (
+          <>
+            <Header token={token} userId={userId} />
+
+            <Navbar />
+          </>
+        )}
 
         <main>
           <Routes token={token} userId={userId}>
             <Route path="/" element={<Main />}>
               <Route index="tableGallary" element={<TableGallary />} />
               <Route path="tableGallary" element={<TableGallary />} />
-              <Route path="itemSearch" element={<ItemSearch />} />
+              <Route path="itemSearch/:keyword" element={<ItemSearch />} />
             </Route>
             <Route
               path="detail/:idx"
               element={<Detail token={token} userId={userId} />}
             >
-              <Route index="detailTable" element={<DetailTable/>}/>
-              <Route path="detailTable" element={<DetailTable/>}/>
-              <Route path="detailReview" element={<DetailReview/>}/>
+              <Route index="detailTable" element={<DetailTable />} />
+              <Route path="detailTable" element={<DetailTable />} />
+              <Route
+                path="detailReview"
+                element={<DetailReview token={token} userId={userId} />}
+              />
+              <Route
+                path="detailReview"
+                element={<WriteReview token={token} userId={userId} />}
+              />
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="logout" element={<Logout />} />
             <Route path="regist" element={<Regist />} />
+            <Route element={<Post />} />
 
             <Route element={<PrivateMyPage token={token} userId={userId} />}>
               <Route
@@ -107,12 +122,12 @@ function App() {
 
               <Route path="boardManager" element={<BoardManager />} />
               <Route path="boardAdd" element={<BoardAdd />} />
-              <Route path="boardUpdate/:BoardName" element={<BoardUpdate />} />
-              <Route path="board/:boardName" element={<Board />} />
-              <Route path="board/:boardName/write" element={<Write />} />
-              <Route path="board/:boardName/:idx" element={<View />} />
+              <Route path="boardUpdate/:BoardCode" element={<BoardUpdate />} />
+              <Route path="board/:boardCode" element={<Board />} />
+              <Route path="board/:boardCode/write" element={<Write />} />
+              <Route path="board/:boardCode/:idx" element={<View />} />
               <Route
-                path="board/:boardName/update/:idx"
+                path="board/:boardCode/update/:idx"
                 element={<ViewUpdate />}
               />
 

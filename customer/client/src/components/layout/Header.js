@@ -1,14 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "../css/layout/Header.css";
 import wetinyBizLogo from "../images/WETINYBIZ_LOGO.jpg";
 
-function Header() {
-  const [search, setSearch] = useState("");
-  const onChange = (e) => {
-    setSearch(e.target.value);
-  };
-
+function Header({userId}) {
+  
   return (
     <div>
       <div className="HeaderContainer">
@@ -28,24 +24,38 @@ function Header() {
                 customerHelp
               </Link>
             </li>
-            <li>
-              <Link to="/profile" className="profile">
-                profile
-              </Link>
-            </li>
-            <li className="loginDropDown">
-              <Link to="/toggle" className="toggle">
-                toggle
-              </Link>
-              <div className="loginDropDownMenu">
-                <Link to="/regist" className="registCustomer">
-                  회원가입
-                </Link>
-                <Link to="/login" className="loginCustomer">
-                  로그인
-                </Link>
-              </div>
-            </li>
+            {!userId &&
+              <>
+                <li>
+                  <Link to="/regist" className="registCustomer">
+                    회원가입
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/login" className="loginCustomer">
+                    로그인
+                  </Link>
+                </li>
+              </>
+            }
+            {userId &&
+              <>
+                {/* <li className="loginDropDown">
+                  {userId}님
+                  <div className="loginDropDownMenu">
+                    <Link to="/profile" >Profile</Link>  
+                    <Link to="/cart" >Cart</Link>
+                    <Link to="/wishList" >WishList</Link>
+                  </div>
+                </li> */}
+                <li>
+                  <Link to="/profile" >{userId}님</Link>
+                </li>
+                <li>
+                  <Link to="/logout">로그아웃</Link>
+                </li>
+              </>
+            }
           </ul>
         </div>
       </div>
