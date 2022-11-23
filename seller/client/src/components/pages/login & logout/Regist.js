@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import "../../css/pages/Regist.css";
+import Post from "../login & logout/Post";
 
 function Regist() {
   // 입력받은 개인정보
@@ -301,6 +302,23 @@ function Regist() {
     }
   }
 
+  // 주소
+  const [address, setAdress] = useState({
+    address: "",
+  });
+  const [popup, setPopup] = useState(false);
+
+  const handleInput = (e) => {
+    e.preventDefault();
+    setAdress({
+      ...address,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleComplete = (data) => {
+    setPopup(!popup);
+  };
   return (
     <div className="regist-container">
       <div className="regist-wrap">
@@ -366,6 +384,45 @@ function Regist() {
                 <td>
                   <input type="text" name="email" onChange={onChangeEmail} />
                   {email && <span>{emailMessage}</span>}
+                </td>
+              </tr>
+              <tr>
+                <th>주소</th>
+                <td>
+                  <input
+                    className="user_enroll_text"
+                    placeholder="우편번호를 검색하세요"
+                    type="text"
+                    required={true}
+                    name="address"
+                    onChange={handleInput}
+                    readOnly
+                    value={address.zonecode}
+                  />
+                  <button type="button" onClick={handleComplete}>
+                    우편번호 찾기
+                  </button>
+                  <br />
+                  <input
+                    className="user_enroll_text"
+                    placeholder="주소를 검색하세요"
+                    type="text"
+                    required={true}
+                    name="address"
+                    onChange={handleInput}
+                    readOnly
+                    value={address.address}
+                  />
+                  <br />
+                  <input
+                    type="text"
+                    name="detailAddress"
+                    placeholder="상세주소"
+                    id="detailAddress"
+                  />
+                  {popup && (
+                    <Post address={address} setAddress={setAdress}></Post>
+                  )}
                 </td>
               </tr>
             </table>

@@ -12,6 +12,7 @@ import Main from "./components/pages/goods/Main";
 import Login from "./components/pages/login & logout/Login";
 import Logout from "./components/pages/login & logout/Logout";
 import Regist from "./components/pages/login & logout/Regist";
+import Post from "./components/pages/login & logout/Post";
 import AdminPage from "./components/pages/privateInfo/AdminPage";
 import PrivateMyPage from "./components/pages/PrivateMyPage";
 import MyPage from "./components/pages/privateInfo/MyPage";
@@ -58,11 +59,9 @@ function App() {
     <div>
       <Router>
         <Header token={token} userId={userId} />
-        
-        { userId !== "admin" &&
-          <Navbar />
-        }
-        
+
+        {userId !== "admin" && <Navbar />}
+
         <main>
           <Routes token={token} userId={userId}>
             <Route path="/" element={<Main />}>
@@ -74,13 +73,14 @@ function App() {
               path="detail/:idx"
               element={<Detail token={token} userId={userId} />}
             >
-              <Route index="detailTable" element={<DetailTable/>}/>
-              <Route path="detailTable" element={<DetailTable/>}/>
-              <Route path="detailReview" element={<DetailReview/>}/>
+              <Route index="detailTable" element={<DetailTable />} />
+              <Route path="detailTable" element={<DetailTable />} />
+              <Route path="detailReview" element={<DetailReview />} />
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="logout" element={<Logout />} />
             <Route path="regist" element={<Regist />} />
+            <Route element={<Post />} />
 
             <Route element={<PrivateMyPage token={token} userId={userId} />}>
               <Route
