@@ -30,6 +30,7 @@ import TableGallary from "./components/pages/goods/TableGallary";
 import Detail from "./components/pages/goods/Detail";
 import DetailTable from "./components/pages/goods/DetailTable";
 import DetailReview from "./components/pages/goods/DetailReview";
+import WriteReview from "./components/pages/goods/WriteReview";
 import Ask from "./components/pages/board/AskToAdmin";
 import PrivateRoute from "./components/pages/PrivateRoute";
 import NotFound from "./components/pages/NotFound";
@@ -57,12 +58,14 @@ function App() {
   return (
     <div>
       <Router>
-        <Header token={token} userId={userId} />
-        
-        { userId !== "admin" &&
-          <Navbar />
-        }
-        
+        {userId !== "admin" && (
+          <>
+            <Header token={token} userId={userId} />
+
+            <Navbar />
+          </>
+        )}
+
         <main>
           <Routes token={token} userId={userId}>
             <Route path="/" element={<Main />}>
@@ -74,9 +77,16 @@ function App() {
               path="detail/:idx"
               element={<Detail token={token} userId={userId} />}
             >
-              <Route index="detailTable" element={<DetailTable/>}/>
-              <Route path="detailTable" element={<DetailTable/>}/>
-              <Route path="detailReview" element={<DetailReview/>}/>
+              <Route index="detailTable" element={<DetailTable />} />
+              <Route path="detailTable" element={<DetailTable />} />
+              <Route
+                path="detailReview"
+                element={<DetailReview token={token} userId={userId} />}
+              />
+              <Route
+                path="detailReview"
+                element={<WriteReview token={token} userId={userId} />}
+              />
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="logout" element={<Logout />} />

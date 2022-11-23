@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link,useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Paging from "../../function/Paging";
 
 const Board = () => {
@@ -17,35 +17,42 @@ const Board = () => {
   const { boardCode } = useParams();
   // console.log(boardName);
   const getLists = async () => {
-    await axios.get("http://localhost:4001/board?boardCode="+boardCode+"&page="+
-        page +
-        "&offset=" +
-        offset +
-        "&select=" +
-        select +
-        "&searchQuery=" +
-        keyword)
-      .then((res) =>{
+    await axios
+      .get(
+        "http://localhost:4001/board?boardCode=" +
+          boardCode +
+          "&page=" +
+          page +
+          "&offset=" +
+          offset +
+          "&select=" +
+          select +
+          "&searchQuery=" +
+          keyword
+      )
+      .then((res) => {
         setLists(res.data.lists);
         setPage(res.data.page);
         setPages(res.data.totalPageNum);
         setRows(res.data.totalRows);
       });
-  }
+  };
 
   useEffect(() => {
     getLists();
   }, [page, keyword]);
 
   async function deleteList(idx) {
-    await axios.delete("http://localhost:4001/delete/"+ boardCode +"/"+ idx).then((res) => {
-      if(res.data.status === 201) {
-        window.alert(res.data.message);
-        getLists();
-      }else{
-        window.alert("Delete Failed");
-      }
-    });
+    await axios
+      .delete("http://localhost:4001/delete/" + boardCode + "/" + idx)
+      .then((res) => {
+        if (res.data.status === 201) {
+          window.alert(res.data.message);
+          getLists();
+        } else {
+          window.alert("Delete Failed");
+        }
+      });
   }
 
   const listSearch = (e) => {
@@ -66,7 +73,7 @@ const Board = () => {
 
   return (
     <div>
-      <Link to={"/adminPage/board/"+boardCode+"/write"}>게시글 작성</Link>
+      <Link to={"/adminPage/board/" + boardCode + "/write"}>게시글 작성</Link>
       <div className="search-wrap">
         <form method="post" id="frm" onSubmit={listSearch}>
           <div className="listSearch">
@@ -109,35 +116,47 @@ const Board = () => {
           </tr>
         </thead>
         <tbody>
-          {
-            lists.map((list, key) => {
-              return(
-                <tr key={key}>
-                  <td>{list.idx}</td>
-                  <td><Link to={"/adminPage/board/"+boardCode+"/"+list.idx}>{list.title}</Link></td>
-                  <td>{list.writer}</td>
-                  <td>{list.view}</td>
-                  <td>{list.regdate}</td>
-                  <td>
-                    <Link to={"/adminPage/board/"+boardCode+"/update/"+list.idx}>수정</Link>
-                    /
-                    <button className="upDelBtn" onClick={() => deleteList(list.idx)}>삭제</button>
-                  </td>
-                </tr>
-              );
-            })
-          }
+          {lists.map((list, key) => {
+            return (
+              <tr key={key}>
+                <td>{list.idx}</td>
+                <td>
+                  <Link to={"/adminPage/board/" + boardCode + "/" + list.idx}>
+                    {list.title}
+                  </Link>
+                </td>
+                <td>{list.writer}</td>
+                <td>{list.view}</td>
+                <td>{list.regdate}</td>
+                <td>
+                  <Link
+                    to={"/adminPage/board/" + boardCode + "/update/" + list.idx}
+                  >
+                    수정
+                  </Link>
+                  /
+                  <button
+                    className="upDelBtn"
+                    onClick={() => deleteList(list.idx)}
+                  >
+                    삭제
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       <button className="list-btn">
         <Link to="/AdminPage/boardManager">돌아가기</Link>
       </button>
+
       <p className="danger">{msg}</p>
       <div className="paging">
         <Paging page={page} offset={offset} rows={rows} setPage={changePage} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Board
+export default Board;

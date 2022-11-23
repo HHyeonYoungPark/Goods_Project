@@ -191,7 +191,7 @@ app.get("/itemSearch", (req, res) => {
     if (err) {
       throw err;
     }
-    res.send({status:201, result});
+    res.send({ status: 201, result });
     // console.log(req.query.itemSearch);
     // console.log(response);
   });
@@ -308,6 +308,7 @@ app.put("/updateItem/:idx", upload.single("attach"), (req, res) => {
 });
 
 //상품 상세보기
+// 상품 상세보기 페이지
 app.get("/detail/:idx", (req, res) => {
   let sql = "select * from item where idx =?;";
   db.query(sql, [req.params.idx], (err, response) => {
@@ -318,6 +319,63 @@ app.get("/detail/:idx", (req, res) => {
     // console.log(response);
   });
 });
+
+//해당 상품 리뷰탭-> 리뷰 목록
+app.get("/detail/:idx/detailReview", (req, res) => {
+  let sql = "SELECT * FROM review where ItemNo =?;";
+  db.query(sql, [req.params.idx], (err, reviews) => {
+    if (err) {
+      throw err;
+    }
+    res.send(reviews);
+    // console.log(response);
+  });
+});
+
+//해당 상품 리뷰-> 리뷰 작성
+app.post(
+  "/detail/:idx/addReview",
+  upload.single("attach"),
+  // upload.single("attach2"),
+  // upload.single("attach3"),
+  (req, res) => {
+    console.log(req.params.idx);
+    console.log(req.body);
+
+    const { writer } = req.body;
+    const { itemname } = req.body;
+    const { title } = req.body;
+    const { filename } = req.file;
+    // const { filename2 } = req.file;
+    // const { filename3 } = req.file;
+    const { contents } = req.body;
+    const { rating } = req.body;
+
+    let sql = "INSERT INTO review VALUES(NULL,?,?,?,?,?,?,now());";
+    db.query(
+      sql,
+      [
+        writer,
+        req.params.idx,
+        itemname,
+        title,
+        filename,
+        // filename2,
+        // filename3,
+        contents,
+        rating,
+      ],
+      (err) => {
+        if (err) {
+          throw err;
+        }
+        res.send({ status: 201, message: "리뷰 등록이 완료되었습니다!" });
+      }
+    );
+  }
+);
+
+//해당 상품 리뷰 상세보기
 
 // 공지사항 작성
 app.post("/writeNotice", (req, res) => {
@@ -372,7 +430,7 @@ app.get("/boardlist", (req, res) => {
   console.log(req.query);
   const page = Number.parseInt(req.query.page);
   const offset = Number.parseInt(req.query.offset);
-  const startNum = ( page - 1 ) * offset;
+  const startNum = (page - 1) * offset;
   const select = req.query.select || "";
   const search = req.query.searchQuery || "";
   const codeSearch = "%" + search + "%";
@@ -509,11 +567,16 @@ app.put("/boardUpdate", (req, res) => {
       if (err) {
         throw err;
       } else {
-        if(req.query.boardCode !== boardCode) {
-          renameSQL = "rename table board"+req.query.boardCode+" to board"+boardCode+" ;";
+        if (req.query.boardCode !== boardCode) {
+          renameSQL =
+            "rename table board" +
+            req.query.boardCode +
+            " to board" +
+            boardCode +
+            " ;";
           db.query(renameSQL, (err) => {
-            if(err) throw err;
-          })
+            if (err) throw err;
+          });
         }
         console.log("update complete");
         res.send({ status: 201, message: "게시판 수정 완료" });
@@ -526,7 +589,7 @@ app.get("/board", (req, res) => {
   const boardCode = req.query.boardCode;
   const page = Number.parseInt(req.query.page);
   const offset = Number.parseInt(req.query.offset);
-  const startNum = ( page - 1 ) * offset;
+  const startNum = (page - 1) * offset;
   const select = req.query.select || "";
   const search = req.query.searchQuery || "";
   const idxSearch = "%" + search + "%";
@@ -534,13 +597,17 @@ app.get("/board", (req, res) => {
   const writerSearch = "%" + search + "%";
 
   let sql =
-    "SELECT COUNT(idx) AS cnt FROM board"+boardCode+" WHERE idx LIKE ? OR title LIKE ?  OR writer LIKE ?;";
+    "SELECT COUNT(idx) AS cnt FROM board" +
+    boardCode +
+    " WHERE idx LIKE ? OR title LIKE ?  OR writer LIKE ?;";
   db.query(sql, [idxSearch, titleSearch, writerSearch], (err, result) => {
     if (err) {
       throw err;
     } else {
       let listSQL =
-        "SELECT * FROM board"+boardCode+" WHERE idx LIKE ? OR title LIKE ?  OR writer LIKE ? ORDER BY idx DESC LIMIT ?, ?;";
+        "SELECT * FROM board" +
+        boardCode +
+        " WHERE idx LIKE ? OR title LIKE ?  OR writer LIKE ? ORDER BY idx DESC LIMIT ?, ?;";
       db.query(
         listSQL,
         [idxSearch, titleSearch, writerSearch, startNum, offset],
@@ -564,7 +631,7 @@ app.get("/board", (req, res) => {
 app.post("/write", upload.single("img"), (req, res) => {
   const { title, writer, passwd, contents } = req.body;
   const { filename } = req.file || "";
-  
+
   let sql =
     "insert into board" +
     req.query.boardCode +
@@ -580,7 +647,7 @@ app.post("/write", upload.single("img"), (req, res) => {
 });
 
 app.get("/view", (req, res) => {
-  const {boardCode, idx} = req.query;
+  const { boardCode, idx } = req.query;
   let viewSQL = "update board" + boardCode + " set view=view+1 where idx = ?;";
   db.query(viewSQL, [idx], (err) => {
     if (err) {
@@ -588,12 +655,12 @@ app.get("/view", (req, res) => {
     } else {
       let sql = "select * from board" + boardCode + " where idx = ? ;";
       db.query(sql, [idx], (err, result) => {
-        if(err){
+        if (err) {
           throw err;
-        }else{
+        } else {
           res.send(result);
         }
-      })
+      });
     }
   });
 });
@@ -623,18 +690,22 @@ app.put("/update", upload.single("img"), (req, res) => {
 });
 
 app.delete("/delImg", (req, res) => {
-  const {boardCode, idx} = req.query;
-  db.query("SELECT image FROM board" + boardCode + " WHERE idx = ?;", [idx], (err, img) => {
-    if(err) {
-      throw err;
-    }else{
-      db.query("update board"+boardCode+" set image=NULL;")
-      fs.unlink("./uploads/"+img[0].image, (err) => {
-        if(err) throw err;
-        res.send({ status: 201, message: "첨부파일 삭제 완료" });
-      });
+  const { boardCode, idx } = req.query;
+  db.query(
+    "SELECT image FROM board" + boardCode + " WHERE idx = ?;",
+    [idx],
+    (err, img) => {
+      if (err) {
+        throw err;
+      } else {
+        db.query("update board" + boardCode + " set image=NULL;");
+        fs.unlink("./uploads/" + img[0].image, (err) => {
+          if (err) throw err;
+          res.send({ status: 201, message: "첨부파일 삭제 완료" });
+        });
+      }
     }
-  });
+  );
 });
 
 // 게시판 삭제
@@ -648,7 +719,7 @@ app.delete("/board/delete/:boardCode", (req, res) => {
       throw err;
     } else {
       console.log(boardCode);
-      let dropSql = "DROP TABLE board"+boardCode+";";
+      let dropSql = "DROP TABLE board" + boardCode + ";";
       db.query(dropSql, (err) => {
         if (err) {
           throw err;
@@ -663,25 +734,29 @@ app.delete("/board/delete/:boardCode", (req, res) => {
 
 // 게시글 삭제
 app.delete("/delete/:boardCode/:idx", (req, res) => {
-  const {boardCode, idx} = req.params;
+  const { boardCode, idx } = req.params;
 
-  db.query("SELECT image FROM board" + boardCode + " WHERE idx = ?;", [idx], (err, img) => {
-    if(err) {
-      throw err;
-    }else{
-      let sql = "DELETE FROM board" + boardCode + " WHERE idx = ?;";
-      db.query(sql, [idx], (err) => {
-        if (err){
-          throw err;
-        } else {
-          fs.unlink("./uploads/"+img[0].image, (err) => {
-            if(err) throw err;
-          });
-          res.send({ status: 201, message: "게시글 삭제 완료" });
-        }
-      });
+  db.query(
+    "SELECT image FROM board" + boardCode + " WHERE idx = ?;",
+    [idx],
+    (err, img) => {
+      if (err) {
+        throw err;
+      } else {
+        let sql = "DELETE FROM board" + boardCode + " WHERE idx = ?;";
+        db.query(sql, [idx], (err) => {
+          if (err) {
+            throw err;
+          } else {
+            fs.unlink("./uploads/" + img[0].image, (err) => {
+              if (err) throw err;
+            });
+            res.send({ status: 201, message: "게시글 삭제 완료" });
+          }
+        });
+      }
     }
-  });
+  );
 });
 //리뷰 작성
 

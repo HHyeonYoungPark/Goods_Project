@@ -15,7 +15,8 @@ function AdminPage({ userId }) {
               <Link to="/myPage">
                 <b>{userId}</b>
               </Link>
-              님
+              님<br />
+              <Link to="/logout">로그아웃</Link>
             </div>
           </div>
           <div className="sideNav">

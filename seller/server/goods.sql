@@ -68,10 +68,15 @@ create table boardManager (
   modifyDate date
 );
 
-
+-- 11.23 리뷰 테이블 수정
 create table review (
-reviewIdx int auto_increment primary key,
-reviewItem varchar(50),
-reviewContents varchar(50),
-reviewRecom varchar(50)
+  idx int auto_increment primary key,
+  Writer varchar(50),
+  ItemNo varchar(50),
+  ItemName varchar(100),
+  title varchar(50),
+  attach VARCHAR(255),
+  Contents varchar(255),
+  Rating varchar(50),
+  regdate DATE
 );
