@@ -12,13 +12,15 @@ function Regist() {
   const [pwConfirm, setPwConfirm] = useState();
   const [sellername, setSellername] = useState("");
   const [email, setEmail] = useState("");
+  const [hiddenZip, setHiddenZip] = useState("");
+  const [hiddenAddress, setHiddenAddress] = useState("");
+  const [detailAddress, setDetailAddress] = useState("");
   const [channelname, setChannelname] = useState("");
   const [channelPlatform, setChannelPlatform] = useState("");
   const [channelGenre, setChannelGenre] = useState("");
   const [url, setUrl] = useState("");
   const [profileimage, setProfileimage] = useState("");
   const [intro, setIntro] = useState("");
-
   // 오류메시지를 상태로 저장
   const [idMessage, setIdMessage] = useState("");
   const [pwMessage, setPwMessage] = useState("");
@@ -71,6 +73,9 @@ function Regist() {
       formData.append("pw", pw);
       formData.append("sellername", sellername);
       formData.append("email", email);
+      formData.append("hiddenZip", hiddenZip);
+      formData.append("hiddenAddress", hiddenAddress);
+      formData.append("detailAddress", detailAddress);
       formData.append("channelname", channelname);
       formData.append("channelplatform", channelPlatform);
       formData.append("channelgenre", channelGenre);
@@ -143,7 +148,7 @@ function Regist() {
     const pwCurrent = e.target.value;
     setPw(pwCurrent);
 
-    if (pwCurrent.length < 5) {
+    if (pwCurrent.length < 8) {
       setPwMessage("비밀번호를 8자이상 입력해주세요");
       setIsPw(false);
     } else {
@@ -198,6 +203,22 @@ function Regist() {
       setIsEmailType(true);
     }
   }
+
+  // 주소
+  const [popup, setPopup] = useState(false);
+  const [address, setAdress] = useState({ address: "" });
+
+  const handleInput = (e) => {
+    e.preventDefault();
+    setAdress({
+      ...address,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleComplete = (data) => {
+    setPopup(!popup);
+  };
 
   // 채널명
   function onChangeChannelname(e) {
@@ -302,23 +323,6 @@ function Regist() {
     }
   }
 
-  // 주소
-  const [address, setAdress] = useState({
-    address: "",
-  });
-  const [popup, setPopup] = useState(false);
-
-  const handleInput = (e) => {
-    e.preventDefault();
-    setAdress({
-      ...address,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleComplete = (data) => {
-    setPopup(!popup);
-  };
   return (
     <div className="regist-container">
       <div className="regist-wrap">
@@ -388,23 +392,34 @@ function Regist() {
               </tr>
               <tr>
                 <th>주소</th>
-                <td>
+                <td className="zipInput">
                   <input
-                    className="user_enroll_text"
+                    className="zip"
                     placeholder="우편번호를 검색하세요"
                     type="text"
                     required={true}
-                    name="address"
+                    name="zip"
                     onChange={handleInput}
                     readOnly
                     value={address.zonecode}
                   />
-                  <button type="button" onClick={handleComplete}>
+                  <input
+                    type="hidden"
+                    name="hiddenZip"
+                    value={address.zonecode}
+                    onChange={(e) => {
+                      setHiddenZip(e.target.value);
+                    }}
+                  />
+                  <button
+                    type="button"
+                    className="zipBtn"
+                    onClick={handleComplete}
+                  >
                     우편번호 찾기
                   </button>
                   <br />
                   <input
-                    className="user_enroll_text"
                     placeholder="주소를 검색하세요"
                     type="text"
                     required={true}
@@ -413,16 +428,25 @@ function Regist() {
                     readOnly
                     value={address.address}
                   />
+                  <input
+                    type="hidden"
+                    name="hiddenAddress"
+                    value={address.address}
+                    onChange={(e) => {
+                      setHiddenAddress(e.target.value);
+                    }}
+                  />
                   <br />
                   <input
                     type="text"
                     name="detailAddress"
                     placeholder="상세주소"
                     id="detailAddress"
+                    onChange={(e) => {
+                      setDetailAddress(e.target.value);
+                    }}
                   />
-                  {popup && (
-                    <Post address={address} setAddress={setAdress}></Post>
-                  )}
+                  {popup && <Post address={address} setAddress={setAdress} />}
                 </td>
               </tr>
             </table>
