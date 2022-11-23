@@ -1,10 +1,12 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { useEffect } from "react";
-import '../../css/pages/privateInfo/Cart.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+// import '../../css/pages/privateInfo/Cart.css';
 
-function Cart() {
+function Cart({userId}) {
   const [cart, setCart] = useState([]);
+  const navigate = useNavigate();
+
   const getCartData = async () => {
     await axios.get("http://localhost:4001/customer/cart")
       .then((response) => {

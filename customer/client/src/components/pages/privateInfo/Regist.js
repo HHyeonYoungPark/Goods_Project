@@ -44,9 +44,24 @@ function Regist() {
       setCustomerIdMessage("아이디를 8자이상 입력해주세요");
       setIsCustomerId(false);
     } else {
-      setCustomerIdMessage("사용가능한 아이디 입니다.");
-      setIsCustomerId(true);
+      setCustomerIdMessage("아이디 중복체크를 해주세요.");
+      setIsCustomerId(false);
     }
+  }
+
+  async function idDuplicatonChk(e) {
+    e.preventDefault();
+    await axios
+      .post("http://localhost:4001/customer/idDuplicatonChk", { customerId })
+      .then((response) => {
+        if (response.data.status === 201) {
+          setCustomerIdMessage("사용가능한 아이디입니다.");
+          setIsCustomerId(true);
+        } else {
+          setCustomerIdMessage("이미 사용중인 아이디입니다.");
+          setIsCustomerId(false);
+        }
+      });
   }
 
   function onChangeCustomerPw(e) {
@@ -68,10 +83,10 @@ function Regist() {
 
     if (customerPw === customerPwConfirmCheck) {
       setCustomerPwConfirmMessage("비밀번호가 일치합니다.");
-      setIsCustomerPwConfirm(false);
+      setIsCustomerPwConfirm(true);
     } else {
       setCustomerPwConfirmMessage("비밀번호가 일치하지 않습니다. 다시 입력해주시기 바랍니다.");
-      setIsCustomerPwConfirm(true);
+      setIsCustomerPwConfirm(false);
     }
   }
 
@@ -161,17 +176,9 @@ function Regist() {
       isCustomerAddress1 &&
       isCustomerZipcod
     ) {
-      let formDataCustomer = new FormData();
-      formDataCustomer.append("customerId", customerId);
-      formDataCustomer.append("customerPw", customerPw);
-      formDataCustomer.append("customerName", customerName);
-      formDataCustomer.append("customerMobile", customerMobile);
-      formDataCustomer.append("customerEmail", customerEmail);
-      formDataCustomer.append("customerAddress1", customerAddress1);
-      formDataCustomer.append("customerAddress2", customerAddress2);
-      formDataCustomer.append("customerZipcod", customerZipcod);
+      const CustomerData = {customerId, customerPw, customerName, customerMobile, customerEmail, customerAddress1, customerAddress2, customerZipcod}
       
-      await axios.post("http://localhost:4001/customer/regist", formDataCustomer)
+      await axios.post("http://localhost:4001/customer/regist", CustomerData)
         .then((response) => {
         if (response.data.status === 201) {
           window.alert(response.data.message);
@@ -198,100 +205,109 @@ function Regist() {
             name="form"
           >
             <table>
-              <tr>
-                <th>아이디</th>
-                <td>
-                  <input
-                    type="text"
-                    name="customerId"
-                    onChange={onChangeCustomerId}
-                  />
-                  {customerId && <span>{customerIdMessage}</span>}
-                </td>
-              </tr>
-              <tr>
-                <th>비밀번호</th>
-                <td>
-                  <input
-                    type="password"
-                    name="customerPw"
-                    onChange={onChangeCustomerPw}
-                  />
-                  {customerPw && <span>{customerPwMessage}</span>}
-                </td>
-              </tr>
-              <tr>
-                <th>비밀번호 확인</th>
-                <td>
-                  <input type="password" name="customerPwConfirm" onChange={onChangeCustomerPwConfirm} />
-                  {customerPwConfirm && <span>{customerPwConfirmMessage}</span>}
-                </td>
-              </tr>
-              <tr>
-                <th>이름</th>
-                <td>
-                  <input
-                    type="text"
-                    name="customerName"
-                    onChange={onChangeCustomerName}
-                  />
-                  {customerNameMessage && <span>{customerNameMessage}</span>}
-                </td>
-              </tr>
-              <tr>
-                <th>전화번호</th>
-                <td>
-                  <input
-                    type="text"
-                    name="customerMobile"
-                    onChange={onChangeCustomerMobile}
-                  />
-                  {customerMobileMessage && <span>{customerMobileMessage}</span>}
-                </td>
-              </tr>
-              <tr>
-                <th>이메일</th>
-                <td>
-                  <input
-                    type="text"
-                    name="customerEmail"
-                    onChange={onChangeCustomerEmail}
-                  />
-                  {customerEmailMessage && <span>{customerEmailMessage}</span>}
-                </td>
-              </tr>
-              <tr>
-                <th>주소1</th>
-                <td>
-                  <input
-                    type="text"
-                    name="customerAddress1"
-                    onChange={onChangeCustomerAddress1}
-                  />
-                  {customerAddressMessage && <span>{customerAddressMessage}</span>}
-                </td>
-              </tr>
-              <tr>
-                <th>주소2</th>
-                <td>
-                  <input
-                    type="text"
-                    name="customerAddress2"
-                    onChange={onChangeCustomerAddress2}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <th>우편번호</th>
-                <td>
-                  <input
-                    type="text"
-                    name="customerZipcod"
-                    onChange={onChangeCustomerZipcod}
-                  />
-                  {customerZipcodMessage && <span>{customerZipcodMessage}</span>}
-                </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <th>아이디</th>
+                  <td>
+                    <input
+                      type="text"
+                      name="customerId"
+                      onChange={onChangeCustomerId}
+                    />
+                    <button
+                      type="button"
+                      className="idCheckBtn"
+                      onClick={idDuplicatonChk}
+                    >
+                      ID중복체크
+                    </button>
+                    {customerIdMessage && <span>{customerIdMessage}</span>}
+                  </td>
+                </tr>
+                <tr>
+                  <th>비밀번호</th>
+                  <td>
+                    <input
+                      type="password"
+                      name="customerPw"
+                      onChange={onChangeCustomerPw}
+                    />
+                    {customerPwMessage && <span>{customerPwMessage}</span>}
+                  </td>
+                </tr>
+                <tr>
+                  <th>비밀번호 확인</th>
+                  <td>
+                    <input type="password" name="customerPwConfirm" onChange={onChangeCustomerPwConfirm} />
+                    {customerPwConfirmMessage && <span>{customerPwConfirmMessage}</span>}
+                  </td>
+                </tr>
+                <tr>
+                  <th>이름</th>
+                  <td>
+                    <input
+                      type="text"
+                      name="customerName"
+                      onChange={onChangeCustomerName}
+                    />
+                    {customerNameMessage && <span>{customerNameMessage}</span>}
+                  </td>
+                </tr>
+                <tr>
+                  <th>전화번호</th>
+                  <td>
+                    <input
+                      type="text"
+                      name="customerMobile"
+                      onChange={onChangeCustomerMobile}
+                    />
+                    {customerMobileMessage && <span>{customerMobileMessage}</span>}
+                  </td>
+                </tr>
+                <tr>
+                  <th>이메일</th>
+                  <td>
+                    <input
+                      type="text"
+                      name="customerEmail"
+                      onChange={onChangeCustomerEmail}
+                    />
+                    {customerEmailMessage && <span>{customerEmailMessage}</span>}
+                  </td>
+                </tr>
+                <tr>
+                  <th>주소1</th>
+                  <td>
+                    <input
+                      type="text"
+                      name="customerAddress1"
+                      onChange={onChangeCustomerAddress1}
+                    />
+                    {customerAddressMessage && <span>{customerAddressMessage}</span>}
+                  </td>
+                </tr>
+                <tr>
+                  <th>주소2</th>
+                  <td>
+                    <input
+                      type="text"
+                      name="customerAddress2"
+                      onChange={onChangeCustomerAddress2}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th>우편번호</th>
+                  <td>
+                    <input
+                      type="text"
+                      name="customerZipcod"
+                      onChange={onChangeCustomerZipcod}
+                    />
+                    {customerZipcodMessage && <span>{customerZipcodMessage}</span>}
+                  </td>
+                </tr>
+              </tbody>
             </table>
             <div className="submit-btn">
               <input type="submit" value="회원가입" />

@@ -11,7 +11,7 @@ function Login() {
   async function frmHandler(e) {
     e.preventDefault();
     await axios
-      .post("http://localhost:4001/custmomer/login", { id, pw })
+      .post("http://localhost:4001/customer/login", { id, pw })
       .then((response) => {
         if (response.data.status === 201) {
           localStorage.setItem("token_id", response.data.token_id);

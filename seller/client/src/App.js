@@ -12,6 +12,7 @@ import Main from "./components/pages/goods/Main";
 import Login from "./components/pages/login & logout/Login";
 import Logout from "./components/pages/login & logout/Logout";
 import Regist from "./components/pages/login & logout/Regist";
+import Post from "./components/pages/login & logout/Post";
 import AdminPage from "./components/pages/privateInfo/AdminPage";
 import PrivateMyPage from "./components/pages/PrivateMyPage";
 import MyPage from "./components/pages/privateInfo/MyPage";
@@ -58,6 +59,7 @@ function App() {
   return (
     <div>
       <Router>
+<<<<<<< HEAD
         {userId !== "admin" && (
           <>
             <Header token={token} userId={userId} />
@@ -65,6 +67,11 @@ function App() {
             <Navbar />
           </>
         )}
+=======
+        <Header token={token} userId={userId} />
+
+        {userId !== "admin" && <Navbar />}
+>>>>>>> 37e8ce468ea5348e1f12cc63f10cf70ce64bb0f6
 
         <main>
           <Routes token={token} userId={userId}>
@@ -79,6 +86,7 @@ function App() {
             >
               <Route index="detailTable" element={<DetailTable />} />
               <Route path="detailTable" element={<DetailTable />} />
+<<<<<<< HEAD
               <Route
                 path="detailReview"
                 element={<DetailReview token={token} userId={userId} />}
@@ -87,10 +95,14 @@ function App() {
                 path="detailReview"
                 element={<WriteReview token={token} userId={userId} />}
               />
+=======
+              <Route path="detailReview" element={<DetailReview />} />
+>>>>>>> 37e8ce468ea5348e1f12cc63f10cf70ce64bb0f6
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="logout" element={<Logout />} />
             <Route path="regist" element={<Regist />} />
+            <Route element={<Post />} />
 
             <Route element={<PrivateMyPage token={token} userId={userId} />}>
               <Route

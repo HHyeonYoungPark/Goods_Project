@@ -58,6 +58,9 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
   const pw = req.body.pw;
   const sellername = req.body.sellername;
   const email = req.body.email;
+  const hiddenZip = req.body.hiddenZip;
+  const hiddenAddress = req.body.hiddenAddress;
+  const detailAddress = req.body.detailAddress;
   const channelname = req.body.channelname;
   const channelplatform = req.body.channelplatform;
   const channelgenre = req.body.channelgenre;
@@ -66,7 +69,7 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
   const intro = req.body.intro;
 
   let sql =
-    "INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,?,?,?,'일반회원',now());";
+    "INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,'일반회원',now());";
   bcrypt.hash(req.body.pw, saltRounds, (err, hash_pw) => {
     db.query(
       sql,
@@ -75,6 +78,8 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
         hash_pw,
         sellername,
         email,
+        hiddenZip,
+        hiddenAddress + detailAddress,
         channelname,
         channelplatform,
         channelgenre,
@@ -88,16 +93,6 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
         }
 
         res.send({
-          id: id,
-          pw: hash_pw,
-          sellername: sellername,
-          email: email,
-          channelname: channelname,
-          channelplatform: channelplatform,
-          channelgenre: channelgenre,
-          url: url,
-          filename: filename,
-          intro: intro,
           status: 201,
           message: "회원가입 완료!",
         });
@@ -211,9 +206,7 @@ app.get("/goodsManager", (req, res) => {
 // 상품등록
 app.post(
   "/addItem",
-  upload.single("attach"),
-  // upload.single("attach2"),
-  // upload.single("attach3"),
+  upload.fields([{ name: "attach" }, { name: "attach2" }, { name: "attach3" }]),
   (req, res) => {
     console.log(req.file);
 
@@ -222,13 +215,13 @@ app.post(
     const { categoryCode } = req.body;
     const { price } = req.body;
     const { stock } = req.body;
-    const { filename } = req.file;
-    // const { filename2 } = req.file;
-    // const { filename3 } = req.file;
+    const filename = req.files.attach[0].filename;
+    const filename2 = req.files.attach2[0].filename;
+    const filename3 = req.files.attach3[0].filename;
     const { contents } = req.body;
     const { madein } = req.body;
 
-    let sql = "INSERT INTO item VALUES(NULL,?,?,?,?,?,?,?,?,now());";
+    let sql = "INSERT INTO item VALUES(NULL,?,?,?,?,?,?,?,?,?,?,now());";
     db.query(
       sql,
       [
@@ -238,8 +231,8 @@ app.post(
         price,
         stock,
         filename,
-        // filename2,
-        // filename3,
+        filename2,
+        filename3,
         contents,
         madein,
       ],

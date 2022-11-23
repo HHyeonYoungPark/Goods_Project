@@ -1,6 +1,5 @@
 import "./App.css";
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // layout
@@ -11,10 +10,12 @@ import Footer from "./components/layout/Footer";
 // pages
 import Main from "./components/pages/Main";
 import Login from "./components/pages/privateInfo/Login";
+import Logout from "./components/pages/privateInfo/Logout";
 import Regist from "./components/pages/privateInfo/Regist";
 import GoodsDetail from "./components/pages/goods/GoodsDetail";
 import GoodsLists from "./components/pages/goods/GoodsLists";
 import Profile from "./components/pages/privateInfo/Profile";
+import ProfileModify from "./components/pages/privateInfo/ProfileModify"
 import Review from "./components/pages/Review";
 import CustomerHelp from "./components/pages/help/CustomerHelp";
 import InfluencerLists from "./components/pages/influencer/InfluencerLists";
@@ -30,31 +31,42 @@ import Cart from "./components/pages/privateInfo/Cart";
 import NotFound from "./components/pages/NotFound";
 
 function App() {
+  const [userId, setUserId] = useState(localStorage.getItem("token_id"));
+
   return (
     <div>
       <Router>
-        <Header />
+        <Header userId={userId}/>
         <Navbar />
+        
         <main>
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="login" element={<Login />} />
+            <Route path="logout" element={<Logout />} />
             <Route path="regist" element={<Regist />} />
+            <Route path="profile" element={<Profile userId={userId}/>} />
+            <Route path="profileModify" element={<ProfileModify userId={userId}/>} />
+            <Route path="cart" element={<Cart userId={userId}/>} />
+            <Route path="wishlist" element={<Wishlist userId={userId}/>} />
+            <Route path="review" element={<Review userId={userId}/>} />
+
             <Route path="influencerMain" element={<InfluencerMain />}>
-              <Route path="influencerLists" element={<InfluencerLists />} />
+              <Route path="influencerLists" element={<InfluencerLists />} >
+                <Route path="goodsLists" element={<GoodsLists />} />
+              </Route>
             </Route>
             <Route path="influencerStores" element={<InfluencerStores />} />
+            
             <Route path="goodsMain" element={<GoodsMain />} />
             <Route path="goodsLists" element={<GoodsLists />} />
-            <Route path="goodsDetail" element={<GoodsDetail />} />
-            <Route path="customerHelp" element={<CustomerHelp />} />
-            <Route path="profile" element={<Profile />} />
+            <Route path="goodsDetail/:idx" element={<GoodsDetail userId={userId}/>} />
+            
             <Route path="newnhot" element={<NewnHot />} />
             <Route path="limitednspecial" element={<LimitednSpecial />} />
             <Route path="clearance" element={<Clearance />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="wishlist" element={<Wishlist />} />
-            <Route path="review" element={<Review />} />
+            <Route path="customerHelp" element={<CustomerHelp />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

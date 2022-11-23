@@ -9,13 +9,14 @@ categoryCode VARCHAR(50),
 price VARCHAR(50),
 stock INT,
 attach VARCHAR(255),
+attach2 VARCHAR(255),
+attach3 VARCHAR(255),
 contents TEXT,
 madein VARCHAR(50),
 regdate DATE
 );
 
-attach2 VARCHAR(255),
-attach3 VARCHAR(255),
+  
 
 
 CREATE TABLE user(
@@ -24,6 +25,8 @@ id VARCHAR(50) UNIQUE,
 pw VARCHAR(255),
 sellername VARCHAR(10),
 email varchar(255),
+zip VARCHAR(50),
+address VARCHAR(255),
 channelname VARCHAR(100),
 channelPlatform VARCHAR(50),
 channelGenre VARCHAR(50),

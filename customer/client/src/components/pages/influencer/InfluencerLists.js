@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import "../../css/pages/influencer/InfluencerLists.css";
 
 function InfluencerLists() {
@@ -11,36 +11,53 @@ function InfluencerLists() {
       <div className="ifrncListHeader">
         <ul className="platformList">
           <li>
-            <button onClick={() => setGenre("game")} className="BtnGame">
+            {/* <button onClick={() => setGenre("game")} className="BtnGame">
               Game
-            </button>
+            </button> */}
+            <Link to="goodsLists" className="goodsList">
+              Game
+            </Link>
           </li>
           <li>
-            <button onClick={() => setGenre("music")} className="BtnMusic">
+            {/* <button onClick={() => setGenre("music")} className="BtnMusic">
               Music
-            </button>
+            </button> */}
+            <Link to="goodsLists" className="goodsList">
+              Music
+            </Link>
           </li>
           <li>
-            <button onClick={() => setGenre("sports")} className="BtnSports">
+            {/* <button onClick={() => setGenre("sports")} className="BtnSports">
               Sports
-            </button>
+            </button> */}
+            <Link to="goodsLists" className="goodsList">
+              Sports
+            </Link>
           </li>
           <li>
-            <button onClick={() => setGenre("food")} className="BtnFood">
+            {/* <button onClick={() => setGenre("food")} className="BtnFood">
               Food
-            </button>
+            </button> */}
+            <Link to="goodsLists" className="goodsList">
+              Food
+            </Link>
           </li>
           <li>
-            <button
+            {/* <button
               onClick={() => setGenre("business")}
               className="BtnBusiness"
             >
               Business
-            </button>
+            </button> */}
+            <Link to="goodsLists" className="goodsList">
+              Business
+            </Link>
           </li>
         </ul>
       </div>
-      <h1>{genre}</h1>
+      <section>
+        <Outlet />
+      </section>
     </div>
   );
 }
