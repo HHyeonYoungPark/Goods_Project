@@ -119,6 +119,16 @@
   width: 120px;
 }
 
+.product-info td:nth-child(3) {
+  width: 10%;
+}
+.product-info td:nth-child(4) {
+  width: 15%;
+}
+.product-info td:nth-child(5) {
+  width: 15%;
+}
+
 .payContent-right {
   width: 340px;
   padding-left: 30px;

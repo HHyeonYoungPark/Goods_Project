@@ -1,10 +1,38 @@
 import React from "react";
 import "../../css/pages/Pay.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 import DummyImg from "../../images/dummyImg02.png";
+import { set } from "date-fns";
 
-function Pay() {
+function Pay({ token, userId }) {
+  const [item, setItem] = useState("");
+  const [userInfo, setUserInfo] = useState("");
+  const { idx } = useParams();
+
+  async function Pay() {
+    await axios.get(`http://localhost:4001/pay/${idx}`).then((response) => {
+      setItem(response.data[0]);
+    });
+  }
+
+  //   function userId(e) {
+  //     e.preventDefault();
+  //     setUserInfo(userId);
+  //   }
+
+  useEffect(() => {
+    Pay();
+  }, []);
+
   return (
     <div className="payContent-wrap">
+      {/* <input
+        type="hidden"
+        onChange={(e) => setUserInfo(e.target.value)}
+        value={userId}
+      /> */}
       <div className="payContent-left">
         <div className="shipment-title">
           <h2>배송정보</h2>
@@ -69,13 +97,13 @@ function Pay() {
             <tr>
               <td>
                 <img
-                  src={DummyImg}
+                  src={`http://localhost:4001/${item.attach}`}
                   style={{ width: "120px", height: "120px" }}
                 />
               </td>
-              <td>상품이름상품이름상품이름철수</td>
+              <td>{item.itemname}</td>
               <td>1개</td>
-              <td>49,000원</td>
+              <td>{item.price}원</td>
               <td>3,000원</td>
             </tr>
           </table>
@@ -98,7 +126,7 @@ function Pay() {
           <div className="product-price">
             <span>상품금액</span>
             <span>
-              <b>769,900</b>원
+              <b>{item.price}</b>원
             </span>
           </div>
           <div className="ship-fee">
@@ -116,14 +144,14 @@ function Pay() {
           <div className="total-price">
             <span>합계</span>
             <span className="total">
-              <b>769,900</b>원
+              <b>{item.price}</b>원
             </span>
           </div>
         </div>
         <div className="pay-btn-wrap">
           <p>정보제공, 필수약관 확인 후 결제에 동의합니다.</p>
           <div className="pay-btn">
-            <input type="submit" value="769,900원 결제하기" />
+            <input type="submit" value={`${item.price}원 결제하기`} />
           </div>
         </div>
       </div>

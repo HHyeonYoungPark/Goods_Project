@@ -70,7 +70,7 @@ function Detail({ token, userId }) {
   function buy() {
     token
       ? // <Navigate to="/주문완료!! 이런 페이지로 넘어가게 만들기...?" />
-        window.alert("결제or 주문완료페이지로 넘김")
+        console.log("결제페이지 이동")
       : navigate("/login");
   }
   const [counter, setCounter] = React.useState(1);
@@ -149,6 +149,7 @@ function Detail({ token, userId }) {
             <button className="detail-cart" onClick={cart}>
               장바구니
             </button>
+
             <button className="detail-pay" onClick={buy}>
               구매하기
             </button>

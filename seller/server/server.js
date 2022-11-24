@@ -335,6 +335,25 @@ app.get("/detail/:idx", (req, res) => {
   });
 });
 
+// 상품 결제
+app.get("/pay/:idx", (req, res) => {
+  let sql = "select * from item where idx =?;";
+  db.query(sql, [req.params.idx], (err, response) => {
+    if (err) {
+      throw err;
+    } else {
+      let sql = "SELECT * FROM user WHERE id=?;";
+      db.query(sql, [req.body.userId], (err, userInfo) => {
+        if (err) {
+          throw err;
+        }
+        res.send({ response, userInfo });
+        console.log(req.params.userId);
+      });
+    }
+  });
+});
+
 //해당 상품 리뷰탭-> 리뷰 목록
 app.get("/detail/:idx/detailReview", (req, res) => {
   let sql = "SELECT * FROM review where ItemNo =?;";
