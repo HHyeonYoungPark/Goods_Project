@@ -1,16 +1,16 @@
 import React from "react";
-import "../../css/pages/MyPage.css";
+import "../../css/pages/AdminPage.css";
 import { Link, Outlet } from "react-router-dom";
-import myImg from "../../images/notFound.png";
+import WTBZLogo from "../../images/WETINYBIZ_LOGO.jpg";
 
 function AdminPage({ userId }) {
   return (
-    <div className="mypage-container">
+    <div className="adminContainer">
       <div className="mypage-wrap">
         <div className="mypage-sideNav">
+          <img className="wtbzLogo" src={WTBZLogo} alt={WTBZLogo} />
           <div className="sideNav-profile">
             <h2>관리자 페이지</h2>
-            <img src={myImg} alt={myImg} />
             <div>
               <Link to="/myPage">
                 <b>{userId}</b>

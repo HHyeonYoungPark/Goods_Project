@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.adminContainer {
+  width: 1440px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.wtbzLogo {
+  width: 170px;
+}

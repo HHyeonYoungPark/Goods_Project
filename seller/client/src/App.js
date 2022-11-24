@@ -152,7 +152,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
-        <Footer />
+        {userId !== "admin" && <Footer />}
       </Router>
     </div>
   );
