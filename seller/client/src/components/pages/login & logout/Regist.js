@@ -74,8 +74,8 @@ function Regist() {
       formData.append("pw", pw);
       formData.append("sellername", sellername);
       formData.append("email", email);
-      formData.append("zip", zip);
-      formData.append("Addrress", address);
+      formData.append("zip", zonecode);
+      formData.append("address", fullAddress);
       formData.append("detailAddress", detailAddress);
       formData.append("channelname", channelname);
       formData.append("channelplatform", channelPlatform);
@@ -215,8 +215,6 @@ function Regist() {
   // };
 
   ////////////////////////////////////////////////////////
-  const [address, setAddress] = useState("");
-  const [zip, setZip] = useState("");
   const [fullAddress, setFullAddress] = useState("");
   const [zonecode, setZonecode] = useState("");
 
@@ -241,13 +239,6 @@ function Regist() {
     setFullAddress(fullAddress);
     setZonecode(zonecode);
   };
-
-  function onChangeZip(e) {
-    setZip(zonecode);
-  }
-  function onChangeAddress(e) {
-    setAddress(fullAddress);
-  }
 
   const handleClick = () => {
     open({ onComplete: handleComplete });
@@ -444,7 +435,7 @@ function Regist() {
                     placeholder="우편번호를 검색하세요"
                     type="text"
                     name="zip"
-                    onChange={onChangeZip}
+                    onChange={(e) => setZonecode(e.target.value)}
                     value={zonecode}
                   />
                   {/* <input
@@ -467,7 +458,7 @@ function Regist() {
                     placeholder="주소를 검색하세요"
                     type="text"
                     name="address"
-                    onChange={onChangeAddress}
+                    onChange={(e) => setFullAddress(e.target.value)}
                     value={fullAddress}
                   />
                   {/* <input
