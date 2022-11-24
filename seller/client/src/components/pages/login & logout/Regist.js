@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { useDaumPostcodePopup } from "react-daum-postcode";
 import "../../css/pages/Regist.css";
 import Post from "../login & logout/Post";
 
@@ -12,8 +13,8 @@ function Regist() {
   const [pwConfirm, setPwConfirm] = useState();
   const [sellername, setSellername] = useState("");
   const [email, setEmail] = useState("");
-  const [hiddenZip, setHiddenZip] = useState("");
-  const [hiddenAddress, setHiddenAddress] = useState("");
+  // const [hiddenZip, setHiddenZip] = useState("");
+  // const [hiddenAddress, setHiddenAddress] = useState("");
   const [detailAddress, setDetailAddress] = useState("");
   const [channelname, setChannelname] = useState("");
   const [channelPlatform, setChannelPlatform] = useState("");
@@ -73,8 +74,8 @@ function Regist() {
       formData.append("pw", pw);
       formData.append("sellername", sellername);
       formData.append("email", email);
-      formData.append("hiddenZip", hiddenZip);
-      formData.append("hiddenAddress", hiddenAddress);
+      formData.append("zip", zip);
+      formData.append("Addrress", address);
       formData.append("detailAddress", detailAddress);
       formData.append("channelname", channelname);
       formData.append("channelplatform", channelPlatform);
@@ -101,8 +102,6 @@ function Regist() {
             localStorage.setItem("profileimage", response.data.profileimage);
             localStorage.setItem("intro", response.data.intro);
             navigate("/login");
-            console.log(hiddenZip);
-            console.log(hiddenAddress);
           } else {
             window.alert("에러발생 : 관리자에게 문의하세요");
             navigate("/");
@@ -208,20 +207,64 @@ function Regist() {
 
   // 주소
   const [popup, setPopup] = useState(false);
-  const [address, setAdress] = useState("");
+  const open = useDaumPostcodePopup();
+
+  // const handleComplete = () => {
+  //   open({ onComplete: handleComplete });
+  //   setPopup(!popup);
+  // };
+
+  ////////////////////////////////////////////////////////
+  const [address, setAddress] = useState("");
+  const [zip, setZip] = useState("");
+  const [fullAddress, setFullAddress] = useState("");
+  const [zonecode, setZonecode] = useState("");
 
   const handleComplete = (data) => {
-    setPopup(!popup);
+    let fullAddress = data.address;
+    let zonecode = data.zonecode;
+    let extraAddress = "";
+
+    if (data.addressType === "R") {
+      if (data.bname !== "") {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== "") {
+        extraAddress +=
+          extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
+    }
+
+    console.log(fullAddress);
+    console.log(zonecode);
+    setFullAddress(fullAddress);
+    setZonecode(zonecode);
   };
 
-  const handleInput = (e) => {
-    e.preventDefault();
-    setAdress({
-      ...address,
-      [e.target.name]: e.target.value,
-    });
-    setPopup(false);
+  function onChangeZip(e) {
+    setZip(zonecode);
+  }
+  function onChangeAddress(e) {
+    setAddress(fullAddress);
+  }
+
+  const handleClick = () => {
+    open({ onComplete: handleComplete });
   };
+
+  ////////////////////////////////////////////////////////////
+  // const handleComplete = (data) => {
+  //   setPopup(!popup);
+  // };
+
+  // const handleInput = (e) => {
+  //   e.preventDefault();
+  //   setAdress({
+  //     ...address,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
 
   // 채널명
   function onChangeChannelname(e) {
@@ -400,24 +443,22 @@ function Regist() {
                     className="zip"
                     placeholder="우편번호를 검색하세요"
                     type="text"
-                    required={true}
                     name="zip"
-                    onChange={handleInput}
-                    readOnly
-                    value={address.zonecode || ""}
+                    onChange={onChangeZip}
+                    value={zonecode}
                   />
-                  <input
+                  {/* <input
                     type="hidden"
                     name="hiddenZip"
                     value={address.zonecode || ""}
                     onChange={(e) => {
                       setHiddenZip(e.target.value);
                     }}
-                  />
+                  /> */}
                   <button
                     type="button"
                     className="zipBtn"
-                    onClick={handleComplete}
+                    onClick={handleClick}
                   >
                     우편번호 찾기
                   </button>
@@ -425,20 +466,18 @@ function Regist() {
                   <input
                     placeholder="주소를 검색하세요"
                     type="text"
-                    required={true}
                     name="address"
-                    onChange={handleInput}
-                    readOnly
-                    value={address.address || ""}
+                    onChange={onChangeAddress}
+                    value={fullAddress}
                   />
-                  <input
+                  {/* <input
                     type="hidden"
                     name="hiddenAddress"
                     value={address.address || ""}
                     onChange={(e) => {
                       setHiddenAddress(e.target.value);
                     }}
-                  />
+                  /> */}
                   <br />
                   <input
                     type="text"
@@ -449,7 +488,7 @@ function Regist() {
                       setDetailAddress(e.target.value);
                     }}
                   />
-                  {popup && <Post address={address} setAddress={setAdress} />}
+                  {/* {popup && <Post address={address} setAddress={setAdress} />} */}
                 </td>
               </tr>
             </table>

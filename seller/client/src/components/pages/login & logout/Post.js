@@ -34,6 +34,7 @@ function Post(props) {
         errorMessage={(error) => console.log(error)}
         autoClose
         onComplete={complete}
+        animation
       />
     </div>
   );

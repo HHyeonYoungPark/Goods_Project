@@ -58,8 +58,8 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
   const pw = req.body.pw;
   const sellername = req.body.sellername;
   const email = req.body.email;
-  const hiddenZip = req.body.hiddenZip;
-  const hiddenAddress = req.body.hiddenAddress;
+  const zip = req.body.zip;
+  const address = req.body.address;
   const detailAddress = req.body.detailAddress;
   const channelname = req.body.channelname;
   const channelplatform = req.body.channelplatform;
@@ -78,8 +78,8 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
         hash_pw,
         sellername,
         email,
-        hiddenZip,
-        hiddenAddress + detailAddress,
+        zip,
+        address + detailAddress,
         channelname,
         channelplatform,
         channelgenre,
