@@ -1,0 +1,180 @@
+.payContent-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.payContent-left {
+  width: 900px;
+  border-right: 1px solid #ccc;
+  padding-right: 40px;
+}
+
+.shipment-title {
+  display: flex;
+  justify-content: left;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+}
+
+.shipment-title button {
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 2px;
+  font-size: 14px;
+  padding: 8px;
+  margin-left: 22px;
+  cursor: pointer;
+}
+
+.shipment-title button:hover {
+  background-color: #fff;
+  transition: 0.3s;
+}
+
+.shipment-info {
+  margin-bottom: 100px;
+}
+
+.ship-radio {
+  padding: 20px 0;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.ship-radio input {
+  margin-right: 7px;
+}
+
+.ship-radio span {
+  margin-right: 25px;
+  font-size: 17px;
+}
+
+.ship-privateInfo {
+  padding: 20px 0;
+}
+
+.ship-name {
+  margin-bottom: 10px;
+}
+
+.ship-address {
+  margin-bottom: 10px;
+  font-size: 17px;
+}
+
+.phone-option {
+  font-size: 17px;
+  margin-bottom: 20px;
+}
+
+.phone-option input {
+  margin-right: 8px;
+}
+
+.phone-option span {
+  color: rgba(0, 0, 0, 0.6);
+  margin-right: 30px;
+}
+
+.ship-option {
+  margin-bottom: 20px;
+}
+
+.ship-option select {
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  font-size: 14px;
+  padding: 12px;
+  width: 50%;
+}
+
+.product-title {
+  display: flex;
+  justify-content: left;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.product-title span {
+  margin-left: 22px;
+  padding-top: 5px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.product-info {
+}
+
+.product-info tr:nth-child(1) {
+  height: 50px;
+  text-align: center;
+}
+
+.product-info td {
+  text-align: center;
+}
+
+.product-info td:nth-child(1) {
+  width: 120px;
+}
+
+.payContent-right {
+  width: 340px;
+  padding-left: 30px;
+}
+
+.pay-title {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+}
+
+.point {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.payment {
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
+}
+.pay-price-title {
+  margin-bottom: 20px;
+}
+.product-price,
+.ship-fee,
+.discount,
+.total-price {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.total-price {
+  margin-top: 30px;
+}
+
+.pay-btn-wrap {
+  padding: 30px 0;
+}
+
+.pay-btn-wrap p {
+  margin-bottom: 30px;
+}
+
+.pay-btn-wrap input {
+  background: #273270;
+  border-radius: 2px;
+  color: #fff;
+  width: 100%;
+  font-size: 20px;
+  padding: 20px 0;
+  cursor: pointer;
+}
+
+.pay-btn-wrap input:hover {
+  background: #3b4db3;
+  transition: 0.2s;
+}
