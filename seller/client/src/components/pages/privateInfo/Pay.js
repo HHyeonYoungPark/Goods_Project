@@ -109,19 +109,19 @@ function Pay() {
           </div>
           <div className="discount">
             <span>할인금액</span>
-            <span>
+            <span className="discount-price">
               <b>0</b>원
             </span>
           </div>
           <div className="total-price">
             <span>합계</span>
-            <span>
+            <span className="total">
               <b>769,900</b>원
             </span>
           </div>
         </div>
         <div className="pay-btn-wrap">
-          <p>정보제공, 필수약관 확인 후 결제에 동의합니다</p>
+          <p>정보제공, 필수약관 확인 후 결제에 동의합니다.</p>
           <div className="pay-btn">
             <input type="submit" value="769,900원 결제하기" />
           </div>
