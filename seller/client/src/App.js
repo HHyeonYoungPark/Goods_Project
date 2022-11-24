@@ -140,7 +140,7 @@ function App() {
             {/* </Route> */}
 
             <Route path="newItem" element={<NewItem />} />
-            <Route path="pay" element={<Pay userId={userId} />} />
+            <Route path="pay/:idx" element={<Pay userId={userId} />} />
             <Route path="cart" element={<Cart />} />
             <Route path="notice" element={<Notice />} />
             <Route

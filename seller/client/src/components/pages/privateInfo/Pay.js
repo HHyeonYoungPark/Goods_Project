@@ -116,7 +116,7 @@ function Pay({ token, userId }) {
         <div className="point">
           <h3>적립혜택</h3>
           <span>
-            적립예정 <b>3,000</b>P
+            적립예정 <b>{item.price * 0.01}</b>P
           </span>
         </div>
         <div className="payment">
@@ -151,7 +151,7 @@ function Pay({ token, userId }) {
         <div className="pay-btn-wrap">
           <p>정보제공, 필수약관 확인 후 결제에 동의합니다.</p>
           <div className="pay-btn">
-            <input type="submit" value={`${item.price}원 결제하기`} />
+            <input type="submit" value={`${item.price + 3000} 원 결제하기`} />
           </div>
         </div>
       </div>

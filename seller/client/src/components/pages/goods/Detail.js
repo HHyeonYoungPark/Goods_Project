@@ -149,10 +149,11 @@ function Detail({ token, userId }) {
             <button className="detail-cart" onClick={cart}>
               장바구니
             </button>
-
-            <button className="detail-pay" onClick={buy}>
-              구매하기
-            </button>
+            <Link to={"/pay/" + item.idx}>
+              <button className="detail-pay" onClick={buy}>
+                구매하기
+              </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -341,16 +341,8 @@ app.get("/pay/:idx", (req, res) => {
   db.query(sql, [req.params.idx], (err, response) => {
     if (err) {
       throw err;
-    } else {
-      let sql = "SELECT * FROM user WHERE id=?;";
-      db.query(sql, [req.body.userId], (err, userInfo) => {
-        if (err) {
-          throw err;
-        }
-        res.send({ response, userInfo });
-        console.log(req.params.userId);
-      });
     }
+    res.send(response);
   });
 });
 
