@@ -58,6 +58,7 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
   const pw = req.body.pw;
   const sellername = req.body.sellername;
   const email = req.body.email;
+  const phone = req.body.phone;
   const zip = req.body.zip;
   const address = req.body.address;
   const detailAddress = req.body.detailAddress;
@@ -69,7 +70,7 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
   const intro = req.body.intro;
 
   let sql =
-    "INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,'일반회원',now());";
+    "INSERT INTO user VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,'일반회원',now());";
   bcrypt.hash(req.body.pw, saltRounds, (err, hash_pw) => {
     db.query(
       sql,
@@ -78,6 +79,7 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
         hash_pw,
         sellername,
         email,
+        phone,
         zip,
         address + detailAddress,
         channelname,

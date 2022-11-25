@@ -57,9 +57,10 @@ function Pay({ token, userId }) {
             </div>
             <div className="ship-address">
               <span>({userInfo.zip})</span>
+              <br />
               <span>{userInfo.address}</span>
             </div>
-            <div className="ship-phone">010-6436-4837</div>
+            <div className="ship-phone">{userInfo.phone}</div>
           </div>
 
           <div className="phone-option">

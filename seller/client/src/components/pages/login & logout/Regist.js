@@ -13,7 +13,7 @@ function Regist() {
   const [pwConfirm, setPwConfirm] = useState();
   const [sellername, setSellername] = useState("");
   const [email, setEmail] = useState("");
-  // const [hiddenZip, setHiddenZip] = useState("");
+  const [phone, setPhone] = useState("");
   // const [hiddenAddress, setHiddenAddress] = useState("");
   const [detailAddress, setDetailAddress] = useState("");
   const [channelname, setChannelname] = useState("");
@@ -28,6 +28,7 @@ function Regist() {
   const [pwConfirmMessage, setPwConfirmMessage] = useState("");
   const [sellernameMessage, setSellernameMessage] = useState("");
   const [emailMessage, setEmailMessage] = useState("");
+  const [phoneMessage, setPhoneMessage] = useState("");
 
   // 유효성 검사
   const [isId, setIsId] = useState(false); // 아이디를 8자 이상 입력했는지
@@ -37,6 +38,7 @@ function Regist() {
   const [isSellername, setIsSellername] = useState(false); // 이름을 입력했는지
   const [isEmail, setIsEmail] = useState(false); // 이메일을 입력했는지
   const [isEmailType, setIsEmailType] = useState(false); // 이메일 형식을 만족했는지
+  const [isPhone, setIsPhone] = useState(false); // 전화번호 입력했는지
   const [isChannelName, setIsChannelName] = useState(false); // 채널이름을 입력했는지
   const [isChannelPlatform, setIsChannelPlatform] = useState(false); // 활동 플랫폼 선택했는지
   const [isChannelGenre, setIsChannelGenre] = useState(false); // 채널 장르 선택했는지
@@ -59,6 +61,7 @@ function Regist() {
       isSellername &&
       isEmail &&
       isEmailType &&
+      isPhone &&
       isChannelName &&
       isChannelPlatform &&
       isChannelGenre &&
@@ -74,6 +77,7 @@ function Regist() {
       formData.append("pw", pw);
       formData.append("sellername", sellername);
       formData.append("email", email);
+      formData.append("phone", phone);
       formData.append("zip", zonecode);
       formData.append("address", fullAddress);
       formData.append("detailAddress", detailAddress);
@@ -202,6 +206,20 @@ function Regist() {
       setEmailMessage("올바른 이메일 형식입니다.");
       setIsEmail(true);
       setIsEmailType(true);
+    }
+  }
+
+  // 전화번호
+  function onChangePhone(e) {
+    const phoneCurrent = e.target.value;
+    setPhone(phoneCurrent);
+
+    if (phoneCurrent.length < 10) {
+      setPhoneMessage("전화번호를 입력해주세요");
+      setIsPhone(false);
+    } else {
+      setPhoneMessage("");
+      setIsPhone(true);
     }
   }
 
@@ -425,6 +443,18 @@ function Regist() {
                 <td>
                   <input type="text" name="email" onChange={onChangeEmail} />
                   {email && <span>{emailMessage}</span>}
+                </td>
+              </tr>
+              <tr>
+                <th>전화번호</th>
+                <td>
+                  <input
+                    type="text"
+                    name="phone"
+                    onChange={onChangePhone}
+                    placeholder="휴대폰 번호 -를 제외하고 입력하세요."
+                  />
+                  {phone && <span>{phoneMessage}</span>}
                 </td>
               </tr>
               <tr>
