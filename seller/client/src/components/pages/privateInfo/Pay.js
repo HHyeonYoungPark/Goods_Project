@@ -20,22 +20,21 @@ function Pay({ token, userId }) {
       });
   }
 
-  //   function userId(e) {
-  //     e.preventDefault();
-  //     setUserInfo(userId);
-  //   }
-
   useEffect(() => {
     Pay();
   }, []);
 
+  const Price = parseInt(item.price);
+  const basicPrice = Price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const point = Price * 0.01;
+  const basicPoint = point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const total = Price + 3000;
+  const basicTotalPrice = total
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
   return (
     <div className="payContent-wrap">
-      {/* <input
-        type="hidden"
-        onChange={(e) => setUserInfo(e.target.value)}
-        value={userId}
-      /> */}
       <div className="payContent-left">
         <div className="shipment-title">
           <h2>배송정보</h2>
@@ -105,7 +104,7 @@ function Pay({ token, userId }) {
               </td>
               <td>{item.itemname}</td>
               <td>1개</td>
-              <td>{item.price}원</td>
+              <td>{basicPrice}원</td>
               <td>3,000원</td>
             </tr>
           </table>
@@ -118,7 +117,7 @@ function Pay({ token, userId }) {
         <div className="point">
           <h3>적립혜택</h3>
           <span>
-            적립예정 <b>{item.price * 0.01}</b>P
+            적립예정 <b>{basicPoint}</b>P
           </span>
         </div>
         <div className="payment">
@@ -128,7 +127,7 @@ function Pay({ token, userId }) {
           <div className="product-price">
             <span>상품금액</span>
             <span>
-              <b>{item.price}</b>원
+              <b>{basicPrice}</b>원
             </span>
           </div>
           <div className="ship-fee">
@@ -146,14 +145,14 @@ function Pay({ token, userId }) {
           <div className="total-price">
             <span>합계</span>
             <span className="total">
-              <b>{item.price}</b>원
+              <b>{basicTotalPrice}</b>원
             </span>
           </div>
         </div>
         <div className="pay-btn-wrap">
           <p>정보제공, 필수약관 확인 후 결제에 동의합니다.</p>
           <div className="pay-btn">
-            <input type="submit" value={`${item.price + 3000} 원 결제하기`} />
+            <input type="submit" value={`${basicTotalPrice} 원 결제하기`} />
           </div>
         </div>
       </div>
