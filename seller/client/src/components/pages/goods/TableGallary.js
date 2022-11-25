@@ -42,7 +42,7 @@ function TableGallary() {
               <Link to={`/detail/${item.idx}`}>{item.itemname}</Link>
             </h4>
             <p className="price">
-              <Link to="#">{item.price}</Link>
+              <Link to="#">{item.price}원</Link>
             </p>
           </div>
         );
