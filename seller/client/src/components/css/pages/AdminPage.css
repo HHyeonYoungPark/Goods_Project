@@ -10,6 +10,11 @@
   margin-top: 50px;
 }
 
+.adminHeader {
+  display: flex;
+  flex-direction: row;
+}
+
 .wtbzLogo {
   width: 170px;
 }

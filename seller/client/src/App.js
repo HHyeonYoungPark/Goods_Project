@@ -11,6 +11,7 @@ import Footer from "./components/layout/Footer";
 import Main from "./components/pages/goods/Main";
 import Login from "./components/pages/login & logout/Login";
 import Logout from "./components/pages/login & logout/Logout";
+import LogoutToCustom from "./components/pages/login & logout/LogoutToCustom";
 import Regist from "./components/pages/login & logout/Regist";
 import Post from "./components/pages/login & logout/Post";
 import AdminPage from "./components/pages/privateInfo/AdminPage";
@@ -37,7 +38,7 @@ import Ask from "./components/pages/board/AskToAdmin";
 import PrivateRoute from "./components/pages/PrivateRoute";
 import NotFound from "./components/pages/NotFound";
 
-import AllManager from "./components/pages/privateInfo/AllManager";
+import AdminMain from "./components/pages/privateInfo/AdminMain";
 import GoodsManager from "./components/pages/privateInfo/GoodsManager";
 import NoticeManager from "./components/pages/privateInfo/NoticeManager";
 import AskManager from "./components/pages/privateInfo/AskManager";
@@ -92,6 +93,8 @@ function App() {
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="logout" element={<Logout />} />
+            <Route path="logouttocustom" element={<LogoutToCustom />} />
+
             <Route path="regist" element={<Regist />} />
             <Route path="post" element={<Post />} />
 
@@ -111,7 +114,7 @@ function App() {
               path="adminPage"
               element={<AdminPage token={token} userId={userId} />}
             >
-              <Route index="allManager" element={<AllManager />} />
+              <Route index="adminMain" element={<AdminMain />} />
               <Route path="goodsManager" element={<GoodsManager />} />
               <Route path="addItem" element={<AddItem />} />
               <Route path="updateItem/:idx" element={<UpdateItem />} />

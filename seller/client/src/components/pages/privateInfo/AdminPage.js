@@ -1,16 +1,27 @@
 import React from "react";
 import "../../css/pages/AdminPage.css";
 import { Link, Outlet } from "react-router-dom";
+import WTLogo from "../../images/logo.png";
 import WTBZLogo from "../../images/WETINYBIZ_LOGO.jpg";
 
 function AdminPage({ userId }) {
   return (
     <div className="adminContainer">
+      <div className="adminHeader">
+        <Link to="/logouttocustom">
+          <img className="wtbzLogo" src={WTLogo} alt={WTLogo} />
+        </Link>
+        <h2>Header</h2>
+      </div>
       <div className="adminBox">
         <div className="mypageSideNav">
-          <img className="wtbzLogo" src={WTBZLogo} alt={WTBZLogo} />
-          <div className="sideNav-profile">
-            <h2>관리자 페이지</h2>
+          <div className="sideNavProfile">
+            <Link to="/logout">
+              <img className="wtbzLogo" src={WTBZLogo} alt={WTBZLogo} />
+            </Link>
+            <a href="/AdminPage">
+              <h2>Admin</h2>
+            </a>
             <div>
               <Link to="/myPage">
                 <b>{userId}</b>

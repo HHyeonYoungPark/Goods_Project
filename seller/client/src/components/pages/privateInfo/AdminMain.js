@@ -1,7 +1,7 @@
 import React from "react";
 import "../../css/pages/AllManager.css";
 
-function AllManager() {
+function AdminMain() {
   return (
     <div className="allManager-container">
       <div className="content-manager">
@@ -14,4 +14,4 @@ function AllManager() {
   );
 }
 
-export default AllManager;
+export default AdminMain;

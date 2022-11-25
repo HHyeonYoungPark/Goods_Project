@@ -54,9 +54,9 @@ function GoodsManager() {
                     onchange="selSearch2()"
                   >
                     <option value="">선택하세요</option>
-                    <option value="title">제목</option>
-                    <option value="username">작성자</option>
-                    <option value="content">내용</option>
+                    <option value="title">상품명</option>
+                    <option value="username">카테고리</option>
+                    <option value="content">가격</option>
                     <option value="regdate">등록일</option>
                   </select>
                   <input
