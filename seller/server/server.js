@@ -58,8 +58,8 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
   const pw = req.body.pw;
   const sellername = req.body.sellername;
   const email = req.body.email;
-  const hiddenZip = req.body.hiddenZip;
-  const hiddenAddress = req.body.hiddenAddress;
+  const zip = req.body.zip;
+  const address = req.body.address;
   const detailAddress = req.body.detailAddress;
   const channelname = req.body.channelname;
   const channelplatform = req.body.channelplatform;
@@ -78,8 +78,8 @@ app.post("/regist", upload.single("profileimage"), (req, res) => {
         hash_pw,
         sellername,
         email,
-        hiddenZip,
-        hiddenAddress + detailAddress,
+        zip,
+        address + detailAddress,
         channelname,
         channelplatform,
         channelgenre,
@@ -336,15 +336,34 @@ app.get("/detail/:idx", (req, res) => {
 });
 
 // 상품 결제
-app.get("/pay/:idx", (req, res) => {
-  let sql = "select * from item where idx =?;";
-  db.query(sql, [req.params.idx], (err, response) => {
+app.get("/pay/:userId/:idx", (req, res) => {
+  let userSQL = "select * from user where id=?;";
+  db.query(userSQL, [req.params.userId], (err, user) => {
     if (err) {
       throw err;
+    } else {
+      let itemSQL = "select * from item where idx=?;";
+      db.query(itemSQL, [req.params.idx], (err, result) => {
+        if (err) {
+          throw err;
+        }
+        console.log(user);
+        console.log(result);
+        res.send({ user, result });
+      });
     }
-    res.send(response);
   });
 });
+
+// app.get("/pay/:idx", (req, res) => {
+//   let sql = "select * from item where idx =?;";
+//   db.query(sql, [req.params.idx], (err, response) => {
+//     if (err) {
+//       throw err;
+//     }
+//     res.send(response);
+//   });
+// });
 
 //해당 상품 리뷰탭-> 리뷰 목록
 app.get("/detail/:idx/detailReview", (req, res) => {

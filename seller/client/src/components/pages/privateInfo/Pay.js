@@ -12,9 +12,12 @@ function Pay({ token, userId }) {
   const { idx } = useParams();
 
   async function Pay() {
-    await axios.get(`http://localhost:4001/pay/${idx}`).then((response) => {
-      setItem(response.data[0]);
-    });
+    await axios
+      .get(`http://localhost:4001/pay/${userId}/${idx}`)
+      .then((response) => {
+        setItem(response.data.result[0]);
+        setUserInfo(response.data.user[0]);
+      });
   }
 
   //   function userId(e) {
@@ -50,13 +53,11 @@ function Pay({ token, userId }) {
           </div>
           <div className="ship-privateInfo">
             <div className="ship-name">
-              <h3>박현영</h3>
+              <h3>{userInfo.sellername}</h3>
             </div>
             <div className="ship-address">
-              <span>
-                (18394) 경기도 화성시 동탄지성로 319-19 (기산동,에스케이뷰파크
-                3차) 신동탄 sk뷰파크3차 109동402호
-              </span>
+              <span>({userInfo.zip})</span>
+              <span>{userInfo.address}</span>
             </div>
             <div className="ship-phone">010-6436-4837</div>
           </div>
