@@ -3,13 +3,12 @@ import "../../css/pages/AllManager.css";
 
 function AdminMain() {
   return (
-    <div className="allManager-container">
-      <div className="content-manager">
-        <h3>상품 관리</h3>
+    <div>
+      <div className="adminMainContainer">
+        <div className="MainBox">쇼핑몰 Update</div>
+        <div className="MainBox">회원 Update</div>
+        <div className="MainBox">게시판 Update</div>
       </div>
-      <div className="content-manager">회원관리</div>
-      <div className="content-manager">공지사항 관리</div>
-      <div className="content-manager">Q&A관리</div>
     </div>
   );
 }

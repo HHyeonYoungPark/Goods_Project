@@ -8,27 +8,33 @@ function AdminPage({ userId }) {
   return (
     <div className="adminContainer">
       <div className="adminHeader">
-        <Link to="/logouttocustom">
-          <img className="wtbzLogo" src={WTLogo} alt={WTLogo} />
-        </Link>
-        <h2>Header</h2>
+        <div className="wtLogo">
+          <Link to="/logouttocustom">
+            <h1>WE'TINY HQ</h1>
+          </Link>
+        </div>
+        <div className="headerRight">
+          <Link to="/myPage">
+            <b>{userId}</b>님
+          </Link>
+          <br />
+          <div className="loginInfo">
+            <Link to="/logouttocustom">
+              <img className="wtLogo" src={WTLogo} alt={WTLogo} />
+            </Link>
+            <Link to="/logout">
+              <img className="wtbzLogo" src={WTBZLogo} alt={WTBZLogo} />
+            </Link>
+            <Link to="/logout">Logout</Link>
+          </div>
+        </div>
       </div>
       <div className="adminBox">
         <div className="mypageSideNav">
           <div className="sideNavProfile">
-            <Link to="/logout">
-              <img className="wtbzLogo" src={WTBZLogo} alt={WTBZLogo} />
-            </Link>
             <a href="/AdminPage">
               <h2>Admin</h2>
             </a>
-            <div>
-              <Link to="/myPage">
-                <b>{userId}</b>
-              </Link>
-              님<br />
-              <Link to="/logout">로그아웃</Link>
-            </div>
           </div>
           <div className="sideNav">
             <h4>쇼핑몰 관리</h4>
