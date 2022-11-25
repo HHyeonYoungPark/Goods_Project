@@ -3,19 +3,18 @@ import { Link } from "react-router-dom";
 import "../css/layout/Header.css";
 import wetinyBizLogo from "../images/WETINYBIZ_LOGO.jpg";
 
-function Header({userId}) {
-  
+function Header({ userId }) {
   return (
     <div>
       <div className="HeaderContainer">
         <div className="NavMenuLeft">
-          <Link to="/seller" className="toSellerMain">
+          <a href="http://localhost:3000/">
             <img
               style={{ width: "180px" }}
               src={wetinyBizLogo}
               alt={wetinyBizLogo}
             />
-          </Link>
+          </a>
         </div>
         <div className="HeaderMenuRight">
           <ul>
@@ -24,7 +23,7 @@ function Header({userId}) {
                 customerHelp
               </Link>
             </li>
-            {!userId &&
+            {!userId && (
               <>
                 <li>
                   <Link to="/regist" className="registCustomer">
@@ -37,8 +36,8 @@ function Header({userId}) {
                   </Link>
                 </li>
               </>
-            }
-            {userId &&
+            )}
+            {userId && (
               <>
                 {/* <li className="loginDropDown">
                   {userId}님
@@ -49,13 +48,13 @@ function Header({userId}) {
                   </div>
                 </li> */}
                 <li>
-                  <Link to="/profile" >{userId}님</Link>
+                  <Link to="/profile">{userId}님</Link>
                 </li>
                 <li>
                   <Link to="/logout">로그아웃</Link>
                 </li>
               </>
-            }
+            )}
           </ul>
         </div>
       </div>

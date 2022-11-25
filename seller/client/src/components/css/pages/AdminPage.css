@@ -13,3 +13,18 @@
 .wtbzLogo {
   width: 170px;
 }
+
+.adminBox {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.mypageSideNav {
+  width: 15%;
+}
+
+.mypageContent {
+  width: 85%;
+  background-color: aliceblue;
+}

@@ -6,8 +6,8 @@ import WTBZLogo from "../../images/WETINYBIZ_LOGO.jpg";
 function AdminPage({ userId }) {
   return (
     <div className="adminContainer">
-      <div className="mypage-wrap">
-        <div className="mypage-sideNav">
+      <div className="adminBox">
+        <div className="mypageSideNav">
           <img className="wtbzLogo" src={WTBZLogo} alt={WTBZLogo} />
           <div className="sideNav-profile">
             <h2>관리자 페이지</h2>
@@ -74,7 +74,7 @@ function AdminPage({ userId }) {
             </ul>
           </div>
         </div>
-        <div className="mypage-content">
+        <div className="mypageContent">
           <Outlet />
         </div>
       </div>

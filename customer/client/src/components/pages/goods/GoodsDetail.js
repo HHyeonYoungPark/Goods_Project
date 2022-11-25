@@ -24,15 +24,17 @@ const tags = {
   color: "red",
 };
 
-function GoodsDetail({userId}) {
+function GoodsDetail({ userId }) {
   const [item, setItem] = useState("");
   const { idx } = useParams();
   const navigate = useNavigate();
-  
+
   async function getDetail() {
-    await axios.get(`http://localhost:4001/customer/detail/${idx}`).then((response) => {
-      setItem(response.data[0]);
-    });
+    await axios
+      .get(`http://localhost:4002/customer/detail/${idx}`)
+      .then((response) => {
+        setItem(response.data[0]);
+      });
   }
   useEffect(() => {
     getDetail();
@@ -47,18 +49,16 @@ function GoodsDetail({userId}) {
   }
 
   function buy() {
-    userId
-      ? window.alert("결제or 주문완료페이지로 넘김")
-      : navigate("/login");
+    userId ? window.alert("결제or 주문완료페이지로 넘김") : navigate("/login");
   }
-  
+
   const [counter, setCounter] = useState(1);
   function plus() {
-    (counter === item.stock) ? setCounter(item.stock) : setCounter(counter + 1);
+    counter === item.stock ? setCounter(item.stock) : setCounter(counter + 1);
   }
 
   function minus() {
-    (counter >= 1) ? setCounter(counter - 1) : setCounter(0);
+    counter >= 1 ? setCounter(counter - 1) : setCounter(0);
   }
 
   return (
