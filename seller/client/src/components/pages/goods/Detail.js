@@ -7,19 +7,22 @@ import {
   Link,
   useParams,
   Outlet,
-} from "react-router-dom";
-import "../../css/pages/Detail.css";
-import Carousel from "react-bootstrap/Carousel";
-import image from "../../images/phone.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { faTruck } from "@fortawesome/free-solid-svg-icons";
-import { faTags } from "@fortawesome/free-solid-svg-icons";
-import { faSquarePlus } from "@fortawesome/free-regular-svg-icons";
-import { faSquareMinus } from "@fortawesome/free-regular-svg-icons";
-import { useEffect } from "react";
-import ImageGallery from "react-image-gallery";
-import "react-image-gallery/styles/css/image-gallery.css";
+  redirect,
+} from 'react-router-dom';
+import '../../css/pages/Detail.css';
+import Carousel from 'react-bootstrap/Carousel';
+import image from '../../images/phone.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faTruck } from '@fortawesome/free-solid-svg-icons';
+import { faTags } from '@fortawesome/free-solid-svg-icons';
+import { faSquarePlus } from '@fortawesome/free-regular-svg-icons';
+import { faSquareMinus } from '@fortawesome/free-regular-svg-icons';
+import { useEffect } from 'react';
+import ImageGallery from 'react-image-gallery';
+import 'react-image-gallery/styles/css/image-gallery.css';
+import { min } from 'date-fns';
+
 const topnavstyle = {
   margin: "0 0 0 15px",
   color: "#27336F",
@@ -82,6 +85,10 @@ function Detail({ token, userId }) {
 
   function minus() {
     setCounter(counter - 1);
+    if (counter <= 1) {
+      alert('최소 주문수량은 1개입니다.');
+      setCounter(1);
+    }
   }
 
   const images = [
@@ -99,7 +106,12 @@ function Detail({ token, userId }) {
     },
   ];
   const numPrice = parseInt(item.price);
-  const numPrice2 = numPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  const numPrice2 = numPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const totalPrice = numPrice * counter;
+  const totalPrice2 = totalPrice
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   return (
     <div className="detail-con">
       <div className="top-nav-con">
@@ -138,7 +150,9 @@ function Detail({ token, userId }) {
               </button>
             </div>
             <div></div>
-            <h2 className="detail-price">{item.price * counter}원</h2>
+
+            <h2 className='detail-price'>{totalPrice2}원</h2>
+
           </div>
           <div className="coupon-wrap">
             <p className="detail-coupon">적용가능한 쿠폰 없음</p>
