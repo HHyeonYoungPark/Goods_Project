@@ -123,7 +123,7 @@ function Regist() {
     const idCurrent = e.target.value;
     setId(idCurrent);
 
-    if (idCurrent.length < 8) {
+    if (idCurrent.length < 5) {
       setIdMessage("아이디를 8자이상 입력해주세요");
       setIsId(false);
     } else {
@@ -153,7 +153,7 @@ function Regist() {
     const pwCurrent = e.target.value;
     setPw(pwCurrent);
 
-    if (pwCurrent.length < 8) {
+    if (pwCurrent.length < 5) {
       setPwMessage("비밀번호를 8자이상 입력해주세요");
       setIsPw(false);
     } else {

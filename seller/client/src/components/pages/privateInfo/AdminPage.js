@@ -8,8 +8,8 @@ function AdminPage({ userId }) {
   return (
     <div className="adminContainer">
       <div className="adminHeader">
-        <div className="wtLogo">
-          <Link to="/logouttocustom">
+        <div className="wtHqLog">
+          <Link to="/myPage">
             <h1>WE'TINY HQ</h1>
           </Link>
         </div>
@@ -33,66 +33,52 @@ function AdminPage({ userId }) {
         <div className="mypageSideNav">
           <div className="sideNavProfile">
             <a href="/AdminPage">
-              <h2>Admin</h2>
+              <h1>Icon Home</h1>
             </a>
           </div>
-          <div className="sideNav">
-            <h4>쇼핑몰 관리</h4>
-            <ul>
-              <li>
-                <Link to="goodsManager">상품 관리</Link>
-              </li>
-              <li>
-                <Link to="order">주문 관리</Link>
-              </li>
-              <li>
-                <Link to="">이벤트 관리</Link>
-              </li>
-              <li>
-                <Link to="">배너 관리</Link>
-              </li>
-            </ul>
-          </div>
-          <div className="sideNav">
-            <h4>회원 관리</h4>
-            <ul>
-              <li>
-                <Link to="userManager">회원정보 관리</Link>
-              </li>
-              <li>
-                <Link to="">메일 발송</Link>
-              </li>
-              <li>
-                <Link to="">접속자 집계</Link>
-              </li>
-              <li>
-                <Link to="">포인트 관리</Link>
-              </li>
-            </ul>
-          </div>
-          <div className="sideNav">
-            <h4>게시판 관리</h4>
-            <ul>
-              <li>
-                <Link to="boardManager">게시판 관리</Link>
-              </li>
-              <li>
-                <Link to="noticeManager">공지사항 관리</Link>
-              </li>
-              <li>
-                <Link to="askManager">Q&A 관리</Link>
-              </li>
-              <li>
-                <Link to="">인기검색어 관리</Link>
-              </li>
-              <li>
-                <Link to="">내용 관리</Link>
-              </li>
-            </ul>
+          <div className="adminSideNav">
+            <Link className="navMenu" to="#">
+              <h3>Shop Manager</h3>
+            </Link>
+            <Link className="navMenu" to="goodsManager">
+              Goods
+            </Link>
+            <Link className="navMenu" to="#">
+              Orders
+            </Link>
+            <Link className="navMenu" to="#">
+              Events
+            </Link>
+            <Link className="navMenu" to="#">
+              Banners
+            </Link>
+            <Link className="navMenu" to="#">
+              <h3>Members</h3>
+            </Link>
+            <Link className="navMenu" to="#">
+              Customers
+            </Link>
+            <Link className="navMenu" to="#">
+              Sellers
+            </Link>
+            <Link className="navMenu" to="#">
+              Admins
+            </Link>
+            <Link className="navMenu" to="#">
+              <h3>Boards</h3>
+            </Link>
+            <Link className="navMenu" to="#">
+              Notice
+            </Link>
+            <Link className="navMenu" to="#">
+              Help
+            </Link>
           </div>
         </div>
-        <div className="mypageContent">
-          <Outlet />
+        <div className="mypageContentBox">
+          <div className="mypageContent">
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>

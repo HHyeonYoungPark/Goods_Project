@@ -30,35 +30,35 @@ function BoardManager() {
   const [msg, setMsg] = useState("");
 
   // 모달 스타일
-  const styleModal = {
-    overlay: {
-      position: "fixed",
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: "rgba(255, 255, 255, 0.8)",
-      zIndex: 10,
-    },
-    content: {
-      display: "flex",
-      justifyContent: "center",
-      background: "#ffffe7",
-      overflow: "auto",
-      top: "30vh",
-      left: "25vw",
-      right: "25vw",
-      bottom: "30vh",
-      WebkitOverflowScrolling: "touch",
-      borderRadius: "14px",
-      outline: "none",
-      zIndex: 10,
-    },
-  };
+  // const styleModal = {
+  //   overlay: {
+  //     position: "fixed",
+  //     top: 0,
+  //     left: 0,
+  //     right: 0,
+  //     bottom: 0,
+  //     backgroundColor: "rgba(255, 255, 255, 0.8)",
+  //     zIndex: 10,
+  //   },
+  //   content: {
+  //     display: "flex",
+  //     justifyContent: "center",
+  //     background: "#ffffe7",
+  //     overflow: "auto",
+  //     top: "30vh",
+  //     left: "25vw",
+  //     right: "25vw",
+  //     bottom: "30vh",
+  //     WebkitOverflowScrolling: "touch",
+  //     borderRadius: "14px",
+  //     outline: "none",
+  //     zIndex: 10,
+  //   },
+  // };
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  // const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const getBoardlist = async () => {
     await axios
@@ -366,7 +366,12 @@ function BoardManager() {
 
           <p className="danger">{msg}</p>
           <div className="paging">
-            <Paging page={page} offset={offset} rows={rows} setPage={changePage} />
+            <Paging
+              page={page}
+              offset={offset}
+              rows={rows}
+              setPage={changePage}
+            />
           </div>
         </div>
       </div>
