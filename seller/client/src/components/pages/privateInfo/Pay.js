@@ -2,7 +2,7 @@ import React from "react";
 import "../../css/pages/Pay.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import DummyImg from "../../images/dummyImg02.png";
 import { set } from "date-fns";
 
@@ -16,6 +16,8 @@ function Pay({ token, userId }) {
   const [phone, setPhone] = useState("");
   const [orderedItem, setOrderedItem] = useState("");
   const [totalPrice, setTotalPrice] = useState("");
+
+  const navigate = useNavigate();
 
   async function Pay() {
     await axios
@@ -40,10 +42,10 @@ function Pay({ token, userId }) {
       .post(`http://localhost:4001/pay/${userId}/${idx}`, formData)
       .then((response) => {
         if (response.data.status === 201) {
-          navigate("/orderConplete");
+          navigate("/orderComplete");
         } else {
           window.alert("상품주문 실패!");
-          navigate("/AdminPage/goodsManager");
+          navigate(-1);
         }
       });
   }
