@@ -512,7 +512,7 @@ app.get("/boardlist", (req, res) => {
     } else {
       // db 2 : 페이징 처리를 위한 쿼리 AND 검색 쿼리
       let listSQL =
-        "SELECT * FROM boardManager WHERE boardCode LIKE ? OR boardName LIKE ? OR boardCategory LIKE ? ORDER BY boardIdx DESC LIMIT ?, ?;";
+        "SELECT * FROM boardManager WHERE boardCode LIKE ? OR boardName LIKE ? OR boardCategory LIKE ? ORDER BY boardIdx ASC LIMIT ?, ?;";
       db.query(
         listSQL,
         [codeSearch, nameSearch, categorySearch, startNum, offset],

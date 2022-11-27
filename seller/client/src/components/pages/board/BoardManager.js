@@ -25,7 +25,7 @@ function BoardManager({ userId }) {
   const [rows, setRows] = useState(0);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(0);
-  const [offset, setOffset] = useState(10);
+  const [offset, setOffset] = useState(8);
   const [select, setSelect] = useState("");
   const [searchWords, setSearchWords] = useState("");
   const [keyword, setKeyword] = useState("");
@@ -212,8 +212,8 @@ function BoardManager({ userId }) {
                         All
                       </option>
                       <option value="logined">logined</option>
-                      <option value="seller or admin">seller or admin</option>
-                      <option value="admin only">admin only</option>
+                      <option value="seller">seller</option>
+                      <option value="admin">admin</option>
                     </select>
                   </td>
                   <td>Writer</td>
@@ -228,8 +228,8 @@ function BoardManager({ userId }) {
                         All
                       </option>
                       <option value="logined">logined</option>
-                      <option value="seller or admin">seller or admin</option>
-                      <option value="admin only">admin only</option>
+                      <option value="seller">seller</option>
+                      <option value="admin">admin</option>
                     </select>
                   </td>
                   <td>Comment</td>
@@ -244,8 +244,8 @@ function BoardManager({ userId }) {
                         All
                       </option>
                       <option value="logined">logined</option>
-                      <option value="seller or admin">seller or admin</option>
-                      <option value="admin only">admin only</option>
+                      <option value="seller">seller</option>
+                      <option value="admin">admin</option>
                     </select>
                   </td>
                   <td>Modify</td>
@@ -260,8 +260,8 @@ function BoardManager({ userId }) {
                         All
                       </option>
                       <option value="logined">logined</option>
-                      <option value="seller or admin">seller or admin</option>
-                      <option value="admin only">admin only</option>
+                      <option value="seller">seller</option>
+                      <option value="admin">admin</option>
                     </select>
                   </td>
                 </tr>
@@ -315,19 +315,19 @@ function BoardManager({ userId }) {
           </div>
         </div>
         <div className="tblWrap">
-          <table>
+          <table className="boardList">
             <tr>
-              <th>코드</th>
-              <th>카테고리</th>
-              <th>이름</th>
-              <th>읽기 권한</th>
-              <th>쓰기 권한</th>
-              <th>댓글 권한</th>
-              <th>수정 권한</th>
-              <th>생성자</th>
-              <th>생성일</th>
-              <th>수정일</th>
-              <th>비고</th>
+              <th>Code</th>
+              <th>Category</th>
+              <th>Name</th>
+              <th>Read</th>
+              <th>Write</th>
+              <th>Comment</th>
+              <th>Modify</th>
+              <th>Creater</th>
+              <th>RegDate</th>
+              <th>ModiDate</th>
+              <th>-</th>
             </tr>
 
             {boardlist.map((b, key) => {
@@ -349,7 +349,7 @@ function BoardManager({ userId }) {
                   <td>{b.modifyDate}</td>
                   <td>
                     <Link to={"/adminPage/boardUpdate/" + b.boardCode}>
-                      수정
+                      Modi
                     </Link>
                     {/* <button onClick={() => setModalIsOpen(true)}>수정</button>
                     <Modal
@@ -372,7 +372,7 @@ function BoardManager({ userId }) {
                       className="upDelBtn"
                       onClick={() => deleteBoard(b.boardCode)}
                     >
-                      삭제
+                      Del
                     </button>
                   </td>
                 </tr>

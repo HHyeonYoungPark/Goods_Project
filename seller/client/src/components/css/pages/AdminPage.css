@@ -277,3 +277,76 @@ select {
   padding: 10px 20px;
   margin-top: 10px;
 }
+
+.boardList table,
+tr,
+th,
+td {
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid white;
+  border-collapse: collapse;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+.boardList tr {
+  height: 35px;
+}
+
+.boardList th {
+  padding: 0;
+  height: 35px;
+  background-color: #5d5bd5;
+  text-align: center;
+}
+
+.boardList td {
+  height: 25px;
+}
+
+.boardList th:first-child {
+  width: 5%;
+  font-size: 16px;
+}
+
+.boardList th:nth-child(2) {
+  width: 5%;
+  font-size: 16px;
+}
+.boardList th:nth-child(3) {
+  font-size: 16px;
+}
+.boardList th:nth-child(4) {
+  width: 5%;
+  font-size: 16px;
+}
+.boardList th:nth-child(5) {
+  width: 5%;
+  font-size: 16px;
+}
+.boardList th:nth-child(6) {
+  width: 5%;
+  font-size: 16px;
+}
+.boardList th:nth-child(7) {
+  width: 5%;
+  font-size: 16px;
+}
+.boardList th:nth-child(8) {
+  width: 5%;
+  font-size: 16px;
+}
+.boardList th:nth-child(9) {
+  width: 6%;
+  font-size: 16px;
+}
+.boardList th:nth-child(10) {
+  width: 6%;
+  font-size: 16px;
+}
+
+.boardList th:last-child {
+  width: 6%;
+}
