@@ -30,26 +30,26 @@ function Pay({ token, userId }) {
         setDestination(response.data.user[0].address);
         setPhone(response.data.user[0].phone);
         setOrderedItem(response.data.result[0].itemname);
-        setTotalPrice(basicTotalPrice);
+        setTotalPrice(parseInt(response.data.result[0].price) + 3000);
         console.log(response.data.user[0].sellername);
         console.log(response.data.user[0].address);
         console.log(response.data.user[0].phone);
         console.log(response.data.result[0].itemname);
+        console.log(parseInt(response.data.result[0].price) + 3000);
       });
   }
 
   async function payHandler(e) {
     e.preventDefault();
-    let formData = new FormData();
-
-    formData.append("customerName", customerName);
-    formData.append("destination", destination);
-    formData.append("phone", phone);
-    formData.append("orderedItem", orderedItem);
-    formData.append("totalPrice", totalPrice);
 
     await axios
-      .post(`http://localhost:4001/pay/${userId}/${idx}`, formData)
+      .post(`http://localhost:4001/pay/${userId}/${idx}`, {
+        customerName,
+        destination,
+        phone,
+        orderedItem,
+        totalPrice,
+      })
       .then((response) => {
         if (response.data.status === 201) {
           navigate("/orderComplete");
@@ -93,34 +93,14 @@ function Pay({ token, userId }) {
             </div>
             <div className="ship-privateInfo">
               <div className="ship-name">
-                <h3>{userInfo.sellername}</h3>
-                <input
-                  type="hidden"
-                  name="customerName"
-                  value={customerName}
-                  onChange={(e) => setCustomerName(e.target.value)}
-                />
+                <h3>{customerName}</h3>
               </div>
               <div className="ship-address">
                 <span>({userInfo.zip})</span>
                 <br />
                 <span>{userInfo.address}</span>
-                <input
-                  type="hidden"
-                  name="destination"
-                  value={destination}
-                  onChange={(e) => {
-                    setDestination(e.target.value);
-                  }}
-                />
               </div>
               <div className="ship-phone">{userInfo.phone}</div>
-              <input
-                type="hidden"
-                name="phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
             </div>
 
             <div className="phone-option">
@@ -164,12 +144,6 @@ function Pay({ token, userId }) {
                   />
                 </td>
                 <td>{item.itemname}</td>
-                <input
-                  type="hidden"
-                  name="orderedItem"
-                  value={orderedItem}
-                  onChange={(e) => setOrderedItem(e.target.value)}
-                />
                 <td>1개</td>
                 <td>{basicPrice}원</td>
                 <td>3,000원</td>
@@ -213,12 +187,6 @@ function Pay({ token, userId }) {
               <span>합계</span>
               <span className="total">
                 <b>{basicTotalPrice}</b>원
-                <input
-                  type="hidden"
-                  name="totalPrice"
-                  value={totalPrice}
-                  onChange={(e) => setTotalPrice(e.target.value)}
-                />
               </span>
             </div>
           </div>
