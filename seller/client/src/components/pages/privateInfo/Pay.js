@@ -11,12 +11,40 @@ function Pay({ token, userId }) {
   const [userInfo, setUserInfo] = useState("");
   const { idx } = useParams();
 
+  const [customerName, setCustomerName] = useState("");
+  const [destination, setDestination] = useState("");
+  const [phone, setPhone] = useState("");
+  const [orderedItem, setOrderedItem] = useState("");
+  const [totalPrice, setTotalPrice] = useState("");
+
   async function Pay() {
     await axios
       .get(`http://localhost:4001/pay/${userId}/${idx}`)
       .then((response) => {
         setItem(response.data.result[0]);
         setUserInfo(response.data.user[0]);
+      });
+  }
+
+  async function payHandler(e) {
+    e.preventDefault();
+    let formData = new FormData();
+
+    formData.append("customerName", customerName);
+    formData.append("destination", destination);
+    formData.append("phone", phone);
+    formData.append("orderedItem", orderedItem);
+    formData.append("totalPrice", totalPrice);
+
+    await axios
+      .post(`http://localhost:4001/pay/${userId}/${idx}`, formData)
+      .then((response) => {
+        if (response.data.status === 201) {
+          navigate("/orderConplete");
+        } else {
+          window.alert("상품주문 실패!");
+          navigate("/AdminPage/goodsManager");
+        }
       });
   }
 
@@ -53,13 +81,37 @@ function Pay({ token, userId }) {
           <div className="ship-privateInfo">
             <div className="ship-name">
               <h3>{userInfo.sellername}</h3>
+              <input
+                type="hidden"
+                name="customerName"
+                value={userInfo.sellername}
+                onChange={(e) => {
+                  setCustomerName(e.target.value);
+                }}
+              />
             </div>
             <div className="ship-address">
               <span>({userInfo.zip})</span>
               <br />
               <span>{userInfo.address}</span>
+              <input
+                type="hidden"
+                name="destination"
+                value={userInfo.address}
+                onChange={(e) => {
+                  setDestination(e.target.value);
+                }}
+              />
             </div>
             <div className="ship-phone">{userInfo.phone}</div>
+            <input
+              type="hidden"
+              name="phone"
+              value={userInfo.phone}
+              onChange={(e) => {
+                setPhone(e.target.value);
+              }}
+            />
           </div>
 
           <div className="phone-option">
@@ -103,6 +155,14 @@ function Pay({ token, userId }) {
                 />
               </td>
               <td>{item.itemname}</td>
+              <input
+                type="hidden"
+                name="orderedItem"
+                value={item.itemname}
+                onChange={(e) => {
+                  setOrderedItem(e.target.value);
+                }}
+              />
               <td>1개</td>
               <td>{basicPrice}원</td>
               <td>3,000원</td>
@@ -146,13 +206,25 @@ function Pay({ token, userId }) {
             <span>합계</span>
             <span className="total">
               <b>{basicTotalPrice}</b>원
+              <input
+                type="hidden"
+                name="totalPrice"
+                value={basicTotalPrice}
+                onChange={(e) => {
+                  setTotalPrice(e.target.value);
+                }}
+              />
             </span>
           </div>
         </div>
         <div className="pay-btn-wrap">
           <p>정보제공, 필수약관 확인 후 결제에 동의합니다.</p>
           <div className="pay-btn">
-            <input type="submit" value={`${basicTotalPrice} 원 결제하기`} />
+            <input
+              type="submit"
+              value={`${basicTotalPrice} 원 결제하기`}
+              onSubmit={payHandler}
+            />
           </div>
         </div>
       </div>

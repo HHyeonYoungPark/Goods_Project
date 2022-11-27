@@ -37,7 +37,7 @@ regdate DATE
 );
 
 
-CREATE TABLE order(
+CREATE TABLE orders(
 idx INT AUTO_INCREMENT PRIMARY KEY,
 customerName VARCHAR(50),
 destination VARCHAR(1000),
