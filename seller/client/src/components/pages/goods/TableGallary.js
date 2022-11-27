@@ -16,15 +16,6 @@ function TableGallary() {
   useEffect(() => {
     getAllItem();
   }, []);
-  const navigate = useNavigate();
-
-  // async function detailItem(idx) {
-  //   await axios.get('http://localhost:4001/detail/' + idx).then((response) => {
-  //     if (response.data.status === 201) {
-  //       navigate('/detail/' + idx);
-  //     }
-  //   });
-  // }
 
   return (
     <div className="TableGallary-container">
@@ -42,7 +33,12 @@ function TableGallary() {
               <Link to={`/detail/${item.idx}`}>{item.itemname}</Link>
             </h4>
             <p className="price">
-              <Link to="#">{item.price}원</Link>
+              <Link to="#">
+                {parseInt(item.price)
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                원
+              </Link>
             </p>
           </div>
         );

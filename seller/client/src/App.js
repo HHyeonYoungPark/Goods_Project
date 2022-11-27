@@ -27,6 +27,7 @@ import NewItem from "./components/pages/goods/NewItem";
 import Order from "./components/pages/board/Order";
 import Cart from "./components/pages/privateInfo/Cart";
 import Pay from "./components/pages/privateInfo/Pay";
+import OrderComplete from "./components/pages/privateInfo/OrderComplete";
 import Notice from "./components/pages/board/Notice";
 import Help from "./components/pages/board/HelpToAdmin";
 import TableGallary from "./components/pages/goods/TableGallary";
@@ -124,7 +125,10 @@ function App() {
                 <Route path="costumerManager" element={<CostumerManager />} />
               </Route>
 
-              <Route path="boardManager" element={<BoardManager />} />
+              <Route
+                path="boardManager"
+                element={<BoardManager userId={userId} />}
+              />
               <Route path="boardAdd" element={<BoardAdd />} />
               <Route path="boardUpdate/:BoardCode" element={<BoardUpdate />} />
               <Route path="board/:boardCode" element={<Board />} />
@@ -144,6 +148,10 @@ function App() {
 
             <Route path="newItem" element={<NewItem />} />
             <Route path="pay/:idx" element={<Pay userId={userId} />} />
+            <Route
+              path="orderComplete"
+              element={<OrderComplete userId={userId} />}
+            />
             <Route path="cart" element={<Cart />} />
             <Route path="notice" element={<Notice />} />
             <Route

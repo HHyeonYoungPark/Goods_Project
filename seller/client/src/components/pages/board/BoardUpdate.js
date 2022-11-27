@@ -124,10 +124,12 @@ function BoardUpdate() {
                   value={boardReadAllow}
                   onChange={(e) => setBoardReadAllow(e.target.value)}
                 >
-                  <option value="All">All</option>
+                  <option value="All" selected>
+                    All
+                  </option>
                   <option value="logined">logined</option>
-                  <option value="seller or admin">seller or admin</option>
-                  <option value="admin only">admin only</option>
+                  <option value="seller">seller</option>
+                  <option value="admin">admin</option>
                 </select>
               </td>
               <td>쓰기 권한</td>
@@ -139,10 +141,12 @@ function BoardUpdate() {
                   value={boardWriteAllow}
                   onChange={(e) => setBoardWriteAllow(e.target.value)}
                 >
-                  <option value="All">All</option>
+                  <option value="All" selected>
+                    All
+                  </option>
                   <option value="logined">logined</option>
-                  <option value="seller or admin">seller or admin</option>
-                  <option value="admin only">admin only</option>
+                  <option value="seller">seller</option>
+                  <option value="admin">admin</option>
                 </select>
               </td>
               <td>댓글 권한</td>
@@ -154,10 +158,12 @@ function BoardUpdate() {
                   value={boardCommentAllow}
                   onChange={(e) => setBoardCommentAllow(e.target.value)}
                 >
-                  <option value="All">All</option>
+                  <option value="All" selected>
+                    All
+                  </option>
                   <option value="logined">logined</option>
-                  <option value="seller or admin">seller or admin</option>
-                  <option value="admin only">admin only</option>
+                  <option value="seller">seller</option>
+                  <option value="admin">admin</option>
                 </select>
               </td>
               <td>수정 권한</td>
@@ -169,10 +175,12 @@ function BoardUpdate() {
                   value={boardModifyAllow}
                   onChange={(e) => setBoardModifyAllow(e.target.value)}
                 >
-                  <option value="All">All</option>
+                  <option value="All" selected>
+                    All
+                  </option>
                   <option value="logined">logined</option>
-                  <option value="seller or admin">seller or admin</option>
-                  <option value="admin only">admin only</option>
+                  <option value="seller">seller</option>
+                  <option value="admin">admin</option>
                 </select>
               </td>
             </tr>

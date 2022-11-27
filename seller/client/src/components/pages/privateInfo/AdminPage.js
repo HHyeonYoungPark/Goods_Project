@@ -8,85 +8,84 @@ function AdminPage({ userId }) {
   return (
     <div className="adminContainer">
       <div className="adminHeader">
-        <Link to="/logouttocustom">
-          <img className="wtbzLogo" src={WTLogo} alt={WTLogo} />
-        </Link>
-        <h2>Header</h2>
+        <div className="wtHqLog">
+          <Link to="/myPage">
+            <h1>WE'TINY HQ</h1>
+          </Link>
+        </div>
+        <div className="headerRight">
+          <Link to="/myPage">
+            <b>{userId}</b>님
+          </Link>
+          <br />
+          <div className="loginInfo">
+            <Link to="/logouttocustom">
+              <img className="wtLogo" src={WTLogo} alt={WTLogo} />
+            </Link>
+            <Link to="/logout">
+              <img className="wtbzLogo" src={WTBZLogo} alt={WTBZLogo} />
+            </Link>
+            <Link to="/logout">Logout</Link>
+          </div>
+        </div>
       </div>
       <div className="adminBox">
         <div className="mypageSideNav">
           <div className="sideNavProfile">
-            <Link to="/logout">
-              <img className="wtbzLogo" src={WTBZLogo} alt={WTBZLogo} />
-            </Link>
             <a href="/AdminPage">
-              <h2>Admin</h2>
+              <h1>Icon Home</h1>
             </a>
-            <div>
-              <Link to="/myPage">
-                <b>{userId}</b>
-              </Link>
-              님<br />
-              <Link to="/logout">로그아웃</Link>
-            </div>
           </div>
-          <div className="sideNav">
-            <h4>쇼핑몰 관리</h4>
-            <ul>
-              <li>
-                <Link to="goodsManager">상품 관리</Link>
-              </li>
-              <li>
-                <Link to="order">주문 관리</Link>
-              </li>
-              <li>
-                <Link to="">이벤트 관리</Link>
-              </li>
-              <li>
-                <Link to="">배너 관리</Link>
-              </li>
-            </ul>
-          </div>
-          <div className="sideNav">
-            <h4>회원 관리</h4>
-            <ul>
-              <li>
-                <Link to="userManager">회원정보 관리</Link>
-              </li>
-              <li>
-                <Link to="">메일 발송</Link>
-              </li>
-              <li>
-                <Link to="">접속자 집계</Link>
-              </li>
-              <li>
-                <Link to="">포인트 관리</Link>
-              </li>
-            </ul>
-          </div>
-          <div className="sideNav">
-            <h4>게시판 관리</h4>
-            <ul>
-              <li>
-                <Link to="boardManager">게시판 관리</Link>
-              </li>
-              <li>
-                <Link to="noticeManager">공지사항 관리</Link>
-              </li>
-              <li>
-                <Link to="askManager">Q&A 관리</Link>
-              </li>
-              <li>
-                <Link to="">인기검색어 관리</Link>
-              </li>
-              <li>
-                <Link to="">내용 관리</Link>
-              </li>
-            </ul>
+          <div className="adminSideNav">
+            <Link className="navMenu" to="#" style={{ paddingLeft: "40px" }}>
+              <h3>Shop Main</h3>
+            </Link>
+            <Link className="navMenu" to="goodsManager">
+              Goods
+            </Link>
+            <Link className="navMenu" to="order">
+              Orders
+            </Link>
+            <Link className="navMenu" to="#">
+              Events
+            </Link>
+            <Link className="navMenu" to="#">
+              Banners
+            </Link>
+            <Link className="navMenu" to="#" style={{ paddingLeft: "40px" }}>
+              <h3>Members Main</h3>
+            </Link>
+            <Link className="navMenu" to="userManager">
+              Customers
+            </Link>
+            <Link className="navMenu" to="#">
+              Sellers
+            </Link>
+            <Link className="navMenu" to="#">
+              Admins
+            </Link>
+            <Link
+              className="navMenu"
+              to="boardManager"
+              style={{ paddingLeft: "40px" }}
+            >
+              <h3>Boards Main</h3>
+            </Link>
+            <Link className="navMenu" to="board/notice">
+              Notice
+            </Link>
+            <Link className="navMenu" to="board/customerHelp">
+              Customer Help
+            </Link>
+            <Link className="navMenu" to="board/todoList">
+              Todo List
+            </Link>
           </div>
         </div>
-        <div className="mypageContent">
-          <Outlet />
+        <div className="mypageContentBox">
+          <div className="mypageContent">
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>

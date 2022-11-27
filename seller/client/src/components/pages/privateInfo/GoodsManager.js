@@ -99,7 +99,12 @@ function GoodsManager() {
                   <td>
                     <Link to={`/detail/${item.idx}`}>{item.itemname}</Link>
                   </td>
-                  <td>{item.price}</td>
+                  <td>
+                    {parseInt(item.price)
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    원
+                  </td>
                   <td>{item.regdate}</td>
                   <td>
                     <button className="upDelBtn">

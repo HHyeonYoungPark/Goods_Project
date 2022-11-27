@@ -6,12 +6,14 @@ import Modal from "react-modal";
 import BoardModify from "./BoardModify";
 import Paging from "../../function/Paging";
 
-function BoardManager() {
+import "../../css/pages/AdminPage.css";
+
+function BoardManager({ userId }) {
   //게시판 추가
   const [boardCode, setBoardCode] = useState("");
   const [boardCategory, setBoardCategory] = useState("");
   const [boardName, setBoardName] = useState("");
-  const [boardBuilder, setBoardBuilder] = useState("");
+  const [boardBuilder, setBoardBuilder] = useState(userId);
   //초기값이 비어있을경우 selected 값이 서버로 넘어가지 않아 강제로 초기값 세팅
   const [boardReadAllow, setBoardReadAllow] = useState("All");
   const [boardWriteAllow, setBoardWriteAllow] = useState("All");
@@ -23,42 +25,42 @@ function BoardManager() {
   const [rows, setRows] = useState(0);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(0);
-  const [offset, setOffset] = useState(10);
+  const [offset, setOffset] = useState(8);
   const [select, setSelect] = useState("");
   const [searchWords, setSearchWords] = useState("");
   const [keyword, setKeyword] = useState("");
   const [msg, setMsg] = useState("");
 
   // 모달 스타일
-  const styleModal = {
-    overlay: {
-      position: "fixed",
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: "rgba(255, 255, 255, 0.8)",
-      zIndex: 10,
-    },
-    content: {
-      display: "flex",
-      justifyContent: "center",
-      background: "#ffffe7",
-      overflow: "auto",
-      top: "30vh",
-      left: "25vw",
-      right: "25vw",
-      bottom: "30vh",
-      WebkitOverflowScrolling: "touch",
-      borderRadius: "14px",
-      outline: "none",
-      zIndex: 10,
-    },
-  };
+  // const styleModal = {
+  //   overlay: {
+  //     position: "fixed",
+  //     top: 0,
+  //     left: 0,
+  //     right: 0,
+  //     bottom: 0,
+  //     backgroundColor: "rgba(255, 255, 255, 0.8)",
+  //     zIndex: 10,
+  //   },
+  //   content: {
+  //     display: "flex",
+  //     justifyContent: "center",
+  //     background: "#ffffe7",
+  //     overflow: "auto",
+  //     top: "30vh",
+  //     left: "25vw",
+  //     right: "25vw",
+  //     bottom: "30vh",
+  //     WebkitOverflowScrolling: "touch",
+  //     borderRadius: "14px",
+  //     outline: "none",
+  //     zIndex: 10,
+  //   },
+  // };
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  // const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const getBoardlist = async () => {
     await axios
@@ -82,7 +84,7 @@ function BoardManager() {
 
   useEffect(() => {
     getBoardlist();
-  }, [page, keyword]);
+  }, [boardCode, page, keyword]);
 
   async function frmHandler(e) {
     e.preventDefault();
@@ -137,136 +139,150 @@ function BoardManager() {
 
   return (
     <div className="boardManager-container">
-      <h1>BoardMain</h1>
       <div className="buildBoard">
         <h2>Create Board</h2>
         <form method="post" className="frm" onSubmit={frmHandler}>
-          <table>
-            <tbody>
-              <tr>
-                <td>게시판 코드</td>
-                <td colSpan={3}>
-                  <input
-                    type="text"
-                    id="boardCode"
-                    className="boardCode"
-                    name="boardCode"
-                    onChange={(e) => setBoardCode(e.target.value)}
-                  />
-                </td>
+          <div className="buildBoardTb">
+            <table className="boardBuilder">
+              <tbody>
+                <tr>
+                  <td>Code</td>
+                  <td colSpan={3}>
+                    <input
+                      type="text"
+                      id="boardCode"
+                      className="boardCode"
+                      name="boardCode"
+                      placeholder="Input Board Code"
+                      required
+                      onChange={(e) => setBoardCode(e.target.value)}
+                    />
+                  </td>
 
-                <td>카테고리</td>
-                <td colSpan={3}>
-                  <input
-                    type="text"
-                    id="boardCategory"
-                    className="boardCategory"
-                    name="boardCategory"
-                    onChange={(e) => setBoardCategory(e.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>게시판 제목</td>
-                <td colSpan={3}>
-                  <input
-                    type="text"
-                    id="boardName"
-                    className="boardName"
-                    name="boardName"
-                    onChange={(e) => setBoardName(e.target.value)}
-                  />
-                </td>
-                <td>게시판 생성자</td>
-                <td colSpan={3}>
-                  <input
-                    type="text"
-                    id="boardBuilder"
-                    className="boardBuilder"
-                    name="boardBuilder"
-                    onChange={(e) => setBoardBuilder(e.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>읽기 권한</td>
-                <td>
-                  <select
-                    id="boardReadAllow"
-                    className="boardReadAllow"
-                    name="boardReadAllow"
-                    onChange={(e) => setBoardReadAllow(e.target.value)}
-                  >
-                    <option value="All" selected>
-                      All
-                    </option>
-                    <option value="logined">logined</option>
-                    <option value="seller or admin">seller or admin</option>
-                    <option value="admin only">admin only</option>
-                  </select>
-                </td>
-                <td>쓰기 권한</td>
-                <td>
-                  <select
-                    id="boardWriteAllow"
-                    className="boardWriteAllow"
-                    name="boardWriteAllow"
-                    onChange={(e) => setBoardWriteAllow(e.target.value)}
-                  >
-                    <option value="All" selected>
-                      All
-                    </option>
-                    <option value="logined">logined</option>
-                    <option value="seller or admin">seller or admin</option>
-                    <option value="admin only">admin only</option>
-                  </select>
-                </td>
-                <td>댓글 권한</td>
-                <td>
-                  <select
-                    id="boardCommentAllow"
-                    className="boardCommentAllow"
-                    name="boardCommentAllow"
-                    onChange={(e) => setBoardCommentAllow(e.target.value)}
-                  >
-                    <option value="All" selected>
-                      All
-                    </option>
-                    <option value="logined">logined</option>
-                    <option value="seller or admin">seller or admin</option>
-                    <option value="admin only">admin only</option>
-                  </select>
-                </td>
-                <td>수정 권한</td>
-                <td>
-                  <select
-                    id="boardModifyAllow"
-                    className="boardModifyAllow"
-                    name="boardModifyAllow"
-                    onChange={(e) => setBoardModifyAllow(e.target.value)}
-                  >
-                    <option value="All" selected>
-                      All
-                    </option>
-                    <option value="logined">logined</option>
-                    <option value="seller or admin">seller or admin</option>
-                    <option value="admin only">admin only</option>
-                  </select>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  <td>Category</td>
+                  <td colSpan={3}>
+                    <input
+                      type="text"
+                      id="boardCategory"
+                      className="boardCategory"
+                      name="boardCategory"
+                      placeholder="Input Board Category"
+                      required
+                      onChange={(e) => setBoardCategory(e.target.value)}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Name</td>
+                  <td colSpan={3}>
+                    <input
+                      type="text"
+                      id="boardName"
+                      className="boardName"
+                      name="boardName"
+                      placeholder="Input Board Name"
+                      required
+                      onChange={(e) => setBoardName(e.target.value)}
+                    />
+                  </td>
+                  <td>Creater</td>
+                  <td colSpan={3}>
+                    <input
+                      type="text"
+                      id="boardBuilder"
+                      className="boardBuilder"
+                      name="boardBuilder"
+                      placeholder={userId}
+                      readOnly
+                      required
+                      onChange={(e) => setBoardBuilder(e.target.value)}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Read</td>
+                  <td>
+                    <select
+                      id="boardReadAllow"
+                      className="boardReadAllow"
+                      name="boardReadAllow"
+                      onChange={(e) => setBoardReadAllow(e.target.value)}
+                    >
+                      <option value="All" selected>
+                        All
+                      </option>
+                      <option value="logined">logined</option>
+                      <option value="seller">seller</option>
+                      <option value="admin">admin</option>
+                    </select>
+                  </td>
+                  <td>Writer</td>
+                  <td>
+                    <select
+                      id="boardWriteAllow"
+                      className="boardWriteAllow"
+                      name="boardWriteAllow"
+                      onChange={(e) => setBoardWriteAllow(e.target.value)}
+                    >
+                      <option value="All" selected>
+                        All
+                      </option>
+                      <option value="logined">logined</option>
+                      <option value="seller">seller</option>
+                      <option value="admin">admin</option>
+                    </select>
+                  </td>
+                  <td>Comment</td>
+                  <td>
+                    <select
+                      id="boardCommentAllow"
+                      className="boardCommentAllow"
+                      name="boardCommentAllow"
+                      onChange={(e) => setBoardCommentAllow(e.target.value)}
+                    >
+                      <option value="All" selected>
+                        All
+                      </option>
+                      <option value="logined">logined</option>
+                      <option value="seller">seller</option>
+                      <option value="admin">admin</option>
+                    </select>
+                  </td>
+                  <td>Modify</td>
+                  <td>
+                    <select
+                      id="boardModifyAllow"
+                      className="boardModifyAllow"
+                      name="boardModifyAllow"
+                      onChange={(e) => setBoardModifyAllow(e.target.value)}
+                    >
+                      <option value="All" selected>
+                        All
+                      </option>
+                      <option value="logined">logined</option>
+                      <option value="seller">seller</option>
+                      <option value="admin">admin</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <div className="buildBoardBtn">
-            <button type="submit">생성</button>
-            <button>취소</button>
+            <button className="createBoard" type="submit">
+              Create
+            </button>
+            <button className="cancelBoard" type="reset">
+              Cancel
+            </button>
           </div>
         </form>
       </div>
-
-      <div className="table-List">
-        <div className="table-List-top">
-          <div className="top-right">
-            <div className="search-wrap">
+      <h2>Board List</h2>
+      <div className="tableList">
+        <div className="tableListtop">
+          <div className="topRight">
+            <div className="searchWrap">
               <form method="post" id="frm" onSubmit={boardSearch}>
                 <div className="boardSearch">
                   <select
@@ -298,20 +314,20 @@ function BoardManager() {
             </div>
           </div>
         </div>
-        <div className="tbl-wrap">
-          <table>
+        <div className="tblWrap">
+          <table className="boardList">
             <tr>
-              <th>코드</th>
-              <th>카테고리</th>
-              <th>이름</th>
-              <th>읽기 권한</th>
-              <th>쓰기 권한</th>
-              <th>댓글 권한</th>
-              <th>수정 권한</th>
-              <th>생성자</th>
-              <th>생성일</th>
-              <th>수정일</th>
-              <th>비고</th>
+              <th>Code</th>
+              <th>Category</th>
+              <th>Name</th>
+              <th>Read</th>
+              <th>Write</th>
+              <th>Comment</th>
+              <th>Modify</th>
+              <th>Creater</th>
+              <th>RegDate</th>
+              <th>ModiDate</th>
+              <th>-</th>
             </tr>
 
             {boardlist.map((b, key) => {
@@ -333,7 +349,7 @@ function BoardManager() {
                   <td>{b.modifyDate}</td>
                   <td>
                     <Link to={"/adminPage/boardUpdate/" + b.boardCode}>
-                      수정
+                      Modi
                     </Link>
                     {/* <button onClick={() => setModalIsOpen(true)}>수정</button>
                     <Modal
@@ -356,7 +372,7 @@ function BoardManager() {
                       className="upDelBtn"
                       onClick={() => deleteBoard(b.boardCode)}
                     >
-                      삭제
+                      Del
                     </button>
                   </td>
                 </tr>
@@ -366,7 +382,12 @@ function BoardManager() {
 
           <p className="danger">{msg}</p>
           <div className="paging">
-            <Paging page={page} offset={offset} rows={rows} setPage={changePage} />
+            <Paging
+              page={page}
+              offset={offset}
+              rows={rows}
+              setPage={changePage}
+            />
           </div>
         </div>
       </div>

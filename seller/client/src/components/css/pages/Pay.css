@@ -1,7 +1,7 @@
 .payContent-wrap {
   display: flex;
   justify-content: center;
-  margin-bottom: 50px;
+  margin: 50px 0;
 }
 
 .payContent-left {

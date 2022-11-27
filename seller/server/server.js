@@ -357,15 +357,32 @@ app.get("/pay/:userId/:idx", (req, res) => {
   });
 });
 
-// app.get("/pay/:idx", (req, res) => {
-//   let sql = "select * from item where idx =?;";
-//   db.query(sql, [req.params.idx], (err, response) => {
-//     if (err) {
-//       throw err;
-//     }
-//     res.send(response);
-//   });
-// });
+// 상품 결제 후 주문정보 저장
+app.post("/pay/:userId/:idx", (req, res) => {
+  const customerName = req.body.customerName;
+  const destination = req.body.destination;
+  const phone = req.body.phone;
+  const orderedItem = req.body.orderedItem;
+  const totalPrice = req.body.totalPrice;
+
+  console.log(customerName);
+  console.log(destination);
+  console.log(phone);
+  console.log(orderedItem);
+  console.log(totalPrice);
+
+  let sql = "INSERT INTO orders VALUES(NULL, ?,?,?,?,?,NOW());";
+  db.query(
+    sql,
+    [customerName, destination, phone, orderedItem, totalPrice],
+    (err) => {
+      if (err) {
+        throw err;
+      }
+      res.send({ status: 201, message: "결제완료!" });
+    }
+  );
+});
 
 //해당 상품 리뷰탭-> 리뷰 목록
 app.get("/detail/:idx/detailReview", (req, res) => {
@@ -495,7 +512,7 @@ app.get("/boardlist", (req, res) => {
     } else {
       // db 2 : 페이징 처리를 위한 쿼리 AND 검색 쿼리
       let listSQL =
-        "SELECT * FROM boardManager WHERE boardCode LIKE ? OR boardName LIKE ? OR boardCategory LIKE ? ORDER BY boardIdx DESC LIMIT ?, ?;";
+        "SELECT * FROM boardManager WHERE boardCode LIKE ? OR boardName LIKE ? OR boardCategory LIKE ? ORDER BY boardIdx ASC LIMIT ?, ?;";
       db.query(
         listSQL,
         [codeSearch, nameSearch, categorySearch, startNum, offset],

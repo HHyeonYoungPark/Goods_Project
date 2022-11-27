@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Paging from "../../function/Paging";
 
+import "../../css/pages/Board.css";
+
 const Board = () => {
   const [lists, setLists] = useState([]);
   const [rows, setRows] = useState(0);
@@ -40,7 +42,7 @@ const Board = () => {
 
   useEffect(() => {
     getLists();
-  }, [page, keyword]);
+  }, [boardCode, page, keyword]);
 
   async function deleteList(idx) {
     await axios
@@ -72,37 +74,39 @@ const Board = () => {
   };
 
   return (
-    <div>
-      <Link to={"/adminPage/board/" + boardCode + "/write"}>게시글 작성</Link>
-      <div className="search-wrap">
-        <form method="post" id="frm" onSubmit={listSearch}>
-          <div className="listSearch">
-            <select
-              id="listSearch"
-              className="listSearch"
-              name="listSearch"
-              onChange={(e) => setSelect(e.target.value)}
-            >
-              <option value="" selected disabled>
-                선택하세요
-              </option>
-              <option value="idx">번호</option>
-              <option value="title">제목</option>
-              <option value="writer">작성자</option>
-            </select>
-            <input
-              type="text"
-              id="search"
-              className="search"
-              name="search"
-              onChange={(e) => setSearchWords(e.target.value)}
-              value={searchWords}
-            />
-            <button type="submit" className="searchBtn">
-              검색
-            </button>
-          </div>
-        </form>
+    <div className="brdBox">
+      <div className="brdSearchContainer">
+        <div className="search-wrap">
+          <form method="post" id="frm" onSubmit={listSearch}>
+            <div className="listSearch">
+              <select
+                id="listSearch"
+                className="listSearch"
+                name="listSearch"
+                onChange={(e) => setSelect(e.target.value)}
+              >
+                <option value="" selected disabled>
+                  선택하세요
+                </option>
+                <option value="idx">번호</option>
+                <option value="title">제목</option>
+                <option value="writer">작성자</option>
+              </select>
+              <input
+                type="text"
+                id="search"
+                className="search"
+                name="search"
+                onChange={(e) => setSearchWords(e.target.value)}
+                value={searchWords}
+              />
+              <button type="submit" className="searchBtn">
+                검색
+              </button>
+            </div>
+          </form>
+        </div>
+        <Link to={"/adminPage/board/" + boardCode + "/write"}>게시글 작성</Link>
       </div>
       <table>
         <thead>
