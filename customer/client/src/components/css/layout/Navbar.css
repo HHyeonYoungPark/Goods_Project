@@ -16,23 +16,33 @@ a {
   background-color: aliceblue;
   padding: 10px;
   align-items: center;
+  position: relative;
 }
 
 .NavMenuMid ul {
   list-style-type: none;
   display: flex;
   flex-direction: row;
+  /* align-items: center; */
 }
+
 .NavMenuMid ul li {
   display: inline;
   padding-left: 20px;
+  line-height: 65px;
+}
+
+
+.NavMenuMid ul li ul,
+.NavMenuMid ul li ul li{
+  line-height: normal;
 }
 
 .influencerDropDown {
   list-style-type: none;
   background-color: aliceblue;
-  position: relative;
-  display: inline-block;
+  /* position: relative;
+  display: inline-block; */
 }
 
 .influencerDropDownMenu {
@@ -41,19 +51,31 @@ a {
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
+.influencerDropDownMenu ul {
+  list-style-type: none;
+  flex-direction: column;
+  padding: 10px 50px;
+}
+
+.influencerDropDownMenu ul li {
+  padding-top: 10px;
+}
+
 .influencerDropDown:hover .influencerDropDownMenu {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   position: absolute;
-  width: 120px;
-  padding: 5px 0;
+  top: 85px;
+  left: 0;
+  width: 100%;
+  padding: 10px 0;
 }
 
 .goodsDropDown {
   list-style-type: none;
   background-color: aliceblue;
-  position: relative;
-  display: inline-block;
+  /* position: relative;
+  display: inline-block; */
 }
 
 .goodsDropDownMenu {
@@ -64,10 +86,21 @@ a {
 
 .goodsDropDown:hover .goodsDropDownMenu {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   position: absolute;
-  width: 120px;
-  padding: 5px 0;
+  top: 85px;
+  left: 0;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.goodsDropDown:hover .goodsDropDownMenu ul {
+  flex-direction: column;
+  padding: 10px 25px;  
+}
+
+.goodsDropDown:hover .goodsDropDownMenu ul li {
+  padding-top: 10px;  
 }
 
 .NavMenuRight ul {
