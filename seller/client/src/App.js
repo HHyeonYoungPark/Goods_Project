@@ -125,7 +125,10 @@ function App() {
                 <Route path="costumerManager" element={<CostumerManager />} />
               </Route>
 
-              <Route path="boardManager" element={<BoardManager />} />
+              <Route
+                path="boardManager"
+                element={<BoardManager userId={userId} />}
+              />
               <Route path="boardAdd" element={<BoardAdd />} />
               <Route path="boardUpdate/:BoardCode" element={<BoardUpdate />} />
               <Route path="board/:boardCode" element={<Board />} />
