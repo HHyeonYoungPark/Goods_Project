@@ -37,13 +37,13 @@ function AdminPage({ userId }) {
             </a>
           </div>
           <div className="adminSideNav">
-            <Link className="navMenu" to="#">
-              <h3>Shop Manager</h3>
+            <Link className="navMenu" to="#" style={{ paddingLeft: "40px" }}>
+              <h3>Shop Main</h3>
             </Link>
             <Link className="navMenu" to="goodsManager">
               Goods
             </Link>
-            <Link className="navMenu" to="#">
+            <Link className="navMenu" to="order">
               Orders
             </Link>
             <Link className="navMenu" to="#">
@@ -52,10 +52,10 @@ function AdminPage({ userId }) {
             <Link className="navMenu" to="#">
               Banners
             </Link>
-            <Link className="navMenu" to="#">
-              <h3>Members</h3>
+            <Link className="navMenu" to="#" style={{ paddingLeft: "40px" }}>
+              <h3>Members Main</h3>
             </Link>
-            <Link className="navMenu" to="#">
+            <Link className="navMenu" to="userManager">
               Customers
             </Link>
             <Link className="navMenu" to="#">
@@ -64,13 +64,17 @@ function AdminPage({ userId }) {
             <Link className="navMenu" to="#">
               Admins
             </Link>
-            <Link className="navMenu" to="#">
-              <h3>Boards</h3>
+            <Link
+              className="navMenu"
+              to="boardManager"
+              style={{ paddingLeft: "40px" }}
+            >
+              <h3>Boards Main</h3>
             </Link>
-            <Link className="navMenu" to="#">
+            <Link className="navMenu" to="noticeManager">
               Notice
             </Link>
-            <Link className="navMenu" to="#">
+            <Link className="navMenu" to="askManager">
               Help
             </Link>
           </div>
