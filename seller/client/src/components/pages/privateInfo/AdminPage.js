@@ -71,11 +71,14 @@ function AdminPage({ userId }) {
             >
               <h3>Boards Main</h3>
             </Link>
-            <Link className="navMenu" to="noticeManager">
+            <Link className="navMenu" to="board/notice">
               Notice
             </Link>
-            <Link className="navMenu" to="askManager">
-              Help
+            <Link className="navMenu" to="board/customerHelp">
+              Customer Help
+            </Link>
+            <Link className="navMenu" to="board/todoList">
+              Todo List
             </Link>
           </div>
         </div>
