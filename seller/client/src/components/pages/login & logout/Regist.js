@@ -262,19 +262,6 @@ function Regist() {
     open({ onComplete: handleComplete });
   };
 
-  ////////////////////////////////////////////////////////////
-  // const handleComplete = (data) => {
-  //   setPopup(!popup);
-  // };
-
-  // const handleInput = (e) => {
-  //   e.preventDefault();
-  //   setAdress({
-  //     ...address,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-
   // 채널명
   function onChangeChannelname(e) {
     const channelnameCurrent = e.target.value;

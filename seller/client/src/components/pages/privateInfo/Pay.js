@@ -25,11 +25,16 @@ function Pay({ token, userId }) {
       .then((response) => {
         setItem(response.data.result[0]);
         setUserInfo(response.data.user[0]);
-        setCustomerName(userInfo.sellername);
-        setDestination(userInfo.address);
-        setPhone(userInfo.phone);
-        setOrderedItem(item.itemname);
+
+        setCustomerName(response.data.user[0].sellername);
+        setDestination(response.data.user[0].address);
+        setPhone(response.data.user[0].phone);
+        setOrderedItem(response.data.result[0].itemname);
         setTotalPrice(basicTotalPrice);
+        console.log(response.data.user[0].sellername);
+        console.log(response.data.user[0].address);
+        console.log(response.data.user[0].phone);
+        console.log(response.data.result[0].itemname);
       });
   }
 
@@ -48,8 +53,6 @@ function Pay({ token, userId }) {
       .then((response) => {
         if (response.data.status === 201) {
           navigate("/orderComplete");
-          console.log(customerName);
-          console.log(destination);
         } else {
           window.alert("상품주문 실패!");
           navigate(-1);
@@ -94,7 +97,7 @@ function Pay({ token, userId }) {
                 <input
                   type="hidden"
                   name="customerName"
-                  value={userInfo.sellername}
+                  value={customerName}
                   onChange={(e) => setCustomerName(e.target.value)}
                 />
               </div>
@@ -102,22 +105,22 @@ function Pay({ token, userId }) {
                 <span>({userInfo.zip})</span>
                 <br />
                 <span>{userInfo.address}</span>
-                {/* <input
+                <input
                   type="hidden"
                   name="destination"
-                  value={userInfo.address}
+                  value={destination}
                   onChange={(e) => {
                     setDestination(e.target.value);
                   }}
-                /> */}
+                />
               </div>
               <div className="ship-phone">{userInfo.phone}</div>
-              {/* <input
+              <input
                 type="hidden"
                 name="phone"
-                value={userInfo.phone}
+                value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-              /> */}
+              />
             </div>
 
             <div className="phone-option">
@@ -161,12 +164,12 @@ function Pay({ token, userId }) {
                   />
                 </td>
                 <td>{item.itemname}</td>
-                {/* <input
+                <input
                   type="hidden"
                   name="orderedItem"
-                  value={item.itemname}
+                  value={orderedItem}
                   onChange={(e) => setOrderedItem(e.target.value)}
-                /> */}
+                />
                 <td>1개</td>
                 <td>{basicPrice}원</td>
                 <td>3,000원</td>
@@ -210,12 +213,12 @@ function Pay({ token, userId }) {
               <span>합계</span>
               <span className="total">
                 <b>{basicTotalPrice}</b>원
-                {/* <input
+                <input
                   type="hidden"
                   name="totalPrice"
-                  value={basicTotalPrice}
+                  value={totalPrice}
                   onChange={(e) => setTotalPrice(e.target.value)}
-                /> */}
+                />
               </span>
             </div>
           </div>

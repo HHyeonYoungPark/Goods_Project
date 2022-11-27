@@ -365,6 +365,12 @@ app.post("/pay/:userId/:idx", (req, res) => {
   const orderedItem = req.body.orderedItem;
   const totalPrice = req.body.totalPrice;
 
+  console.log(customerName);
+  console.log(destination);
+  console.log(phone);
+  console.log(orderedItem);
+  console.log(totalPrice);
+
   let sql = "INSERT INTO orders VALUES(NULL, ?,?,?,?,?,NOW());";
   db.query(
     sql,
