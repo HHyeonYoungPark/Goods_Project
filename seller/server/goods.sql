@@ -16,8 +16,6 @@ madein VARCHAR(50),
 regdate DATE
 );
 
-  
-
 
 CREATE TABLE user(
 idx INT AUTO_INCREMENT PRIMARY KEY,
@@ -37,6 +35,17 @@ intro VARCHAR(100),
 grade VARCHAR(10),
 regdate DATE 
 );
+
+
+CREATE TABLE order(
+idx INT AUTO_INCREMENT PRIMARY KEY,
+customerName VARCHAR(50),
+destination VARCHAR(1000),
+phone varchar(15),
+orderedItem VARCHAR(100),
+totalPrice INT,
+orderTime DATETIME
+)
 
 CREATE TABLE AskToAdmin(
 idx INT AUTO_INCREMENT PRIMARY KEY,
