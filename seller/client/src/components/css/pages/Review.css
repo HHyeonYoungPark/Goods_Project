@@ -22,6 +22,14 @@
   width: 80px;
 }
 
+.reviewTr td:nth-child(2) {
+  width: 450px;
+}
+
+.reviewTr td:nth-child(5) {
+  width: 50px;
+}
+
 .addReview tr {
   height: 50px;
 }
