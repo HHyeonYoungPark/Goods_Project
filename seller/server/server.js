@@ -466,7 +466,7 @@ app.post("/pay/:userId/:idx", (req, res) => {
 
   console.log(customerName);
   console.log(destination);
-  console.log(콜);
+  console.log(phone);
   console.log(orderedItem);
   console.log(totalPrice);
 
