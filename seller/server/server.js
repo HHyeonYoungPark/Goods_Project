@@ -196,6 +196,7 @@ app.get("/itemSearch", (req, res) => {
 
 // 관리자페이지에서 상품목록보이기
 app.get("/goodsManager", (req, res) => {
+  console.log(req.query);
   const page = Number.parseInt(req.query.page);
   const offset = Number.parseInt(req.query.offset);
   const startNum = (page - 1) * offset;

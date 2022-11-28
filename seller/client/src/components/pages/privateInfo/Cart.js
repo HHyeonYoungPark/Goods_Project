@@ -251,7 +251,7 @@ function Cart({userId}) {
             </div>
           </div>
           <div className="cart-btn-wrap">
-            <Link to={"/pay/"+userId}>
+            <Link to={"/pays/"+userId}>
               <button className='cart-pay-btn'>
                 주문하기
               </button>

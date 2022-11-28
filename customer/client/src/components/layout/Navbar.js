@@ -3,12 +3,26 @@ import { Link } from "react-router-dom";
 import wetinyLogo from "../images/WETINY_LOGO.jpg";
 
 import "../css/layout/Navbar.css";
+import axios from "axios";
 
 function Navbar() {
+  const [channels, setChannels] = useState([]);
+  const [genre, setGenre] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [category2, setCategory2] = useState([]);
   const [search, setSearch] = useState("");
   const onChange = (e) => {
     setSearch(e.target.value);
   };
+  
+  const getNavbar = async() => {
+    await axios.get("http://localhost:4001/customer/navbar").then((res) => {
+      setChannels(res.data.channel);
+      setGenre(res.data.channelSub);
+      setCategory(res.data.category);
+      setCategory2(res.data.categorySub);
+    });
+  }
 
   return (
     <div>
@@ -25,7 +39,30 @@ function Navbar() {
                 INFLUENCERS
               </Link>
               <div className="influencerDropDownMenu">
-                <ul>
+                {
+                  channels.map((c, key) => {
+                    return(
+                      <ul>
+                        <Link to={"/influencer/"+c.channelPlatform} className="influencerYoutube">
+                          {c.channelPlatform}
+                        </Link>
+                        {
+                          genre.map((g, key) => {
+                            return(
+                              <li>
+                                <Link to="goodsLists" className="goodsList">
+                                  {g.channelGenre}
+                                </Link>
+                              </li>
+                            )
+                          })
+                        }
+                        
+                      </ul>
+                    )
+                  })
+                }
+                {/* <ul>
                   <Link to="/influencer/youtube" className="influencerYoutube">
                     YOUTUBE
                   </Link>
@@ -206,7 +243,7 @@ function Navbar() {
                       Others
                     </Link>
                   </li>
-                </ul>
+                </ul> */}
                 
               </div>
             </li>
@@ -216,6 +253,29 @@ function Navbar() {
                 GOODS
               </Link>
               <div className="goodsDropDownMenu">
+                {
+                  category.map((cate, key) => {
+                    return(
+                      <ul key={key}>
+                        <Link to={"/goods/"+cate.category1} className={cate.category1}>
+                          {cate.category1}
+                        </Link>
+                        {
+                          category2.map((cate2, key) => {
+                            return(
+                              <li>
+                                <Link to="goodsLists" className="goodsList">
+                                  {g.channelGenre}
+                                </Link>
+                              </li>
+                            )
+                          })
+                        }
+                        
+                      </ul>
+                    )
+                  })
+                }
                 <ul>
                   <Link to="/goods/fashion" className="goodsFashion">
                     FASHION

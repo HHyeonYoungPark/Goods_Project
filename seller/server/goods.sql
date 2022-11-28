@@ -142,7 +142,20 @@ create table channel (
   channelPlatform VARCHAR(50)
 );
 
+insert into channel values(null, "YOUTUBE");
+insert into channel values(null, "TWITCH");
+insert into channel values(null, "AFREECA");
+insert into channel values(null, "INSTAGRAM");
+insert into channel values(null, "TIKTOK");
+
 create table channelSub (
   idx int not null auto_increment primary key,
   channelGenre VARCHAR(50)
-)
+);
+
+insert into channelSub values(null, "Game");
+insert into channelSub values(null, "Sports");
+insert into channelSub values(null, "Music");
+insert into channelSub values(null, "Travel");
+insert into channelSub values(null, "Foods");
+insert into channelSub values(null, "Others");

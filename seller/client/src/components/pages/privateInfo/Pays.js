@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import DummyImg from "../../images/dummyImg02.png";
 import { set } from "date-fns";
 
-function Pays({ token, userId }) {
+function Pays({ userId }) {
   const [items, setItems] = useState([]);
   const [userInfo, setUserInfo] = useState("");
   const [price, setPrice] = useState(0);

@@ -10,7 +10,7 @@ function GoodsManager() {
   const [rows, setRows] = useState(0);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(0);
-  const [offset, setOffset] = useState(8);
+  const [offset, setOffset] = useState(10);
   const [select, setSelect] = useState("");
   const [searchWords, setSearchWords] = useState("");
   const [keyword, setKeyword] = useState("");

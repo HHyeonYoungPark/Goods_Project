@@ -112,8 +112,26 @@ app.post("/customer/login", (req, res) => {
 });
 
 //category select
-app.get("/customer/influencer", (req, res) => {});
-app.get("/customer/goods", (req, res) => {});
+app.get("/customer/navbar", (req, res) => {
+  let sql = "select * from channel;";
+  let sql2 = "select * from channelSub;";
+  let cateSQL = "select * from category1;";
+  let cateSQL2 = "select * from category2";
+  db.query(sql + sql2 + cateSQL + cateSQL2, (err, results) => {
+    if(err) {
+      throw err;
+    } else {
+      res.send({
+        channel : results[0],
+        channelSub : results[1],
+        category : results[2],
+        categorySub : results[3]
+      })
+      console.log(results);
+    }
+  })
+});
+
 
 //search form
 app.get("/customer/search", (req, res) => {
