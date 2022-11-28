@@ -103,10 +103,7 @@ a {
 
 .goodsDropDown:hover .goodsDropDownMenu ul li {
   padding-top: 10px;
-<<<<<<< HEAD
-=======
-  padding-left: 0;  
->>>>>>> 9df7135a78d88e6205b52d50db2b2d0ede0e3022
+  padding-left: 0;
 }
 
 .NavMenuRight ul {

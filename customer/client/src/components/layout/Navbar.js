@@ -14,15 +14,15 @@ function Navbar() {
   const onChange = (e) => {
     setSearch(e.target.value);
   };
-  
-  const getNavbar = async() => {
+
+  const getNavbar = async () => {
     await axios.get("http://localhost:4001/customer/navbar").then((res) => {
       setChannels(res.data.channel);
       setGenre(res.data.channelSub);
       setCategory(res.data.category);
       setCategory2(res.data.categorySub);
     });
-  }
+  };
 
   return (
     <div>
@@ -39,30 +39,28 @@ function Navbar() {
                 INFLUENCERS
               </Link>
               <div className="influencerDropDownMenu">
-                {
-                  channels.map((c, key) => {
-                    return(
-                      <ul>
-                        <Link to={"/influencer/"+c.channelPlatform} className="influencerYoutube">
-                          {c.channelPlatform}
-                        </Link>
-                        {
-                          genre.map((g, key) => {
-                            return(
-                              <li>
-                                <Link to="goodsLists" className="goodsList">
-                                  {g.channelGenre}
-                                </Link>
-                              </li>
-                            )
-                          })
-                        }
-                        
-                      </ul>
-                    )
-                  })
-                }
-                {/* <ul>
+                {/* {channels.map((c, key) => {
+                  return (
+                    <ul>
+                      <Link
+                        to={"/influencer/" + c.channelPlatform}
+                        className="influencerYoutube"
+                      >
+                        {c.channelPlatform}
+                      </Link>
+                      {genre.map((g, key) => {
+                        return (
+                          <li>
+                            <Link to="goodsLists" className="goodsList">
+                              {g.channelGenre}
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  );
+                })} */}
+                <ul>
                   <Link to="/influencer/youtube" className="influencerYoutube">
                     YOUTUBE
                   </Link>
@@ -243,12 +241,7 @@ function Navbar() {
                       Others
                     </Link>
                   </li>
-<<<<<<< HEAD
                 </ul>
-=======
-                </ul> */}
-                
->>>>>>> 9df7135a78d88e6205b52d50db2b2d0ede0e3022
               </div>
             </li>
 
@@ -257,29 +250,27 @@ function Navbar() {
                 GOODS
               </Link>
               <div className="goodsDropDownMenu">
-                {
-                  category.map((cate, key) => {
-                    return(
-                      <ul key={key}>
-                        <Link to={"/goods/"+cate.category1} className={cate.category1}>
-                          {cate.category1}
-                        </Link>
-                        {
-                          category2.map((cate2, key) => {
-                            return(
-                              <li key={key}>
-                                <Link to="goodsLists" className="goodsList">
-                                  {g.channelGenre}
-                                </Link>
-                              </li>
-                            )
-                          })
-                        }
-                        
-                      </ul>
-                    )
-                  })
-                }
+                {/* {category.map((cate, key) => {
+                  return (
+                    <ul key={key}>
+                      <Link
+                        to={"/goods/" + cate.category1}
+                        className={cate.category1}
+                      >
+                        {cate.category1}
+                      </Link>
+                      {category2.map((cate2, key) => {
+                        return (
+                          <li key={key}>
+                            <Link to="goodsLists" className="goodsList">
+                              {g.channelGenre}
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  );
+                })} */}
                 <ul>
                   <Link to="/goods/fashion" className="goodsFashion">
                     FASHION
@@ -487,7 +478,3 @@ function Navbar() {
 }
 
 export default Navbar;
-<<<<<<< HEAD
-=======
-
->>>>>>> 9df7135a78d88e6205b52d50db2b2d0ede0e3022
