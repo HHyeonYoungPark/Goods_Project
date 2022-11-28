@@ -4,6 +4,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Paging from "../../function/Paging";
 import "../../css/pages/GoodsManager.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function GoodsManager() {
   const [items, setItems] = useState([]);
@@ -70,24 +72,17 @@ function GoodsManager() {
 
   return (
     <div className="goodsManager-container">
-      <div className="table-List">
-        <h1>상품 관리</h1>
-        <div className="table-List-top">
-          <div className="top-left">
-            <Link to="/AdminPage/addItem">
-              <button type="submit" class="addBtn">
-                상품 등록
-              </button>
-            </Link>
-          </div>
-          <div className="top-right">
-            <div className="search-wrap">
-              <form method="get" id="frm" onSubmit={goodsSearch}>
-                <div className="search">
+      <h2>Product List</h2>
+      <div className="tableList">
+        <div className="tableListTop">
+          <div className="topLeft">
+            <div className="searchWrap">
+              <form method="post" id="frm" onSubmit={goodsSearch}>
+                <div className="goodsSearch">
                   <select
-                    id="sel"
-                    className="sel"
-                    name="selSearch2"
+                    id="goods"
+                    className="goods"
+                    name="goodsSearch"
                     onchange={(e) => setSelect(e.target.value)}
                   >
                     <option value="" selected disabled>선택하세요</option>
@@ -101,30 +96,43 @@ function GoodsManager() {
                     id="search"
                     className="search"
                     name="search"
+                    placeholder="Input Search Word"
                     onChange={(e) => setSearchWords(e.target.value)}
                     required
                   />
-                  <input type="submit" value="검색" className="searchBtn" />
+                  <button type="submit">
+                    <FontAwesomeIcon
+                      className="searchBtn"
+                      icon={faMagnifyingGlass}
+                    />
+                  </button>
                 </div>
               </form>
             </div>
           </div>
+          <div className="topRight">
+            <Link to="/AdminPage/addItem">
+              <button type="submit" className="addgoodsBtn">
+                Add Item
+              </button>
+            </Link>
+          </div>
         </div>
-        <div className="tbl-wrap">
-          <table>
+        <div className="tblWrap">
+          <table className="goodsList">
             <tr>
-              <td>번호</td>
-              <td>이미지</td>
-              <td>상품명</td>
-              <td>가격</td>
-              <td>등록일</td>
-              <td>비고</td>
+              <th>No</th>
+              <th>Image</th>
+              <th>ItemName</th>
+              <th>Price</th>
+              <th>Regdate</th>
+              <th>Mod / Del</th>
             </tr>
             {items.map((item, key) => {
               return (
                 <tr key={key}>
                   <td>{item.idx}</td>
-                  <td style={{ height: "80px" }}>
+                  <td style={{ height: "50px" }}>
                     <Link to={`/detail/${item.idx}`}>
                       <img
                         src={`http://localhost:4001/${item.attach}`}
@@ -133,7 +141,7 @@ function GoodsManager() {
                       />
                     </Link>
                   </td>
-                  <td>
+                  <td className="itemNameLink">
                     <Link to={`/detail/${item.idx}`}>{item.itemname}</Link>
                   </td>
                   <td>
@@ -144,14 +152,18 @@ function GoodsManager() {
                   </td>
                   <td>{item.regdate}</td>
                   <td>
-                    <button className="upDelBtn">
-                      <Link to={"/adminPage/updateItem/" + item.idx}>수정</Link>
-                    </button>
+                    <Link to={"/adminPage/updateItem/" + item.idx}>
+                      <button>
+                        <FontAwesomeIcon
+                          className="itemModi"
+                          icon={faPenToSquare}
+                        />
+                      </button>
+                    </Link>
                     <button
-                      className="upDelBtn"
                       onClick={() => deleteItem(item.idx)}
                     >
-                      삭제
+                      <FontAwesomeIcon className="itemDel" icon={faTrash} />
                     </button>
                   </td>
                 </tr>

@@ -1,89 +1,152 @@
 .goodsManager-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 
-.table-List {
+.tableList {
   width: 100%;
-  margin-bottom: 50px;
+  box-shadow: 0px 0px 6px #5d5bd5;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-top: 10px;
+
 }
 
-.table-List h1 {
+.tableListTop{
   display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
+  justify-content: space-between;
+  padding: 20px 0;
 }
 
-.addBtn {
-  border: 1px solid #d1d1d1;
-  border-radius: 3px;
-  background-color: #f1f1f1;
+.addgoodsBtn {
+  width: 120px;
+  height: 30px;
+  border-radius: 10px;
+  margin-right: 10px;
+  box-shadow: 0px 0px 6px #5d5bd5;
+  color: #5d5bd5;
+}
+
+.addgoodsBtn:hover {
   cursor: pointer;
-  font-size: 15px;
-  padding: 7px;
+  border: 1px solid #5d5bd5;
+  background-color: #5d5bd5;
+  color: white;
+  font-weight: bolder;
 }
 
-.addBtn:hover {
-  background-color: #f9f9f9;
-}
-
-.search select,
-.search input,
-.gradeSel {
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  padding: 7px;
-}
-
-.searchBtn {
-  background-color: #273270;
-  color: #fff;
-  border-radius: 3px;
-  padding: 6px;
-  cursor: pointer;
-}
-
-.table-List-top {
+.goodsSearch {
+  border: 1px solid transparent;
+  width: 400px;
+  border-radius: 20px;
+  background-color: #e0dfff;
   display: flex;
   flex-direction: row;
+  padding: 3px 10px;
   justify-content: space-between;
-  margin: 10px;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.goodsSearch:hover {
+  border: 1px solid #5d5bd5;
+  transition: 0.3s;
+  background-color: white;
 }
 
-.tbl-wrap table {
-  width: 100%;
+.tableList .searchWrap select {
+  padding-right: 5px;
+  text-align: right;
+  width: 80px;
+  height: 30px;
+}
+.tableList .searchWrap input {
+  text-align: right;
+  width: 200px;
+  height: 30px;
+}
+.tableList .searchBtn {
+  height: 16px;
+  color: #5d5bd5;
+  background-color: transparent;
+}
+
+.tableList .searchBtn:hover {
+  transition: 0.3s;
+  color: #26257e;
+  transform: scale(1.3);
+}
+
+.goodsList table,
+.goodsList table tr,
+.goodsList table th,
+.goodsList table td {
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid white;
   border-collapse: collapse;
-}
-.tbl-wrap tr {
-  height: 50px;
-  border-bottom: 1px solid #ccc;
   text-align: center;
-  background-color: #fff;
-  color: #000;
+  justify-content: center;
+  justify-items: center;
 }
 
-.tbl-wrap tr:hover {
-  background-color: #f9f9f9;
+.goodsList tr {
+  height: 35px;
 }
 
-.tbl-wrap tr:nth-child(1) {
-  background-color: #273270;
-  color: #f1f1f1;
+.goodsList th {
+  padding: 0;
+  height: 35px;
+  background-color: #5d5bd5;
+  text-align: center;
 }
 
-.itemImage {
-  width: 70px;
-  height: 70px;
+.goodsList td {
+  text-align: center;
+  height: 25px;
 }
 
-.upDelBtn {
-  border: 1px solid #d1d1d1;
-  border-radius: 3px;
-  background-color: #f1f1f1;
-  padding: 5px;
+.goodsList th:first-child {
+  width: 10%;
+  font-size: 16px;
+}
+
+.goodsList th:nth-child(2) {
+  width: 20%;
+  font-size: 16px;
+}
+.goodsList th:nth-child(3) {
+  font-size: 16px;
+}
+.goodsList th:nth-child(4) {
+  width: 15%;
+  font-size: 16px;
+}
+.goodsList th:nth-child(5) {
+  width: 15%;
+  font-size: 16px;
+}
+.goodsList th:last-child {
+  width: 10%;
+}
+
+.itemNameLink p:hover {
   cursor: pointer;
+  font-size: 20px;
+  background-color: #e0dfff;
 }
 
-.upDelBtn:hover {
-  background-color: #f9f9f9;
+.goodsList button {
+  font-size: 16px;
+  margin-right: 7px;
+  margin-left: 14px;
+  padding: 0px 4px;
+}
+
+.goodsList button:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+}
+
+.paging button {
+  border: 1px solid transparent;
 }
