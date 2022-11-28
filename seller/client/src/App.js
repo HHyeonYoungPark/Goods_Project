@@ -45,7 +45,7 @@ import GoodsManager from "./components/pages/privateInfo/GoodsManager";
 import NoticeManager from "./components/pages/privateInfo/NoticeManager";
 import AskManager from "./components/pages/privateInfo/AskManager";
 import UserManager from "./components/pages/privateInfo/UserManager";
-import CostumerManager from "./components/pages/privateInfo/CostumerManager";
+import CustomerManager from "./components/pages/privateInfo/CustomerManager";
 import SellerManager from "./components/pages/privateInfo/SellerManager";
 import WriteNotice from "./components/pages/board/WriteNotice";
 import Board from "./components/pages/board/Board";
@@ -121,10 +121,9 @@ function App() {
               <Route path="addItem" element={<AddItem />} />
               <Route path="updateItem/:idx" element={<UpdateItem />} />
               <Route path="order" element={<Order />} />
-              <Route path="userManager" element={<UserManager />}>
-                <Route index="costumerManager" element={<CostumerManager />} />
-                <Route path="costumerManager" element={<CostumerManager />} />
-              </Route>
+              <Route path="userManager" element={<UserManager />} />
+              <Route path="customerManager" element={<CustomerManager />} />
+              <Route path="sellerManager" element={<SellerManager />} />
 
               <Route
                 path="boardManager"

@@ -142,13 +142,13 @@ function AdminPage({ userId }) {
                 <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
               </h3>
             </Link>
-            <Link className="navMenu" to="userManager">
+            <Link className="navMenu" to="CostumerManager">
               <p>
                 Customers
                 <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
               </p>
             </Link>
-            <Link className="navMenu" to="#">
+            <Link className="navMenu" to="SellerManager">
               <p>
                 Sellers
                 <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
