@@ -7,8 +7,6 @@ import {
   faCartArrowDown,
   faUser,
   faChalkboardUser,
-  faPenToSquare,
-  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { faIdCard } from "@fortawesome/free-regular-svg-icons";
 
