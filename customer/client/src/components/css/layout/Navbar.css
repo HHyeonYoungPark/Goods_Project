@@ -14,9 +14,11 @@ a {
   justify-content: space-between;
   width: 100%;
   background-color: aliceblue;
-  padding: 10px;
   align-items: center;
   position: relative;
+}
+
+.NavMenuMid {
 }
 
 .NavMenuMid ul {
@@ -58,13 +60,14 @@ a {
 
 .influencerDropDownMenu ul li {
   padding-top: 10px;
+  padding-left: 0;
 }
 
 .influencerDropDown:hover .influencerDropDownMenu {
   display: flex;
   justify-content: center;
   position: absolute;
-  top: 85px;
+  top: 65px;
   left: 0;
   width: 100%;
   padding: 10px 0;
@@ -87,7 +90,7 @@ a {
   display: flex;
   justify-content: center;
   position: absolute;
-  top: 85px;
+  top: 65px;
   left: 0;
   width: 100%;
   padding: 10px 0;
@@ -100,6 +103,10 @@ a {
 
 .goodsDropDown:hover .goodsDropDownMenu ul li {
   padding-top: 10px;
+<<<<<<< HEAD
+=======
+  padding-left: 0;  
+>>>>>>> 9df7135a78d88e6205b52d50db2b2d0ede0e3022
 }
 
 .NavMenuRight ul {

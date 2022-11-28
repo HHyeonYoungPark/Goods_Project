@@ -42,7 +42,7 @@ const GoodsLists = () => {
         dataLength={goodslists.length}
         next={fetchData}
         hasMore={hasMore}
-        endMessage={<h3>No More Data</h3>}
+        endMessage={<h3>더이상 상품이 존재하지 않습니다</h3>}
         loader={<h1>Loading...</h1>}
       >
         {goodslists.length > 0
@@ -55,7 +55,6 @@ const GoodsLists = () => {
                     <p>{goodslist.price}</p> */}
                   <Link to={`/goodsDetail/${goodslist.idx}`}>
                     <img
-                      style={{ width: "100%" }}
                       src={`http://localhost:4001/${goodslist.attach}`}
                       alt={goodslist.attach}
                     />
@@ -65,11 +64,15 @@ const GoodsLists = () => {
                       {goodslist.itemname}
                     </Link>
                   </h4>
-                  <p className="price">{goodslist.price}</p>
+                  <p className="price">
+                    {parseInt(goodslist.price)
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+                  </p>
                 </div>
               );
             })
-          : "No Data"}
+          : "상품이 존재하지 않습니다"}
       </InfiniteScroll>
     </div>
   );

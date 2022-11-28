@@ -1,4 +1,5 @@
 import React from "react";
+import Paging from "../../function/Paging";
 import "../../css/pages/TableGallary.css";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import axios from "axios";
@@ -6,16 +7,43 @@ import { useEffect, useState } from "react";
 
 function TableGallary() {
   const [items, setItems] = useState([]);
+  const [rows, setRows] = useState(0);
+  const [page, setPage] = useState(1);
+  const [pages, setPages] = useState(0);
+  const [offset, setOffset] = useState(20);
+  const [select, setSelect] = useState("");
+  const [searchWords, setSearchWords] = useState("");
+  const [keyword, setKeyword] = useState("");
+  const [msg, setMsg] = useState("");
 
   async function getAllItem() {
-    await axios.get("http://localhost:4001/goodsManager").then((response) => {
-      setItems(response.data);
+    await axios.get("http://localhost:4001/goodsManager?page=" +
+    page +
+    "&offset=" +
+    offset +
+    "&select=" +
+    select +
+    "&searchQuery=" +
+    keyword).then((response) => {
+      setItems(response.data.items);
+      setPage(response.data.page);
+      setPages(response.data.totalPageNum);
+      setRows(response.data.totalRows);
+      console.log(response);
     });
   }
-
   useEffect(() => {
     getAllItem();
-  }, []);
+  }, [page]);
+
+  const changePage = (page) => {
+    setPage(page);
+    if (page === pages) {
+      setMsg("No More Data");
+    } else {
+      setMsg("");
+    }
+  };
 
   return (
     <div className="TableGallary-container">
@@ -43,6 +71,16 @@ function TableGallary() {
           </div>
         );
       })}
+
+      <p className="danger">{msg}</p>
+      <div className="paging">
+        <Paging
+          page={page}
+          offset={offset}
+          rows={rows}
+          setPage={changePage}
+        />
+      </div>
     </div>
   );
 }

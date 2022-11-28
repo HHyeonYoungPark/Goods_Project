@@ -137,3 +137,25 @@ insert into category2 values(null,"키링","악세사리");
 insert into category2 values(null,"반지","악세사리");
 insert into category2 values(null,"목걸이","악세사리");
 
+create table channel (
+  idx int not null auto_increment primary key,
+  channelPlatform VARCHAR(50)
+);
+
+insert into channel values(null, "YOUTUBE");
+insert into channel values(null, "TWITCH");
+insert into channel values(null, "AFREECA");
+insert into channel values(null, "INSTAGRAM");
+insert into channel values(null, "TIKTOK");
+
+create table channelSub (
+  idx int not null auto_increment primary key,
+  channelGenre VARCHAR(50)
+);
+
+insert into channelSub values(null, "Game");
+insert into channelSub values(null, "Sports");
+insert into channelSub values(null, "Music");
+insert into channelSub values(null, "Travel");
+insert into channelSub values(null, "Foods");
+insert into channelSub values(null, "Others");
