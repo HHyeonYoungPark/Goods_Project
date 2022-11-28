@@ -10,27 +10,31 @@ function TableGallary() {
   const [rows, setRows] = useState(0);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(0);
-  const [offset, setOffset] = useState(20);
+  const [offset, setOffset] = useState(12);
   const [select, setSelect] = useState("");
   const [searchWords, setSearchWords] = useState("");
   const [keyword, setKeyword] = useState("");
   const [msg, setMsg] = useState("");
 
   async function getAllItem() {
-    await axios.get("http://localhost:4001/goodsManager?page=" +
-    page +
-    "&offset=" +
-    offset +
-    "&select=" +
-    select +
-    "&searchQuery=" +
-    keyword).then((response) => {
-      setItems(response.data.items);
-      setPage(response.data.page);
-      setPages(response.data.totalPageNum);
-      setRows(response.data.totalRows);
-      console.log(response);
-    });
+    await axios
+      .get(
+        "http://localhost:4001/goodsManager?page=" +
+          page +
+          "&offset=" +
+          offset +
+          "&select=" +
+          select +
+          "&searchQuery=" +
+          keyword
+      )
+      .then((response) => {
+        setItems(response.data.items);
+        setPage(response.data.page);
+        setPages(response.data.totalPageNum);
+        setRows(response.data.totalRows);
+        console.log(response);
+      });
   }
   useEffect(() => {
     getAllItem();
@@ -46,40 +50,35 @@ function TableGallary() {
   };
 
   return (
-    <div className="TableGallary-container">
-      {items.map((item, key) => {
-        return (
-          <div className="TableGallary" key={key}>
-            <Link to={`/detail/${item.idx}`}>
-              <img
-                style={{ width: "100%" }}
-                src={`http://localhost:4001/${item.attach}`}
-                alt={item.attach}
-              />
-            </Link>
-            <h4>
-              <Link to={`/detail/${item.idx}`}>{item.itemname}</Link>
-            </h4>
-            <p className="price">
-              <Link to="#">
-                {parseInt(item.price)
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                원
+    <div>
+      <div className="TableGallary-container">
+        {items.map((item, key) => {
+          return (
+            <div className="TableGallary" key={key}>
+              <Link to={`/detail/${item.idx}`}>
+                <img
+                  style={{ width: "100%" }}
+                  src={`http://localhost:4001/${item.attach}`}
+                  alt={item.attach}
+                />
               </Link>
-            </p>
-          </div>
-        );
-      })}
-
-      <p className="danger">{msg}</p>
-      <div className="paging">
-        <Paging
-          page={page}
-          offset={offset}
-          rows={rows}
-          setPage={changePage}
-        />
+              <h4>
+                <Link to={`/detail/${item.idx}`}>{item.itemname}</Link>
+              </h4>
+              <p className="price">
+                <Link to="#">
+                  {parseInt(item.price)
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  원
+                </Link>
+              </p>
+            </div>
+          );
+        })}
+      </div>
+      <div className="TableGal-paging">
+        <Paging page={page} offset={offset} rows={rows} setPage={changePage} />
       </div>
     </div>
   );

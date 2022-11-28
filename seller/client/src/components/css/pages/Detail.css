@@ -1,8 +1,8 @@
 .detail-con {
   width: 65%;
   margin: 0 auto;
-  padding-top: 50px;
-  height: 3000px;
+  padding-top: 30px;
+  height: 2000px;
 }
 
 .detail-top-con {
@@ -11,8 +11,8 @@
 .top-nav-con {
   display: flex;
   height: 60px;
-  border: 1.5px solid #27336f;
-  margin-bottom: 50px;
+  border: 1px solid #27336f;
+  margin-bottom: 30px;
   align-items: center;
   border-radius: 10px;
 }
@@ -33,11 +33,9 @@
 .detail-title-con {
   width: 47%;
   margin: 0 30px;
-  margin-top: 20px;
 }
 .detail1 {
   color: gray;
-  margin: 20px 0;
 }
 .detail2 {
   margin: 30px 0;
@@ -52,14 +50,16 @@
   margin-left: 20px;
 }
 .detail-hr {
-  background-color: #f1f1f1;
+  background-color: #d9d9d9;
   border: none;
-  height: 3px;
+  height: 1px;
   margin-top: 20px;
+  width: 90%;
 }
 .detail6 {
   margin-top: 18px;
   margin-bottom: 15px;
+  font-size: 17px;
 }
 .detail7,
 .detail8,
@@ -72,9 +72,17 @@
   margin-top: 10px;
   font-weight: 400;
 }
+
+.coupon-banner img {
+  margin: 20px 0;
+  height: 240px;
+  width: 90%;
+}
+
 .detail10 {
   margin-top: 18px;
   margin-bottom: 15px;
+  font-size: 17px;
 }
 .detail15 {
   margin-top: 35px;
@@ -114,11 +122,10 @@
   margin-left: 40px;
 }
 .right-pay-sticky h3 {
-  padding-top: 20px;
-  margin-left: 40px;
+  margin: 10px 0;
 }
 .detail-bottom-wrap {
-  width: 75%;
+  width: 71%;
 }
 .detail-nav-wrap {
   display: flex;
@@ -127,13 +134,13 @@
   margin-bottom: 20px;
 }
 .detail-nav-wrap div {
-  border: 1px solid aliceblue;
   margin-right: 70px;
   margin-left: 50px;
   padding: 10px 0;
   font-size: 20px;
   width: 120px;
 }
+
 .detail-table td {
   border: 1px solid black;
   text-align: center;
@@ -143,7 +150,9 @@
   width: 15%;
 }
 .similar-item {
-  border: 1px solid red;
+  border: 1px solid rgb(255, 0, 0);
+  padding: 13px;
+  border-radius: 5px;
 }
 .similar-item li {
   width: 100%;
@@ -154,36 +163,114 @@
 }
 .detail-howmany {
   display: flex;
-  margin-top: 35px;
-  font-size: 30px;
+  margin-top: 34px;
+  font-size: 20px;
 }
 .spanmany {
   margin-bottom: 4px;
-  width: 55px;
+  width: 40px;
   text-align: center;
 }
 .detail-price {
   width: 180px;
   margin-left: 20px;
-  margin-top: 38px;
+  margin-top: 30px;
   text-align: end;
+  color: red;
+  font-size: 25px;
 }
+
+.coupon-wrap {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px dashed #ccc;
+  padding-top: 20px;
+}
+
+.coupon-wrap button {
+  border: 1px solid red;
+  color: red;
+  padding: 3px 10px;
+}
+
+.coupon-wrap button:hover {
+  cursor: pointer;
+}
+
+.ship-fee {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.payBtn-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
 .detail-cart,
 .detail-pay {
-  border: 1px solid gray;
-  padding: 10px 20px;
-  margin-right: 20px;
-  border-radius: 5px;
-  font-size: 18px;
+  margin-top: 20px;
+  padding: 15px 30px;
   font-weight: bold;
+  font-size: 20px;
 }
 .detail-cart {
-  background-color: #27336f;
-  color: white;
-}
-.detail-pay {
   color: #27336f;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.detail-cart:hover {
+  transition: 0.2s;
+  background-color: #f9f9f9;
+}
+
+.detail-pay {
+  color: #fff;
+  background-color: #27336f;
+  border: 1px solid #27336f;
+}
+
+.detail-pay:hover {
+  background: #3b4db3;
+  transition: 0.2s;
+  cursor: pointer;
 }
 .image-gallery-thumbnails .image-gallery-thumbnails-container {
-  margin-top: 100px;
+  margin-top: 20px;
+}
+
+/* 비슷한 상품 dummy data*/
+.recomen-product {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #d1d1d1;
+  margin-bottom: 10px;
+}
+
+.recomen-product:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.recomen-product-img img {
+  width: 70px;
+}
+
+.recomen-product-name {
+  padding: 5px 0;
+}
+
+.recomen-product-name p {
+  margin-top: 7px;
+}
+
+.recomen-product2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.recomen-product2:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
 }
