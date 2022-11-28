@@ -83,9 +83,9 @@ function CustomerManager() {
                     onchange={(e) => setSelect(e.target.value)}
                   >
                     <option value="" selected disabled>선택하세요</option>
-                    <option value="id">이름</option>
+                    <option value="id">아이디</option>
                     <option value="email">이메일</option>
-                    <option value="regdate">가입일</option>
+                    <option value="name">이름</option>
                   </select>
                   <input
                     type="text"
