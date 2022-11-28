@@ -196,12 +196,43 @@ app.get("/itemSearch", (req, res) => {
 
 // 관리자페이지에서 상품목록보이기
 app.get("/goodsManager", (req, res) => {
-  let sql = "SELECT * FROM item ORDER BY idx DESC LIMIT 0,10;";
-  db.query(sql, (err, items) => {
+  const page = Number.parseInt(req.query.page);
+  const offset = Number.parseInt(req.query.offset);
+  const startNum = (page - 1) * offset;
+  const select = req.query.select || "";
+  const search = req.query.searchQuery || "";
+  const itemnameSearch = "%" + search + "%";
+  const categorySearch = "%" + search + "%";
+  const priceSearch = "%" + search + "%";
+  // const regdateSearch = "%" + search + "%";
+  
+  let sql = "SELECT count(idx) AS cnt FROM item;";
+  db.query(sql, (err, result) => {
     if (err) {
       throw err;
+    } else {
+      let listSQL =
+        // "SELECT * FROM item WHERE itemname=? OR category=? OR price=? ORDER BY idx DESC LIMIT ?, ?;";
+        "SELECT * FROM item ORDER BY idx DESC LIMIT ?, ?;";
+      db.query(
+        listSQL,
+        [startNum, offset],
+        (err, items) => {
+          if (err) {
+            throw err;
+          } else {
+            res.send({
+              items,
+              page, // 현재 페이지
+              totalRows: result[0].cnt, // 전체 게시판 수
+              totalPageNum: Math.ceil(result[0].cnt / offset), // 전체 페이지 수
+            });
+            console.log(result);
+            console.log(items);
+          }
+        }
+      );
     }
-    res.send(items);
   });
 });
 
@@ -351,6 +382,22 @@ app.get("/pay/:userId/:idx", (req, res) => {
         }
         console.log(user);
         console.log(result);
+        res.send({ user, result });
+      });
+    }
+  });
+});
+app.get("/pays/:userId", (req, res) => {
+  let userSQL = "select * from user where id=?;";
+  db.query(userSQL, [req.params.userId], (err, user) => {
+    if (err) {
+      throw err;
+    } else {
+      let itemsSQL = "select * from cart join item on cart.itemIdx = item.idx where cart.userId=?;";
+      db.query(itemsSQL, [req.params.userId], (err, result) => {
+        if (err) {
+          throw err;
+        }
         res.send({ user, result });
       });
     }

@@ -118,7 +118,7 @@ app.get("/customer/goods", (req, res) => {});
 //search form
 app.get("/customer/search", (req, res) => {
   const start = Number.parseInt(req.query.start) || 0;
-  const offset = Number.parseInt(req.query.offset) || 30;
+  const offset = Number.parseInt(req.query.offset) || 40;
 
   const search = req.query.searchQuery || "";
 
@@ -144,7 +144,7 @@ app.get("/customer/search", (req, res) => {
 //goods list
 app.get("/customer/goodslists", (req, res) => {
   const start = Number.parseInt(req.query.start) || 0;
-  const offset = Number.parseInt(req.query.offset) || 30;
+  const offset = Number.parseInt(req.query.offset) || 40;
 
   let sql =
     // "SELECT * FROM item WHERE category_goods_idx = ? ORDER BY seller_idx DESC LIMIT ?, ?;";

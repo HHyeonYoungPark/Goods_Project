@@ -137,3 +137,12 @@ insert into category2 values(null,"키링","악세사리");
 insert into category2 values(null,"반지","악세사리");
 insert into category2 values(null,"목걸이","악세사리");
 
+create table channel (
+  idx int not null auto_increment primary key,
+  channelPlatform VARCHAR(50)
+);
+
+create table channelSub (
+  idx int not null auto_increment primary key,
+  channelGenre VARCHAR(50)
+)

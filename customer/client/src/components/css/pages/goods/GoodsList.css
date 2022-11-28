@@ -1,10 +1,10 @@
 .GoodsLists-container {
-  width: 100%;
+  width: 80%;
   display: grid;
-  grid-template-columns: repeat(3, 30.3%);
-  column-gap: 3%;
+  grid-template-columns: repeat(4, 23%);
+  column-gap: 2.5%;
   row-gap: 50px;
-  margin: 30px auto;
+  margin: 50px auto;
 }
 
 .GoodsLists {
@@ -29,8 +29,8 @@
 .price {
   margin-left: 2px;
 }
-
+/* 
 .price a {
   color: rgba(0, 0, 0, 0.6);
   font-size: 15px;
-}
+} */
