@@ -1,10 +1,65 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHouse,
+  faPowerOff,
+  faArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { faIdCard } from "@fortawesome/free-regular-svg-icons";
+
 import "../../css/pages/AdminPage.css";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import WTLogo from "../../images/logo.png";
 import WTBZLogo from "../../images/WETINYBIZ_LOGO.jpg";
 
 function AdminPage({ userId }) {
+  const navigate = useNavigate();
+  const useConfirm = (message = null, onConfirm, onCancel) => {
+    if (!onConfirm || typeof onConfirm !== "function") {
+      return;
+    }
+    if (onCancel && typeof onCancel !== "function") {
+      return;
+    }
+
+    const confirmAction = () => {
+      if (window.confirm(message)) {
+        onConfirm();
+      } else {
+        onCancel();
+      }
+    };
+
+    return confirmAction;
+  };
+
+  const agreeConfirm = () => navigate("/logout");
+  const cancelConfirm = () => console.log("LogOut Canceled.");
+
+  const confirmLogout = useConfirm(
+    "LogOut 하시겠습니까?",
+    agreeConfirm,
+    cancelConfirm
+  );
+
+  const agreeWetiny = () => navigate("/logouttocustom");
+  const cancelWetiny = () => console.log("LogOut Canceled.");
+
+  const confirmWetiny = useConfirm(
+    "WE'TINY로 가시겠습니까?",
+    agreeWetiny,
+    cancelWetiny
+  );
+
+  const agreeBiz = () => navigate("/logout");
+  const cancelBiz = () => console.log("LogOut Canceled.");
+
+  const confirmBiz = useConfirm(
+    "WE'TINY BIZ로 가시겠습니까?",
+    agreeBiz,
+    cancelBiz
+  );
+
   return (
     <div className="adminContainer">
       <div className="adminHeader">
@@ -15,17 +70,20 @@ function AdminPage({ userId }) {
         </div>
         <div className="headerRight">
           <Link to="/myPage">
+            <FontAwesomeIcon className="headerUserIcon" icon={faIdCard} />
             <b>{userId}</b>님
           </Link>
           <br />
           <div className="loginInfo">
-            <Link to="/logouttocustom">
+            <button className="wtLogo" onClick={confirmWetiny}>
               <img className="wtLogo" src={WTLogo} alt={WTLogo} />
-            </Link>
-            <Link to="/logout">
+            </button>
+            <button className="wtbzLogo" onClick={confirmBiz}>
               <img className="wtbzLogo" src={WTBZLogo} alt={WTBZLogo} />
-            </Link>
-            <Link to="/logout">Logout</Link>
+            </button>
+            <button className="headerLogoutIcon" onClick={confirmLogout}>
+              <FontAwesomeIcon className="headerLogoutIcon" icon={faPowerOff} />
+            </button>
           </div>
         </div>
       </div>
@@ -33,52 +91,74 @@ function AdminPage({ userId }) {
         <div className="mypageSideNav">
           <div className="sideNavProfile">
             <a href="/AdminPage">
-              <h1>Icon Home</h1>
+              <h1>
+                <FontAwesomeIcon className="navHomeIcon" icon={faHouse} />
+                Home
+              </h1>
             </a>
           </div>
           <div className="adminSideNav">
-            <Link className="navMenu" to="#" style={{ paddingLeft: "40px" }}>
-              <h3>Shop Main</h3>
+            <Link className="navMenu" to="#" style={{ paddingLeft: "50px" }}>
+              <h3>
+                Shop Main
+                <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              </h3>
             </Link>
             <Link className="navMenu" to="goodsManager">
               Goods
+              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
             </Link>
             <Link className="navMenu" to="order">
               Orders
+              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
             </Link>
             <Link className="navMenu" to="#">
               Events
+              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
             </Link>
             <Link className="navMenu" to="#">
               Banners
+              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
             </Link>
-            <Link className="navMenu" to="#" style={{ paddingLeft: "40px" }}>
-              <h3>Members Main</h3>
+            <Link className="navMenu" to="#" style={{ paddingLeft: "50px" }}>
+              <h3>
+                Members Main
+                <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              </h3>
             </Link>
             <Link className="navMenu" to="userManager">
               Customers
+              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
             </Link>
             <Link className="navMenu" to="#">
               Sellers
+              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
             </Link>
             <Link className="navMenu" to="#">
               Admins
+              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
             </Link>
             <Link
               className="navMenu"
               to="boardManager"
-              style={{ paddingLeft: "40px" }}
+              style={{ paddingLeft: "50px" }}
             >
-              <h3>Boards Main</h3>
+              <h3>
+                Boards Main
+                <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              </h3>
             </Link>
             <Link className="navMenu" to="board/notice">
               Notice
+              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
             </Link>
             <Link className="navMenu" to="board/customerHelp">
               Customer Help
+              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
             </Link>
             <Link className="navMenu" to="board/todoList">
               Todo List
+              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
             </Link>
           </div>
         </div>

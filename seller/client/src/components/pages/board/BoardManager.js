@@ -2,9 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Modal from "react-modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import BoardModify from "./BoardModify";
-import Paging from "../../function/Paging";
+import Paging from "../../function/PagingBoard";
 
 import "../../css/pages/AdminPage.css";
 
@@ -192,7 +194,7 @@ function BoardManager({ userId }) {
                       id="boardBuilder"
                       className="boardBuilder"
                       name="boardBuilder"
-                      placeholder={userId}
+                      value={userId}
                       readOnly
                       required
                       onChange={(e) => setBoardBuilder(e.target.value)}
@@ -292,7 +294,7 @@ function BoardManager({ userId }) {
                     onchange={(e) => setSelect(e.target.value)}
                   >
                     <option value="" selected disabled>
-                      선택하세요
+                      검색 옵션
                     </option>
                     <option value="code">코드</option>
                     <option value="name">제목</option>
@@ -303,11 +305,15 @@ function BoardManager({ userId }) {
                     id="search"
                     className="search"
                     name="search"
+                    placeholder="Input Search Word"
                     onChange={(e) => setSearchWords(e.target.value)}
                     value={searchWords}
                   />
-                  <button type="submit" className="searchBtn">
-                    검색
+                  <button type="submit">
+                    <FontAwesomeIcon
+                      className="searchBtn"
+                      icon={faMagnifyingGlass}
+                    />
                   </button>
                 </div>
               </form>
