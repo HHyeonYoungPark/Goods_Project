@@ -263,7 +263,7 @@ function Navbar() {
                         {
                           category2.map((cate2, key) => {
                             return(
-                              <li>
+                              <li key={key}>
                                 <Link to="goodsLists" className="goodsList">
                                   {g.channelGenre}
                                 </Link>
