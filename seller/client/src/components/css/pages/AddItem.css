@@ -1,118 +1,134 @@
-.addItem-comtainer {
+.addItemComtainer {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 
-.addItem-wrap {
-  background-color: #fff;
+.addItemWrap {
   width: 100%;
-  margin-bottom: 50px;
-}
-
-.addItem-title {
-  text-align: center;
-}
-
-.addItem input {
-  border: 1px solid #f0f0f0;
-  border-radius: 4px;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  margin-left: 30px;
-  padding: 15px;
-  width: 40%;
 }
 
 .addItem {
-  padding: 15px 0;
+  box-shadow: 0px 0px 6px #5d5bd5;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-top: 10px;
 }
 
-.addItem h3 {
-  margin: 10px 0;
+.addItemTb {
+  width: 100%;
 }
 
-.addItem .itemImage {
+.addItemTb input {
+  border-collapse: collapse;
+  width: 100%;
+  height: 30px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.addItemTb input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.addItemTb p{
+  text-align: left;
+}
+
+.addItemTb .itemImage {
   border: 0;
   outline: 0;
   background-color: transparent;
 }
 
-table {
+.addItemTb table,
+.addItemTb tr,
+.addItemTb td {
+  border: 1px solid white;
   border-collapse: collapse;
-  width: 100%;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
 }
 
-th {
-  text-align: left;
-  padding-left: 20px;
-  width: 20%;
-  background-color: #273270;
-  color: #fff;
-}
-
-tr {
-  border: 1px solid #eee;
+.addItemTb tr{
   height: 80px;
 }
 
-td span {
-  margin-left: 10px;
+.addItemTb th {
+  width: 15%;
+  background-color: #5d5bd5;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding-left: 30px;
 }
 
-td select {
-  border: 1px solid #f0f0f0;
-  border-radius: 4px;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  margin-left: 30px;
-  padding: 15px;
-  width: 40%;
+
+.addItemTb select {
+  border: none;
+  border-collapse: collapse;
+  font-size: 16px;
+  margin: 0px;
+  padding: 0px;
+  width: 45%;
+  height: 40px;
+  text-align: right;
 }
 
-.addItem textarea {
+.addItemTb textarea {
   resize: none;
-  border: 1px solid #f0f0f0;
-  border-radius: 4px;
-  font-size: 14px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  margin-left: 30px;
+  border: none;
+  font-size: 16px;
+  margin: 0;
   padding: 15px;
   width: 90%;
-  height: 110px;
+  height: 100px;
   outline: none;
 }
 
-.submit-btn {
+.addItemTb .itemImage{
+  width: 90%;
+  height: 40px;
+}
+
+.submitBtn {
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  margin-top: 30px;
+  padding: 15px;
 }
 
-.submit-btn button,
-.submit-btn input {
-  border: none;
-  padding: 18px 30px;
-  border-radius: 5px;
-  font-size: 14px;
-  font-weight: bold;
+.submitBtn button {
+  width: 120px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+.addItemBtn {
+  margin-right: 10px;
+  box-shadow: 0px 0px 6px #5d5bd5;
+  color: #5d5bd5;
+}
+
+.addItemBtn:hover {
   cursor: pointer;
-  margin: 0 7px;
+  border: 1px solid #5d5bd5;
+  background-color: #5d5bd5;
+  color: white;
+  font-weight: bolder;
 }
 
-.submit-btn input {
-  background: #273270;
-  color: #fff;
+.submitBtn .listBtn {
+  box-shadow: 0px 0px 6px tomato;
+  color: tomato;
+  margin-right: 10px;
 }
 
-.submit-btn .list-btn {
-  background-color: rgba(66, 66, 66, 0.527);
-  color: #95afb7;
-  padding: 18px 30px;
+.submitBtn .listBtn:hover {
+  cursor: pointer;
+  border: 1px solid tomato;
+  background-color: tomato;
+  color: white;
+  font-weight: bolder;
 }
 
-.submit-btn button a {
-  color: #fff;
-}

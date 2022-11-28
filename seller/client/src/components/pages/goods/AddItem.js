@@ -100,15 +100,12 @@ function AddItem() {
   }
 
   return (
-    <div className="addItem-comtainer">
-      <div className="addItem-wrap">
-        <div className="addItem-title">
-          <h1>상품등록</h1>
-        </div>
+    <div className="addItemComtainer">
+      <h2>Insert Item Data</h2>
+      <div className="addItemWrap">
         <form method="post" encType="multipart/form-data" onSubmit={frmHandler}>
           <div className="addItem">
-            <h3>상품 기본정보 입력</h3>
-            <table>
+            <table className="addItemTb">
               <tr>
                 <th>상품명</th>
                 <td>
@@ -176,7 +173,7 @@ function AddItem() {
               </tr>
               <tr>
                 <th>이미지</th>
-                <td>
+                <td className="imageTd">
                   메인이미지:
                   <input
                     className="itemImage"
@@ -186,8 +183,8 @@ function AddItem() {
                     onChange={(e) => {
                       setAttach(e.target.files[0]);
                     }}
-                  />
-                  <br></br>서브이미지1:
+                  /><br/>
+                  서브이미지1:
                   <input
                     className="itemImage"
                     type="file"
@@ -196,8 +193,8 @@ function AddItem() {
                     onChange={(e) => {
                       setAttach2(e.target.files[0]);
                     }}
-                  />
-                  <br></br>서브이미지2:
+                  /><br/>
+                  서브이미지2:
                   <input
                     className="itemImage"
                     type="file"
@@ -235,11 +232,15 @@ function AddItem() {
               </tr>
             </table>
           </div>
-          <div className="submit-btn">
-            <button className="list-btn">
-              <Link to="/AdminPage/goodsManager">돌아가기</Link>
+          <div className="submitBtn">
+            <Link to="/AdminPage/goodsManager">
+              <button className="listBtn">
+                돌아가기
+              </button>
+            </Link>
+            <button className="addItemBtn" type="submit">
+              상품 등록
             </button>
-            <input type="submit" value="상품등록" />
           </div>
         </form>
       </div>
