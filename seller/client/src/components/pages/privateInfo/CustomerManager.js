@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../../css/pages/SellerManager.css";
+import "../../css/pages/CustomerManager.css";
 import Paging from "../../function/Paging";
 
-function SellerManager() {
-  const [seller, setSeller] = useState([]);
+function CustomerManager() {
+  const [customer, setCustomer] = useState([]);
   const [rows, setRows] = useState(0);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(0);
@@ -17,8 +17,8 @@ function SellerManager() {
   const [keyword, setKeyword] = useState("");
   const [msg, setMsg] = useState("");
   
-  async function sellerManager() {
-    await axios.get("http://localhost:4001/sellerManager?page=" +
+  async function customerManager() {
+    await axios.get("http://localhost:4001/customerManager?page=" +
     page +
     "&offset=" +
     offset +
@@ -26,7 +26,7 @@ function SellerManager() {
     select +
     "&searchQuery=" +
     keyword).then((response) => {
-      setSeller(response.data.users);
+      setCustomer(response.data.users);
       setPage(response.data.page);
       setPages(response.data.totalPageNum);
       setRows(response.data.totalRows);
@@ -35,23 +35,23 @@ function SellerManager() {
   }
 
   useEffect(() => {
-    sellerManager();
+    customerManager();
   }, [page, keyword]);
 
-  async function deleteSeller(idx) {
+  async function deleteCustomer(idx) {
     await axios
-      .delete("http://localhost:4001/deleteSeller/" + idx)
+      .delete("http://localhost:4001/deleteCustomer/" + idx)
       .then((response) => {
         if (response.data.status === 201) {
           window.alert(response.data.message);
-          sellerManager();
+          customerManager();
         } else {
-          window.alert("판매자 삭제 에러");
+          window.alert("구매자 삭제 에러");
         }
       });
   }
 
-  const sellerSearch = (e) => {
+  const customerSearch = (e) => {
     e.preventDefault();
     setKeyword(searchWords);
     setPage(1);
@@ -68,24 +68,24 @@ function SellerManager() {
   };
 
   return (
-    <div className="sellerManagerContainer">
-      <div className="sellerList">
-        <h1>판매자 회원 관리</h1>
-        <div className="sellerListTop">
+    <div className="customerManagerContainer">
+      <div className="customerList">
+        <h1>구매자 회원 관리</h1>
+        <div className="customerListTop">
           <div className="topLeft">
             <div className="searchWrap">
-              <form method="post" id="frm" onSubmit={sellerSearch}>
-                <div class="sellerSearch">
+              <form method="post" id="frm" onSubmit={customerSearch}>
+                <div class="customerSearch">
                   <select
-                    id="seller"
-                    className="seller"
-                    name="sellerSearch"
+                    id="customer"
+                    className="customer"
+                    name="customerSearch"
                     onchange={(e) => setSelect(e.target.value)}
                   >
                     <option value="" selected disabled>선택하세요</option>
                     <option value="id">아이디</option>
                     <option value="email">이메일</option>
-                    <option value="regdate">가입일</option>
+                    <option value="name">이름</option>
                   </select>
                   <input
                     type="text"
@@ -107,47 +107,47 @@ function SellerManager() {
             </div>
           </div>
           <div className="topRight">
-            <Link to="/AdminPage/CustomerManager">
-              <button>구매자 회원관리</button>
+            <Link to="/AdminPage/SellerManager">
+              <button>판매자 회원관리</button>
             </Link>
           </div>
         </div>
         <div className="tblWrap">
-          <table className="sellerListTb">
+          <table className="customerListTb">
             <tr>
               <th>No</th>
               <th>ID</th>
-              <th>SellerName</th>
-              <th>ChannelName</th>
-              <th>channelPlatform</th>
-              <th>Grade</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Address</th>
               <th>Regdate</th>
               <th>Mod / Del</th>
             </tr>
             {
-              seller.map((sel, key) => {
+              customer.map((cus, key) => {
                 return(
                   <tr key={key}>
-                    <td>{sel.idx}</td>
-                    <td>{sel.id}</td>
-                    <td>{sel.sellername}</td>
-                    <td>{sel.channelname}</td>
-                    <td>{sel.channelPlatform}</td>
-                    <td>{sel.grade}</td>
-                    <td>{sel.regdate}</td>
+                    <td>{cus.idx}</td>
+                    <td>{cus.id}</td>
+                    <td>{cus.name}</td>
+                    <td>{cus.email}</td>
+                    <td>{cus.mobile}</td>
+                    <td>{cus.address1}</td>
+                    <td>{cus.regdate}</td>
                     <td>
                       <Link to="#">
                         <button>
                           <FontAwesomeIcon
-                            className="sellerModi"
+                            className="customerModi"
                             icon={faPenToSquare}
                           />
                         </button>
                       </Link>
                       <button
-                        onClick={() => deleteSeller(sel.idx)}
+                        onClick={() => deleteCustomer(cus.idx)}
                       >
-                        <FontAwesomeIcon className="selDel" icon={faTrash} />
+                        <FontAwesomeIcon className="cusDel" icon={faTrash} />
                       </button>
                     </td>
                   </tr>
@@ -171,4 +171,4 @@ function SellerManager() {
   );
 }
 
-export default SellerManager;
+export default CustomerManager;

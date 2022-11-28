@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../../css/pages/GoodsManager.css";
+import "../../css/pages/Review.css";
 
 function WriteReview({ userId }) {
   const [writer, setWriter] = useState(userId);
@@ -49,6 +50,10 @@ function WriteReview({ userId }) {
       .then((reviews) => {
         setReviews(reviews.data);
       });
+  }
+
+  function addReview() {
+    navigate(-1);
   }
 
   useEffect(() => {
@@ -100,7 +105,6 @@ function WriteReview({ userId }) {
             <tr>
               <th>이미지</th>
               <td>
-                대표이미지:
                 <input
                   className="itemImage"
                   type="file"
@@ -110,26 +114,6 @@ function WriteReview({ userId }) {
                     setAttach(e.target.files[0]);
                   }}
                 />
-                {/* <br></br>서브이미지1:
-                  <input
-                    className="itemImage"
-                    type="file"
-                    name="attach2"
-                    multiple
-                    onChange={(e) => {
-                      setAttach2(e.target.files[0]);
-                    }}
-                  />
-                  <br></br>서브이미지2:
-                  <input
-                    className="itemImage"
-                    type="file"
-                    name="attach3"
-                    multiple
-                    onChange={(e) => {
-                      setAttach3(e.target.files[0]);
-                    }}
-                  /> */}
               </td>
             </tr>
             <tr>
@@ -147,81 +131,70 @@ function WriteReview({ userId }) {
             <tr>
               <th>추천</th>
               <td>
-                <div
-                  className="ratingBox"
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    paddingLeft: "20px",
-                  }}
-                >
-                  <div style={{ marginRight: "10px" }}>
-                    1<br />
-                    <input
-                      id="1"
-                      type="radio"
-                      name="rating"
-                      value="1"
-                      onChange={(e) => {
-                        setRating(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div style={{ marginRight: "10px" }}>
-                    2<br />
-                    <input
-                      id="2"
-                      type="radio"
-                      name="rating"
-                      value="2"
-                      onChange={(e) => {
-                        setRating(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div style={{ marginRight: "10px" }}>
-                    3<br />
-                    <input
-                      id="3"
-                      type="radio"
-                      name="rating"
-                      value="3"
-                      onChange={(e) => {
-                        setRating(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div style={{ marginRight: "10px" }}>
-                    4<br />
-                    <input
-                      id="4"
-                      type="radio"
-                      name="rating"
-                      value="4"
-                      onChange={(e) => {
-                        setRating(e.target.value);
-                      }}
-                    />
-                  </div>
-                  <div style={{ marginRight: "10px" }}>
-                    5<br />
-                    <input
-                      id="5"
-                      type="radio"
-                      name="rating"
-                      value="5"
-                      onChange={(e) => {
-                        setRating(e.target.value);
-                      }}
-                    />
-                  </div>
+                <div className="ratingPoint">
+                  <input
+                    id="1"
+                    type="radio"
+                    name="rating"
+                    value="1"
+                    onChange={(e) => {
+                      setRating(e.target.value);
+                    }}
+                  />
+                  <span>1</span>
+                  <input
+                    id="2"
+                    type="radio"
+                    name="rating"
+                    value="2"
+                    onChange={(e) => {
+                      setRating(e.target.value);
+                    }}
+                  />
+                  <span>2</span>
+                  <input
+                    id="3"
+                    type="radio"
+                    name="rating"
+                    value="3"
+                    onChange={(e) => {
+                      setRating(e.target.value);
+                    }}
+                  />
+                  <span>3</span>
+                  <input
+                    id="4"
+                    type="radio"
+                    name="rating"
+                    value="4"
+                    onChange={(e) => {
+                      setRating(e.target.value);
+                    }}
+                  />
+                  <span>4</span>
+                  <input
+                    id="5"
+                    type="radio"
+                    name="rating"
+                    value="5"
+                    onChange={(e) => {
+                      setRating(e.target.value);
+                    }}
+                  />
+                  <span>5</span>
                 </div>
               </td>
             </tr>
           </table>
         </div>
-        <div className="submit-btn">
-          <input type="submit" value="리뷰 등록" />
+        <div className="reviewAdd-btn">
+          <input
+            type="submit"
+            value="리뷰 등록"
+            onClick={() => {
+              addReview();
+            }}
+          />
         </div>
       </form>
     </div>

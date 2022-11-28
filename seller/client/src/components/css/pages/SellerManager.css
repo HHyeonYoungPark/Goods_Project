@@ -1,0 +1,155 @@
+.sellerManagerContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.sellerList {
+  width: 100%;
+  box-shadow: 0px 0px 6px #5d5bd5;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-top: 10px;
+
+}
+
+.sellerListTop{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.topRight button {
+  width: 120px;
+  height: 30px;
+  border-radius: 10px;
+  margin-right: 10px;
+  box-shadow: 0px 0px 6px #5d5bd5;
+  color: #5d5bd5;
+}
+
+.topRight button:hover {
+  cursor: pointer;
+  border: 1px solid #5d5bd5;
+  background-color: #5d5bd5;
+  color: white;
+  font-weight: bolder;
+}
+
+.sellerSearch {
+  border: 1px solid transparent;
+  width: 400px;
+  border-radius: 20px;
+  background-color: #e0dfff;
+  display: flex;
+  flex-direction: row;
+  padding: 3px 10px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.sellerSearch:hover {
+  border: 1px solid #5d5bd5;
+  transition: 0.3s;
+  background-color: white;
+}
+
+.sellerList .searchWrap select {
+  padding-right: 5px;
+  text-align: right;
+  width: 100px;
+  height: 30px;
+}
+.sellerList .searchWrap input {
+  text-align: right;
+  width: 200px;
+  height: 30px;
+}
+.sellerList .searchBtn {
+  height: 16px;
+  color: #5d5bd5;
+  background-color: transparent;
+}
+
+.sellerList .searchBtn:hover {
+  transition: 0.3s;
+  color: #26257e;
+  transform: scale(1.3);
+}
+
+.sellerListTb table,
+.sellerListTb table tr,
+.sellerListTb table th,
+.sellerListTb table td {
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid white;
+  border-collapse: collapse;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+.sellerListTb tr {
+  height: 35px;
+}
+
+.sellerListTb th {
+  padding: 0;
+  height: 35px;
+  background-color: #5d5bd5;
+  text-align: center;
+}
+
+.sellerListTb td {
+  text-align: center;
+  height: 25px;
+}
+
+.sellerListTb th:first-child {
+  width: 5%;
+  font-size: 16px;
+}
+.sellerListTb th:nth-child(2) {
+  width: 15%;
+  font-size: 16px;
+}
+.sellerListTb th:nth-child(3) {
+  width: 17.5%;
+  font-size: 16px;
+}
+.sellerListTb th:nth-child(4) {
+  width: 17.5%;
+  font-size: 16px;
+}
+.sellerListTb th:nth-child(5) {
+  width: 15%;
+  font-size: 16px;
+}
+.sellerListTb th:nth-child(6) {
+  width: 10%;
+  font-size: 16px;
+}
+.sellerListTb th:nth-child(7) {
+  width: 10%;
+  font-size: 16px;
+}
+.sellerListTb th:last-child {
+  width: 10%;
+}
+
+.sellerListTb button {
+  font-size: 16px;
+  margin-right: 7px;
+  margin-left: 14px;
+  padding: 0px 4px;
+}
+
+.sellerListTb button:hover {
+  cursor: pointer;
+  transform: scale(1.3);
+}
+
+.paging button {
+  border: 1px solid transparent;
+}

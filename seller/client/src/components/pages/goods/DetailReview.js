@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../../css/pages/GoodsManager.css";
+import "../../css/pages/Review.css";
 import WriteReview from "./WriteReview";
 
 function DetailReview({ userId }) {
@@ -73,24 +74,25 @@ function DetailReview({ userId }) {
   return (
     <div className="reviewManager-container">
       <div className="reviewContainer">
-        <h1>상품 리뷰</h1>
-        <button
-          onClick={() => {
-            setOpenReview(!openReview);
-          }}
-        >
-          리뷰 작성
-        </button>
+        <div className="reviewTitle">
+          <h2>상품 리뷰</h2>
+          <button
+            onClick={() => {
+              setOpenReview(!openReview);
+            }}
+          >
+            리뷰 작성
+          </button>
+        </div>
         {openReview === true ? <WriteReview /> : null}
         <div className="reviewList">
           <div className="search-wrap"></div>
           <div className="tbl-wrap">
-            <table>
-              <tr>
-                <td>작성자</td>
-                <td>상품명</td>
+            <table className="reviewTb">
+              <tr className="reviewTr">
                 <td>이미지</td>
-                <td>제목</td>
+                <td>리뷰</td>
+                <td>작성자</td>
                 <td>등록일</td>
                 <td>평점</td>
               </tr>
@@ -98,8 +100,6 @@ function DetailReview({ userId }) {
                 return (
                   <>
                     <tr key={key} style={{ borderBottom: "none" }}>
-                      <td>{review.Writer}</td>
-                      <td>{review.ItemName}</td>
                       <td>
                         <img
                           style={{ height: "80px" }}
@@ -108,25 +108,10 @@ function DetailReview({ userId }) {
                           className="reviewImage"
                         />
                       </td>
-                      <td>{review.title}</td>
+                      <td>{review.Contents}</td>
+                      <td>{review.Writer}</td>
                       <td>{review.regdate}</td>
-                      {/* <td>
-                        <button className="upModiBtn">
-                        <Link to={"/adminPage/updateReview/" + review.idx}>
-                          수정
-                        </Link>
-                      </button>
-                      <button
-                        className="upDelBtn"
-                        onClick={() => deleteReview(review.idx)}
-                      >
-                        삭제
-                      </button>
-                      </td> */}
                       <td>{review.Rating}</td>
-                    </tr>
-                    <tr key={key} style={{ borderTop: "none" }}>
-                      <td colSpan={6}>{review.Contents}</td>
                     </tr>
                   </>
                 );
