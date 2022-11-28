@@ -102,11 +102,6 @@
   background-color: white;
 }
 
-.sideNavProfile a:hover {
-  color: #5d5bd5;
-  transition: 0.3s;
-}
-
 .adminSideNav {
   border-top: none;
   width: 100%;
@@ -120,7 +115,7 @@
   padding-top: 15px;
   padding-bottom: 10px;
   border: none;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 
 .navHomeIcon {
@@ -130,8 +125,7 @@
 
 .navMenu {
   width: 100%;
-  padding-left: 70px;
-  padding-top: 10px;
+  padding-left: 90px;
   cursor: pointer;
 }
 
@@ -143,8 +137,22 @@
 .navMenu:hover {
   background-color: #26257e;
   color: white;
-  font-weight: bolder;
-  font-size: larger;
+}
+
+.navMenuIcon {
+  margin-right: 10px;
+}
+
+.navMenu h3,
+.navMenu p {
+  height: 50px;
+  padding-top: 10px;
+}
+
+.navMenu h3:hover,
+.navMenu p:hover {
+  transform: translateX(20px);
+  transition: 0.3s;
 }
 
 /* Main Content */
@@ -441,6 +449,25 @@
 
 .boardList th:last-child {
   width: 6%;
+}
+
+.boardNameLink p:hover {
+  cursor: pointer;
+  font-size: 20px;
+  background-color: #e0dfff;
+}
+
+.boardList button {
+  font-size: 16px;
+  margin-right: 7px;
+  margin-left: 14px;
+  padding: 0px 4px;
+}
+
+.boardList button:hover {
+  cursor: pointer;
+
+  transform: scale(1.3);
 }
 
 .paging button {

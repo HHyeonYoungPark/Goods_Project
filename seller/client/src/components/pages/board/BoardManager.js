@@ -3,7 +3,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMagnifyingGlass,
+  faPenToSquare,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 
 import BoardModify from "./BoardModify";
 import Paging from "../../function/PagingBoard";
@@ -333,7 +337,7 @@ function BoardManager({ userId }) {
               <th>Creater</th>
               <th>RegDate</th>
               <th>ModiDate</th>
-              <th>-</th>
+              <th>Mod / Del</th>
             </tr>
 
             {boardlist.map((b, key) => {
@@ -341,10 +345,12 @@ function BoardManager({ userId }) {
                 <tr key={key}>
                   <td>{b.boardCode}</td>
                   <td>{b.boardCategory}</td>
-                  <td>
-                    <Link to={"/adminPage/board/" + b.boardCode}>
-                      {b.boardName}
-                    </Link>
+                  <td className="boardNameLink">
+                    <p>
+                      <Link to={"/adminPage/board/" + b.boardCode}>
+                        {b.boardName}
+                      </Link>
+                    </p>
                   </td>
                   <td>{b.boardReadAllow}</td>
                   <td>{b.boardWriteAllow}</td>
@@ -355,7 +361,15 @@ function BoardManager({ userId }) {
                   <td>{b.modifyDate}</td>
                   <td>
                     <Link to={"/adminPage/boardUpdate/" + b.boardCode}>
-                      Modi
+                      <button
+                        className="boardModi"
+                        onClick={() => deleteBoard(b.boardCode)}
+                      >
+                        <FontAwesomeIcon
+                          className="boardModi"
+                          icon={faPenToSquare}
+                        />
+                      </button>
                     </Link>
                     {/* <button onClick={() => setModalIsOpen(true)}>수정</button>
                     <Modal
@@ -375,10 +389,10 @@ function BoardManager({ userId }) {
                       </div>
                     </Modal> */}
                     <button
-                      className="upDelBtn"
+                      className="boardDel"
                       onClick={() => deleteBoard(b.boardCode)}
                     >
-                      Del
+                      <FontAwesomeIcon className="boardDel" icon={faTrash} />
                     </button>
                   </td>
                 </tr>

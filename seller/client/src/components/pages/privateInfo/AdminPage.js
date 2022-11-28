@@ -4,6 +4,11 @@ import {
   faHouse,
   faPowerOff,
   faArrowRight,
+  faCartArrowDown,
+  faUser,
+  faChalkboardUser,
+  faPenToSquare,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { faIdCard } from "@fortawesome/free-regular-svg-icons";
 
@@ -100,43 +105,62 @@ function AdminPage({ userId }) {
           <div className="adminSideNav">
             <Link className="navMenu" to="#" style={{ paddingLeft: "50px" }}>
               <h3>
-                Shop Main
+                <FontAwesomeIcon
+                  className="navMenuIcon"
+                  icon={faCartArrowDown}
+                />
+                Shop
                 <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
               </h3>
             </Link>
             <Link className="navMenu" to="goodsManager">
-              Goods
-              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              <p>
+                Goods
+                <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              </p>
             </Link>
             <Link className="navMenu" to="order">
-              Orders
-              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              <p>
+                Orders
+                <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              </p>
             </Link>
             <Link className="navMenu" to="#">
-              Events
-              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              <p>
+                Events
+                <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              </p>
             </Link>
             <Link className="navMenu" to="#">
-              Banners
-              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              <p>
+                Banners
+                <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              </p>
             </Link>
             <Link className="navMenu" to="#" style={{ paddingLeft: "50px" }}>
               <h3>
-                Members Main
+                <FontAwesomeIcon className="navMenuIcon" icon={faUser} />
+                Members
                 <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
               </h3>
             </Link>
             <Link className="navMenu" to="userManager">
-              Customers
-              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              <p>
+                Customers
+                <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              </p>
             </Link>
             <Link className="navMenu" to="#">
-              Sellers
-              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              <p>
+                Sellers
+                <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              </p>
             </Link>
             <Link className="navMenu" to="#">
-              Admins
-              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              <p>
+                Admins
+                <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              </p>
             </Link>
             <Link
               className="navMenu"
@@ -144,21 +168,31 @@ function AdminPage({ userId }) {
               style={{ paddingLeft: "50px" }}
             >
               <h3>
-                Boards Main
+                <FontAwesomeIcon
+                  className="navMenuIcon"
+                  icon={faChalkboardUser}
+                />
+                Boards
                 <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
               </h3>
             </Link>
             <Link className="navMenu" to="board/notice">
-              Notice
-              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              <p>
+                Notice
+                <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              </p>
             </Link>
             <Link className="navMenu" to="board/customerHelp">
-              Customer Help
-              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              <p>
+                Customer Help
+                <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              </p>
             </Link>
             <Link className="navMenu" to="board/todoList">
-              Todo List
-              <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              <p>
+                Todo List
+                <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
+              </p>
             </Link>
           </div>
         </div>
