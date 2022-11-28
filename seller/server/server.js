@@ -827,6 +827,19 @@ app.put("/boardUpdate", (req, res) => {
   );
 });
 
+app.get("/board/todoList", (req, res) => {
+  let sql = "SELECT * FROM boardtodoList ORDER BY idx DESC limit 0, 5";
+  db.query(sql, (err, lists) => {
+    if (err) {
+      throw err;
+    } else {
+      res.send({
+        lists,
+      });
+    }
+  });
+});
+
 app.get("/board", (req, res) => {
   const boardCode = req.query.boardCode;
   const page = Number.parseInt(req.query.page);
@@ -890,7 +903,8 @@ app.post("/write", upload.single("img"), (req, res) => {
 
 app.get("/view", (req, res) => {
   const { boardCode, idx } = req.query;
-  let viewSQL = "update board" + boardCode + " set view=view+1 where idx = ?;";
+  let viewSQL =
+    "update board" + boardCode + " set view=(view+1) where idx = ?;";
   db.query(viewSQL, [idx], (err) => {
     if (err) {
       throw err;

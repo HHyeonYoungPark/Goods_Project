@@ -51,3 +51,19 @@
   grid-row: 3 / 5;
   background-color: lightblue;
 }
+
+.adminMainTodoBox {
+  height: 100%;
+}
+
+.adminMainTodoBox table,
+.adminMainTodoBox tr,
+.adminMainTodoBox th,
+.adminMainTodoBox td {
+  border-collapse: collapse;
+  border: 1px solid transparent;
+}
+
+.adminMainTodoBox tr {
+  height: 30px;
+}
