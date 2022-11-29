@@ -16,7 +16,7 @@ function Navbar() {
   };
 
   const getNavbar = async () => {
-    await axios.get("http://localhost:4001/customer/navbar").then((res) => {
+    await axios.get("http://localhost:4002/customer/navbar").then((res) => {
       setChannels(res.data.channel);
       setGenre(res.data.channelSub);
       setCategory(res.data.category);

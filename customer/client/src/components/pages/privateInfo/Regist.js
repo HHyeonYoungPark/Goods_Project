@@ -52,7 +52,7 @@ function Regist() {
   async function idDuplicatonChk(e) {
     e.preventDefault();
     await axios
-      .post("http://localhost:4001/customer/idDuplicatonChk", { customerId })
+      .post("http://localhost:4002/customer/idDuplicatonChk", { customerId })
       .then((response) => {
         if (response.data.status === 201) {
           setCustomerIdMessage("사용가능한 아이디입니다.");

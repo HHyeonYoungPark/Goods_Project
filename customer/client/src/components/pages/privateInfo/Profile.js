@@ -25,7 +25,7 @@ function Profile({userId}) {
   const navigate = useNavigate();
 
   const getCustomerData = async () => {
-    await axios.get("http://localhost:4001/customer/profile/"+userId)
+    await axios.get("http://localhost:4002/customer/profile/"+userId)
         .then((response) => {
         if (response.data.status === 404) {
           window.alert(response.data.message);

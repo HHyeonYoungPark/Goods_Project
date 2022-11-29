@@ -24,7 +24,7 @@ function Review() {
     formDataReview.append("star", star);
     formDataReview.append("attach", attach);
 
-    await axios.post("http://localhost:4001/customer/writeReview", formDataReview)
+    await axios.post("http://localhost:4002/customer/writeReview", formDataReview)
       .then((response) => {
         if (response.data.status === 201) {
           window.alert(response.data.message);
