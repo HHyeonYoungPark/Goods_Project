@@ -178,7 +178,7 @@ function Regist() {
     ) {
       const CustomerData = {customerId, customerPw, customerName, customerMobile, customerEmail, customerAddress1, customerAddress2, customerZipcod}
       
-      await axios.post("http://localhost:4001/customer/regist", CustomerData)
+      await axios.post("http://localhost:4002/customer/regist", CustomerData)
         .then((response) => {
         if (response.data.status === 201) {
           window.alert(response.data.message);
