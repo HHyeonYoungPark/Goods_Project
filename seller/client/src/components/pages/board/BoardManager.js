@@ -9,7 +9,6 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 
-import BoardModify from "./BoardModify";
 import Paging from "../../function/PagingBoard";
 
 import "../../css/pages/AdminPage.css";

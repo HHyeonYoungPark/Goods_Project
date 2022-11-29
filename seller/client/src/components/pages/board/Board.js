@@ -24,7 +24,9 @@ const Board = () => {
 
   const location = useLocation();
 
-  const boardName = location.state.boardName;
+  const boardName = location.state.boardName || location.state;
+
+  console.log(location);
 
   const { boardCode } = useParams();
   // console.log(boardName);
@@ -124,7 +126,10 @@ const Board = () => {
             </div>
           </div>
           <div className="topRight">
-            <Link to={"/adminPage/board/" + boardCode + "/write"}>
+            <Link
+              to={"/adminPage/board/" + boardCode + "/write"}
+              state={{ boardName: boardName }}
+            >
               <button>게시글 작성</button>
             </Link>
           </div>
@@ -145,7 +150,10 @@ const Board = () => {
                 <tr key={key}>
                   <td>{list.idx}</td>
                   <td>
-                    <Link to={"/adminPage/board/" + boardCode + "/" + list.idx}>
+                    <Link
+                      to={"/adminPage/board/" + boardCode + "/" + list.idx}
+                      state={{ boardName: boardName }}
+                    >
                       {list.title}
                     </Link>
                   </td>
@@ -157,6 +165,7 @@ const Board = () => {
                       to={
                         "/adminPage/board/" + boardCode + "/update/" + list.idx
                       }
+                      state={{ boardName: boardName }}
                     >
                       수정
                     </Link>
