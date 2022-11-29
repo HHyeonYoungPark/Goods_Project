@@ -153,7 +153,7 @@ function App() {
               path="orderComplete"
               element={<OrderComplete userId={userId} />}
             />
-            <Route path="cart" element={<Cart />} />
+            <Route path="cart" element={<Cart userId={userId} />} />
             <Route path="notice" element={<Notice />} />
             <Route
               path="writeNotice"
