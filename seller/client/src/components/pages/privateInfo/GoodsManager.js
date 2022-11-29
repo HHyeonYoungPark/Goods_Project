@@ -5,36 +5,44 @@ import { useEffect, useState } from "react";
 import Paging from "../../function/Paging";
 import "../../css/pages/GoodsManager.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMagnifyingGlass,
+  faPenToSquare,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 
 function GoodsManager() {
   const [items, setItems] = useState([]);
   const [rows, setRows] = useState(0);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(0);
-  const [offset, setOffset] = useState(10);
+  const [offset, setOffset] = useState(9);
   const [select, setSelect] = useState("");
   const [searchWords, setSearchWords] = useState("");
   const [keyword, setKeyword] = useState("");
   const [msg, setMsg] = useState("");
-  
+
   const navigate = useNavigate();
 
   async function goodsManager() {
-    await axios.get("http://localhost:4001/goodsManager?page=" +
-    page +
-    "&offset=" +
-    offset +
-    "&select=" +
-    select +
-    "&searchQuery=" +
-    keyword).then((response) => {
-      setItems(response.data.items);
-      setPage(response.data.page);
-      setPages(response.data.totalPageNum);
-      setRows(response.data.totalRows);
-      console.log(response);
-    });
+    await axios
+      .get(
+        "http://localhost:4001/goodsManager?page=" +
+          page +
+          "&offset=" +
+          offset +
+          "&select=" +
+          select +
+          "&searchQuery=" +
+          keyword
+      )
+      .then((response) => {
+        setItems(response.data.items);
+        setPage(response.data.page);
+        setPages(response.data.totalPageNum);
+        setRows(response.data.totalRows);
+        console.log(response);
+      });
   }
 
   useEffect(() => {
@@ -85,7 +93,9 @@ function GoodsManager() {
                     name="goodsSearch"
                     onchange={(e) => setSelect(e.target.value)}
                   >
-                    <option value="" selected disabled>선택하세요</option>
+                    <option value="" selected disabled>
+                      선택하세요
+                    </option>
                     <option value="itemname">상품명</option>
                     <option value="category">카테고리</option>
                     <option value="price">가격</option>
@@ -159,9 +169,7 @@ function GoodsManager() {
                         />
                       </button>
                     </Link>
-                    <button
-                      onClick={() => deleteItem(item.idx)}
-                    >
+                    <button onClick={() => deleteItem(item.idx)}>
                       <FontAwesomeIcon className="itemDel" icon={faTrash} />
                     </button>
                   </td>
@@ -169,7 +177,7 @@ function GoodsManager() {
               );
             })}
           </table>
-          
+
           <p className="danger">{msg}</p>
           <div className="paging">
             <Paging
