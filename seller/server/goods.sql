@@ -95,6 +95,14 @@ create table review (
   -- ItemName varchar(100),
   -- title varchar(50),
 
+create table cart (
+  idx int auto_increment primary key,
+  userId VARCHAR(50),
+  itemIdx int,
+  itemCounter int,
+  itemPrice int
+);
+
 create table category1 (
     id int not null auto_increment primary key,
     category1 varchar(50) not null

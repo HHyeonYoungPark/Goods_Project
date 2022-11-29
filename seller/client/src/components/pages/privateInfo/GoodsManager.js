@@ -98,7 +98,6 @@ function GoodsManager() {
                     name="search"
                     placeholder="Input Search Word"
                     onChange={(e) => setSearchWords(e.target.value)}
-                    required
                   />
                   <button type="submit">
                     <FontAwesomeIcon

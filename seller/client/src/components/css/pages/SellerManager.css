@@ -18,7 +18,7 @@
   padding: 20px 0;
 }
 
-.topRight button {
+.topRightBtn button {
   width: 120px;
   height: 30px;
   border-radius: 10px;
@@ -27,7 +27,7 @@
   color: #5d5bd5;
 }
 
-.topRight button:hover {
+.topRightBtn button:hover {
   cursor: pointer;
   border: 1px solid #5d5bd5;
   background-color: #5d5bd5;

@@ -69,7 +69,7 @@ function CustomerManager() {
 
   return (
     <div className="customerManagerContainer">
-      <h2>구매자 회원 관리</h2>
+      <h2>Customer Manager</h2>
       <div className="customerList">
         <div className="customerListTop">
           <div className="topLeft">
@@ -94,7 +94,6 @@ function CustomerManager() {
                     className="search"
                     placeholder="Input Search Word"
                     onChange={(e) => setSearchWords(e.target.value)}
-                    required
                   />
                   <button type="submit">
                     <FontAwesomeIcon
@@ -106,9 +105,9 @@ function CustomerManager() {
               </form>
             </div>
           </div>
-          <div className="topRight">
+          <div className="topRightBtn">
             <Link to="/AdminPage/SellerManager">
-              <button>판매자 회원관리</button>
+              <button>Seller</button>
             </Link>
           </div>
         </div>

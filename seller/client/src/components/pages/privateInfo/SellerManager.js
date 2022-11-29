@@ -69,7 +69,7 @@ function SellerManager() {
 
   return (
     <div className="sellerManagerContainer">
-      <h2>판매자 회원 관리</h2>
+      <h2>Seller Manager</h2>
       <div className="sellerList">
         <div className="sellerListTop">
           <div className="topLeft">
@@ -94,7 +94,6 @@ function SellerManager() {
                     className="search"
                     placeholder="Input Search Word"
                     onChange={(e) => setSearchWords(e.target.value)}
-                    required
                   />
                   <button type="submit">
                     <FontAwesomeIcon
@@ -106,9 +105,9 @@ function SellerManager() {
               </form>
             </div>
           </div>
-          <div className="topRight">
+          <div className="topRightBtn">
             <Link to="/AdminPage/CustomerManager">
-              <button>구매자 회원관리</button>
+              <button>Customer</button>
             </Link>
           </div>
         </div>
