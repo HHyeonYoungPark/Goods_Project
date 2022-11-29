@@ -84,7 +84,7 @@ function DetailReview({ userId }) {
             리뷰 작성
           </button>
         </div>
-        {openReview === true ? <WriteReview /> : null}
+        {openReview === true ? <WriteReview userId={userId} /> : null}
         <div className="reviewList">
           <div className="search-wrap"></div>
           <div className="tbl-wrap">
