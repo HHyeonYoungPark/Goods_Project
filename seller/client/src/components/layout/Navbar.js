@@ -8,6 +8,10 @@ import { faCalculator } from "@fortawesome/free-solid-svg-icons";
 import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faHeadset } from "@fortawesome/free-solid-svg-icons";
+import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
+import {faThumbsUp} from "@fortawesome/free-solid-svg-icons";
+import {faStar} from "@fortawesome/free-solid-svg-icons";
+import {faList} from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   return (
@@ -17,24 +21,24 @@ function Navbar() {
           <div className="make">
             <Link to="/tableGallary">
               <span>전체상품</span>
-              <FontAwesomeIcon icon={faLightbulb} />
+              <FontAwesomeIcon icon={faList} />
             </Link>
           </div>
           <div>
             <Link to="/">
               <span>신상품</span>
-              <FontAwesomeIcon icon={faSquarePlus} />
+              <FontAwesomeIcon icon={faStar} />
             </Link>
           </div>
           <div>
             <Link to="/">
               <span>베스트</span>
-              <FontAwesomeIcon icon={faCalculator} />
+              <FontAwesomeIcon icon={faThumbsUp} />
             </Link>
           </div>
           <div>
             <Link to="/cart">
-              <span>장바구니</span> <FontAwesomeIcon icon={faEye} />
+              <span>장바구니</span> <FontAwesomeIcon icon={faCartShopping} />
             </Link>
           </div>
           <div>
