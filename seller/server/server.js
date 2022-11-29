@@ -506,22 +506,22 @@ app.post(
     console.log(req.body);
 
     const { writer } = req.body;
-    const { itemname } = req.body;
-    const { title } = req.body;
+    // const { itemname } = req.body;
+    // const { title } = req.body;
     const { filename } = req.file;
     // const { filename2 } = req.file;
     // const { filename3 } = req.file;
     const { contents } = req.body;
     const { rating } = req.body;
 
-    let sql = "INSERT INTO review VALUES(NULL,?,?,?,?,?,?,now());";
+    let sql = "INSERT INTO review VALUES(NULL,?,?,?,?,now());";
     db.query(
       sql,
       [
         writer,
         req.params.idx,
-        itemname,
-        title,
+        // itemname,
+        // title,
         filename,
         // filename2,
         // filename3,

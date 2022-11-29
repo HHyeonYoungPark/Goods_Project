@@ -78,7 +78,7 @@ function WriteReview({ userId }) {
                 />
               </td>
             </tr>
-            <tr>
+            {/* <tr>
               <th>상품명</th>
               <td>
                 <input
@@ -101,7 +101,7 @@ function WriteReview({ userId }) {
                   }}
                 />
               </td>
-            </tr>
+            </tr> */}
             <tr>
               <th>이미지</th>
               <td>
