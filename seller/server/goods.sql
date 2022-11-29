@@ -127,15 +127,18 @@ insert into category2 values(null,"스웨트니트","패션");
 insert into category2 values(null,"후드티","패션");
 insert into category2 values(null,"티셔츠","패션");
 insert into category2 values(null,"니트","패션");
+insert into category2 values(null,"기타","패션");
 
 insert into category2 values(null,"이어폰","전자기기");
 insert into category2 values(null,"키보드","전자기기");
 insert into category2 values(null,"마우스","전자기기");
 insert into category2 values(null,"스피커","전자기기");
+insert into category2 values(null,"기타","전자기기");
 
 insert into category2 values(null,"머그컵","생활");
 insert into category2 values(null,"텀블러","생활");
 insert into category2 values(null,"타월","생활");
+insert into category2 values(null,"기타","생활");
 
 insert into category2 values(null,"스티커","문구");
 insert into category2 values(null,"펜","문구");
@@ -143,11 +146,17 @@ insert into category2 values(null,"노트","문구");
 insert into category2 values(null,"지우개","문구");
 insert into category2 values(null,"샤프","문구");
 insert into category2 values(null,"필통","문구");
+insert into category2 values(null,"기타","문구");
 
 insert into category2 values(null,"폰케이스","악세사리");
 insert into category2 values(null,"키링","악세사리");
 insert into category2 values(null,"반지","악세사리");
 insert into category2 values(null,"목걸이","악세사리");
+insert into category2 values(null,"기타","악세사리");
+insert into category2 values(null,"기타","문구");
+insert into category2 values(null,"기타","생활");
+insert into category2 values(null,"기타","전자기기");
+insert into category2 values(null,"기타","패션");
 
 create table channel (
   idx int not null auto_increment primary key,

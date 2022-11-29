@@ -79,7 +79,7 @@ function App() {
               <Route path="itemSearch/:keyword" element={<ItemSearch />} />
             </Route>
             <Route
-              path="detail/:idx"
+              path="detail/:idx/:categoryCode1/:categoryCode2"
               element={<Detail token={token} userId={userId} />}
             >
               <Route index="detailTable" element={<DetailTable />} />
