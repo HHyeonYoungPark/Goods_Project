@@ -69,8 +69,8 @@ function CustomerManager() {
 
   return (
     <div className="customerManagerContainer">
+      <h2>구매자 회원 관리</h2>
       <div className="customerList">
-        <h1>구매자 회원 관리</h1>
         <div className="customerListTop">
           <div className="topLeft">
             <div className="searchWrap">
@@ -130,7 +130,7 @@ function CustomerManager() {
                   <tr key={key}>
                     <td>{cus.idx}</td>
                     <td>{cus.id}</td>
-                    <td>{cus.name}</td>
+                    <td>{cus.NAME}</td>
                     <td>{cus.email}</td>
                     <td>{cus.mobile}</td>
                     <td>{cus.address1}</td>

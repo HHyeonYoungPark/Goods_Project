@@ -69,8 +69,8 @@ function SellerManager() {
 
   return (
     <div className="sellerManagerContainer">
+      <h2>판매자 회원 관리</h2>
       <div className="sellerList">
-        <h1>판매자 회원 관리</h1>
         <div className="sellerListTop">
           <div className="topLeft">
             <div className="searchWrap">
