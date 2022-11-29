@@ -9,7 +9,7 @@ import {
   faPenToSquare,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-import "../../css/pages/AdminPage.css";
+import "../../css/pages/BoardSon.css";
 
 const Board = () => {
   const [lists, setLists] = useState([]);
@@ -84,17 +84,17 @@ const Board = () => {
   };
 
   return (
-    <div>
+    <div className="brdSonContainer">
       <h2>{boardName}</h2>
-      <div className="brdSonContainer">
+      <div className="brdSonList">
         <div className="brdSonBox">
-          <div className="brdSearchContainer">
-            <div className="brdListsearchWrap">
+          <div className="topLeft">
+            <div className="searchWrap">
               <form method="post" id="frm" onSubmit={listSearch}>
                 <div className="listSearch">
                   <select
                     id="listSearch"
-                    className="listSearch"
+                    className="list"
                     name="listSearch"
                     onChange={(e) => setSelect(e.target.value)}
                   >
@@ -122,63 +122,61 @@ const Board = () => {
                 </div>
               </form>
             </div>
+          </div>
+          <div className="topRight">
             <Link to={"/adminPage/board/" + boardCode + "/write"}>
-              게시글 작성
+              <button>게시글 작성</button>
             </Link>
           </div>
-          <table>
-            <thead>
-              <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>조회수</th>
-                <th>작성일</th>
-                <th>비고</th>
-              </tr>
-            </thead>
-            <tbody>
-              {lists.map((list, key) => {
-                return (
-                  <tr key={key}>
-                    <td>{list.idx}</td>
-                    <td>
-                      <Link
-                        to={"/adminPage/board/" + boardCode + "/" + list.idx}
-                      >
-                        {list.title}
-                      </Link>
-                    </td>
-                    <td>{list.writer}</td>
-                    <td>{list.view}</td>
-                    <td>{list.regdate}</td>
-                    <td>
-                      <Link
-                        to={
-                          "/adminPage/board/" +
-                          boardCode +
-                          "/update/" +
-                          list.idx
-                        }
-                      >
-                        수정
-                      </Link>
-                      /
-                      <button
-                        className="upDelBtn"
-                        onClick={() => deleteList(list.idx)}
-                      >
-                        삭제
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
+        </div>
+        <div className="tblWrap">
+          <table className="brdListTb">
+            <tr>
+              <th>번호</th>
+              <th>제목</th>
+              <th>작성자</th>
+              <th>조회수</th>
+              <th>작성일</th>
+              <th>비고</th>
+            </tr>
+
+            {lists.map((list, key) => {
+              return (
+                <tr key={key}>
+                  <td>{list.idx}</td>
+                  <td>
+                    <Link to={"/adminPage/board/" + boardCode + "/" + list.idx}>
+                      {list.title}
+                    </Link>
+                  </td>
+                  <td>{list.writer}</td>
+                  <td>{list.view}</td>
+                  <td>{list.regdate}</td>
+                  <td>
+                    <Link
+                      to={
+                        "/adminPage/board/" + boardCode + "/update/" + list.idx
+                      }
+                    >
+                      수정
+                    </Link>
+                    /
+                    <button
+                      className="upDelBtn"
+                      onClick={() => deleteList(list.idx)}
+                    >
+                      삭제
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
           </table>
-          <button className="list-btn">
-            <Link to="/AdminPage/boardManager">돌아가기</Link>
-          </button>
+          <div className="btmLeft">
+            <button>
+              <Link to="/AdminPage/boardManager">돌아가기</Link>
+            </button>
+          </div>
 
           <p className="danger">{msg}</p>
           <div className="paging">
