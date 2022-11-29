@@ -69,8 +69,9 @@ function Cart({userId}) {
     }
   };
 
-  const point = price * 0.01;
-  const basicPoint = Math.round(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+  const Price = parseInt(price);
+  const point = Price * 0.01;
+  const basicPoint = Math.round(point).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   const shipfee = 3000;
   const basicPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   const total = price + shipfee;

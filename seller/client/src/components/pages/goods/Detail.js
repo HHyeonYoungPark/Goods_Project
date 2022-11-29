@@ -44,6 +44,7 @@ const tags = {
 const discount = 10000;
 function Detail({ token, userId }) {
   const [item, setItem] = useState("");
+  const [price, setPrice] = useState(0);
   const { idx } = useParams();
   const navigate = useNavigate();
   // useEffect(function () {
@@ -60,6 +61,7 @@ function Detail({ token, userId }) {
   async function getDetail() {
     await axios.get(`http://localhost:4001/detail/${idx}`).then((response) => {
       setItem(response.data[0]);
+      setPrice(response.data[0].price);
     });
   }
   useEffect(() => {
@@ -67,9 +69,13 @@ function Detail({ token, userId }) {
   }, []);
   console.log(item);
 
-  function cart() {
+  async function cart() {
     token
-      ? window.alert("해당 상품이 장바구니에 추가되었습니다.")
+      ? await axios.post(`http://localhost:4001/cart/${userId}/${idx}`, {counter, price}).then((response) => {
+          if (response.data.status === 201) {
+            window.alert(response.data.message);
+          }
+        })
       : navigate("/login");
   }
 
@@ -174,6 +180,7 @@ function Detail({ token, userId }) {
                 />
               </button>
               <span className="spanmany">{counter}</span>
+              <input type="hidden" name="counter" value={counter} />
               <button onClick={plus}>
                 <FontAwesomeIcon
                   icon={faSquarePlus}
@@ -182,6 +189,7 @@ function Detail({ token, userId }) {
               </button>
             </div>
             <h2 className="detail-price">{totalPrice2}원</h2>
+            <input type="hidden" name="price" value={price} onChange={(e) => setPrice(e.target.value)} />
           </div>
           <div className="coupon-wrap">
             <p className="detail-coupon">ㄴ적용 가능한 쿠폰 없음</p>
