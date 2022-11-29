@@ -257,8 +257,8 @@ app.post("/getCate2", (req, res) => {
 });
 // 상품등록
 app.post(
-  '/addItem',
-  upload.fields([{ name: 'attach' }, { name: 'attach2' }, { name: 'attach3' }]),
+  "/addItem",
+  upload.fields([{ name: "attach" }, { name: "attach2" }, { name: "attach3" }]),
   (req, res) => {
     console.log(req.file);
 
@@ -275,7 +275,7 @@ app.post(
     const { contents } = req.body;
     const { madein } = req.body;
 
-    let sql = 'INSERT INTO item VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,now());';
+    let sql = "INSERT INTO item VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,now());";
     db.query(
       sql,
       [
@@ -296,12 +296,11 @@ app.post(
         if (err) {
           throw err;
         }
-        res.send({ status: 201, message: '상품등록이 완료되었습니다!' });
+        res.send({ status: 201, message: "상품등록이 완료되었습니다!" });
       }
     );
   }
 );
-
 
 // 상품삭제
 app.delete("/delete/:idx", (req, res) => {
@@ -636,12 +635,12 @@ app.get("/customerManager", (req, res) => {
 app.delete("/deleteCustomer/:idx", (req, res) => {
   let sql = "DELETE FROM customer WHERE idx=?;";
   db.query(sql, [req.params.idx], (err) => {
-    if(err) {
+    if (err) {
       throw err;
     } else {
-      res.send({status: 201, message:"회원 삭제 완료"})
+      res.send({ status: 201, message: "회원 삭제 완료" });
     }
-  })
+  });
 });
 
 app.get("/sellerManager", (req, res) => {
@@ -686,12 +685,12 @@ app.get("/sellerManager", (req, res) => {
 app.delete("/deleteSeller/:idx", (req, res) => {
   let sql = "DELETE FROM user WHERE idx=?;";
   db.query(sql, [req.params.idx], (err) => {
-    if(err) {
+    if (err) {
       throw err;
     } else {
-      res.send({status: 201, message:"회원 삭제 완료"})
+      res.send({ status: 201, message: "회원 삭제 완료" });
     }
-  })
+  });
 });
 
 // 다중 게시판
@@ -1044,6 +1043,30 @@ app.delete("/delete/:boardCode/:idx", (req, res) => {
 //리뷰 작성
 
 // 다중게시판
+
+//adminMain get Orders
+app.get("/adminMain/NumOfOrders", (req, res) => {
+  const date = new Date();
+
+  const year = date.getFullYear();
+  const month = ("0" + (date.getMonth() + 1)).slice(-2);
+  const day = ("0" + date.getDate()).slice(-2);
+  const dateStr = year + "-" + month + "-" + day;
+
+  console.log(dateStr);
+
+  let sql = "SELECT COUNT(idx) AS cnt FROM orders WHERE DATE(orderTime)=?;";
+
+  db.query(sql, dateStr, (err, recentOrders) => {
+    if (err) {
+      throw err;
+    } else {
+      res.send({
+        recentOrders,
+      });
+    }
+  });
+});
 
 // port
 app.listen(process.env.PORT, () => {

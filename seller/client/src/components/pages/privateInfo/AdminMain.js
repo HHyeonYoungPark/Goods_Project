@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../css/pages/AdminMain.css";
 
 //components
@@ -21,13 +21,13 @@ function AdminMain() {
           <AdminMainVisitor />
         </div>
         <div className="mainBox">
-          <AdminMainOrders />
+          <AdminMainSellers />
         </div>
         <div className="mainBox">
           <AdminMainCustomers />
         </div>
         <div className="mainBox">
-          <AdminMainSellers />
+          <AdminMainOrders />
         </div>
         <div className="mainBox">
           <AdminMainTodo />

@@ -3,7 +3,7 @@ import React from "react";
 function AdminMainCustomers() {
   return (
     <div>
-      <h2>AdminMainCustomers</h2>
+      <h2></h2>
     </div>
   );
 }

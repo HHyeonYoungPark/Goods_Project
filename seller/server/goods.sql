@@ -48,7 +48,7 @@ phone varchar(15),
 orderedItem VARCHAR(100),
 totalPrice INT,
 orderTime DATETIME
-)
+);
 
 CREATE TABLE AskToAdmin(
 idx INT AUTO_INCREMENT PRIMARY KEY,
