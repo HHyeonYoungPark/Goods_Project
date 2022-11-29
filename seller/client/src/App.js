@@ -147,7 +147,7 @@ function App() {
             {/* </Route> */}
 
             <Route path="newItem" element={<NewItem />} />
-            <Route path="pay/:idx" element={<Pay userId={userId} />} />
+            <Route   path="pay/:idx/:categoryCode1/:categoryCode2" element={<Pay userId={userId} />} />
             <Route path="pays" element={<Pays userId={userId} />} />
             <Route
               path="orderComplete"
