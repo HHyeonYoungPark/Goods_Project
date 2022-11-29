@@ -262,7 +262,7 @@ function Cart({ userId }) {
                           <p style={{ marginBottom: "10px" }}>
                             <b>3,000</b>원
                           </p>
-                          <Link to={"/pay/" + item.idx}>
+                          <Link to={`/pay/${item.idx}/${item.categoryCode1}/${item.categoryCode2}`}>
                             <button type="button" className="buyNow">
                               바로구매
                             </button>
