@@ -168,14 +168,18 @@ const Board = () => {
                       }
                       state={{ boardName: boardName }}
                     >
-                      수정
+                      <button>
+                        <FontAwesomeIcon
+                          className="boardModi"
+                          icon={faPenToSquare}
+                        />
+                      </button>
                     </Link>
-                    /
                     <button
                       className="upDelBtn"
                       onClick={() => deleteList(list.idx)}
                     >
-                      삭제
+                      <FontAwesomeIcon className="boardDel" icon={faTrash} />
                     </button>
                   </td>
                 </tr>

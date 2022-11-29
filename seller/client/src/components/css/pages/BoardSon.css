@@ -136,6 +136,8 @@
   margin-right: 7px;
   margin-left: 14px;
   padding: 0px 4px;
+  border: none;
+  background-color: transparent;
 }
 
 .brdListTb button:hover {
