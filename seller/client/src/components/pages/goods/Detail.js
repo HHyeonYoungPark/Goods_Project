@@ -128,9 +128,9 @@ function Detail({ token, userId }) {
   return (
     <div className="detail-con">
       <div className="top-nav-con">
-        <div>패션</div>
-        <FontAwesomeIcon icon={faChevronRight} style={topnavstyle} />
         <div>{item.category}</div>
+        <FontAwesomeIcon icon={faChevronRight} style={topnavstyle} />
+        <div>{item.detailcategory }</div>
         <FontAwesomeIcon icon={faChevronRight} style={topnavstyle} />
         <div>{item.itemname}</div>
       </div>
