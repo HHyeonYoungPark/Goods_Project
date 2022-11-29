@@ -174,19 +174,31 @@ function AdminPage({ userId }) {
                 <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
               </h3>
             </Link>
-            <Link className="navMenu" to="board/notice">
+            <Link
+              className="navMenu"
+              to="board/notice"
+              state={{ boardName: "Notice" }}
+            >
               <p>
                 Notice
                 <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
               </p>
             </Link>
-            <Link className="navMenu" to="board/customerHelp">
+            <Link
+              className="navMenu"
+              to="board/customerHelp"
+              state={{ boardName: "Customer Help" }}
+            >
               <p>
                 Customer Help
                 <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
               </p>
             </Link>
-            <Link className="navMenu" to="board/todoList">
+            <Link
+              className="navMenu"
+              to="board/todoList"
+              state={{ boardName: "Todo List" }}
+            >
               <p>
                 Todo List
                 <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />

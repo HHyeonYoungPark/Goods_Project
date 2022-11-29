@@ -60,6 +60,8 @@ function WriteReview({ userId }) {
     reviewManager();
   }, [reviews]);
 
+  console.log(userId);
+
   return (
     <div className="reviewWrite">
       <form method="post" encType="multipart/form-data" onSubmit={frmHandler}>
@@ -71,7 +73,7 @@ function WriteReview({ userId }) {
                 <input
                   type="text"
                   name="writer"
-                  value={writer}
+                  value={userId}
                   onChange={(e) => {
                     setWriter(e.target.value);
                   }}

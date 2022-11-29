@@ -334,7 +334,8 @@
   justify-content: right;
 }
 
-.boardSearch {
+.boardSearch,
+.brdListsearchWrap {
   border: 1px solid transparent;
   width: 400px;
   border-radius: 20px;
@@ -346,7 +347,7 @@
   align-items: center;
   margin-bottom: 5px;
 }
-.boardSearch:hover {
+.boardSearch:hover .brdListsearchWrap:hover {
   border: 1px solid #5d5bd5;
   transition: 0.3s;
   background-color: white;
@@ -470,4 +471,19 @@
 
 .paging button {
   border: 1px solid transparent;
+}
+
+/* board */
+
+.brdSonContainer {
+  box-shadow: 0px 0px 6px #5d5bd5;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-top: 10px;
+}
+
+.searchWrap {
+}
+
+.listSearch {
 }

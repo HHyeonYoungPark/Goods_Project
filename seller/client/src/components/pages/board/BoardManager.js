@@ -347,7 +347,10 @@ function BoardManager({ userId }) {
                   <td>{b.boardCategory}</td>
                   <td className="boardNameLink">
                     <p>
-                      <Link to={"/adminPage/board/" + b.boardCode}>
+                      <Link
+                        to={"/adminPage/board/" + b.boardCode}
+                        state={{ boardName: b.boardName }}
+                      >
                         {b.boardName}
                       </Link>
                     </p>
@@ -361,10 +364,7 @@ function BoardManager({ userId }) {
                   <td>{b.modifyDate}</td>
                   <td>
                     <Link to={"/adminPage/boardUpdate/" + b.boardCode}>
-                      <button
-                        className="boardModi"
-                        onClick={() => deleteBoard(b.boardCode)}
-                      >
+                      <button className="boardModi">
                         <FontAwesomeIcon
                           className="boardModi"
                           icon={faPenToSquare}
