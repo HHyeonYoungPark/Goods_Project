@@ -1031,9 +1031,11 @@ app.delete("/delete/:boardCode/:idx", (req, res) => {
           if (err) {
             throw err;
           } else {
-            fs.unlink("./uploads/" + img[0].image, (err) => {
-              if (err) throw err;
-            });
+            if(img[0].image !== null) {
+              fs.unlink("./uploads/" + img[0].image, (err) => {
+                if (err) throw err;
+              });
+            }
             res.send({ status: 201, message: "게시글 삭제 완료" });
           }
         });

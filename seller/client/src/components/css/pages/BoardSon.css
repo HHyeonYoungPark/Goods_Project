@@ -17,16 +17,18 @@
   padding: 20px 0;
 }
 
-.btmLeft button {
+.BoardTopRight button {
   width: 120px;
   height: 30px;
   border-radius: 10px;
   margin-right: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
   box-shadow: 0px 0px 6px #5d5bd5;
   color: #5d5bd5;
 }
 
-.btmLeft button:hover {
+.BoardTopRight button:hover {
   cursor: pointer;
   border: 1px solid #5d5bd5;
   background-color: #5d5bd5;
@@ -110,24 +112,23 @@
   font-size: 16px;
 }
 .brdListTb th:nth-child(2) {
-  width: 15%;
   font-size: 16px;
 }
 .brdListTb th:nth-child(3) {
-  width: 15%;
+  width: 5%;
   font-size: 16px;
 }
 .brdListTb th:nth-child(4) {
-  width: 15%;
+  width: 5%;
   font-size: 16px;
 }
 .brdListTb th:nth-child(5) {
-  width: 10%;
+  width: 5%;
   font-size: 16px;
 }
 
 .brdListTb th:last-child {
-  width: 10%;
+  width: 5%;
 }
 
 .brdListTb button {
@@ -135,6 +136,8 @@
   margin-right: 7px;
   margin-left: 14px;
   padding: 0px 4px;
+  border: none;
+  background-color: transparent;
 }
 
 .brdListTb button:hover {
@@ -144,4 +147,77 @@
 
 .paging button {
   border: 1px solid transparent;
+}
+
+/* boardWrite */
+
+.boardWriteContainer {
+  width: 100%;
+}
+
+.boardWriteTbl {
+  height: 600px;
+  box-shadow: 0px 0px 6px #5d5bd5;
+  border-radius: 10px;
+  padding: 20px 20px;
+  margin-top: 10px;
+}
+
+.boardWriteTbl table,
+.boardWriteTbl table tr,
+.boardWriteTbl table th,
+.boardWriteTbl table td {
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid transparent white;
+  border-collapse: collapse;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+.boardWriteTbl table tr {
+  height: 50px;
+}
+
+.boardWriteTbl table th {
+  background-color: #5d5bd5;
+}
+
+.boardWriteTbl table td {
+  text-align: left;
+}
+
+.boardWriteContent {
+  resize: none;
+  border: 1px solid transparent;
+
+  margin: 5px;
+}
+
+.boardWritebtm {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  padding: 10px;
+}
+
+.boardWritebtm button {
+  width: 120px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+.boardWriteSubmitBtn {
+  margin-right: 10px;
+  box-shadow: 0px 0px 6px #5d5bd5;
+  color: #5d5bd5;
+}
+
+.boardWriteSubmitBtn:hover {
+  cursor: pointer;
+  border: 1px solid #5d5bd5;
+  background-color: #5d5bd5;
+  color: white;
+  font-weight: bolder;
 }

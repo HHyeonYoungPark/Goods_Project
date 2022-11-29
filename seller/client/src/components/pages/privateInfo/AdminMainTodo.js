@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Paging from "../../function/Paging";
 
-import "../../css/pages/AdminMain.css";
+import "../../css/pages/BoardSon.css";
 
 const AdminMainTodo = () => {
   const [lists, setLists] = useState([]);
@@ -30,33 +30,38 @@ const AdminMainTodo = () => {
   }, []);
 
   return (
-    <div className="adminMainTodoBox">
-      <table>
-        <thead>
-          <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>등록일</th>
-          </tr>
-        </thead>
-        <tbody>
-          {lists.map((list, key) => {
-            return (
-              <tr key={key}>
-                <td>{list.idx}</td>
-                <td>
-                  <Link to={"/adminPage/board/todoList/" + list.idx}>
-                    {list.title}
-                  </Link>
-                </td>
-                <td>{list.writer}</td>
-                <td>{list.regdate}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+    <div className="brdSonContainer">
+      <h3>Todo List</h3>
+      <div className="tblWrap">
+        <table className="brdListTb">
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>제목</th>
+              <th>작성자</th>
+              <th>등록일</th>
+              <th>조회수</th>
+            </tr>
+          </thead>
+          <tbody>
+            {lists.map((list, key) => {
+              return (
+                <tr key={key}>
+                  <td>{list.idx}</td>
+                  <td>
+                    <Link to={"/adminPage/board/todoList/" + list.idx}>
+                      {list.title}
+                    </Link>
+                  </td>
+                  <td>{list.writer}</td>
+                  <td>{list.regdate}</td>
+                  <td>{list.view}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
