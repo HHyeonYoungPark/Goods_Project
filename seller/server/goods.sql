@@ -86,13 +86,14 @@ create table review (
   idx int auto_increment primary key,
   Writer varchar(50),
   ItemNo varchar(50),
-  ItemName varchar(100),
-  title varchar(50),
   attach VARCHAR(255),
   Contents varchar(255),
   Rating varchar(50),
   regdate DATE
 );
+-- 리뷰 항목 제거
+  -- ItemName varchar(100),
+  -- title varchar(50),
 
 create table category1 (
     id int not null auto_increment primary key,

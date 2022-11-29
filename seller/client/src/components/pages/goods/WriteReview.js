@@ -7,8 +7,8 @@ import "../../css/pages/Review.css";
 
 function WriteReview({ userId }) {
   const [writer, setWriter] = useState(userId);
-  const [itemname, setItemname] = useState("");
-  const [title, setTitle] = useState("");
+  // const [itemname, setItemname] = useState("");
+  // const [title, setTitle] = useState("");
   const [attach, setAttach] = useState("");
   const [attach2, setAttach2] = useState("");
   const [attach3, setAttach3] = useState("");
@@ -25,8 +25,8 @@ function WriteReview({ userId }) {
     let formData = new FormData();
 
     formData.append("writer", writer);
-    formData.append("itemname", itemname);
-    formData.append("title", title);
+    // formData.append("itemname", itemname);
+    // formData.append("title", title);
     formData.append("attach", attach);
     formData.append("attach2", attach2);
     formData.append("attach3", attach3);
