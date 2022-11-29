@@ -63,7 +63,7 @@ function TableGallary() {
                 />
               </Link>
               <h4>
-                <Link to={`/detail/${item.idx}`}>{item.itemname}</Link>
+              <Link to={`/detail/${item.idx + item.categoryCode1 + item.categoryCode2}`}>{item.itemname}</Link>
               </h4>
               <p className="price">
                 <Link to="#">
