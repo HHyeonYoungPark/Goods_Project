@@ -246,7 +246,7 @@ app.post("/getCate1", (req, res) => {
 });
 
 app.post("/getCate2", (req, res) => {
-  let sql = "select category2 from category2 where category1 = ?;";
+  let sql = "select * from category2 where category1 = ?;";
   const { cate1 } = req.body;
   db.query(sql, [cate1], (err, result) => {
     if (err) {
@@ -257,14 +257,16 @@ app.post("/getCate2", (req, res) => {
 });
 // 상품등록
 app.post(
-  "/addItem",
-  upload.fields([{ name: "attach" }, { name: "attach2" }, { name: "attach3" }]),
+  '/addItem',
+  upload.fields([{ name: 'attach' }, { name: 'attach2' }, { name: 'attach3' }]),
   (req, res) => {
     console.log(req.file);
 
     const { itemname } = req.body;
     const { category } = req.body;
-    const { categoryCode } = req.body;
+    const { detailCategory } = req.body;
+    const { categoryCode1 } = req.body;
+    const { categoryCode2 } = req.body;
     const { price } = req.body;
     const { stock } = req.body;
     const filename = req.files.attach[0].filename;
@@ -273,13 +275,15 @@ app.post(
     const { contents } = req.body;
     const { madein } = req.body;
 
-    let sql = "INSERT INTO item VALUES(NULL,?,?,?,?,?,?,?,?,?,?,now());";
+    let sql = 'INSERT INTO item VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?,now());';
     db.query(
       sql,
       [
         itemname,
         category,
-        categoryCode,
+        detailCategory,
+        categoryCode1,
+        categoryCode2,
         price,
         stock,
         filename,
@@ -292,11 +296,12 @@ app.post(
         if (err) {
           throw err;
         }
-        res.send({ status: 201, message: "상품등록이 완료되었습니다!" });
+        res.send({ status: 201, message: '상품등록이 완료되었습니다!' });
       }
     );
   }
 );
+
 
 // 상품삭제
 app.delete("/delete/:idx", (req, res) => {
@@ -354,7 +359,7 @@ app.put("/updateItem/:idx", upload.single("attach"), (req, res) => {
 
 //상품 상세보기
 // 상품 상세보기 페이지
-app.get("/detail/:idx", (req, res) => {
+app.get("/detail/:idx:categoryCode1:categoryCode2", (req, res) => {
   let sql = "select * from item where idx =?;";
   db.query(sql, [req.params.idx], (err, response) => {
     if (err) {

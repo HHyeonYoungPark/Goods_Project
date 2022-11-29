@@ -5,7 +5,9 @@ CREATE TABLE item(
 idx INT AUTO_INCREMENT PRIMARY KEY,
 itemname VARCHAR(100),
 category VARCHAR(50),
-categoryCode VARCHAR(50),
+detailcategory VARCHAR(50),
+categoryCode1 VARCHAR(50),
+categoryCode2 VARCHAR(50),
 price INT,
 stock INT,
 attach VARCHAR(255),
@@ -15,6 +17,7 @@ contents TEXT,
 madein VARCHAR(50),
 regdate DATE
 );
+
 
 
 CREATE TABLE user(
