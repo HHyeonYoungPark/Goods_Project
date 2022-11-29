@@ -91,19 +91,19 @@
 }
 
 .customerListTb tr {
-  height: 35px;
+  height: 50px;
 }
 
 .customerListTb th {
   padding: 0;
-  height: 35px;
+  height: 50px;
   background-color: #5d5bd5;
   text-align: center;
 }
 
 .customerListTb td {
   text-align: center;
-  height: 25px;
+  height: 50px;
 }
 
 .customerListTb th:first-child {
