@@ -8,13 +8,14 @@ import AdminMainOrders from "./AdminMainOrders";
 import AdminMainCustomers from "./AdminMainCustomers";
 import AdminMainSellers from "./AdminMainSellers";
 import AdminMainGraph from "./AdminMainGraph";
+import AdminMainCalendar from "./AdminMainCalendar";
 
 function AdminMain() {
   return (
     <div>
       <div className="adminMainContainer">
         <div className="mainBox">
-          <AdminMainTodo />
+          <AdminMainCalendar />
         </div>
         <div className="mainBox">
           <AdminMainVisitor />
@@ -29,7 +30,10 @@ function AdminMain() {
           <AdminMainSellers />
         </div>
         <div className="mainBox">
-          <AdminMainGraph />h
+          <AdminMainTodo />
+        </div>
+        <div className="mainBox">
+          <AdminMainGraph />
         </div>
       </div>
     </div>

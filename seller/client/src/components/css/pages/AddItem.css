@@ -20,17 +20,18 @@
 
 .addItemTb input {
   border-collapse: collapse;
-  width: 100%;
+  width: 250px;
   height: 30px;
   font-size: 16px;
-  text-align: center;
+
+  text-align: right;
 }
 
 .addItemTb input::placeholder {
   color: rgba(0, 0, 0, 0.3);
 }
 
-.addItemTb p{
+.addItemTb p {
   text-align: left;
 }
 
@@ -45,12 +46,12 @@
 .addItemTb td {
   border: 1px solid white;
   border-collapse: collapse;
-  text-align: center;
-  justify-content: center;
+  text-align: left;
+  justify-content: left;
   justify-items: center;
 }
 
-.addItemTb tr{
+.addItemTb tr {
   height: 80px;
 }
 
@@ -63,14 +64,13 @@
   padding-left: 30px;
 }
 
-
 .addItemTb select {
   border: none;
   border-collapse: collapse;
   font-size: 16px;
   margin: 0px;
   padding: 0px;
-  width: 45%;
+  width: 250px;
   height: 40px;
   text-align: right;
 }
@@ -86,7 +86,7 @@
   outline: none;
 }
 
-.addItemTb .itemImage{
+.addItemTb .itemImage {
   width: 90%;
   height: 40px;
 }
@@ -131,4 +131,3 @@
   color: white;
   font-weight: bolder;
 }
-

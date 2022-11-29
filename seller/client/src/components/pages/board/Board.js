@@ -125,11 +125,12 @@ const Board = () => {
               </form>
             </div>
           </div>
-          <div className="topRight">
+          <div className="BoardTopRight">
             <Link
               to={"/adminPage/board/" + boardCode + "/write"}
               state={{ boardName: boardName }}
             >
+              {" "}
               <button>게시글 작성</button>
             </Link>
           </div>
@@ -181,11 +182,6 @@ const Board = () => {
               );
             })}
           </table>
-          <div className="btmLeft">
-            <button>
-              <Link to="/AdminPage/boardManager">돌아가기</Link>
-            </button>
-          </div>
 
           <p className="danger">{msg}</p>
           <div className="paging">
