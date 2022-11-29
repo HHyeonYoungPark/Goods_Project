@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import "../../css/pages/BoardSon.css";
 
 function UpdateItem() {
   const [item, setItem] = useState("");
@@ -67,7 +68,6 @@ function UpdateItem() {
         <form method="post" encType="multipart/form-data" onSubmit={frmHandler}>
           <input type="hidden" value={item.idx} />
           <div className="addItem">
-            <h3>상품 기본정보 수정</h3>
             <table>
               <tr>
                 <th>상품명</th>

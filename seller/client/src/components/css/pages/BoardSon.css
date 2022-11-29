@@ -17,7 +17,8 @@
   padding: 20px 0;
 }
 
-.BoardTopRight button {
+.BoardTopRight button,
+.addItem button {
   width: 120px;
   height: 30px;
   border-radius: 10px;

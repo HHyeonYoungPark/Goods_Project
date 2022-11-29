@@ -39,8 +39,8 @@ const Write = () => {
   return (
     <div className="boardWriteContainer">
       <h2>Board Write</h2>
-      <div className="boardWriteTbl">
-        <form method="post" className="frm" onSubmit={frmHandler}>
+      <form method="post" className="frm" onSubmit={frmHandler}>
+        <div className="boardWriteTbl">
           <input type="hidden" value={boardCode} />
           <table className="boardWriteForm">
             <tr>
@@ -96,13 +96,13 @@ const Write = () => {
               </td>
             </tr>
           </table>
-          <div className="boardWritebtm">
-            <button type="submit" className="boardWriteSubmitBtn">
-              Write
-            </button>
-          </div>
-        </form>
-      </div>
+        </div>
+        <div className="boardWritebtm">
+          <button type="submit" className="boardWriteSubmitBtn">
+            Write
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
