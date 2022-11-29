@@ -506,22 +506,22 @@ app.post(
     console.log(req.body);
 
     const { writer } = req.body;
-    const { itemname } = req.body;
-    const { title } = req.body;
+    // const { itemname } = req.body;
+    // const { title } = req.body;
     const { filename } = req.file;
     // const { filename2 } = req.file;
     // const { filename3 } = req.file;
     const { contents } = req.body;
     const { rating } = req.body;
 
-    let sql = "INSERT INTO review VALUES(NULL,?,?,?,?,?,?,now());";
+    let sql = "INSERT INTO review VALUES(NULL,?,?,?,?,now());";
     db.query(
       sql,
       [
         writer,
         req.params.idx,
-        itemname,
-        title,
+        // itemname,
+        // title,
         filename,
         // filename2,
         // filename3,
@@ -628,6 +628,17 @@ app.get("/customerManager", (req, res) => {
   });
 });
 
+app.delete("/deleteCustomer/:idx", (req, res) => {
+  let sql = "DELETE FROM customer WHERE idx=?;";
+  db.query(sql, [req.params.idx], (err) => {
+    if(err) {
+      throw err;
+    } else {
+      res.send({status: 201, message:"회원 삭제 완료"})
+    }
+  })
+});
+
 app.get("/sellerManager", (req, res) => {
   console.log(req.query);
   const page = Number.parseInt(req.query.page);
@@ -665,6 +676,17 @@ app.get("/sellerManager", (req, res) => {
       );
     }
   });
+});
+
+app.delete("/deleteSeller/:idx", (req, res) => {
+  let sql = "DELETE FROM user WHERE idx=?;";
+  db.query(sql, [req.params.idx], (err) => {
+    if(err) {
+      throw err;
+    } else {
+      res.send({status: 201, message:"회원 삭제 완료"})
+    }
+  })
 });
 
 // 다중 게시판

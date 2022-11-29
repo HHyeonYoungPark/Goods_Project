@@ -142,7 +142,7 @@ function AdminPage({ userId }) {
                 <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
               </h3>
             </Link>
-            <Link className="navMenu" to="CostumerManager">
+            <Link className="navMenu" to="CustomerManager">
               <p>
                 Customers
                 <FontAwesomeIcon className="navMenuArrow" icon={faArrowRight} />
