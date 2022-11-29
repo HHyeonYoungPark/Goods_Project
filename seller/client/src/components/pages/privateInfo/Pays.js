@@ -7,7 +7,7 @@ import DummyImg from "../../images/dummyImg02.png";
 import { set } from "date-fns";
 import { useLocation } from "react-router-dom";
 
-function Pays({ userId}) {
+function Pays({ userId }) {
   const [items, setItems] = useState([]);
   const [userInfo, setUserInfo] = useState("");
   const [price, setPrice] = useState(0);
@@ -15,21 +15,19 @@ function Pays({ userId}) {
   const basicPoint = location.state.basicPoint;
   const basicPrice = location.state.basicPrice;
   const basicTotalPrice = location.state.basicTotalPrice;
-  
+
   async function Pays() {
-    await axios
-      .get(`http://localhost:4001/pays/${userId}`)
-      .then((response) => {
-        setItems(response.data.result);
-        setUserInfo(response.data.user[0]);
-        console.log(location.state);
-      });
+    await axios.get(`http://localhost:4001/pays/${userId}`).then((response) => {
+      setItems(response.data.result);
+      setUserInfo(response.data.user[0]);
+      console.log(location.state);
+    });
   }
 
   useEffect(() => {
     Pays();
   }, []);
-    
+
   return (
     <div className="payContent-wrap">
       <div className="payContent-left">
@@ -92,30 +90,28 @@ function Pays({ userId}) {
               <td>가격</td>
               <td>배송비</td>
             </tr>
-            {
-              items.map((item, key) => {
-                // const Price = parseInt(item.price);
-                // const Counter = parseInt(item.itemCounter);
-                // const basicPrice = (Price*Counter).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                // setPrice(...price + basicPrice);
-                
-                return(
-                  <tr key={key}>
-                    <td>
-                      <img
-                        src={`http://localhost:4001/${item.attach}`}
-                        style={{ width: "120px", height: "120px" }}
-                      />
-                    </td>
-                    <td>{item.itemname}</td>
-                    <td>{item.itemCounter}</td>
-                    {/* <td>{basicPrice}원</td> */}
-                    <td>{item.price * item.itemCounter}원</td>
-                    <td>0원</td>
-                  </tr>
-                )
-              })
-            }
+            {items.map((item, key) => {
+              // const Price = parseInt(item.price);
+              // const Counter = parseInt(item.itemCounter);
+              // const basicPrice = (Price*Counter).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+              // setPrice(...price + basicPrice);
+
+              return (
+                <tr key={key}>
+                  <td>
+                    <img
+                      src={`http://localhost:4001/${item.attach}`}
+                      style={{ width: "120px", height: "120px" }}
+                    />
+                  </td>
+                  <td>{item.itemname}</td>
+                  <td>{item.itemCounter}</td>
+                  {/* <td>{basicPrice}원</td> */}
+                  <td>{item.price * item.itemCounter}원</td>
+                  <td>0원</td>
+                </tr>
+              );
+            })}
           </table>
         </div>
       </div>

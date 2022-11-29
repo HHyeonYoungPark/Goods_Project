@@ -1,7 +1,7 @@
 .cartContent-wrap {
   display: flex;
   justify-content: center;
-  margin-bottom: 50px;
+  margin: 50px;
 }
 
 .cartContent-left {
@@ -15,6 +15,28 @@
   justify-content: left;
   border-bottom: 1px solid #ccc;
   padding-bottom: 20px;
+}
+
+.select-wrap {
+  background-color: #f6f6f6;
+  margin-bottom: 20px;
+  padding: 20px 10px;
+}
+
+.select-wrap span {
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+.select-wrap button {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+.select-wrap button:hover {
+  background-color: #f9f9f9;
 }
 
 .cartItem-container {
@@ -44,11 +66,48 @@
   width: 120px;
 }
 
+.cart-checkbox {
+  margin-left: 10px;
+}
+
+.spanmany {
+  margin-right: 10px;
+}
+
+.buyNow {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.buyNow:hover {
+  cursor: pointer;
+  background-color: #f6f6f6;
+  transition: 0.2s;
+}
+
+.total-price-left {
+  margin-top: 40px;
+  background-color: aliceblue;
+  margin-bottom: 20px;
+  padding: 20px 0px;
+  text-align: center;
+  border-bottom: 1px solid rgb(133, 180, 218);
+  border-top: 1px solid rgb(133, 180, 218);
+}
+
+.total-price-left b {
+  font-size: 19px;
+}
+
 .cartContent-right {
   width: 340px;
   padding-left: 30px;
 }
 
+.cart-pay-title {
+  margin-bottom: 20px;
+}
 
 .point {
   display: flex;
@@ -61,6 +120,11 @@
   padding: 20px 0;
   border-bottom: 1px dashed #ccc;
 }
+
+.paySoon {
+  margin-bottom: 20px;
+}
+
 .pay-price-title {
   margin-bottom: 20px;
 }
@@ -71,6 +135,10 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 7px;
+}
+
+.discount {
+  margin-top: 20px;
 }
 
 .discount .discount-price {
