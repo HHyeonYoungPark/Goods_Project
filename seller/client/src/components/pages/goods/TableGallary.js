@@ -55,7 +55,7 @@ function TableGallary() {
         {items.map((item, key) => {
           return (
             <div className="TableGallary" key={key}>
-              <Link to={`/detail/${item.idx + item.categoryCode1 + item.categoryCode2}`}>
+              <Link to={`/detail/${item.idx}/${item.categoryCode1}/${item.categoryCode2}`}>
                 <img
                   style={{ width: "100%" }}
                   src={`http://localhost:4001/${item.attach}`}
@@ -63,7 +63,7 @@ function TableGallary() {
                 />
               </Link>
               <h4>
-              <Link to={`/detail/${item.idx + item.categoryCode1 + item.categoryCode2}`}>{item.itemname}</Link>
+              <Link to={`/detail/${item.idx}/${item.categoryCode1}/${item.categoryCode2}`}>{item.itemname}</Link>
               </h4>
               <p className="price">
                 <Link to="#">

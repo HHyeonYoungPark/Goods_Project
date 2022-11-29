@@ -108,7 +108,7 @@ function Pays({ userId }) {
                   <td>{item.itemCounter}</td>
                   {/* <td>{basicPrice}원</td> */}
                   <td>{item.price * item.itemCounter}원</td>
-                  <td>0원</td>
+                  <td>3,000원</td>
                 </tr>
               );
             })}

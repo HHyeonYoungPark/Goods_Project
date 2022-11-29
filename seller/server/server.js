@@ -358,7 +358,7 @@ app.put("/updateItem/:idx", upload.single("attach"), (req, res) => {
 
 //상품 상세보기
 // 상품 상세보기 페이지
-app.get("/detail/:idx:categoryCode1:categoryCode2", (req, res) => {
+app.get("/detail/:idx", (req, res) => {
   let sql = "select * from item where idx =?;";
   db.query(sql, [req.params.idx], (err, response) => {
     if (err) {
